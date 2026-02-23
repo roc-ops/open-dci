@@ -10,39 +10,41 @@ of CableLabs specification PDFs. These PDFs are not committed to the repository
 due to their size and licensing considerations. Each developer should download
 the specs they need into this folder.
 
-## Freely Available Specs
+## Specifications
 
-The following spec is freely downloadable without a CableLabs account:
-
-| Spec ID | Version | Download URL |
-|---------|---------|--------------|
-| CM-SP-OSSIv3.0 | I05 (Dec 2007) | [Direct PDF](https://www.cablelabs.com/wp-content/uploads/2015/08/CM-SP-OSSIv3.0-I05-071206.pdf) |
-
-Alternate CDN link:
-https://www-res.cablelabs.com/wp-content/uploads/2019/02/28093824/CM-SP-OSSIv3.0-I05-071206.pdf
-
-To download into `docs/external/`:
-
-```sh
-curl -L -o docs/external/CM-SP-OSSIv3.0-I05-071206.pdf \
-  "https://www.cablelabs.com/wp-content/uploads/2015/08/CM-SP-OSSIv3.0-I05-071206.pdf"
-```
-
-## Account-Gated Specs (Free Registration Required)
-
-The following current-version specifications require a free CableLabs account.
+All current-version specifications require a free CableLabs account.
 Register at: https://register.cablelabs.com
 
 Once registered, you can download PDFs from the specification landing pages below.
 
-| Spec ID | Version | Landing Page |
-|---------|---------|--------------|
-| CM-SP-MULPIv3.1 | I21 (Oct 2020) | https://www.cablelabs.com/specifications/CM-SP-MULPIv3.1 |
-| CM-SP-MULPIv3.0 | I30 | https://www.cablelabs.com/specifications/CM-SP-MULPIv3.0 |
-| CL-SP-CANN | ~I24 (Mar 2025) | https://www.cablelabs.com/specifications/CL-SP-CANN |
-| CM-SP-CM-OSSIv3.1 | I20 (Oct 2020) | https://www.cablelabs.com/specifications/CM-SP-CM-OSSIv3.1 |
+### DOCSIS 4.0
 
-### How to Download Account-Gated Specs
+| Spec ID | Current Version | Landing Page |
+|---------|----------------|--------------|
+| CM-SP-MULPIv4.0 | I11 (Feb 2026) | https://www.cablelabs.com/specifications/CM-SP-MULPIv4.0 |
+| CM-SP-CM-OSSIv4.0 | I12 (Jun 2025) | https://www.cablelabs.com/specifications/CM-SP-CM-OSSIv4.0 |
+
+### DOCSIS 3.1
+
+| Spec ID | Current Version | Landing Page |
+|---------|----------------|--------------|
+| CM-SP-MULPIv3.1 | I25 (Apr 2023) | https://www.cablelabs.com/specifications/CM-SP-MULPIv3.1 |
+| CM-SP-CM-OSSIv3.1 | I27 (Feb 2025) | https://www.cablelabs.com/specifications/CM-SP-CM-OSSIv3.1 |
+
+### DOCSIS 3.0
+
+| Spec ID | Current Version | Landing Page |
+|---------|----------------|--------------|
+| CM-SP-MULPIv3.0 | C01 (Dec 2017) | https://www.cablelabs.com/specifications/CM-SP-MULPIv3.0 |
+| CM-SP-OSSIv3.0 | C01 (Dec 2017) | https://www.cablelabs.com/specifications/CM-SP-OSSIv3.0 |
+
+### Common
+
+| Spec ID | Current Version | Landing Page |
+|---------|----------------|--------------|
+| CL-SP-CANN | I24 (Mar 2025) | https://www.cablelabs.com/specifications/CL-SP-CANN |
+
+### How to Download
 
 1. Create a free account at https://register.cablelabs.com
 2. Log in at https://www.cablelabs.com
@@ -51,6 +53,9 @@ Once registered, you can download PDFs from the specification landing pages belo
 
 ### Spec Descriptions
 
+- **CM-SP-MULPIv4.0** -- DOCSIS 4.0 MAC and Upper Layer Protocols Interface.
+  The latest generation defining config file structure for DOCSIS 4.0.
+
 - **CM-SP-MULPIv3.1** -- DOCSIS 3.1 MAC and Upper Layer Protocols Interface.
   Defines the MAC-layer and upper-layer protocol requirements for DOCSIS 3.1
   cable modems and CMTSs.
@@ -58,16 +63,20 @@ Once registered, you can download PDFs from the specification landing pages belo
 - **CM-SP-MULPIv3.0** -- DOCSIS 3.0 MAC and Upper Layer Protocols Interface.
   The DOCSIS 3.0 predecessor to MULPIv3.1.
 
-- **CL-SP-CANN** -- CableLabs Common Annex. Contains common definitions,
-  encoding rules, and TLV tables shared across multiple DOCSIS specifications.
+- **CL-SP-CANN** -- CableLabs Assigned Names and Numbers. Contains the central
+  registry for all TLV values and sub-TLVs shared across DOCSIS specifications.
   This is a key reference for TLV parsing and configuration file formats.
+
+- **CM-SP-CM-OSSIv4.0** -- DOCSIS 4.0 CM Operations Support System Interface.
+  Defines the configuration file format, MIBs, and management interfaces for
+  DOCSIS 4.0 cable modems.
 
 - **CM-SP-CM-OSSIv3.1** -- DOCSIS 3.1 CM Operations Support System Interface.
   Defines the configuration file format, MIBs, and management interfaces for
   DOCSIS 3.1 cable modems.
 
 - **CM-SP-OSSIv3.0** -- DOCSIS 3.0 Operations Support System Interface.
-  The DOCSIS 3.0 predecessor to CM-OSSIv3.1. Freely available (see above).
+  The DOCSIS 3.0 predecessor to CM-OSSIv3.1.
 
 ## Expected Files in `docs/external/`
 
@@ -75,13 +84,12 @@ After downloading all specs, the `docs/external/` folder should contain:
 
 ```
 docs/external/
-  CM-SP-OSSIv3.0-I05-071206.pdf          (freely available)
-  CM-SP-MULPIv3.1-*.pdf                  (requires account)
-  CM-SP-MULPIv3.0-*.pdf                  (requires account)
-  CL-SP-CANN-*.pdf                       (requires account)
-  CM-SP-CM-OSSIv3.1-*.pdf                (requires account)
+  CM-SP-MULPIv4.0-I11-260219.pdf
+  CM-SP-MULPIv3.1-I25-230419.pdf
+  CM-SP-MULPIv3.0-C0I-171207.pdf
+  CM-SP-CM-OSSIv4.0-I12-250611.pdf
+  CM-SP-CM-OSSIv3.1-I27-250219.pdf
+  CM-SP-OSSIv3.0-C01-171207.pdf
+  CM-SP-OSSIv3.0-I05-071206.pdf
+  CL-SP-CANN-I24-250320.pdf
 ```
-
-Note: The exact filenames for account-gated specs will depend on the version
-downloaded from CableLabs. The `*` above represents the version/date suffix
-that CableLabs includes in the filename.
