@@ -42,24 +42,25 @@ Once registered, you can download PDFs from the specification landing pages belo
 
 | Spec ID | Current Version | TLV Area | Landing Page |
 |---------|----------------|----------|--------------|
-| CM-SP-L2VPN | I16 (Mar 2022) | TLV 43.5, 45, 65 | https://www.cablelabs.com/specifications/business-services-over-docsis-layer-2-virtual-private-networks |
+| CM-SP-L2VPN | I17 (Oct 2025) | TLV 43.5, 45, 65 | https://www.cablelabs.com/specifications/business-services-over-docsis-layer-2-virtual-private-networks |
 | CM-SP-eRouter | I22 (May 2024) | TLV 202 | https://www.cablelabs.com/specifications/CM-SP-eRouter |
-| CM-SP-DSG | I25 | TLV 217 | https://www.cablelabs.com/specifications/CM-SP-DSG |
-| CM-SP-eDOCSIS | I30 (Feb 2019) | TLV 201-231 | https://www.cablelabs.com/specifications/CM-SP-eDOCSIS |
+| CM-SP-DSG | I25 (Sep 2017) | TLV 217 | https://www.cablelabs.com/specifications/CM-SP-DSG |
+| CM-SP-eDOCSIS | I31 (Aug 2022) | TLV 201-231 | https://www.cablelabs.com/specifications/CM-SP-eDOCSIS |
 | CM-SP-TEI | I06 (Jun 2010) | TLV 219 | https://www.cablelabs.com/specifications/CM-SP-TEI |
-| CM-SP-SYNC | I02 (Apr 2021) | TLV 98-102 | https://www.cablelabs.com/specifications/CM-SP-SYNC |
+| CM-SP-SYNC | I03 (Jul 2022) | TLV 98-102 | https://www.cablelabs.com/specifications/CM-SP-SYNC |
 
 ### PacketCable
 
 | Spec ID | Current Version | TLV Area | Landing Page |
 |---------|----------------|----------|--------------|
-| PKT-SP-PROV1.5 | I04 (Jun 2009) | TLV 216 (eMTA) | https://www.cablelabs.com/specifications/packetcable-mta-device-provisioning-specification |
-| PKT-SP-RST-EUE-PROV | C01 (Mar 2014) | TLV 220 (eDVA) | https://www.cablelabs.com/specifications/PKT-SP-RST-EUE-PROV |
+| PKT-SP-PROV1.5 | C01 (Nov 2019) | TLV 216 (eMTA) | https://www.cablelabs.com/specifications/packetcable-mta-device-provisioning-specification |
+| PKT-SP-RST-E-DVA | C01 (Mar 2014) | TLV 220 (eDVA) | https://www.cablelabs.com/specifications/PKT-SP-RST-E-DVA |
 
 ### DPoE
 
 | Spec ID | Current Version | TLV Area | Landing Page |
 |---------|----------------|----------|--------------|
+| DPoE-SP-MULPIv1.0 | C01 (Aug 2016) | Various | https://www.cablelabs.com/specifications/DPoE-SP-MULPIv1.0 |
 | DPoE-SP-MULPIv2.0 | I14 (Mar 2023) | TLV 43.5, 72, 83 | https://www.cablelabs.com/specifications/DPoE-SP-MULPIv2.0 |
 
 ### Common
@@ -124,11 +125,14 @@ Once registered, you can download PDFs from the specification landing pages belo
 - **PKT-SP-PROV1.5** -- PacketCable 1.5 MTA Device Provisioning. Defines
   eMTA configuration TLVs (TLV 216) for PacketCable voice services.
 
-- **PKT-SP-RST-EUE-PROV** -- PacketCable 2.0 RST E-UE Provisioning. Defines
+- **PKT-SP-RST-E-DVA** -- PacketCable 2.0 RST E-DVA Provisioning. Defines
   eDVA configuration TLVs (TLV 220) for PacketCable 2.0 devices.
 
+- **DPoE-SP-MULPIv1.0** -- DPoE MAC and Upper Layer Protocols Interface v1.0.
+  Defines TLV encodings for DOCSIS Provisioning of EPON (DPoE) v1.0 devices.
+
 - **DPoE-SP-MULPIv2.0** -- DPoE MAC and Upper Layer Protocols Interface v2.0.
-  Defines TLV encodings for DOCSIS Provisioning of EPON (DPoE) devices.
+  Defines TLV encodings for DOCSIS Provisioning of EPON (DPoE) v2.0 devices.
 
 ## Expected Files in `docs/external/`
 
@@ -147,17 +151,18 @@ docs/external/
   CL-SP-CANN-I24-250320.pdf
 
   # DOCSIS Extensions
-  CM-SP-L2VPN-I16-220328.pdf
+  CM-SP-L2VPN-I17-251013.pdf
   CM-SP-eRouter-I22-240503.pdf
-  CM-SP-DSG-I25-*.pdf
-  CM-SP-eDOCSIS-I30-190213.pdf
+  CM-SP-DSG-I25-170906.pdf
+  CM-SP-eDOCSIS-I31-220831.pdf
   CM-SP-TEI-I06-100611.pdf
-  CM-SP-SYNC-I02-*.pdf
+  CM-SP-SYNC-I03-220715.pdf
 
   # PacketCable
-  PKT-SP-PROV1.5-I04-090624.pdf
-  PKT-SP-RST-EUE-PROV-C01-140314.pdf
+  PKT-SP-PROV1.5-C01-191120.pdf
+  PKT-SP-RST-E-DVA-C01-140314.pdf
 
   # DPoE
-  DPoE-SP-MULPIv2.0-I14-*.pdf
+  DPoE-SP-MULPIv1.0-C01-160830.pdf
+  DPoE-SP-MULPIv2.0-I14-230322.pdf
 ```
