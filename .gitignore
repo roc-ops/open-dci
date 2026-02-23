@@ -1,0 +1,5 @@
+# Do-work task queue (local only)
+do-work/
+
+# External spec PDFs (downloaded locally, not committed)
+docs/external/
