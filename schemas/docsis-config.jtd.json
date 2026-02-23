@@ -1,0 +1,532 @@
+{
+  "metadata": {
+    "title": "OpenDCI DOCSIS Configuration File",
+    "version": "1.0.0",
+    "docsis": "4.0",
+    "spec": "CM-SP-MULPIv4.0"
+  },
+  "definitions": {
+    "SnmpMibEntry": {
+      "metadata": {
+        "description": "A single SNMP MIB object encoded as an OID, ASN.1 type, and value. Corresponds to TLV 11 (SNMP MIB Object) which carries a BER-encoded varbind in the binary config file.",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.5"
+      },
+      "properties": {
+        "oid": {
+          "metadata": {
+            "description": "SNMP object identifier in dotted-decimal notation (e.g., 1.3.6.1.2.1.69.1.2.1.6.0)",
+            "dataType": "oid",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.5"
+          },
+          "type": "string"
+        },
+        "type": {
+          "metadata": {
+            "description": "ASN.1 type of the SNMP value",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.5"
+          },
+          "enum": [
+            "Integer",
+            "String",
+            "IPAddress",
+            "Counter32",
+            "Gauge32",
+            "TimeTicks",
+            "OID",
+            "HexString",
+            "Counter64",
+            "Unsigned32"
+          ]
+        },
+        "value": {
+          "metadata": {
+            "description": "The SNMP value as a string representation appropriate for the given type",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.5"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "ServiceFlowErrorEntry": {
+      "metadata": {
+        "description": "Service Flow Error Encoding reported when a service flow parameter is rejected",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+      },
+      "optionalProperties": {
+        "ErroredParameter": {
+          "metadata": {
+            "description": "Type value of the TLV in error",
+            "tlvType": "x.5.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+          },
+          "type": "uint8"
+        },
+        "ErrorCode": {
+          "metadata": {
+            "description": "Error code value",
+            "tlvType": "x.5.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+          },
+          "type": "uint8"
+        },
+        "ErrorMessage": {
+          "metadata": {
+            "description": "Human-readable error message",
+            "tlvType": "x.5.3",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "UpstreamServiceFlowEntry": {
+      "metadata": {
+        "description": "Upstream Service Flow encoding. Defines QoS parameters for an upstream service flow.",
+        "tlvType": 24,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.1"
+      },
+      "optionalProperties": {
+        "ServiceFlowReference": {
+          "metadata": {
+            "description": "Unique reference for this service flow within the config file",
+            "tlvType": "24.1",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned service flow identifier",
+            "tlvType": "24.2",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "ServiceClassName": {
+          "metadata": {
+            "description": "Name of the service class to use for this service flow",
+            "tlvType": "24.4",
+            "tlvLength": "2-16",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.4"
+          },
+          "type": "string"
+        },
+        "ServiceFlowErrorEncoding": {
+          "metadata": {
+            "description": "Error encoding for this service flow",
+            "tlvType": "24.5",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+          },
+          "ref": "ServiceFlowErrorEntry"
+        },
+        "QosParamSetType": {
+          "metadata": {
+            "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
+            "tlvType": "24.6",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "validValues": {
+              "0": "reserved",
+              "7": "provisioned, admitted, and active set"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.6"
+          },
+          "type": "uint8"
+        },
+        "TrafficPriority": {
+          "metadata": {
+            "description": "Relative priority for the service flow (0-7)",
+            "tlvType": "24.7",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+          },
+          "type": "uint8"
+        },
+        "MaxSustainedTrafficRate": {
+          "metadata": {
+            "description": "Maximum sustained traffic rate in bits per second",
+            "tlvType": "24.8",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+          },
+          "type": "uint32"
+        },
+        "MaxTrafficBurst": {
+          "metadata": {
+            "description": "Maximum traffic burst size in bytes",
+            "tlvType": "24.9",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+          },
+          "type": "uint32"
+        },
+        "MinReservedTrafficRate": {
+          "metadata": {
+            "description": "Minimum reserved traffic rate in bits per second",
+            "tlvType": "24.10",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+          },
+          "type": "uint32"
+        },
+        "SchedulingType": {
+          "metadata": {
+            "description": "Upstream scheduling type for this service flow",
+            "tlvType": "24.15",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "validValues": {
+              "0": "reserved",
+              "1": "undefined (use best effort)",
+              "2": "best effort",
+              "3": "non-real-time polling service",
+              "4": "real-time polling service",
+              "5": "unsolicited grant service with AD",
+              "6": "unsolicited grant service"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.2"
+          },
+          "type": "uint8"
+        },
+        "RequestTransmissionPolicy": {
+          "metadata": {
+            "description": "Bitmask controlling request/transmission policies for upstream service flows",
+            "tlvType": "24.16",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "encoding": "bitmask",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.3"
+          },
+          "type": "uint32"
+        },
+        "MaxConcatenatedBurst": {
+          "metadata": {
+            "description": "Maximum concatenated burst size in bytes (upstream only)",
+            "tlvType": "24.14",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.1"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "DownstreamServiceFlowEntry": {
+      "metadata": {
+        "description": "Downstream Service Flow encoding. Defines QoS parameters for a downstream service flow.",
+        "tlvType": 25,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.2"
+      },
+      "optionalProperties": {
+        "ServiceFlowReference": {
+          "metadata": {
+            "description": "Unique reference for this service flow within the config file",
+            "tlvType": "25.1",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned service flow identifier",
+            "tlvType": "25.2",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "ServiceClassName": {
+          "metadata": {
+            "description": "Name of the service class to use for this service flow",
+            "tlvType": "25.4",
+            "tlvLength": "2-16",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.4"
+          },
+          "type": "string"
+        },
+        "ServiceFlowErrorEncoding": {
+          "metadata": {
+            "description": "Error encoding for this service flow",
+            "tlvType": "25.5",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+          },
+          "ref": "ServiceFlowErrorEntry"
+        },
+        "QosParamSetType": {
+          "metadata": {
+            "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
+            "tlvType": "25.6",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "validValues": {
+              "0": "reserved",
+              "7": "provisioned, admitted, and active set"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.6"
+          },
+          "type": "uint8"
+        },
+        "TrafficPriority": {
+          "metadata": {
+            "description": "Relative priority for the service flow (0-7)",
+            "tlvType": "25.7",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+          },
+          "type": "uint8"
+        },
+        "MaxSustainedTrafficRate": {
+          "metadata": {
+            "description": "Maximum sustained traffic rate in bits per second",
+            "tlvType": "25.8",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+          },
+          "type": "uint32"
+        },
+        "MaxTrafficBurst": {
+          "metadata": {
+            "description": "Maximum traffic burst size in bytes",
+            "tlvType": "25.9",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+          },
+          "type": "uint32"
+        },
+        "MinReservedTrafficRate": {
+          "metadata": {
+            "description": "Minimum reserved traffic rate in bits per second",
+            "tlvType": "25.10",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+          },
+          "type": "uint32"
+        },
+        "MaxDownstreamLatency": {
+          "metadata": {
+            "description": "Maximum downstream latency in microseconds",
+            "tlvType": "25.14",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.6.1"
+          },
+          "type": "uint32"
+        }
+      }
+    },
+    "DocsisExtensionFieldEntry": {
+      "metadata": {
+        "description": "DOCSIS Extension Field (TLV 43) container. When VendorId is FFFFFF (General Extension), the defined sub-TLVs apply. When VendorId is any other OUI, sub-TLVs are vendor-specific and arbitrary keys are allowed.",
+        "tlvType": 43,
+        "spec": "CM-SP-MULPIv4.0 C.1.1.18"
+      },
+      "properties": {
+        "VendorId": {
+          "metadata": {
+            "description": "3-byte IEEE OUI as a hexadecimal string. Use FFFFFF for General Extension Information.",
+            "tlvType": "43.8",
+            "tlvLength": 3,
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.1.3.2"
+          },
+          "type": "string"
+        }
+      },
+      "optionalProperties": {
+        "CmLoadBalancingPolicyId": {
+          "metadata": {
+            "description": "Load balancing policy ID assigned to the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.1",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.1"
+          },
+          "type": "uint32"
+        },
+        "CmLoadBalancingPriority": {
+          "metadata": {
+            "description": "Load balancing priority for the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.2",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.2"
+          },
+          "type": "uint32"
+        },
+        "CmLoadBalancingGroupId": {
+          "metadata": {
+            "description": "Load balancing group ID for the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.3",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.3"
+          },
+          "type": "uint32"
+        },
+        "ServiceTypeIdentifier": {
+          "metadata": {
+            "description": "Service type identifier string (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.10",
+            "dataType": "string",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.10"
+          },
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "optionalProperties": {
+    "DownstreamFrequency": {
+      "metadata": {
+        "description": "Center frequency of the downstream channel in Hz",
+        "tlvType": 1,
+        "tlvLength": 4,
+        "dataType": "uint32",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.1"
+      },
+      "type": "uint32"
+    },
+    "UpstreamChannelId": {
+      "metadata": {
+        "description": "Upstream channel ID for the CM to use during initial ranging",
+        "tlvType": 2,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.2"
+      },
+      "type": "uint8"
+    },
+    "NetworkAccess": {
+      "metadata": {
+        "description": "Controls whether the CM has network access (0 = disabled, 1 = enabled)",
+        "tlvType": 3,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.3"
+      },
+      "type": "uint8"
+    },
+    "SwUpgradeFilename": {
+      "metadata": {
+        "description": "Filename for software upgrade via TFTP",
+        "tlvType": 9,
+        "dataType": "string",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.3"
+      },
+      "type": "string"
+    },
+    "SnmpMibObject": {
+      "metadata": {
+        "description": "SNMP MIB objects to set on the CM during provisioning. Each entry is a BER-encoded varbind in the binary config file.",
+        "tlvType": 11,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.1.2.5"
+      },
+      "elements": {
+        "ref": "SnmpMibEntry"
+      }
+    },
+    "CpeEthernetMacAddress": {
+      "metadata": {
+        "description": "Ethernet MAC address of a CPE device allowed through the CM",
+        "tlvType": 14,
+        "tlvLength": 6,
+        "dataType": "macAddress",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.6"
+      },
+      "type": "string"
+    },
+    "MaxNumCpes": {
+      "metadata": {
+        "description": "Maximum number of CPEs allowed behind this CM",
+        "tlvType": 18,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.7"
+      },
+      "type": "uint8"
+    },
+    "PrivacyEnable": {
+      "metadata": {
+        "description": "Enable BPI+ privacy on the CM (0 = disabled, 1 = enabled)",
+        "tlvType": 29,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.17"
+      },
+      "type": "uint8"
+    },
+    "UpstreamServiceFlow": {
+      "metadata": {
+        "description": "Upstream Service Flow definitions. Each entry defines QoS parameters for one upstream service flow.",
+        "tlvType": 24,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.1"
+      },
+      "elements": {
+        "ref": "UpstreamServiceFlowEntry"
+      }
+    },
+    "DownstreamServiceFlow": {
+      "metadata": {
+        "description": "Downstream Service Flow definitions. Each entry defines QoS parameters for one downstream service flow.",
+        "tlvType": 25,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.2"
+      },
+      "elements": {
+        "ref": "DownstreamServiceFlowEntry"
+      }
+    },
+    "DocsisExtensionField": {
+      "metadata": {
+        "description": "DOCSIS Extension Field (Vendor Specific / General Extension). Each entry begins with a VendorId (OUI). OUI=FFFFFF means General Extension with CANN-registered sub-TLVs; any other OUI is vendor-specific.",
+        "tlvType": 43,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.1.1.18"
+      },
+      "elements": {
+        "ref": "DocsisExtensionFieldEntry"
+      }
+    },
+    "SwUpgradeIpv6TftpServer": {
+      "metadata": {
+        "description": "IPv6 address of the TFTP server for software upgrade",
+        "tlvType": 58,
+        "tlvLength": 16,
+        "dataType": "ipv6Address",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.8"
+      },
+      "type": "string"
+    }
+  }
+}

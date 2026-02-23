@@ -1,0 +1,70 @@
+// OpenDCI DOCSIS Configuration File — Vendor Specific (TLV 43) Examples
+// Demonstrates the DOCSIS Extension Field with both General Extension
+// (OUI=FFFFFF) and vendor-specific (custom OUI) blocks.
+
+{
+  "NetworkAccess": 1,
+  "MaxNumCpes": 1,
+  "PrivacyEnable": 1,
+
+  "DocsisExtensionField": [
+    /* -------------------------------------------------------------------
+     * General Extension Block (OUI = FFFFFF)
+     *
+     * When VendorId is FFFFFF, sub-TLVs are CANN-registered general
+     * extensions defined in CM-SP-MULPIv4.0 C.1.1.18.1.
+     * This block configures CM load balancing parameters.
+     * ------------------------------------------------------------------- */
+    {
+      "VendorId": "FFFFFF",
+      "CmLoadBalancingPolicyId": 2,
+      "CmLoadBalancingPriority": 128,
+      "CmLoadBalancingGroupId": 1,
+      "ServiceTypeIdentifier": "residential-50m"
+    },
+
+    /* -------------------------------------------------------------------
+     * Vendor-Specific Block (OUI = 001018, Broadcom)
+     *
+     * When VendorId is anything other than FFFFFF, the sub-TLVs are
+     * defined by the vendor identified by the OUI. The CMTS and CM
+     * should ignore sub-TLVs from unrecognized vendors.
+     *
+     * These sub-TLV types and values are illustrative. Actual vendor-
+     * specific encodings are defined by each chipset vendor.
+     * ------------------------------------------------------------------- */
+    {
+      "VendorId": "001018",
+      // Vendor-defined sub-TLVs — opaque to non-Broadcom equipment
+      "PowerSavingMode": 1,
+      "AdvancedSpectrumManagement": "enabled"
+    },
+
+    /* -------------------------------------------------------------------
+     * Vendor-Specific Block (OUI = 00D09E, Cisco/SA)
+     * ------------------------------------------------------------------- */
+    {
+      "VendorId": "00D09E",
+      // Cisco-defined sub-TLVs for CPE management
+      "CpeManagementMode": 2,
+      "RemoteQueryCommunity": "cisco-rq"
+    }
+  ],
+
+  /* Minimal service flows for completeness */
+  "UpstreamServiceFlow": [
+    {
+      "ServiceFlowReference": 1,
+      "QosParamSetType": 7,
+      "MaxSustainedTrafficRate": 5000000,
+      "SchedulingType": 2
+    }
+  ],
+  "DownstreamServiceFlow": [
+    {
+      "ServiceFlowReference": 2,
+      "QosParamSetType": 7,
+      "MaxSustainedTrafficRate": 50000000
+    }
+  ]
+}

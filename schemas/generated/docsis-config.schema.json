@@ -1,0 +1,509 @@
+{
+  "$defs": {
+    "DocsisExtensionFieldEntry": {
+      "additionalProperties": true,
+      "description": "DOCSIS Extension Field (TLV 43) container. When VendorId is FFFFFF (General Extension), the defined sub-TLVs apply. When VendorId is any other OUI, sub-TLVs are vendor-specific and arbitrary keys are allowed.",
+      "properties": {
+        "CmLoadBalancingGroupId": {
+          "description": "Load balancing group ID for the CM (General Extension, OUI=FFFFFF)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.3",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "43.3"
+        },
+        "CmLoadBalancingPolicyId": {
+          "description": "Load balancing policy ID assigned to the CM (General Extension, OUI=FFFFFF)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.1",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "43.1"
+        },
+        "CmLoadBalancingPriority": {
+          "description": "Load balancing priority for the CM (General Extension, OUI=FFFFFF)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.2",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "43.2"
+        },
+        "ServiceTypeIdentifier": {
+          "description": "Service type identifier string (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.10",
+          "x-docsis-tlvType": "43.10"
+        },
+        "VendorId": {
+          "description": "3-byte IEEE OUI as a hexadecimal string. Use FFFFFF for General Extension Information.",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.3.2",
+          "x-docsis-tlvLength": 3,
+          "x-docsis-tlvType": "43.8"
+        }
+      },
+      "required": [
+        "VendorId"
+      ],
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18",
+      "x-docsis-tlvType": 43
+    },
+    "DownstreamServiceFlowEntry": {
+      "additionalProperties": false,
+      "description": "Downstream Service Flow encoding. Defines QoS parameters for a downstream service flow.",
+      "properties": {
+        "MaxDownstreamLatency": {
+          "description": "Maximum downstream latency in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.6.1",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.14"
+        },
+        "MaxSustainedTrafficRate": {
+          "description": "Maximum sustained traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.8"
+        },
+        "MaxTrafficBurst": {
+          "description": "Maximum traffic burst size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.9"
+        },
+        "MinReservedTrafficRate": {
+          "description": "Minimum reserved traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.10"
+        },
+        "QosParamSetType": {
+          "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.6",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "25.6",
+          "x-docsis-validValues": {
+            "0": "reserved",
+            "7": "provisioned, admitted, and active set"
+          }
+        },
+        "ServiceClassName": {
+          "description": "Name of the service class to use for this service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.4",
+          "x-docsis-tlvLength": "2-16",
+          "x-docsis-tlvType": "25.4"
+        },
+        "ServiceFlowErrorEncoding": {
+          "$ref": "#/$defs/ServiceFlowErrorEntry",
+          "description": "Error encoding for this service flow",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-tlvType": "25.5"
+        },
+        "ServiceFlowIdentifier": {
+          "description": "CMTS-assigned service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.2"
+        },
+        "ServiceFlowReference": {
+          "description": "Unique reference for this service flow within the config file",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.1"
+        },
+        "TrafficPriority": {
+          "description": "Relative priority for the service flow (0-7)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "25.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.2",
+      "x-docsis-tlvType": 25
+    },
+    "ServiceFlowErrorEntry": {
+      "additionalProperties": false,
+      "description": "Service Flow Error Encoding reported when a service flow parameter is rejected",
+      "properties": {
+        "ErrorCode": {
+          "description": "Error code value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-tlvType": "x.5.2"
+        },
+        "ErrorMessage": {
+          "description": "Human-readable error message",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-tlvType": "x.5.3"
+        },
+        "ErroredParameter": {
+          "description": "Type value of the TLV in error",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-tlvType": "x.5.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+    },
+    "SnmpMibEntry": {
+      "additionalProperties": false,
+      "description": "A single SNMP MIB object encoded as an OID, ASN.1 type, and value. Corresponds to TLV 11 (SNMP MIB Object) which carries a BER-encoded varbind in the binary config file.",
+      "properties": {
+        "oid": {
+          "description": "SNMP object identifier in dotted-decimal notation (e.g., 1.3.6.1.2.1.69.1.2.1.6.0)",
+          "type": "string",
+          "x-docsis-dataType": "oid",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
+        },
+        "type": {
+          "description": "ASN.1 type of the SNMP value",
+          "enum": [
+            "Integer",
+            "String",
+            "IPAddress",
+            "Counter32",
+            "Gauge32",
+            "TimeTicks",
+            "OID",
+            "HexString",
+            "Counter64",
+            "Unsigned32"
+          ],
+          "type": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
+        },
+        "value": {
+          "description": "The SNMP value as a string representation appropriate for the given type",
+          "type": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
+        }
+      },
+      "required": [
+        "oid",
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
+    },
+    "UpstreamServiceFlowEntry": {
+      "additionalProperties": false,
+      "description": "Upstream Service Flow encoding. Defines QoS parameters for an upstream service flow.",
+      "properties": {
+        "MaxConcatenatedBurst": {
+          "description": "Maximum concatenated burst size in bytes (upstream only)",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.14"
+        },
+        "MaxSustainedTrafficRate": {
+          "description": "Maximum sustained traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.8"
+        },
+        "MaxTrafficBurst": {
+          "description": "Maximum traffic burst size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.9"
+        },
+        "MinReservedTrafficRate": {
+          "description": "Minimum reserved traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.10"
+        },
+        "QosParamSetType": {
+          "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.6",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.6",
+          "x-docsis-validValues": {
+            "0": "reserved",
+            "7": "provisioned, admitted, and active set"
+          }
+        },
+        "RequestTransmissionPolicy": {
+          "description": "Bitmask controlling request/transmission policies for upstream service flows",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-encoding": "bitmask",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.3",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.16"
+        },
+        "SchedulingType": {
+          "description": "Upstream scheduling type for this service flow",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.2",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.15",
+          "x-docsis-validValues": {
+            "0": "reserved",
+            "1": "undefined (use best effort)",
+            "2": "best effort",
+            "3": "non-real-time polling service",
+            "4": "real-time polling service",
+            "5": "unsolicited grant service with AD",
+            "6": "unsolicited grant service"
+          }
+        },
+        "ServiceClassName": {
+          "description": "Name of the service class to use for this service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.4",
+          "x-docsis-tlvLength": "2-16",
+          "x-docsis-tlvType": "24.4"
+        },
+        "ServiceFlowErrorEncoding": {
+          "$ref": "#/$defs/ServiceFlowErrorEntry",
+          "description": "Error encoding for this service flow",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-tlvType": "24.5"
+        },
+        "ServiceFlowIdentifier": {
+          "description": "CMTS-assigned service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.2"
+        },
+        "ServiceFlowReference": {
+          "description": "Unique reference for this service flow within the config file",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.1"
+        },
+        "TrafficPriority": {
+          "description": "Relative priority for the service flow (0-7)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.1",
+      "x-docsis-tlvType": 24
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CM-SP-MULPIv4.0",
+  "properties": {
+    "CpeEthernetMacAddress": {
+      "description": "Ethernet MAC address of a CPE device allowed through the CM",
+      "type": "string",
+      "x-docsis-dataType": "macAddress",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.6",
+      "x-docsis-tlvLength": 6,
+      "x-docsis-tlvType": 14
+    },
+    "DocsisExtensionField": {
+      "description": "DOCSIS Extension Field (Vendor Specific / General Extension). Each entry begins with a VendorId (OUI). OUI=FFFFFF means General Extension with CANN-registered sub-TLVs; any other OUI is vendor-specific.",
+      "items": {
+        "$ref": "#/$defs/DocsisExtensionFieldEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18",
+      "x-docsis-tlvType": 43
+    },
+    "DownstreamFrequency": {
+      "description": "Center frequency of the downstream channel in Hz",
+      "maximum": 4294967295,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint32",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.1",
+      "x-docsis-tlvLength": 4,
+      "x-docsis-tlvType": 1
+    },
+    "DownstreamServiceFlow": {
+      "description": "Downstream Service Flow definitions. Each entry defines QoS parameters for one downstream service flow.",
+      "items": {
+        "$ref": "#/$defs/DownstreamServiceFlowEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.2",
+      "x-docsis-tlvType": 25
+    },
+    "MaxNumCpes": {
+      "description": "Maximum number of CPEs allowed behind this CM",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.7",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 18
+    },
+    "NetworkAccess": {
+      "description": "Controls whether the CM has network access (0 = disabled, 1 = enabled)",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.3",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 3
+    },
+    "PrivacyEnable": {
+      "description": "Enable BPI+ privacy on the CM (0 = disabled, 1 = enabled)",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.17",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 29
+    },
+    "SnmpMibObject": {
+      "description": "SNMP MIB objects to set on the CM during provisioning. Each entry is a BER-encoded varbind in the binary config file.",
+      "items": {
+        "$ref": "#/$defs/SnmpMibEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5",
+      "x-docsis-tlvType": 11
+    },
+    "SwUpgradeFilename": {
+      "description": "Filename for software upgrade via TFTP",
+      "type": "string",
+      "x-docsis-dataType": "string",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.3",
+      "x-docsis-tlvType": 9
+    },
+    "SwUpgradeIpv6TftpServer": {
+      "description": "IPv6 address of the TFTP server for software upgrade",
+      "type": "string",
+      "x-docsis-dataType": "ipv6Address",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.8",
+      "x-docsis-tlvLength": 16,
+      "x-docsis-tlvType": 58
+    },
+    "UpstreamChannelId": {
+      "description": "Upstream channel ID for the CM to use during initial ranging",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.2",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 2
+    },
+    "UpstreamServiceFlow": {
+      "description": "Upstream Service Flow definitions. Each entry defines QoS parameters for one upstream service flow.",
+      "items": {
+        "$ref": "#/$defs/UpstreamServiceFlowEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.1",
+      "x-docsis-tlvType": 24
+    }
+  },
+  "title": "OpenDCI DOCSIS Configuration File",
+  "type": "object",
+  "x-docsis-spec": "CM-SP-MULPIv4.0",
+  "x-docsis-version": "1.0.0"
+}
