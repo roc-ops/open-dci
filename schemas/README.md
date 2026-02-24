@@ -44,7 +44,7 @@ JSON Type Definition was chosen over authoring JSON Schema directly for several 
 | `elements` + `ref` | Repeatable compound TLVs | `UpstreamServiceFlow` (array of entries) |
 | `properties` | Required sub-TLVs within a compound | `DocsisExtensionFieldEntry.VendorId` |
 | `optionalProperties` | Optional sub-TLVs within a compound | Service flow QoS parameters |
-| `additionalProperties` | Vendor-specific opaque keys | TLV 43 with non-FFFFFF OUI |
+| `ref` (to container) | Vendor-specific extension points | VendorSpecificContainer at TLV x.43 |
 | `ref` | Shared definitions | `ServiceFlowErrorEntry` used by both US/DS flows |
 
 ## JSONC Comments Support
@@ -102,19 +102,34 @@ TLV 43 (DOCSIS Extension Field) is modeled as a repeatable array of `DocsisExten
 
 - **Required**: `VendorId` -- A 3-byte OUI as a hex string
 - **Optional**: CANN-registered General Extension sub-TLVs (`CmLoadBalancingPolicyId`, `CmLoadBalancingPriority`, `CmLoadBalancingGroupId`, `ServiceTypeIdentifier`)
-- **`additionalProperties: true`** -- Allows arbitrary vendor-specific keys when the OUI is not `FFFFFF`
+- **Optional**: `VendorSubTlvs` -- An array of generic `{ type, value }` sub-TLVs for vendor-specific data when the OUI is not `FFFFFF`
 
 This design supports both use cases:
 
 ```jsonc
-// General Extension (OUI = FFFFFF) — well-known sub-TLVs
+// General Extension (OUI = FFFFFF) -- well-known sub-TLVs
 { "VendorId": "FFFFFF", "CmLoadBalancingPolicyId": 2 }
 
-// Vendor Specific (custom OUI) — opaque sub-TLVs
-{ "VendorId": "001018", "PowerSavingMode": 1 }
+// Vendor Specific (custom OUI) -- generic type/value sub-TLVs
+{
+  "VendorId": "001018",
+  "VendorSubTlvs": [
+    { "type": 1, "value": "01" },
+    { "type": 2, "value": "0080" }
+  ]
+}
 ```
 
 In the binary config file, each entry maps to a separate TLV 43 instance with sub-TLV 8 (Vendor ID) followed by the sub-TLVs.
+
+## Vendor-Specific Extension System
+
+All OUI-gated extension points (TLV x.43 patterns) use a `VendorSpecificContainer` structure containing:
+
+- **`VendorId`** -- 3-byte IEEE OUI identifying the vendor
+- **`SubTlvs`** -- Optional array of `VendorSpecificTlvEntry` objects (`{ type, value, dataType? }`)
+
+The `schemas/vendors/` directory holds optional vendor-specific schema files that can map sub-TLV type numbers to named, typed properties. See `schemas/vendors/README.md` for details.
 
 ## TLV 11 -- SNMP MIB Design
 
@@ -176,7 +191,7 @@ The initial schema covers a representative subset of DOCSIS TLVs that demonstrat
 - **Simple scalars**: TLV 1, 2, 3, 9, 14, 18, 29, 58
 - **SNMP MIB objects**: TLV 11 (array of varbinds)
 - **Upstream/Downstream Service Flows**: TLV 24, 25 (compound with sub-TLVs)
-- **Vendor Specific / General Extension**: TLV 43 (compound with `additionalProperties`)
+- **Vendor Specific / General Extension**: TLV 43 (compound with `VendorSubTlvs`)
 
 ### Phase 2: Core DOCSIS TLVs
 

@@ -1,6 +1,7 @@
-// OpenDCI DOCSIS Configuration File — Vendor Specific (TLV 43) Examples
+// OpenDCI DOCSIS Configuration File -- Vendor Specific (TLV 43) Examples
 // Demonstrates the DOCSIS Extension Field with both General Extension
-// (OUI=FFFFFF) and vendor-specific (custom OUI) blocks.
+// (OUI=FFFFFF) and vendor-specific (custom OUI) blocks, as well as
+// vendor-specific QoS parameters in service flows.
 
 {
   "NetworkAccess": 1,
@@ -14,6 +15,7 @@
      * When VendorId is FFFFFF, sub-TLVs are CANN-registered general
      * extensions defined in CM-SP-MULPIv4.0 C.1.1.18.1.
      * This block configures CM load balancing parameters.
+     * Named properties are used for well-known sub-TLVs.
      * ------------------------------------------------------------------- */
     {
       "VendorId": "FFFFFF",
@@ -27,17 +29,20 @@
      * Vendor-Specific Block (OUI = 001018, Broadcom)
      *
      * When VendorId is anything other than FFFFFF, the sub-TLVs are
-     * defined by the vendor identified by the OUI. The CMTS and CM
-     * should ignore sub-TLVs from unrecognized vendors.
+     * defined by the vendor identified by the OUI. Use VendorSubTlvs
+     * to carry vendor sub-TLVs as generic type/value hex pairs.
      *
      * These sub-TLV types and values are illustrative. Actual vendor-
      * specific encodings are defined by each chipset vendor.
      * ------------------------------------------------------------------- */
     {
       "VendorId": "001018",
-      // Vendor-defined sub-TLVs — opaque to non-Broadcom equipment
-      "PowerSavingMode": 1,
-      "AdvancedSpectrumManagement": "enabled"
+      "VendorSubTlvs": [
+        // Sub-TLV type 1: Power Saving Mode (uint8 value 1 = enabled)
+        { "type": 1, "value": "01", "dataType": "uint8" },
+        // Sub-TLV type 2: Advanced Spectrum Management flags (raw hex)
+        { "type": 2, "value": "0080" }
+      ]
     },
 
     /* -------------------------------------------------------------------
@@ -45,19 +50,30 @@
      * ------------------------------------------------------------------- */
     {
       "VendorId": "00D09E",
-      // Cisco-defined sub-TLVs for CPE management
-      "CpeManagementMode": 2,
-      "RemoteQueryCommunity": "cisco-rq"
+      "VendorSubTlvs": [
+        // Sub-TLV type 5: CPE Management Mode
+        { "type": 5, "value": "02" },
+        // Sub-TLV type 10: Remote Query Community (string hint)
+        { "type": 10, "value": "636973636F2D7271", "dataType": "string" }
+      ]
     }
   ],
 
-  /* Minimal service flows for completeness */
+  /* Service flows with vendor-specific QoS parameters */
   "UpstreamServiceFlow": [
     {
       "ServiceFlowReference": 1,
       "QosParamSetType": 7,
       "MaxSustainedTrafficRate": 5000000,
-      "SchedulingType": 2
+      "SchedulingType": 2,
+      /* Vendor-specific QoS parameters use VendorSpecificContainer format */
+      "VendorSpecificQosParameters": {
+        "VendorId": "001018",
+        "SubTlvs": [
+          // Illustrative: vendor QoS sub-TLV type 1 with uint32 value
+          { "type": 1, "value": "00001000", "dataType": "uint32" }
+        ]
+      }
     }
   ],
   "DownstreamServiceFlow": [

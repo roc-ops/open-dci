@@ -894,3 +894,79 @@ The following sub-TLV types are defined when the Vendor ID is 0xFFFFFF. These ar
 - MULPIv4.0 C.1.1.18.1 -- General Extension Information Encodings
 - MULPIv4.0 C.1.1.18.2 -- Vendor-Specific Encodings
 - CANN Section 11.1.2 -- TLV 43 Sub-TLV Definitions
+
+---
+
+## 5. Vendor-Specific TLV Extension System
+
+DOCSIS defines multiple OUI-gated extension points where vendors can embed proprietary sub-TLVs. OpenDCI provides a generic `{ type, value }` representation for these sub-TLVs, keeping the main schema vendor-neutral while still allowing structured vendor data.
+
+### Generic Representation
+
+All vendor-specific sub-TLVs are represented as objects with two required fields and one optional field:
+
+```json
+{
+  "type": 1,
+  "value": "01",
+  "dataType": "uint8"
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | uint8 | Yes | Sub-TLV type number (0--255) |
+| `value` | string | Yes | Sub-TLV value as hex-encoded bytes. Decode always produces hex. |
+| `dataType` | enum | No | Encoding hint for the value field. Used during encode to accept typed input. |
+
+The `value` field is always a hex string. The optional `dataType` field provides a hint to the encoder about how to interpret typed input during config file creation. Supported `dataType` values: `uint8`, `uint16`, `uint32`, `int8`, `int16`, `int32`, `string`, `hexstring`, `ipv4Address`, `ipv6Address`, `macAddress`.
+
+### OUI-Gated Extension Points
+
+The following TLV locations support vendor-specific sub-TLVs. Each uses the `VendorSpecificContainer` structure (containing `VendorId` + `SubTlvs` array):
+
+| TLV Path | Property Name | Parent Entry Type | Spec |
+|----------|---------------|-------------------|------|
+| 22.43 | VendorSpecificClassifierParameters | UpstreamPacketClassificationEntry | CM-SP-MULPIv4.0 C.2.1.4 |
+| 23.43 | VendorSpecificClassifierParameters | DownstreamPacketClassificationEntry | CM-SP-MULPIv4.0 C.2.1.4 |
+| 24.43 | VendorSpecificQosParameters | UpstreamServiceFlowEntry | CM-SP-MULPIv4.0 C.2.2.3.43 |
+| 25.43 | VendorSpecificQosParameters | DownstreamServiceFlowEntry | CM-SP-MULPIv4.0 C.2.2.3.43 |
+| 26.43 | VendorSpecificPhsParameters | PayloadHeaderSuppressionEntry | CM-SP-MULPIv4.0 C.2.3 |
+| 43.5.43 | VendorSpecificL2vpn | L2vpnEncodingEntry | CM-SP-L2VPN-I17 |
+| 60.43 | VendorSpecificClassifierParameters | UpstreamDropPacketClassificationEntry | CM-SP-MULPIv4.0 C.2.1.4 |
+| 202.43 | VendorSpecificInformation | ErouterEntry | CM-SP-eRouter-I22 |
+| 219.43 | VendorSpecificExtensions | EteaEntry | CM-SP-TEI-I06 |
+
+TLV 43 itself is special: it uses `VendorSubTlvs` (an array of generic sub-TLVs) directly within `DocsisExtensionFieldEntry`, rather than wrapping in a `VendorSpecificContainer`, because TLV 43 already has its own `VendorId` field.
+
+### Vendor Schema Directory
+
+The `schemas/vendors/` directory can hold optional vendor-specific schema files that map sub-TLV type numbers to named, typed properties. See `schemas/vendors/README.md` for details on file naming and structure.
+
+### Example: Generic Hex vs Vendor-Schema-Aware Decode
+
+Without a vendor schema, a Broadcom TLV 43 block decodes to generic hex:
+
+```json
+{
+  "VendorId": "001018",
+  "VendorSubTlvs": [
+    { "type": 1, "value": "01" },
+    { "type": 2, "value": "0080" }
+  ]
+}
+```
+
+With the `001018.jtd.json` vendor schema loaded, a tool could decode the same binary to named properties:
+
+```json
+{
+  "VendorId": "001018",
+  "VendorSubTlvs": [
+    { "type": 1, "value": "01", "dataType": "uint8" },
+    { "type": 2, "value": "0080" }
+  ]
+}
+```
+
+The generic hex representation is always valid. Vendor schemas are an optional enhancement for readability.

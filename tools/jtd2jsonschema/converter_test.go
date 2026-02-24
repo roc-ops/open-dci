@@ -600,13 +600,23 @@ func TestConvertDocsisSchema(t *testing.T) {
 		t.Errorf("SnmpMibObject.items.$ref=%v, expected #/$defs/SnmpMibEntry", items["$ref"])
 	}
 
-	// Verify DocsisExtensionFieldEntry has additionalProperties: true.
+	// Verify DocsisExtensionFieldEntry has additionalProperties: false (no longer allows arbitrary keys).
 	def43, ok := defs["DocsisExtensionFieldEntry"].(map[string]interface{})
 	if !ok {
 		t.Fatal("DocsisExtensionFieldEntry is not a map")
 	}
-	if def43["additionalProperties"] != true {
-		t.Errorf("DocsisExtensionFieldEntry.additionalProperties=%v, expected true", def43["additionalProperties"])
+	if def43["additionalProperties"] != false {
+		t.Errorf("DocsisExtensionFieldEntry.additionalProperties=%v, expected false", def43["additionalProperties"])
+	}
+
+	// Verify VendorSpecificTlvEntry definition exists.
+	if _, ok := defs["VendorSpecificTlvEntry"]; !ok {
+		t.Error("missing definition: VendorSpecificTlvEntry")
+	}
+
+	// Verify VendorSpecificContainer definition exists.
+	if _, ok := defs["VendorSpecificContainer"]; !ok {
+		t.Error("missing definition: VendorSpecificContainer")
 	}
 
 	// Verify x-docsis-spec is present on DownstreamFrequency.

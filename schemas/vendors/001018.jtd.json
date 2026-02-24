@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "oui": "001018",
+    "vendorName": "Broadcom",
+    "extensionPoints": ["43", "24.43", "25.43"],
+    "illustrative": true,
+    "description": "Illustrative vendor schema for Broadcom (OUI 00:10:18). These sub-TLV definitions are made-up examples to demonstrate the vendor extension system. They do not represent actual Broadcom proprietary encodings."
+  },
+  "definitions": {
+    "Broadcom_PowerSavingMode": {
+      "metadata": {
+        "description": "Illustrative: Power saving mode configuration",
+        "subTlvType": 1,
+        "dataType": "uint8",
+        "spec": "vendor-defined"
+      },
+      "type": "uint8"
+    },
+    "Broadcom_SpectrumManagementControl": {
+      "metadata": {
+        "description": "Illustrative: Advanced spectrum management control flags",
+        "subTlvType": 2,
+        "dataType": "hexstring",
+        "spec": "vendor-defined"
+      },
+      "type": "string"
+    },
+    "Broadcom_ChannelBondingPreference": {
+      "metadata": {
+        "description": "Illustrative: Preferred channel bonding group size",
+        "subTlvType": 10,
+        "dataType": "uint8",
+        "spec": "vendor-defined"
+      },
+      "type": "uint8"
+    }
+  },
+  "mapping": {
+    "43": {
+      "1": { "name": "PowerSavingMode", "ref": "Broadcom_PowerSavingMode" },
+      "2": { "name": "SpectrumManagementControl", "ref": "Broadcom_SpectrumManagementControl" },
+      "10": { "name": "ChannelBondingPreference", "ref": "Broadcom_ChannelBondingPreference" }
+    }
+  }
+}
