@@ -3507,7 +3507,7 @@
           "description": "SNMPv1v2c access view name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.4",
           "x-docsis-tlvType": "53.4"
         },
         "AccessViewType": {
@@ -3516,21 +3516,21 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.3",
           "x-docsis-tlvType": "53.3"
         },
         "CommunityName": {
           "description": "SNMPv1v2c community name string",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.1",
           "x-docsis-tlvType": "53.1"
         },
         "TransportAddressAccess": {
           "$ref": "#/$defs/Snmpv1v2cTransportAddressAccessEntry",
           "description": "Transport address access control",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.2",
           "x-docsis-tlvType": "53.2"
         }
       },
@@ -3546,14 +3546,14 @@
           "description": "SNMPv1v2c transport address",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.2",
           "x-docsis-tlvType": "53.2.1"
         },
         "TransportAddressMask": {
           "description": "SNMPv1v2c transport address mask",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.2",
           "x-docsis-tlvType": "53.2.2"
         }
       },
@@ -3568,21 +3568,21 @@
           "description": "SNMPv3 access view mask",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14.3",
           "x-docsis-tlvType": "54.3"
         },
         "AccessViewName": {
           "description": "SNMPv3 access view name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14.1",
           "x-docsis-tlvType": "54.1"
         },
         "AccessViewSubtree": {
           "description": "SNMPv3 access view subtree OID",
           "type": "string",
           "x-docsis-dataType": "oid",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14.2",
           "x-docsis-tlvType": "54.2"
         },
         "AccessViewType": {
@@ -3591,7 +3591,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14.4",
           "x-docsis-tlvType": "54.4"
         }
       },

@@ -182,100 +182,100 @@ CANN Section 11.1.1. These sub-TLVs are carried within TLV 5 (Modem Capabilities
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 5.1 | Concatenation Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.2 | DOCSIS Version | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.3 | Fragmentation Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.4 | Payload Header Suppression Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.5 | IGMP Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.6 | Privacy Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.7 | Downstream SAID Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.8 | Upstream Service Flow Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.9 | Optional Filtering Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.10 | Transmit Pre-Equalizer Taps | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.11 | Number of Transmit Pre-Equalizer Taps | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.12 | DCC Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | - |
-| 5.13 | IP Filters Support | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 5.14 | LLC Filters Support | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 5.15 | Expanded Unicast SID Space | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 5.16 | Ranging Hold-off Support | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 5.17 | L2VPN Capability | uint8 | L2VPN I17 | - |
-| 5.18 | L2VPN eSAFE Host Capability | hexstring | L2VPN I17 | - |
-| 5.19 | Downstream Unencrypted Traffic (DUT) Filtering | uint8 | L2VPN I17 | - |
-| 5.20 | Upstream Frequency Range Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.21 | Upstream SC-QAM Symbol Rate Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.22 | Selectable Active Code Mode 2 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.23 | Code Hopping Mode 2 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.24 | Multiple Transmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.25 | 5.12 Msps UpstreamTransmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.26 | 2.56 Msps Upstream Transmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.27 | Total SID Cluster Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.28 | SID Clusters per Service Flow Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.29 | Multiple Receive SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.30 | Total Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.31 | Resequencing Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.32 | Multicast Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.33 | Multicast DSID Forwarding | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.34 | Frame Control Type Forwarding Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.35 | DPV Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.36 | Unsolicited Grant Service/Upstream Service Flow Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.37 | MAP and UCD Receipt Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.38 | Upstream Drop Classifier Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.39 | IPv6 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.40 | Extended Upstream Transmit Power Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.41 | Optional 802.1ad, 802.1ah, MPLS Classification Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.42 | D-ONU Capabilities | encapsulated | DPoE-MULPIv1.0 C01 | - |
-| 5.42.1 | DPoE/G Version Number | uint8 | DPoE-MULPIv1.0 C01 | - |
-| 5.42.2 | Number of Unicast LLIDs | uint8 | DPoE-MULPIv1.0 C01 | - |
-| 5.42.3 | Number of Multicast LLIDs | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 5.42.4 | MESP Support | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 5.42.5 | Number of D-ONU Ports | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 5.42.6 | PON Data Rate Support | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 5.42.7 | Service OAM | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 5.42.10 | Number of T-CONTs Supported | uint8 | DPoG 1.0 | - |
-| 5.42.11 | Total Number of (X)GEM Ports Supported | uint8 | DPoG 1.0 | - |
+| 5.1 | Concatenation Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.1 |
+| 5.2 | DOCSIS Version | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.2 |
+| 5.3 | Fragmentation Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.3 |
+| 5.4 | Payload Header Suppression Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.4 |
+| 5.5 | IGMP Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.5 |
+| 5.6 | Privacy Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.6 |
+| 5.7 | Downstream SAID Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.7 |
+| 5.8 | Upstream Service Flow Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.8 |
+| 5.9 | Optional Filtering Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.9 |
+| 5.10 | Transmit Pre-Equalizer Taps | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.10 |
+| 5.11 | Number of Transmit Pre-Equalizer Taps | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.11 |
+| 5.12 | DCC Support | uint8 | DOCSIS 1.1 · MULPIv4.0 I11 | C.1.3.1.12 |
+| 5.13 | IP Filters Support | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.3.1.13 |
+| 5.14 | LLC Filters Support | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.3.1.14 |
+| 5.15 | Expanded Unicast SID Space | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.3.1.15 |
+| 5.16 | Ranging Hold-off Support | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.3.1.16 |
+| 5.17 | L2VPN Capability | uint8 | L2VPN I17 | B.1.1 |
+| 5.18 | L2VPN eSAFE Host Capability | hexstring | L2VPN I17 | B.1.2 |
+| 5.19 | Downstream Unencrypted Traffic (DUT) Filtering | uint8 | L2VPN I17 | B.1.3 |
+| 5.20 | Upstream Frequency Range Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.20 |
+| 5.21 | Upstream SC-QAM Symbol Rate Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.21 |
+| 5.22 | Selectable Active Code Mode 2 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.22 |
+| 5.23 | Code Hopping Mode 2 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.23 |
+| 5.24 | Multiple Transmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.24 |
+| 5.25 | 5.12 Msps UpstreamTransmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.25 |
+| 5.26 | 2.56 Msps Upstream Transmit SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.26 |
+| 5.27 | Total SID Cluster Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.27 |
+| 5.28 | SID Clusters per Service Flow Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.28 |
+| 5.29 | Multiple Receive SC-QAM Channel Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.29 |
+| 5.30 | Total Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.30 |
+| 5.31 | Resequencing Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.31 |
+| 5.32 | Multicast Downstream Service ID (DSID) Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.32 |
+| 5.33 | Multicast DSID Forwarding | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.33 |
+| 5.34 | Frame Control Type Forwarding Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.34 |
+| 5.35 | DPV Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.35 |
+| 5.36 | Unsolicited Grant Service/Upstream Service Flow Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.36 |
+| 5.37 | MAP and UCD Receipt Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.37 |
+| 5.38 | Upstream Drop Classifier Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.38 |
+| 5.39 | IPv6 Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.39 |
+| 5.40 | Extended Upstream Transmit Power Capability | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.40 |
+| 5.41 | Optional 802.1ad, 802.1ah, MPLS Classification Support | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.41 |
+| 5.42 | D-ONU Capabilities | encapsulated | DPoE-MULPIv1.0 C01 | C.8 |
+| 5.42.1 | DPoE/G Version Number | uint8 | DPoE-MULPIv1.0 C01 | C.8.1 |
+| 5.42.2 | Number of Unicast LLIDs | uint8 | DPoE-MULPIv1.0 C01 | C.8.2 |
+| 5.42.3 | Number of Multicast LLIDs | uint8 | DPoE-MULPIv2.0 I14 | C.8.3 |
+| 5.42.4 | MESP Support | uint8 | DPoE-MULPIv2.0 I14 | C.8.4 |
+| 5.42.5 | Number of D-ONU Ports | uint8 | DPoE-MULPIv2.0 I14 | C.8.5 |
+| 5.42.6 | PON Data Rate Support | uint8 | DPoE-MULPIv2.0 I14 | C.8.6 |
+| 5.42.7 | Service OAM | uint8 | DPoE-MULPIv2.0 I14 | C.8.7 |
+| 5.42.10 | Number of T-CONTs Supported | uint8 | DPoG 1.0 | *(no document)* |
+| 5.42.11 | Total Number of (X)GEM Ports Supported | uint8 | DPoG 1.0 | *(no document)* |
 | 5.43 | Reserved | - | - | - |
-| 5.44 | Energy Management Capabilities | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.45 | C-DOCSIS Capability Encoding | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.46 | CM-STATUS-ACK | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 5.47 | Energy Management Preferences | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.48 | Extended Packet Length Support Capability | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.49 | Multiple Receive OFDM Channel Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.50 | Multiple Transmit OFDMA Channel Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.51 | Downstream OFDM Profile Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.52 | Downstream OFDM Channel Subcarrier QAM Modulation Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.53 | Upstream OFDMA Channel Subcarrier QAM Modulation Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.54 | Downstream Lower Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.55 | Downstream Upper Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.56 | Diplexer Upstream Upper Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.57 | DOCSIS Time Protocol Mode | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.58 | DOCSIS Time Protocol Performance Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.59 | Pmax | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.60 | Diplexer Downstream Lower Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.61 | Diplexer Downstream Upper Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.62 | Diplexer Upstream Upper Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.63 | Advanced Band Plan Capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.64 | FDX DS State Lock -- Deprecated | - | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.65 | FDX Switching Software Timing Uncertainty | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.66 | FDX DS to US Switching Time | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.67 | FDX US to DS Switching Time | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
+| 5.44 | Energy Management Capabilities | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.44 |
+| 5.45 | C-DOCSIS Capability Encoding | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.45 |
+| 5.46 | CM-STATUS-ACK | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.46 |
+| 5.47 | Energy Management Preferences | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.47 |
+| 5.48 | Extended Packet Length Support Capability | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.48 |
+| 5.49 | Multiple Receive OFDM Channel Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.49 |
+| 5.50 | Multiple Transmit OFDMA Channel Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.50 |
+| 5.51 | Downstream OFDM Profile Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.51 |
+| 5.52 | Downstream OFDM Channel Subcarrier QAM Modulation Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.52 |
+| 5.53 | Upstream OFDMA Channel Subcarrier QAM Modulation Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.53 |
+| 5.54 | Downstream Lower Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.54 |
+| 5.55 | Downstream Upper Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.55 |
+| 5.56 | Diplexer Upstream Upper Band Edge Configuration | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.56 |
+| 5.57 | DOCSIS Time Protocol Mode | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.57 |
+| 5.58 | DOCSIS Time Protocol Performance Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.58 |
+| 5.59 | Pmax | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.59 |
+| 5.60 | Diplexer Downstream Lower Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.60 |
+| 5.61 | Diplexer Downstream Upper Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.61 |
+| 5.62 | Diplexer Upstream Upper Band Edge Options | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.62 |
+| 5.63 | Advanced Band Plan Capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.63 |
+| 5.64 | FDX DS State Lock -- Deprecated | - | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.64 |
+| 5.65 | FDX Switching Software Timing Uncertainty | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.65 |
+| 5.66 | FDX DS to US Switching Time | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.66 |
+| 5.67 | FDX US to DS Switching Time | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.67 |
 | 5.68 | -- | - | - | - |
 | 5.69 | CWT RxMER Measurement Convergence Time | uint8 | - | - |
 | 5.70 | -- | - | - | - |
-| 5.71 | -- | - | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.72 | t-ds-reacquisition capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.73 | CWT Simultaneous Data Transmission Capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.74 | Extended Service Flow SID Cluster Assignments Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.75 | Echo Cancelling RBA Sub-band Direction Sets Supported | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.76 | Low Latency Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.77 | Absolute Queue-Depth Request Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.78 | Distributed HQoS Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 5.79 | Advanced Downstream Lower Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.80 | Advanced Downstream Upper Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.81 | Advanced Diplexer Upstream Upper Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.82 | Advanced Diplexer Downstream Lower Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.83 | Advanced Diplexer Downstream Upper Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.84 | Advanced Diplexer Upstream Upper Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
-| 5.85 | Extended Power Options | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | - |
+| 5.71 | -- | - | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.71 |
+| 5.72 | t-ds-reacquisition capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.72 |
+| 5.73 | CWT Simultaneous Data Transmission Capability | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.73 |
+| 5.74 | Extended Service Flow SID Cluster Assignments Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.74 |
+| 5.75 | Echo Cancelling RBA Sub-band Direction Sets Supported | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.75 |
+| 5.76 | Low Latency Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.76 |
+| 5.77 | Absolute Queue-Depth Request Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.77 |
+| 5.78 | Distributed HQoS Support | uint8 | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.3.1.78 |
+| 5.79 | Advanced Downstream Lower Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.79 |
+| 5.80 | Advanced Downstream Upper Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.80 |
+| 5.81 | Advanced Diplexer Upstream Upper Band Edge Configuration | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.81 |
+| 5.82 | Advanced Diplexer Downstream Lower Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.82 |
+| 5.83 | Advanced Diplexer Downstream Upper Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.83 |
+| 5.84 | Advanced Diplexer Upstream Upper Band Edge Options List | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.84 |
+| 5.85 | Extended Power Options | uint8 | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1.85 |
 
 ### 3.2 TLV 43 -- DOCSIS Extension Field Sub-TLVs (General Extension)
 
@@ -406,8 +406,8 @@ CANN Section 11.1.2.2. Sub-TLVs within TLV 45 (Downstream Unencrypted Traffic Fi
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 45.1 | Downstream Unencrypted Traffic (DUT) Control | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 45.2 | Downstream Unencrypted Traffic (DUT) CMIM | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | - |
+| 45.1 | Downstream Unencrypted Traffic (DUT) Control | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.1.24 |
+| 45.2 | Downstream Unencrypted Traffic (DUT) CMIM | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.1.24 |
 
 ### 3.5 TLV 65 -- L2VPN MAC Aging Sub-TLVs
 
@@ -425,88 +425,88 @@ CANN Section 11.1.3. These sub-TLVs are shared across Upstream Service Flow (24)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.1 | Service Flow Reference or ASF Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.2 | Service Flow Identifier or ASF Identifier | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.3 | Service Identifier | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.4 | Service Class Name | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.5 | Service Flow Error Encoding | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.5.1 | Errored Parameter | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.5.2 | Error Code | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.5.3 | Error Message | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.6 | Quality of Service Parameter Set Type | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.7 | Traffic Priority | uint8 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.8 | Maximum Sustained Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9 | Maximum Traffic Burst | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.10 | Minimum Reserved Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.11 | Assumed Minimum Reserved Rate Packet Size | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12 | Timeout for Active QoS Parameters | uint16 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.13 | Timeout for Admitted QoS Parameters | uint16 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.23 | IP Type Of Service (DSCP) Overwrite | hexstring | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.27 | Peak Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.31 | Service Flow Required Attribute Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.32 | Service Flow Forbidden Attribute Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.33 | Service Flow Attribute Aggregation Rule Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.34 | Application Identifier | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.35 | Buffer Control | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.35.1 | Minimum Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.35.2 | Target Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.35.3 | Maximum Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.36 | Aggregate Service Flow Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.37 | Metro Ethernet Service Profile (MESP) Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.38 | Serving Group Name | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.40 | AQM Encodings | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.40.1 | AQM Disable | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.40.2 | AQM Latency Target | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.40.3 | AQM Algorithm | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.40.4 | Immediate AQM Min Threshold | uint32 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| x.40.5 | Immediate AQM Range Exponent of Ramp Function | uint8 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| x.40.6 | Latency Histogram Encodings | hexstring | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| x.41 | Data Rate Unit Setting | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.43 | Vendor Specific QoS Parameters | hexstring | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.44 | Guaranteed Grant Interval (GGI) / Service Flow Collection | uint32 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 / DPoE-MULPIv1.0 C01 | - |
+| x.1 | Service Flow Reference or ASF Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.1 |
+| x.2 | Service Flow Identifier or ASF Identifier | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.2 |
+| x.3 | Service Identifier | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.3 |
+| x.4 | Service Class Name | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.4 |
+| x.5 | Service Flow Error Encoding | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.5 |
+| x.5.1 | Errored Parameter | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.5 |
+| x.5.2 | Error Code | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.5 |
+| x.5.3 | Error Message | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.5 |
+| x.6 | Quality of Service Parameter Set Type | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.6 |
+| x.7 | Traffic Priority | uint8 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.7 |
+| x.8 | Maximum Sustained Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.8 |
+| x.9 | Maximum Traffic Burst | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.9 |
+| x.10 | Minimum Reserved Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.10 |
+| x.11 | Assumed Minimum Reserved Rate Packet Size | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.11 |
+| x.12 | Timeout for Active QoS Parameters | uint16 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.12 |
+| x.13 | Timeout for Admitted QoS Parameters | uint16 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.13 |
+| x.23 | IP Type Of Service (DSCP) Overwrite | hexstring | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.23 |
+| x.27 | Peak Traffic Rate | uint32 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.27 |
+| x.31 | Service Flow Required Attribute Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.31 |
+| x.32 | Service Flow Forbidden Attribute Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.32 |
+| x.33 | Service Flow Attribute Aggregation Rule Mask | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.33 |
+| x.34 | Application Identifier | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.34 |
+| x.35 | Buffer Control | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.8 |
+| x.35.1 | Minimum Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.8 |
+| x.35.2 | Target Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.8 |
+| x.35.3 | Maximum Buffer | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.8 |
+| x.36 | Aggregate Service Flow Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.36 |
+| x.37 | Metro Ethernet Service Profile (MESP) Reference | uint16 | 24, 25, 70, 71 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.37 |
+| x.38 | Serving Group Name | string | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.38 |
+| x.40 | AQM Encodings | encapsulated | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.1 | AQM Disable | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.2 | AQM Latency Target | uint32 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.3 | AQM Algorithm | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.4 | Immediate AQM Min Threshold | uint32 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.5 | Immediate AQM Range Exponent of Ramp Function | uint8 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.9 |
+| x.40.6 | Latency Histogram Encodings | hexstring | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.9 |
+| x.41 | Data Rate Unit Setting | uint8 | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.41 |
+| x.43 | Vendor Specific QoS Parameters | hexstring | 24, 25 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.3.43 |
+| x.44 | Guaranteed Grant Interval (GGI) / Service Flow Collection | uint32 | 24, 25 | DOCSIS 3.1 · MULPIv4.0 I11 / DPoE-MULPIv1.0 C01 | C.2.2.5.4 |
 
 #### ASF-Specific Sub-TLVs (70/71 only)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| 70/71.38.1 | Service Flow to ASF Matching by Application Id | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.38.2 | Service Flow to ASF Matching by Service Class Name | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.38.3 | Service Flow to ASF Matching by Traffic Priority Range | hexstring | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.1 | Low Latency Service Flow Reference | uint16 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.2 | Low Latency Service Flow Identifier | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.3 | Classic SF SCN | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.4 | Low Latency SF SCN | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.5 | AQM Coupling Factor Exponent | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.6 | Scheduling Weight | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.7 | Queue Protection Enable | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.8 | QPLatencyThreshold (CRITICALqL_us) | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.9 | QPQueuingScoreThreshold (CRITICALqLSCORE_us) | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
-| 70/71.42.10 | QPDrainRateExponent(LG_AGING) | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | - |
+| 70/71.38.1 | Service Flow to ASF Matching by Application Id | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.3 |
+| 70/71.38.2 | Service Flow to ASF Matching by Service Class Name | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.3 |
+| 70/71.38.3 | Service Flow to ASF Matching by Traffic Priority Range | hexstring | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.3 |
+| 70/71.42.1 | Low Latency Service Flow Reference | uint16 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.2 | Low Latency Service Flow Identifier | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.3 | Classic SF SCN | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.4 | Low Latency SF SCN | string | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.5 | AQM Coupling Factor Exponent | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.6 | Scheduling Weight | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.7 | Queue Protection Enable | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.8 | QPLatencyThreshold (CRITICALqL_us) | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.9 | QPQueuingScoreThreshold (CRITICALqLSCORE_us) | uint32 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
+| 70/71.42.10 | QPDrainRateExponent(LG_AGING) | uint8 | 70, 71 | DOCSIS 3.1 · MULPIv4.0 I11 | C.2.2.10 |
 
 #### TLV 24 Upstream-Only Sub-TLVs
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 24.14 | Maximum Concatenated Burst | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.15 | Service Flow Scheduling Type | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.16 | Request/Transmission Policy | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.17 | Nominal Polling Interval | uint32 | DPoE-MULPIv1.0 C01 | - |
-| 24.18 | Tolerated Poll Jitter | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.19 | Unsolicited Grant Size | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.20 | Nominal Grant Interval | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.21 | Tolerated Grant Jitter | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.22 | Grants per Interval | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.24 | Unsolicited Grant Time Reference | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.25 | Multiplier to Contention Request Backoff Window | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 24.26 | Multiplier to Number of Bytes Requested | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| 24.14 | Maximum Concatenated Burst | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.1 |
+| 24.15 | Service Flow Scheduling Type | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.2 |
+| 24.16 | Request/Transmission Policy | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.3 |
+| 24.17 | Nominal Polling Interval | uint32 | DPoE-MULPIv1.0 C01 | C.2.2.5.4 |
+| 24.18 | Tolerated Poll Jitter | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.19 | Unsolicited Grant Size | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.20 | Nominal Grant Interval | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.21 | Tolerated Grant Jitter | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.22 | Grants per Interval | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.24 | Unsolicited Grant Time Reference | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.25 | Multiplier to Contention Request Backoff Window | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
+| 24.26 | Multiplier to Number of Bytes Requested | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.5.4 |
 
 #### TLV 25 Downstream-Only Sub-TLVs
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 25.14 | Maximum Downstream Latency | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| 25.14 | Maximum Downstream Latency | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.6.1 |
 | 25.15 | Reserved | - | - | - |
-| 25.17 | Downstream Resequencing | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| 25.17 | Downstream Resequencing | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.2.6.2 |
 
 ### 3.7 TLV 22/23/60 -- Classification Sub-TLVs
 
@@ -516,129 +516,129 @@ CANN Section 11.1.4. These sub-TLVs are shared across Upstream Packet Classifica
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.1 | Classifier Reference | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.2 | Classifier Identifier | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.3 | Service Flow Reference | uint16 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.4 | Service Flow Identifier | uint32 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.5 | Rule Priority | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.6 | Classifier Activation State | uint8 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.7 | Dynamic Service Change Action | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.8 | Classifier Error Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.8.1 | Errored Parameter | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.8.2 | Error Code | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.8.3 | Error Message | string | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.1 | Classifier Reference | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.1 |
+| x.2 | Classifier Identifier | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.2 |
+| x.3 | Service Flow Reference | uint16 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.3 |
+| x.4 | Service Flow Identifier | uint32 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.4 |
+| x.5 | Rule Priority | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.5 |
+| x.6 | Classifier Activation State | uint8 | 22, 23 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.6 |
+| x.7 | Dynamic Service Change Action | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.7 |
+| x.8 | Classifier Error Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.8 |
+| x.8.1 | Errored Parameter | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.8 |
+| x.8.2 | Error Code | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.8 |
+| x.8.3 | Error Message | string | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.8 |
 
 #### IPv4/TCP/UDP Classification (x.9)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.9 | IPv4 Packet Classification Encodings / TCP/UDP Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.1 | IPv4 Type of Service Range and Mask | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.2 | IP Protocol | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.3 | IPv4 Source Address | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.4 | IPv4 Source Mask | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.5 | IPv4 Destination Address | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.6 | IPv4 Destination Mask | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.7 | TCP/UDP Source Port Start | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.8 | TCP/UDP Source Port End | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.9 | TCP/UDP Destination Port Start | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.9.10 | TCP/UDP Destination Port End | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.9 | IPv4 Packet Classification Encodings / TCP/UDP Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.1 | IPv4 Type of Service Range and Mask | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.2 | IP Protocol | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.3 | IPv4 Source Address | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.4 | IPv4 Source Mask | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.5 | IPv4 Destination Address | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.6 | IPv4 Destination Mask | ipv4Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.7 | TCP/UDP Source Port Start | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.8 | TCP/UDP Source Port End | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.9 | TCP/UDP Destination Port Start | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
+| x.9.10 | TCP/UDP Destination Port End | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.9 |
 
 #### Ethernet LLC Classification (x.10)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.10 | Ethernet LLC Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.10.1 | Destination MAC Address | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.10.2 | Source MAC Address | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.10.3 | Ethertype/DSAP/Mac Type | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.10.4 | Slow Protocol Subtype | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.10 | Ethernet LLC Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.10 |
+| x.10.1 | Destination MAC Address | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.10 |
+| x.10.2 | Source MAC Address | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.10 |
+| x.10.3 | Ethertype/DSAP/Mac Type | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.10 |
+| x.10.4 | Slow Protocol Subtype | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.10 |
 
 #### IEEE 802.1P/Q Classification (x.11)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.11 | IEEE 802.1P/Q Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.11.1 | IEEE 802.1P User Priority | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.11.2 | IEEE 802.1Q VLAN_ID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.11 | IEEE 802.1P/Q Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.11 |
+| x.11.1 | IEEE 802.1P User Priority | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.11 |
+| x.11.2 | IEEE 802.1Q VLAN_ID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.11 |
 
 #### IPv6 Classification (x.12)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.12 | IPv6 Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.1 | IPv6 Traffic Class | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.2 | IPv6 Flow Label | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.3 | IPv6 Next Header Type | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.4 | IPv6 Source Address | ipv6Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.5 | IPv6 Source Prefix Length (bits) | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.6 | IPv6 Destination Address | ipv6Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.12.7 | IPv6 Destination Prefix Length (bits) | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.12 | IPv6 Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.1 | IPv6 Traffic Class | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.2 | IPv6 Flow Label | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.3 | IPv6 Next Header Type | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.4 | IPv6 Source Address | ipv6Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.5 | IPv6 Source Prefix Length (bits) | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.6 | IPv6 Destination Address | ipv6Address | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
+| x.12.7 | IPv6 Destination Prefix Length (bits) | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.12 |
 
 #### CM Interface Mask (x.13)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.13 | CM Interface Mask (CMIM) Encoding | hexstring | 22, 23 | L2VPN I17 | - |
+| x.13 | CM Interface Mask (CMIM) Encoding | hexstring | 22, 23 | L2VPN I17 | B.6 |
 
 #### IEEE 802.1ad S-VLAN Classification (x.14)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.14 | [IEEE 802.1ad] S-VLAN Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.1 | [IEEE 802.1ad] S-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.2 | [IEEE 802.1ad] S-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.3 | [IEEE 802.1ad] S-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.4 | [IEEE 802.1ad] S-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.5 | [IEEE 802.1ad] C-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.6 | [IEEE 802.1ad] C-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.7 | [IEEE 802.1ad] C-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.8 | [IEEE 802.1ad] C-CFI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.9 | [IEEE 802.1ad] S-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.14.10 | [IEEE 802.1ad] C-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.14 | [IEEE 802.1ad] S-VLAN Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.1 | [IEEE 802.1ad] S-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.2 | [IEEE 802.1ad] S-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.3 | [IEEE 802.1ad] S-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.4 | [IEEE 802.1ad] S-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.5 | [IEEE 802.1ad] C-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.6 | [IEEE 802.1ad] C-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.7 | [IEEE 802.1ad] C-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.8 | [IEEE 802.1ad] C-CFI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.9 | [IEEE 802.1ad] S-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
+| x.14.10 | [IEEE 802.1ad] C-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.14 |
 
 #### IEEE 802.1ah I-TAG Classification (x.15)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.15 | [IEEE 802.1ah] I-TAG Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.1 | [IEEE 802.1ah] I-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.2 | [IEEE 802.1ah] I-SID | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.3 | [IEEE 802.1ah] I-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.4 | [IEEE 802.1ah] I-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.5 | [IEEE 802.1ah] I-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.6 | [IEEE 802.1ah] I-UCA | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.7 | [IEEE 802.1ah] B-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.8 | [IEEE 802.1ah] B-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.9 | [IEEE 802.1ah] B-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.10 | [IEEE 802.1ah] B-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.11 | [IEEE 802.1ah] B-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.12 | [IEEE 802.1ah] B-DA | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.15.13 | [IEEE 802.1ah] B-SA | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.15 | [IEEE 802.1ah] I-TAG Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.1 | [IEEE 802.1ah] I-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.2 | [IEEE 802.1ah] I-SID | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.3 | [IEEE 802.1ah] I-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.4 | [IEEE 802.1ah] I-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.5 | [IEEE 802.1ah] I-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.6 | [IEEE 802.1ah] I-UCA | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.7 | [IEEE 802.1ah] B-TPID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.8 | [IEEE 802.1ah] B-TCI | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.9 | [IEEE 802.1ah] B-PCP | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.10 | [IEEE 802.1ah] B-DEI | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.11 | [IEEE 802.1ah] B-VID | uint16 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.12 | [IEEE 802.1ah] B-DA | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
+| x.15.13 | [IEEE 802.1ah] B-SA | macAddress | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.15 |
 
 #### ICMPv4/ICMPv6 Classification (x.16)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.16 | ICMPv4/ICMPv6 Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.16.1 | ICMPv4/ICMPv6 Type Start | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.16.2 | ICMPv4/ICMPv6 Type End | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.16 | ICMPv4/ICMPv6 Packet Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.16 |
+| x.16.1 | ICMPv4/ICMPv6 Type Start | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.16 |
+| x.16.2 | ICMPv4/ICMPv6 Type End | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.16 |
 
 #### MPLS Classification (x.17)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.17 | MPLS Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.17.1 | MPLS TC Bits | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| x.17.2 | MPLS Label | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.17 | MPLS Classification Encodings | encapsulated | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.17 |
+| x.17.1 | MPLS TC Bits | uint8 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.17 |
+| x.17.2 | MPLS Label | uint32 | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4.17 |
 
 #### Vendor-Specific and Extension (x.43)
 
 | Type | CANN Name | Data Type | Applies To | Spec | Reference |
 |------|-----------|-----------|------------|------|-----------|
-| x.43 | Vendor-Specific Classifier Parameters | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 23/60.43.5.1 | VPN Identifier | hexstring | 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 23/60.43.8 | General Extension Information | encapsulated | 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| x.43 | Vendor-Specific Classifier Parameters | hexstring | 22, 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4 |
+| 23/60.43.5.1 | VPN Identifier | hexstring | 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4 |
+| 23/60.43.8 | General Extension Information | encapsulated | 23, 60 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.1.4 |
 
 ### 3.8 TLV 26 -- Payload Header Suppression Sub-TLVs
 
@@ -646,22 +646,22 @@ CANN Section 11.1.5. Sub-TLVs within TLV 26 (Payload Header Suppression).
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 26.1 | Classifier Reference | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.2 | Classifier Identifier | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.3 | Service Flow Reference | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.4 | Service Flow Identifier | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.5 | Dynamic Service Change Action | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.6 | Payload Header Suppression Error Encodings | encapsulated | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.6.1 | Errored Parameter | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.6.2 | Error Code | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.6.3 | Error Message | string | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.7 | Payload Header Suppression Field (PHSF) | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.8 | Payload Header Suppression Index (PHSI) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.9 | Payload Header Suppression Mask (PHSM) | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.10 | Payload Header Suppression Size (PHSS) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.11 | Payload Header Suppression Verification (PHSV) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.13 | Dynamic Bonding Change Action | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | - |
-| 26.43 | Vendor Specific PHS Parameters | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | - |
+| 26.1 | Classifier Reference | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.2 | Classifier Identifier | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.3 | Service Flow Reference | uint16 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.4 | Service Flow Identifier | uint32 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.5 | Dynamic Service Change Action | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.6 | Payload Header Suppression Error Encodings | encapsulated | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.6.1 | Errored Parameter | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.6.2 | Error Code | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.6.3 | Error Message | string | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.7 | Payload Header Suppression Field (PHSF) | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.8 | Payload Header Suppression Index (PHSI) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.9 | Payload Header Suppression Mask (PHSM) | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.10 | Payload Header Suppression Size (PHSS) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.11 | Payload Header Suppression Verification (PHSV) | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.13 | Dynamic Bonding Change Action | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
+| 26.43 | Vendor Specific PHS Parameters | hexstring | DOCSIS 3.0 · MULPIv4.0 I11 | C.2.3 |
 
 ### 3.9 TLV 53/54 -- SNMP Sub-TLVs
 
@@ -671,21 +671,21 @@ CANN Section 11.1.6. Sub-TLVs within TLV 53 (SNMPv1v2c Coexistence) and TLV 54 (
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 53.1 | SNMPv1v2c Community Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 53.2 | SNMPv1v2c Transport Address Access | encapsulated | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 53.2.1 | SNMPv1v2c Transport Address | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 53.2.2 | SNMPv1v2c Transport Address Mask | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 53.3 | SNMPv1v2c Access View Type | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 53.4 | SNMPv1v2c Access View Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | - |
+| 53.1 | SNMPv1v2c Community Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.1 |
+| 53.2 | SNMPv1v2c Transport Address Access | encapsulated | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.2 |
+| 53.2.1 | SNMPv1v2c Transport Address | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.2 |
+| 53.2.2 | SNMPv1v2c Transport Address Mask | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.2 |
+| 53.3 | SNMPv1v2c Access View Type | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.3 |
+| 53.4 | SNMPv1v2c Access View Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.13.4 |
 
 #### TLV 54 -- SNMPv3 Access View Configuration Sub-TLVs
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 54.1 | SNMPv3 Access View Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 54.2 | SNMPv3 Access View Subtree | oid | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 54.3 | SNMPv3 Access View Mask | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | - |
-| 54.4 | SNMPv3 Access View Type | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | - |
+| 54.1 | SNMPv3 Access View Name | string | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.14.1 |
+| 54.2 | SNMPv3 Access View Subtree | oid | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.14.2 |
+| 54.3 | SNMPv3 Access View Mask | hexstring | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.14.3 |
+| 54.4 | SNMPv3 Access View Type | uint8 | DOCSIS 2.0 · MULPIv4.0 I11 | C.1.2.14.4 |
 
 ### 3.10 TLV 72 -- MESP Sub-TLVs
 

@@ -2094,7 +2094,7 @@
             "description": "SNMPv1v2c transport address",
             "tlvType": "53.2.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.2"
           },
           "type": "string"
         },
@@ -2103,7 +2103,7 @@
             "description": "SNMPv1v2c transport address mask",
             "tlvType": "53.2.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.2"
           },
           "type": "string"
         }
@@ -2121,7 +2121,7 @@
             "description": "SNMPv1v2c community name string",
             "tlvType": "53.1",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.1"
           },
           "type": "string"
         },
@@ -2130,7 +2130,7 @@
             "description": "Transport address access control",
             "tlvType": "53.2",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.2"
           },
           "ref": "Snmpv1v2cTransportAddressAccessEntry"
         },
@@ -2139,7 +2139,7 @@
             "description": "SNMPv1v2c access view type",
             "tlvType": "53.3",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.3"
           },
           "type": "uint8"
         },
@@ -2148,7 +2148,7 @@
             "description": "SNMPv1v2c access view name",
             "tlvType": "53.4",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13.4"
           },
           "type": "string"
         }
@@ -2166,7 +2166,7 @@
             "description": "SNMPv3 access view name",
             "tlvType": "54.1",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14.1"
           },
           "type": "string"
         },
@@ -2175,7 +2175,7 @@
             "description": "SNMPv3 access view subtree OID",
             "tlvType": "54.2",
             "dataType": "oid",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14.2"
           },
           "type": "string"
         },
@@ -2184,7 +2184,7 @@
             "description": "SNMPv3 access view mask",
             "tlvType": "54.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14.3"
           },
           "type": "string"
         },
@@ -2193,7 +2193,7 @@
             "description": "SNMPv3 access view type",
             "tlvType": "54.4",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14.4"
           },
           "type": "uint8"
         }
