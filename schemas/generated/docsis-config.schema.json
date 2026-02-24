@@ -1,9 +1,219 @@
 {
   "$defs": {
+    "AqmEncodingsEntry": {
+      "additionalProperties": false,
+      "description": "Active Queue Management encodings for service flow queue management",
+      "properties": {
+        "AqmAlgorithm": {
+          "description": "AQM algorithm selection",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.3"
+        },
+        "AqmDisable": {
+          "description": "Disable AQM for this service flow",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.1"
+        },
+        "AqmLatencyTarget": {
+          "description": "AQM latency target in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.2"
+        },
+        "ImmediateAqmMinThreshold": {
+          "description": "Immediate AQM minimum threshold",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.4"
+        },
+        "ImmediateAqmRangeExponentOfRampFunction": {
+          "description": "Immediate AQM range exponent of ramp function",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.5"
+        },
+        "LatencyHistogramEncodings": {
+          "description": "Latency histogram encodings",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "x.40.6"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9"
+    },
+    "AsfServingGroupEntry": {
+      "additionalProperties": false,
+      "description": "ASF Serving Group encoding for aggregate service flows",
+      "properties": {
+        "ServiceFlowToAsfMatchingByApplicationId": {
+          "description": "Match service flows to ASF by application identifier",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-tlvType": "x.38.1"
+        },
+        "ServiceFlowToAsfMatchingByServiceClassName": {
+          "description": "Match service flows to ASF by service class name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-tlvType": "x.38.2"
+        },
+        "ServiceFlowToAsfMatchingByTrafficPriorityRange": {
+          "description": "Match service flows to ASF by traffic priority range",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-tlvType": "x.38.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3"
+    },
+    "BgpAttributeEntry": {
+      "additionalProperties": false,
+      "description": "BGP Attribute encoding",
+      "properties": {
+        "BgpVpnid": {
+          "description": "BGP VPN ID",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21.1"
+        },
+        "CeIdOrVeId": {
+          "description": "CE-ID or VE-ID",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21.5"
+        },
+        "RouteDistinguisher": {
+          "description": "Route Distinguisher",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21.2"
+        },
+        "RouteTargetExport": {
+          "description": "Route Target (export)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21.4"
+        },
+        "RouteTargetImport": {
+          "description": "Route Target (import)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+    },
+    "BufferControlEntry": {
+      "additionalProperties": false,
+      "description": "Buffer Control encoding for service flow buffer management",
+      "properties": {
+        "MaximumBuffer": {
+          "description": "Maximum buffer size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-tlvType": "x.35.3"
+        },
+        "MinimumBuffer": {
+          "description": "Minimum buffer size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-tlvType": "x.35.1"
+        },
+        "TargetBuffer": {
+          "description": "Target buffer size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-tlvType": "x.35.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8"
+    },
+    "ClassifierErrorEntry": {
+      "additionalProperties": false,
+      "description": "Classifier Error Encoding reported when a classifier parameter is rejected",
+      "properties": {
+        "ErrorCode": {
+          "description": "Error code value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "x.8.2"
+        },
+        "ErrorMessage": {
+          "description": "Human-readable error message",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "x.8.3"
+        },
+        "ErroredParameter": {
+          "description": "Type value of the TLV in error",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "x.8.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+    },
     "DocsisExtensionFieldEntry": {
       "additionalProperties": true,
       "description": "DOCSIS Extension Field (TLV 43) container. When VendorId is FFFFFF (General Extension), the defined sub-TLVs apply. When VendorId is any other OUI, sub-TLVs are vendor-specific and arbitrary keys are allowed.",
       "properties": {
+        "CableModemAttributeMasks": {
+          "description": "Cable Modem Attribute Masks (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.8",
+          "x-docsis-tlvType": "43.8"
+        },
         "CmLoadBalancingGroupId": {
           "description": "Load balancing group ID for the CM (General Extension, OUI=FFFFFF)",
           "maximum": 4294967295,
@@ -37,6 +247,53 @@
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "43.2"
         },
+        "CmRangingClassIdExtension": {
+          "description": "CM Ranging Class ID Extension (General Extension, OUI=FFFFFF)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "43.4"
+        },
+        "DemarcAutoConfiguration": {
+          "description": "DEMARC Auto-Configuration (DAC) encoding (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.11",
+          "x-docsis-tlvType": "43.12"
+        },
+        "ExtendedCmtsMicConfigurationSetting": {
+          "description": "Extended CMTS MIC Configuration Setting (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.6",
+          "x-docsis-tlvType": "43.6"
+        },
+        "IpMulticastJoinAuthorization": {
+          "description": "IP Multicast Join Authorization (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.9",
+          "x-docsis-tlvType": "43.9"
+        },
+        "L2vpnEncoding": {
+          "description": "L2VPN Encoding (General Extension, OUI=FFFFFF)",
+          "items": {
+            "$ref": "#/$defs/L2vpnEncodingEntry"
+          },
+          "type": "array",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5"
+        },
         "ServiceTypeIdentifier": {
           "description": "Service type identifier string (General Extension, OUI=FFFFFF)",
           "type": "string",
@@ -44,6 +301,14 @@
           "x-docsis-dataType": "string",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.10",
           "x-docsis-tlvType": "43.10"
+        },
+        "SourceAddressVerification": {
+          "description": "Source Address Verification (SAV) encoding (General Extension, OUI=FFFFFF)",
+          "type": "string",
+          "x-docsis-context": "General Extension (OUI=FFFFFF)",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.7",
+          "x-docsis-tlvType": "43.7"
         },
         "VendorId": {
           "description": "3-byte IEEE OUI as a hexadecimal string. Use FFFFFF for General Extension Information.",
@@ -61,10 +326,364 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18",
       "x-docsis-tlvType": 43
     },
+    "DownstreamAggregateServiceFlowEntry": {
+      "additionalProperties": false,
+      "description": "Downstream Aggregate Service Flow encoding",
+      "properties": {
+        "AggregateServiceFlowReference": {
+          "description": "Reference to a parent aggregate service flow",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-tlvType": "71.36"
+        },
+        "AsfIdentifier": {
+          "description": "CMTS-assigned ASF identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-tlvType": "71.2"
+        },
+        "AsfReference": {
+          "description": "ASF reference within config file",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-tlvType": "71.1"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "description": "Assumed minimum reserved rate packet size in bytes",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-tlvType": "71.11"
+        },
+        "LowLatencyEncodings": {
+          "$ref": "#/$defs/LowLatencyEncodingsEntry",
+          "description": "Low latency encodings for this ASF",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "71.42"
+        },
+        "MaxSustainedTrafficRate": {
+          "description": "Maximum sustained traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-tlvType": "71.8"
+        },
+        "MaxTrafficBurst": {
+          "description": "Maximum traffic burst size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-tlvType": "71.9"
+        },
+        "MespReference": {
+          "description": "Reference to a Metro Ethernet Service Profile",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-tlvType": "71.37"
+        },
+        "MinReservedTrafficRate": {
+          "description": "Minimum reserved traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-tlvType": "71.10"
+        },
+        "PeakTrafficRate": {
+          "description": "Peak traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-tlvType": "71.27"
+        },
+        "ServingGroup": {
+          "$ref": "#/$defs/AsfServingGroupEntry",
+          "description": "ASF serving group parameters",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-tlvType": "71.38"
+        },
+        "TrafficPriority": {
+          "description": "Relative priority for the aggregate service flow (0-7)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-tlvType": "71.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.4",
+      "x-docsis-tlvType": 71
+    },
+    "DownstreamDutFilteringEntry": {
+      "additionalProperties": false,
+      "description": "Downstream Unencrypted Traffic (DUT) Filtering encoding",
+      "properties": {
+        "DutCmim": {
+          "description": "DUT CM Interface Mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.24",
+          "x-docsis-tlvType": "45.2"
+        },
+        "DutControl": {
+          "description": "DUT filtering control (0=disabled, 1=enabled)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.24",
+          "x-docsis-tlvType": "45.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.24",
+      "x-docsis-tlvType": 45
+    },
+    "DownstreamPacketClassificationEntry": {
+      "additionalProperties": false,
+      "description": "Downstream Packet Classification encoding. Defines match criteria for downstream traffic classification.",
+      "properties": {
+        "ClassifierActivationState": {
+          "description": "Activation state of the classifier",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.6",
+          "x-docsis-tlvType": "23.6"
+        },
+        "ClassifierErrorEncoding": {
+          "$ref": "#/$defs/ClassifierErrorEntry",
+          "description": "Classifier error encoding",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "23.8"
+        },
+        "ClassifierIdentifier": {
+          "description": "CMTS-assigned classifier identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.2",
+          "x-docsis-tlvType": "23.2"
+        },
+        "ClassifierReference": {
+          "description": "Classifier reference within config file",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.1",
+          "x-docsis-tlvType": "23.1"
+        },
+        "CmInterfaceMask": {
+          "description": "CM Interface Mask (CMIM) encoding",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "23.13"
+        },
+        "DynamicServiceChangeAction": {
+          "description": "Action for dynamic service change",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
+          "x-docsis-tlvType": "23.7"
+        },
+        "EthernetLlcClassification": {
+          "$ref": "#/$defs/EthernetLlcClassificationEntry",
+          "description": "Ethernet LLC packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "23.10"
+        },
+        "IcmpClassification": {
+          "$ref": "#/$defs/IcmpClassificationEntry",
+          "description": "ICMPv4/ICMPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16",
+          "x-docsis-tlvType": "23.16"
+        },
+        "Ieee8021PqClassification": {
+          "$ref": "#/$defs/Ieee8021PqClassificationEntry",
+          "description": "IEEE 802.1P/Q packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11",
+          "x-docsis-tlvType": "23.11"
+        },
+        "Ieee8021adClassification": {
+          "$ref": "#/$defs/Ieee8021adClassificationEntry",
+          "description": "IEEE 802.1ad S-VLAN packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "23.14"
+        },
+        "Ieee8021ahClassification": {
+          "$ref": "#/$defs/Ieee8021ahClassificationEntry",
+          "description": "IEEE 802.1ah I-TAG packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "23.15"
+        },
+        "Ipv4Classification": {
+          "$ref": "#/$defs/Ipv4ClassificationEntry",
+          "description": "IPv4/TCP/UDP packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "23.9"
+        },
+        "Ipv6Classification": {
+          "$ref": "#/$defs/Ipv6ClassificationEntry",
+          "description": "IPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "23.12"
+        },
+        "MplsClassification": {
+          "$ref": "#/$defs/MplsClassificationEntry",
+          "description": "MPLS packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17",
+          "x-docsis-tlvType": "23.17"
+        },
+        "RulePriority": {
+          "description": "Priority of this classifier rule (0-255)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.5",
+          "x-docsis-tlvType": "23.5"
+        },
+        "ServiceFlowIdentifier": {
+          "description": "CMTS-assigned service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.4",
+          "x-docsis-tlvType": "23.4"
+        },
+        "ServiceFlowReference": {
+          "description": "Service flow reference this classifier is associated with",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.3",
+          "x-docsis-tlvType": "23.3"
+        },
+        "VendorSpecificClassifierParameters": {
+          "description": "Vendor-specific classifier parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
+          "x-docsis-tlvType": "23.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.3",
+      "x-docsis-tlvType": 23
+    },
     "DownstreamServiceFlowEntry": {
       "additionalProperties": false,
       "description": "Downstream Service Flow encoding. Defines QoS parameters for a downstream service flow.",
       "properties": {
+        "AggregateServiceFlowReference": {
+          "description": "Reference to an aggregate service flow",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.36"
+        },
+        "ApplicationIdentifier": {
+          "description": "Application identifier for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.34",
+          "x-docsis-tlvType": "25.34"
+        },
+        "AqmEncodings": {
+          "$ref": "#/$defs/AqmEncodingsEntry",
+          "description": "Active Queue Management encodings",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "25.40"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "description": "Assumed minimum reserved rate packet size in bytes",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.11"
+        },
+        "BufferControl": {
+          "$ref": "#/$defs/BufferControlEntry",
+          "description": "Buffer control parameters for the service flow",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-tlvType": "25.35"
+        },
+        "DataRateUnitSetting": {
+          "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.41",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "25.41"
+        },
+        "DownstreamResequencing": {
+          "description": "Downstream resequencing control",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.6.2",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "25.17"
+        },
+        "IpTypeOfServiceDscpOverwrite": {
+          "description": "IP ToS/DSCP overwrite value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.23",
+          "x-docsis-tlvType": "25.23"
+        },
         "MaxDownstreamLatency": {
           "description": "Maximum downstream latency in microseconds",
           "maximum": 4294967295,
@@ -95,6 +714,16 @@
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.9"
         },
+        "MespReference": {
+          "description": "Reference to a Metro Ethernet Service Profile",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.37"
+        },
         "MinReservedTrafficRate": {
           "description": "Minimum reserved traffic rate in bits per second",
           "maximum": 4294967295,
@@ -104,6 +733,16 @@
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.10"
+        },
+        "PeakTrafficRate": {
+          "description": "Peak traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.27"
         },
         "QosParamSetType": {
           "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
@@ -127,11 +766,41 @@
           "x-docsis-tlvLength": "2-16",
           "x-docsis-tlvType": "25.4"
         },
+        "ServiceFlowAttributeAggregationRuleMask": {
+          "description": "Attribute aggregation rule mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.33",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.33"
+        },
+        "ServiceFlowCollection": {
+          "description": "Service flow collection identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.44"
+        },
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
           "x-docsis-tlvType": "25.5"
+        },
+        "ServiceFlowForbiddenAttributeMask": {
+          "description": "Forbidden attribute mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.32",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.32"
         },
         "ServiceFlowIdentifier": {
           "description": "CMTS-assigned service flow identifier",
@@ -153,6 +822,53 @@
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.1"
         },
+        "ServiceFlowRequiredAttributeMask": {
+          "description": "Required attribute mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.31",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.31"
+        },
+        "ServiceIdentifier": {
+          "description": "Service Identifier (SID) for this service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.3",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "25.3"
+        },
+        "ServingGroupName": {
+          "description": "Serving group name for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.38",
+          "x-docsis-tlvType": "25.38"
+        },
+        "TimeoutForActiveQosParameters": {
+          "description": "Timeout for active QoS parameters in seconds",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.12",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.12"
+        },
+        "TimeoutForAdmittedQosParameters": {
+          "description": "Timeout for admitted QoS parameters in seconds",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.13",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "25.13"
+        },
         "TrafficPriority": {
           "description": "Relative priority for the service flow (0-7)",
           "maximum": 255,
@@ -162,11 +878,2550 @@
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "25.7"
+        },
+        "VendorSpecificQosParameters": {
+          "description": "Vendor-specific QoS parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.43",
+          "x-docsis-tlvType": "25.43"
         }
       },
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.2",
       "x-docsis-tlvType": 25
+    },
+    "ErouterEntry": {
+      "additionalProperties": false,
+      "description": "eRouter configuration encoding",
+      "properties": {
+        "InitializationMode": {
+          "description": "eRouter initialization mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.1"
+        },
+        "InitializationModeOverride": {
+          "description": "eRouter initialization mode override",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.3"
+        },
+        "IpMulticastConfigurationServer": {
+          "description": "IP Multicast Configuration Server address",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.12"
+        },
+        "LinkIdControl": {
+          "description": "Link-ID control",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.13"
+        },
+        "RaTransmissionInterval": {
+          "description": "Router Advertisement transmission interval",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.10"
+        },
+        "SnmpMibObject": {
+          "description": "eRouter SNMP MIB objects",
+          "items": {
+            "$ref": "#/$defs/SnmpMibEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.11"
+        },
+        "Snmpv1v2cCoexistence": {
+          "description": "eRouter SNMPv1v2c Coexistence configuration",
+          "items": {
+            "$ref": "#/$defs/ErouterSnmpv1v2cCoexistenceEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53"
+        },
+        "Snmpv3AccessView": {
+          "description": "eRouter SNMPv3 Access View configuration",
+          "items": {
+            "$ref": "#/$defs/ErouterSnmpv3AccessViewEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.54"
+        },
+        "TopologyModeEncoding": {
+          "description": "Topology mode encoding",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.42"
+        },
+        "Tr069ManagementServer": {
+          "$ref": "#/$defs/Tr069ManagementServerEntry",
+          "description": "TR-069 Management Server configuration",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2"
+        },
+        "VendorSpecificInformation": {
+          "description": "Vendor-specific information for eRouter",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22",
+      "x-docsis-tlvType": 202
+    },
+    "ErouterSnmpv1v2cCoexistenceEntry": {
+      "additionalProperties": false,
+      "description": "eRouter SNMPv1v2c Coexistence Configuration encoding",
+      "properties": {
+        "CommunityName": {
+          "description": "SNMPv1v2c community name string",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.1"
+        },
+        "TransportAddressAccess": {
+          "$ref": "#/$defs/ErouterSnmpv1v2cTransportAddressAccessEntry",
+          "description": "Transport address access control",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22"
+    },
+    "ErouterSnmpv1v2cTransportAddressAccessEntry": {
+      "additionalProperties": false,
+      "description": "eRouter SNMPv1v2c Transport Address Access encoding",
+      "properties": {
+        "AccessViewName": {
+          "description": "SNMPv1v2c access view name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.2.4"
+        },
+        "AccessViewType": {
+          "description": "SNMPv1v2c access view type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.2.3"
+        },
+        "TransportAddress": {
+          "description": "SNMPv1v2c transport address",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.2.1"
+        },
+        "TransportAddressMask": {
+          "description": "SNMPv1v2c transport address mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.53.2.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22"
+    },
+    "ErouterSnmpv3AccessViewEntry": {
+      "additionalProperties": false,
+      "description": "eRouter SNMPv3 Access View Configuration encoding",
+      "properties": {
+        "AccessViewMask": {
+          "description": "SNMPv3 access view mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.54.3"
+        },
+        "AccessViewName": {
+          "description": "SNMPv3 access view name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.54.1"
+        },
+        "AccessViewSubtree": {
+          "description": "SNMPv3 access view subtree OID",
+          "type": "string",
+          "x-docsis-dataType": "oid",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.54.2"
+        },
+        "AccessViewType": {
+          "description": "SNMPv3 access view type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.54.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22"
+    },
+    "EteaCesopsnConfigurationTableEntry": {
+      "additionalProperties": false,
+      "description": "CESoPSN Configuration Table encoding",
+      "properties": {
+        "AppSigIdle": {
+          "description": "Application signal idle pattern",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.10"
+        },
+        "AppSigInterval": {
+          "description": "Application signal interval",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.11"
+        },
+        "AppSigMaxInterval": {
+          "description": "Application signal maximum interval",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.12"
+        },
+        "AppSigTos": {
+          "description": "Application signal TOS",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.7"
+        },
+        "ConfigTableIndex": {
+          "description": "PW CESoPSN config table index",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.1"
+        },
+        "DefaultIdlePattern": {
+          "description": "Default idle pattern",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.2"
+        },
+        "LFlagPolicy": {
+          "description": "L flag policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.3"
+        },
+        "LopsPolicy": {
+          "description": "LOPS policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.6"
+        },
+        "RFlagPolicy": {
+          "description": "R flag policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.4"
+        },
+        "RemoteDefectPolicy": {
+          "description": "Remote defect policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.5"
+        },
+        "RtpCasPeerPt": {
+          "description": "RTP CAS peer payload type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.9"
+        },
+        "RtpCasPt": {
+          "description": "RTP CAS payload type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13.8"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06"
+    },
+    "EteaDsx1ConfigurationTableEntry": {
+      "additionalProperties": false,
+      "description": "dsx1 Configuration Table encoding",
+      "properties": {
+        "Dsx1Channelization": {
+          "description": "dsx1 channelization",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.11"
+        },
+        "Dsx1CircuitId": {
+          "description": "dsx1 circuit ID",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.4"
+        },
+        "Dsx1Fdl": {
+          "description": "dsx1 FDL",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.8"
+        },
+        "Dsx1LineBuildOut": {
+          "description": "dsx1 line build out",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.13"
+        },
+        "Dsx1LineCoding": {
+          "description": "dsx1 line coding",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.3"
+        },
+        "Dsx1LineLength": {
+          "description": "dsx1 line length",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.9"
+        },
+        "Dsx1LineMode": {
+          "description": "dsx1 line mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.12"
+        },
+        "Dsx1LineStatusTrapEnable": {
+          "description": "dsx1 line status trap enable",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.10"
+        },
+        "Dsx1LineType": {
+          "description": "dsx1 line type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.2"
+        },
+        "Dsx1LoopbackConfiguration": {
+          "description": "dsx1 loopback configuration",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.5"
+        },
+        "Dsx1PortId": {
+          "description": "dsx1 port ID",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.1"
+        },
+        "Dsx1SignalMode": {
+          "description": "dsx1 signal mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.6"
+        },
+        "Dsx1TransmitClockSource": {
+          "description": "dsx1 transmit clock source",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06"
+    },
+    "EteaEntry": {
+      "additionalProperties": false,
+      "description": "eTEA (TDM Emulation Adapter) configuration encoding",
+      "properties": {
+        "CesopsnConfigurationTable": {
+          "description": "CESoPSN configuration table",
+          "items": {
+            "$ref": "#/$defs/EteaCesopsnConfigurationTableEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.13"
+        },
+        "Dsx1ConfigurationTable": {
+          "description": "dsx1 configuration table",
+          "items": {
+            "$ref": "#/$defs/EteaDsx1ConfigurationTableEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.14"
+        },
+        "EndOfText": {
+          "description": "eTEA end of text marker",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.255"
+        },
+        "IwfCfgEncoding": {
+          "description": "eTEA IWF configuration encoding",
+          "items": {
+            "$ref": "#/$defs/EteaIwfCfgEncodingEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9"
+        },
+        "PwTdmConfigurationTable": {
+          "description": "PW TDM configuration table",
+          "items": {
+            "$ref": "#/$defs/EteaPwTdmConfigurationTableEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10"
+        },
+        "SnmpMibObject": {
+          "description": "eTEA SNMP MIB objects",
+          "items": {
+            "$ref": "#/$defs/SnmpMibEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.11"
+        },
+        "SnmpWriteAccessControl": {
+          "description": "eTEA SNMP write-access control",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.12"
+        },
+        "SymbolClock": {
+          "description": "eTEA symbol clock configuration",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.8"
+        },
+        "VendorSpecificExtensions": {
+          "description": "eTEA vendor-specific extensions",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06",
+      "x-docsis-tlvType": 219
+    },
+    "EteaIwfCfgEncodingEntry": {
+      "additionalProperties": false,
+      "description": "eTEA IWF Configuration encoding",
+      "properties": {
+        "EmulationType": {
+          "description": "Emulation type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.2"
+        },
+        "PwAdminStatus": {
+          "description": "PW administrative status",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.9"
+        },
+        "PwCesopsnConfigurationIndex": {
+          "description": "PW CESoPSN configuration index",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.13"
+        },
+        "PwDescription": {
+          "description": "PW description",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.8"
+        },
+        "PwDestinationPort": {
+          "description": "PW destination port",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.5"
+        },
+        "PwIndexSetting": {
+          "description": "PW index setting",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.1"
+        },
+        "PwName": {
+          "description": "PW name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.7"
+        },
+        "PwPeerAddress": {
+          "description": "PW peer IPv4 address",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.3"
+        },
+        "PwPeerAddressIpv6": {
+          "description": "PW peer IPv6 address",
+          "type": "string",
+          "x-docsis-dataType": "ipv6Address",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.4"
+        },
+        "PwPeerDestinationPort": {
+          "description": "PW peer destination port",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.6"
+        },
+        "PwPeerSsrc": {
+          "description": "PW peer SSRC",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.15"
+        },
+        "PwRtpSsrc": {
+          "description": "PW RTP SSRC",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.14"
+        },
+        "PwTdmCirculationMap": {
+          "description": "PW TDM circulation map",
+          "items": {
+            "$ref": "#/$defs/EteaPwTdmCirculationMapEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.16"
+        },
+        "PwTdmConfigurationTableIndex": {
+          "description": "PW TDM configuration table index",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.12"
+        },
+        "PwTdmType": {
+          "description": "PW TDM type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.11"
+        },
+        "StatusChangeNotificationEnable": {
+          "description": "Status change notification enable",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.10"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06"
+    },
+    "EteaPwTdmCirculationMapEntry": {
+      "additionalProperties": false,
+      "description": "eTEA PW TDM Circulation Map encoding",
+      "properties": {
+        "PwTdmPortNumber": {
+          "description": "PW TDM port number",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.16.1"
+        },
+        "PwTdmTimeslotMap": {
+          "description": "PW TDM timeslot map",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.9.16.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06"
+    },
+    "EteaPwTdmConfigurationTableEntry": {
+      "additionalProperties": false,
+      "description": "eTEA PW TDM Configuration Table encoding",
+      "properties": {
+        "ConfigurationTableIndex": {
+          "description": "Configuration table index",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.1"
+        },
+        "JitterBufferSetting": {
+          "description": "Jitter buffer setting",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.5"
+        },
+        "PwDefaultFillPattern": {
+          "description": "PW default fill pattern",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.17"
+        },
+        "PwExcessiveLossThreshold": {
+          "description": "PW excessive loss threshold",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.12"
+        },
+        "PwLFlagPayloadPolicy": {
+          "description": "PW L flag payload policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.18"
+        },
+        "PwLopsEntranceCriteria": {
+          "description": "PW LOPS entrance criteria",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.8"
+        },
+        "PwLopsExitCriteria": {
+          "description": "PW LOPS exit criteria",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.7"
+        },
+        "PwPacketLossWindow": {
+          "description": "PW packet loss window",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.11"
+        },
+        "PwPacketReplacePolicy": {
+          "description": "PW packet replace policy",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.10"
+        },
+        "PwPayloadSuppression": {
+          "description": "PW payload suppression",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.6"
+        },
+        "PwRtpHeaderUsed": {
+          "description": "PW RTP header used flag",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.3"
+        },
+        "PwRtpPayloadType": {
+          "description": "PW RTP payload type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.20"
+        },
+        "PwRtpPeerPayloadType": {
+          "description": "PW RTP peer payload type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.21"
+        },
+        "PwRtpPeerTimestampReference": {
+          "description": "PW RTP peer timestamp reference",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.23"
+        },
+        "PwRtpTimestampMode": {
+          "description": "PW RTP timestamp mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.16"
+        },
+        "PwRtpTimestampReference": {
+          "description": "PW RTP timestamp reference",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.22"
+        },
+        "PwSevereLossThreshold": {
+          "description": "PW severe loss threshold",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.15"
+        },
+        "PwSrtpEnable": {
+          "description": "PW SRTP enable flag",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.24"
+        },
+        "PwTdmPayloadSize": {
+          "description": "PW TDM payload size",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.2"
+        },
+        "PwTos": {
+          "description": "PW Type of Service",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-tlvType": "219.10.19"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06"
+    },
+    "EthernetLlcClassificationEntry": {
+      "additionalProperties": false,
+      "description": "Ethernet LLC Packet Classification Encodings",
+      "properties": {
+        "DestinationMacAddress": {
+          "description": "Destination MAC address and mask",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "x.10.1"
+        },
+        "EthertypeDsapMacType": {
+          "description": "Ethertype/DSAP/MAC type value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "x.10.3"
+        },
+        "SlowProtocolSubtype": {
+          "description": "Slow protocol subtype",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "x.10.4"
+        },
+        "SourceMacAddress": {
+          "description": "Source MAC address and mask",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "x.10.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+    },
+    "FaultManagementConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "Fault Management Configuration encoding for L2VPN SOAM",
+      "properties": {
+        "ContinuityCheckMessages": {
+          "description": "Continuity Check Messages enable/configuration",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.3.1"
+        },
+        "EnableLinktraceMessages": {
+          "description": "Enable Linktrace Messages",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.3.3"
+        },
+        "EnableLoopbackReplyMessages": {
+          "description": "Enable Loopback Reply Messages",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.3.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "IcmpClassificationEntry": {
+      "additionalProperties": false,
+      "description": "ICMPv4/ICMPv6 Packet Classification Encodings",
+      "properties": {
+        "IcmpTypeEnd": {
+          "description": "ICMPv4/ICMPv6 type range end",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16",
+          "x-docsis-tlvType": "x.16.2"
+        },
+        "IcmpTypeStart": {
+          "description": "ICMPv4/ICMPv6 type range start",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16",
+          "x-docsis-tlvType": "x.16.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+    },
+    "Ieee8021PqClassificationEntry": {
+      "additionalProperties": false,
+      "description": "IEEE 802.1P/Q Packet Classification Encodings",
+      "properties": {
+        "UserPriority": {
+          "description": "IEEE 802.1P user priority (0-7)",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11",
+          "x-docsis-tlvType": "x.11.1"
+        },
+        "VlanId": {
+          "description": "IEEE 802.1Q VLAN ID",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11",
+          "x-docsis-tlvType": "x.11.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+    },
+    "Ieee8021adClassificationEntry": {
+      "additionalProperties": false,
+      "description": "IEEE 802.1ad S-VLAN Packet Classification Encodings",
+      "properties": {
+        "CCfi": {
+          "description": "C-CFI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.8"
+        },
+        "CPcp": {
+          "description": "C-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.7"
+        },
+        "CTci": {
+          "description": "C-TCI value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.10"
+        },
+        "CTpid": {
+          "description": "C-TPID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.5"
+        },
+        "CVid": {
+          "description": "C-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.6"
+        },
+        "SDei": {
+          "description": "S-DEI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.4"
+        },
+        "SPcp": {
+          "description": "S-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.3"
+        },
+        "STci": {
+          "description": "S-TCI value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.9"
+        },
+        "STpid": {
+          "description": "S-TPID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.1"
+        },
+        "SVid": {
+          "description": "S-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "x.14.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+    },
+    "Ieee8021ahClassificationEntry": {
+      "additionalProperties": false,
+      "description": "IEEE 802.1ah I-TAG Packet Classification Encodings",
+      "properties": {
+        "BDa": {
+          "description": "B-DA MAC address",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.12"
+        },
+        "BDei": {
+          "description": "B-DEI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.10"
+        },
+        "BPcp": {
+          "description": "B-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.9"
+        },
+        "BSa": {
+          "description": "B-SA MAC address",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.13"
+        },
+        "BTci": {
+          "description": "B-TCI value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.8"
+        },
+        "BTpid": {
+          "description": "B-TPID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.7"
+        },
+        "BVid": {
+          "description": "B-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.11"
+        },
+        "IDei": {
+          "description": "I-DEI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.5"
+        },
+        "IPcp": {
+          "description": "I-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.4"
+        },
+        "ISid": {
+          "description": "I-SID value",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.2"
+        },
+        "ITci": {
+          "description": "I-TCI value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.3"
+        },
+        "ITpid": {
+          "description": "I-TPID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.1"
+        },
+        "IUca": {
+          "description": "I-UCA value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "x.15.6"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+    },
+    "Ieee8021ahEncapsulationEntry": {
+      "additionalProperties": false,
+      "description": "IEEE 802.1ah Encapsulation encoding within NSI encapsulation",
+      "properties": {
+        "BDei": {
+          "description": "1-bit B-DEI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.11"
+        },
+        "BPcp": {
+          "description": "1-bit B-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.10"
+        },
+        "BTagTci": {
+          "description": "B-Tag TCI 16-bit value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.3"
+        },
+        "BTagTpid": {
+          "description": "B-Tag TPID 16-bit value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.9"
+        },
+        "BVid": {
+          "description": "12-bit B-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.12"
+        },
+        "DestinationBebMacAddress": {
+          "description": "Destination Backbone Edge Bridge MAC address (B-DA)",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.6.2"
+        },
+        "IDei": {
+          "description": "1-bit I-DEI value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.6"
+        },
+        "IPcp": {
+          "description": "3-bit I-PCP value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.5"
+        },
+        "ISid": {
+          "description": "24-bit I-SID Backbone Service Instance Identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.8"
+        },
+        "ITagTci": {
+          "description": "I-Tag TCI value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.6.1"
+        },
+        "ITagTpid": {
+          "description": "I-Tag TPID 16-bit value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.4"
+        },
+        "IUca": {
+          "description": "1-bit I-UCA value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.6.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+    },
+    "Ipv4ClassificationEntry": {
+      "additionalProperties": false,
+      "description": "IPv4/TCP/UDP Packet Classification Encodings",
+      "properties": {
+        "IpProtocol": {
+          "description": "IP protocol number",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.2"
+        },
+        "Ipv4DestinationAddress": {
+          "description": "IPv4 destination address",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.5"
+        },
+        "Ipv4DestinationMask": {
+          "description": "IPv4 destination address mask",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.6"
+        },
+        "Ipv4SourceAddress": {
+          "description": "IPv4 source address",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.3"
+        },
+        "Ipv4SourceMask": {
+          "description": "IPv4 source address mask",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.4"
+        },
+        "Ipv4TypeOfServiceRangeAndMask": {
+          "description": "IPv4 ToS range and mask (3 bytes)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.1"
+        },
+        "TcpUdpDestinationPortEnd": {
+          "description": "TCP/UDP destination port range end",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.10"
+        },
+        "TcpUdpDestinationPortStart": {
+          "description": "TCP/UDP destination port range start",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.9"
+        },
+        "TcpUdpSourcePortEnd": {
+          "description": "TCP/UDP source port range end",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.8"
+        },
+        "TcpUdpSourcePortStart": {
+          "description": "TCP/UDP source port range start",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "x.9.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+    },
+    "Ipv6ClassificationEntry": {
+      "additionalProperties": false,
+      "description": "IPv6 Packet Classification Encodings",
+      "properties": {
+        "Ipv6DestinationAddress": {
+          "description": "IPv6 destination address",
+          "type": "string",
+          "x-docsis-dataType": "ipv6Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.6"
+        },
+        "Ipv6DestinationPrefixLength": {
+          "description": "IPv6 destination prefix length in bits",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.7"
+        },
+        "Ipv6FlowLabel": {
+          "description": "IPv6 flow label",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.2"
+        },
+        "Ipv6NextHeaderType": {
+          "description": "IPv6 next header type",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.3"
+        },
+        "Ipv6SourceAddress": {
+          "description": "IPv6 source address",
+          "type": "string",
+          "x-docsis-dataType": "ipv6Address",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.4"
+        },
+        "Ipv6SourcePrefixLength": {
+          "description": "IPv6 source prefix length in bits",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.5"
+        },
+        "Ipv6TrafficClass": {
+          "description": "IPv6 traffic class range and mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "x.12.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+    },
+    "L2cpManagementEntry": {
+      "additionalProperties": false,
+      "description": "L2CP Management encoding",
+      "properties": {
+        "Cmim": {
+          "description": "CM Interface Mask for L2CP",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "83.1"
+        },
+        "L2cpFilter": {
+          "description": "L2CP filter encoding",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "83.4"
+        },
+        "L2cpL2ptDmacAddress": {
+          "description": "L2CP L2PT destination MAC address",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "83.3"
+        },
+        "L2cpMode": {
+          "description": "L2CP processing mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "83.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-tlvType": 83
+    },
+    "L2cpProcessingEntry": {
+      "additionalProperties": false,
+      "description": "L2CP Processing encoding within L2VPN",
+      "properties": {
+        "L2cpDmacAddress": {
+          "description": "L2CP destination MAC address",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.15.2"
+        },
+        "L2cpFilter": {
+          "description": "L2CP filter encoding",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.15.4"
+        },
+        "L2cpL2ptDmacAddress": {
+          "description": "L2CP L2PT destination MAC address",
+          "type": "string",
+          "x-docsis-dataType": "macAddress",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.15.3"
+        },
+        "L2cpTunnelMode": {
+          "description": "L2CP tunnel mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.15.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+    },
+    "L2vpnEncodingEntry": {
+      "additionalProperties": false,
+      "description": "L2VPN Encoding within DOCSIS Extension Field (TLV 43.5)",
+      "properties": {
+        "AttachmentGroupId": {
+          "description": "Attachment Group ID (AGI)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.5"
+        },
+        "BgpAttribute": {
+          "$ref": "#/$defs/BgpAttributeEntry",
+          "description": "BGP attribute encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.21"
+        },
+        "CmInterfaceMask": {
+          "description": "CM Interface Mask subtype",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.4"
+        },
+        "DownstreamUserPriorityRange": {
+          "description": "Downstream user priority range",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.9"
+        },
+        "EsafeDhcpSnooping": {
+          "description": "eSAFE DHCP snooping",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.3"
+        },
+        "L2cpProcessing": {
+          "$ref": "#/$defs/L2cpProcessingEntry",
+          "description": "L2CP Processing encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.15"
+        },
+        "L2vpnDsid": {
+          "description": "L2VPN DSID",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.26"
+        },
+        "L2vpnErrorEncoding": {
+          "$ref": "#/$defs/L2vpnErrorEntry",
+          "description": "L2VPN error encoding",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.254"
+        },
+        "L2vpnMode": {
+          "description": "L2VPN mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.13"
+        },
+        "L2vpnSaDescriptor": {
+          "description": "L2VPN SA-Descriptor subtypes",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.10"
+        },
+        "L2vpnSoam": {
+          "$ref": "#/$defs/L2vpnSoamEntry",
+          "description": "L2VPN Service OAM encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24"
+        },
+        "MultipointEnableDisable": {
+          "description": "Multipoint enable/disable",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.27"
+        },
+        "NetworkTimingProfileReference": {
+          "description": "Network Timing Profile reference",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.25"
+        },
+        "NsiEncapsulationFormat": {
+          "$ref": "#/$defs/NsiEncapsulationFormatEntry",
+          "description": "NSI encapsulation format",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2"
+        },
+        "PseudowireClass": {
+          "description": "Pseudowire class",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.18"
+        },
+        "PseudowireSignaling": {
+          "description": "Pseudowire signaling",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.23"
+        },
+        "PseudowireType": {
+          "description": "Pseudowire type",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.12"
+        },
+        "ServiceDelimiter": {
+          "$ref": "#/$defs/ServiceDelimiterEntry",
+          "description": "Service delimiter encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.19"
+        },
+        "SourceAttachmentIndividualId": {
+          "description": "Source Attachment Individual ID (SAII)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.6"
+        },
+        "TargetAttachmentIndividualId": {
+          "description": "Target Attachment Individual ID (TAII)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.7"
+        },
+        "TpidTranslation": {
+          "$ref": "#/$defs/TpidTranslationEntry",
+          "description": "TPID Translation encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14"
+        },
+        "UpstreamUserPriority": {
+          "description": "Upstream user priority subtype",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.8"
+        },
+        "VendorSpecificL2vpn": {
+          "description": "Vendor-specific L2VPN subtype",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.43"
+        },
+        "VpnIdentifier": {
+          "description": "VPN identifier",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.1"
+        },
+        "VpnSgAttribute": {
+          "description": "VPN-SG attribute",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.22"
+        },
+        "VsiEncoding": {
+          "$ref": "#/$defs/VsiEncodingEntry",
+          "description": "VSI encoding",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.20"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "L2vpnErrorEntry": {
+      "additionalProperties": false,
+      "description": "L2VPN Error Encoding",
+      "properties": {
+        "ConfirmationCode": {
+          "description": "L2VPN confirmation code",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.254.2"
+        },
+        "ErrorMessage": {
+          "description": "L2VPN error message",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.254.3"
+        },
+        "ErroredParameter": {
+          "description": "L2VPN errored parameter type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.254.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "L2vpnMacAgingEntry": {
+      "additionalProperties": false,
+      "description": "L2VPN MAC Aging encoding",
+      "properties": {
+        "MacAgingMode": {
+          "description": "L2VPN MAC aging mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "65.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17",
+      "x-docsis-tlvType": 65
+    },
+    "L2vpnSoamEntry": {
+      "additionalProperties": false,
+      "description": "L2VPN Service OAM encoding",
+      "properties": {
+        "FaultManagementConfiguration": {
+          "$ref": "#/$defs/FaultManagementConfigurationEntry",
+          "description": "Fault management configuration",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.3"
+        },
+        "MepConfiguration": {
+          "$ref": "#/$defs/MepConfigurationEntry",
+          "description": "MEP configuration",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.1"
+        },
+        "PerformanceManagementConfiguration": {
+          "$ref": "#/$defs/PerformanceManagementConfigurationEntry",
+          "description": "Performance management configuration",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.4"
+        },
+        "RemoteMepConfiguration": {
+          "$ref": "#/$defs/RemoteMepConfigurationEntry",
+          "description": "Remote MEP configuration",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "LowLatencyEncodingsEntry": {
+      "additionalProperties": false,
+      "description": "Low Latency encodings for aggregate service flows",
+      "properties": {
+        "AqmCouplingFactorExponent": {
+          "description": "AQM coupling factor exponent",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.5"
+        },
+        "ClassicSfScn": {
+          "description": "Classic service flow service class name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.3"
+        },
+        "LowLatencyServiceFlowIdentifier": {
+          "description": "Low latency service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.2"
+        },
+        "LowLatencyServiceFlowReference": {
+          "description": "Low latency service flow reference",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.1"
+        },
+        "LowLatencySfScn": {
+          "description": "Low latency service flow service class name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.4"
+        },
+        "QpDrainRateExponent": {
+          "description": "Queue protection drain rate exponent (LG_AGING)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.10"
+        },
+        "QpLatencyThreshold": {
+          "description": "Queue protection latency threshold (CRITICALqL_us)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.8"
+        },
+        "QpQueuingScoreThreshold": {
+          "description": "Queue protection queuing score threshold (CRITICALqLSCORE_us)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.9"
+        },
+        "QueueProtectionEnable": {
+          "description": "Queue protection enable",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.7"
+        },
+        "SchedulingWeight": {
+          "description": "Scheduling weight",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "x.42.6"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10"
+    },
+    "MepConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "MEP Configuration encoding for L2VPN SOAM",
+      "properties": {
+        "MaName": {
+          "description": "Maintenance Association name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.1.3"
+        },
+        "MdLevel": {
+          "description": "Maintenance Domain level",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.1.1"
+        },
+        "MdName": {
+          "description": "Maintenance Domain name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.1.2"
+        },
+        "MepId": {
+          "description": "MEP identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.1.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "MespBandwidthProfileEntry": {
+      "additionalProperties": false,
+      "description": "MESP Bandwidth Profile encoding",
+      "properties": {
+        "ColorMarking": {
+          "$ref": "#/$defs/MespBpColorMarkingEntry",
+          "description": "Bandwidth profile color marking",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.7"
+        },
+        "ColorMode": {
+          "$ref": "#/$defs/MespBpColorModeEntry",
+          "description": "Bandwidth profile color mode",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.6"
+        },
+        "CommittedBurstSize": {
+          "description": "Committed Burst Size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.2"
+        },
+        "CommittedInformationRate": {
+          "description": "Committed Information Rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.1"
+        },
+        "CouplingFlag": {
+          "description": "Bandwidth profile coupling flag",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.5"
+        },
+        "ExcessBurstSize": {
+          "description": "Excess Burst Size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.4"
+        },
+        "ExcessInformationRate": {
+          "description": "Excess Information Rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+    },
+    "MespBpColorMarkingEntry": {
+      "additionalProperties": false,
+      "description": "MESP Bandwidth Profile Color Marking encoding",
+      "properties": {
+        "ColorMarkingField": {
+          "description": "Color marking field",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.7.1"
+        },
+        "ColorMarkingFieldValue": {
+          "description": "Color marking field value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.7.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+    },
+    "MespBpColorModeEntry": {
+      "additionalProperties": false,
+      "description": "MESP Bandwidth Profile Color Mode encoding",
+      "properties": {
+        "ColorIdentificationField": {
+          "description": "Color identification field",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.6.1"
+        },
+        "ColorIdentificationFieldValue": {
+          "description": "Color identification field value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2.6.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+    },
+    "MetroEthernetServiceProfileEntry": {
+      "additionalProperties": false,
+      "description": "Metro Ethernet Service Profile encoding",
+      "properties": {
+        "BandwidthProfile": {
+          "$ref": "#/$defs/MespBandwidthProfileEntry",
+          "description": "MESP bandwidth profile",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.2"
+        },
+        "MespName": {
+          "description": "MESP name string",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.3"
+        },
+        "MespReference": {
+          "description": "MESP reference identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "72.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-tlvType": 72
+    },
+    "MplsClassificationEntry": {
+      "additionalProperties": false,
+      "description": "MPLS Classification Encodings",
+      "properties": {
+        "MplsLabel": {
+          "description": "MPLS label value",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17",
+          "x-docsis-tlvType": "x.17.2"
+        },
+        "MplsTcBits": {
+          "description": "MPLS TC bits value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17",
+          "x-docsis-tlvType": "x.17.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+    },
+    "MplsPwEntry": {
+      "additionalProperties": false,
+      "description": "MPLS Pseudowire encoding within NSI encapsulation",
+      "properties": {
+        "MplsBackupPeerIpAddress": {
+          "description": "MPLS backup peer IP address",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.4.5"
+        },
+        "MplsBackupPseudowireId": {
+          "description": "MPLS backup pseudowire ID",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.4.4"
+        },
+        "MplsPeerIpAddress": {
+          "description": "MPLS peer IP address",
+          "type": "string",
+          "x-docsis-dataType": "ipv4Address",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.4.2"
+        },
+        "MplsPseudowireId": {
+          "description": "MPLS Pseudowire ID",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.4.1"
+        },
+        "PseudowireType": {
+          "description": "Pseudowire type",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.4.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+    },
+    "NsiEncapsulationFormatEntry": {
+      "additionalProperties": false,
+      "description": "NSI Encapsulation Format encoding",
+      "properties": {
+        "Ieee8021Q": {
+          "description": "IEEE 802.1Q encapsulation",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.2"
+        },
+        "Ieee8021ad": {
+          "description": "IEEE 802.1ad encapsulation",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.3"
+        },
+        "Ieee8021ahEncapsulation": {
+          "$ref": "#/$defs/Ieee8021ahEncapsulationEntry",
+          "description": "IEEE 802.1ah encapsulation",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.6"
+        },
+        "L2tpv3Peer": {
+          "description": "L2TPv3 peer encapsulation",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.5"
+        },
+        "MplsPw": {
+          "$ref": "#/$defs/MplsPwEntry",
+          "description": "MPLS Pseudowire encapsulation",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.4"
+        },
+        "Other": {
+          "description": "Other encapsulation format",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.2.1"
+        },
+        "STpid": {
+          "description": "S-TPID 16-bit value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.2.8"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+    },
+    "PayloadHeaderSuppressionEntry": {
+      "additionalProperties": false,
+      "description": "Payload Header Suppression encoding",
+      "properties": {
+        "ClassifierIdentifier": {
+          "description": "Classifier identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.2"
+        },
+        "ClassifierReference": {
+          "description": "Classifier reference",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.1"
+        },
+        "DynamicBondingChangeAction": {
+          "description": "Dynamic bonding change action",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.13"
+        },
+        "DynamicServiceChangeAction": {
+          "description": "Dynamic service change action",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.5"
+        },
+        "PhsErrorEncoding": {
+          "$ref": "#/$defs/PhsErrorEntry",
+          "description": "PHS error encoding",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.6"
+        },
+        "PhsField": {
+          "description": "Payload Header Suppression Field (PHSF) - the header bytes to suppress",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.7"
+        },
+        "PhsIndex": {
+          "description": "Payload Header Suppression Index (PHSI)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.8"
+        },
+        "PhsMask": {
+          "description": "Payload Header Suppression Mask (PHSM)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.9"
+        },
+        "PhsSize": {
+          "description": "Payload Header Suppression Size (PHSS) in bytes",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.10"
+        },
+        "PhsVerification": {
+          "description": "Payload Header Suppression Verification (PHSV)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.11"
+        },
+        "ServiceFlowIdentifier": {
+          "description": "Service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.4"
+        },
+        "ServiceFlowReference": {
+          "description": "Service flow reference",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.3"
+        },
+        "VendorSpecificPhsParameters": {
+          "description": "Vendor-specific PHS parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+      "x-docsis-tlvType": 26
+    },
+    "PerformanceManagementConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "Performance Management Configuration encoding for L2VPN SOAM",
+      "properties": {
+        "FrameDelayMeasurement": {
+          "description": "Frame Delay Measurement enable/configuration",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.4.1"
+        },
+        "FrameLossMeasurement": {
+          "description": "Frame Loss Measurement enable/configuration",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.4.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "PhsErrorEntry": {
+      "additionalProperties": false,
+      "description": "Payload Header Suppression Error Encoding",
+      "properties": {
+        "ErrorCode": {
+          "description": "Error code value",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.6.2"
+        },
+        "ErrorMessage": {
+          "description": "Human-readable error message",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.6.3"
+        },
+        "ErroredParameter": {
+          "description": "Type value of the TLV in error",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+          "x-docsis-tlvType": "26.6.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3"
+    },
+    "RemoteMepConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "Remote MEP Configuration encoding for L2VPN SOAM",
+      "properties": {
+        "MaName": {
+          "description": "Maintenance Association name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.2.3"
+        },
+        "MdLevel": {
+          "description": "Maintenance Domain level",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.2.1"
+        },
+        "MdName": {
+          "description": "Maintenance Domain name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.2.2"
+        },
+        "MepId": {
+          "description": "Remote MEP identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "43.5.24.2.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17"
+    },
+    "ServiceDelimiterEntry": {
+      "additionalProperties": false,
+      "description": "Service Delimiter encoding",
+      "properties": {
+        "BVid": {
+          "description": "B-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.19.4"
+        },
+        "CVid": {
+          "description": "C-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.19.1"
+        },
+        "ISid": {
+          "description": "I-SID value",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.19.3"
+        },
+        "SVid": {
+          "description": "S-VID value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.19.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
     },
     "ServiceFlowErrorEntry": {
       "additionalProperties": false,
@@ -206,7 +3461,7 @@
       "description": "A single SNMP MIB object encoded as an OID, ASN.1 type, and value. Corresponds to TLV 11 (SNMP MIB Object) which carries a BER-encoded varbind in the binary config file.",
       "properties": {
         "oid": {
-          "description": "SNMP object identifier in dotted-decimal notation (e.g., 1.3.6.1.2.1.69.1.2.1.6.0)",
+          "description": "SNMP object identifier in dotted-decimal notation",
           "type": "string",
           "x-docsis-dataType": "oid",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
@@ -242,10 +3497,704 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
     },
+    "Snmpv1v2cCoexistenceEntry": {
+      "additionalProperties": false,
+      "description": "SNMPv1v2c Coexistence Configuration encoding",
+      "properties": {
+        "AccessViewName": {
+          "description": "SNMPv1v2c access view name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.4"
+        },
+        "AccessViewType": {
+          "description": "SNMPv1v2c access view type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.3"
+        },
+        "CommunityName": {
+          "description": "SNMPv1v2c community name string",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.1"
+        },
+        "TransportAddressAccess": {
+          "$ref": "#/$defs/Snmpv1v2cTransportAddressAccessEntry",
+          "description": "Transport address access control",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+      "x-docsis-tlvType": 53
+    },
+    "Snmpv1v2cTransportAddressAccessEntry": {
+      "additionalProperties": false,
+      "description": "SNMPv1v2c Transport Address Access encoding",
+      "properties": {
+        "TransportAddress": {
+          "description": "SNMPv1v2c transport address",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.2.1"
+        },
+        "TransportAddressMask": {
+          "description": "SNMPv1v2c transport address mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+          "x-docsis-tlvType": "53.2.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13"
+    },
+    "Snmpv3AccessViewEntry": {
+      "additionalProperties": false,
+      "description": "SNMPv3 Access View Configuration encoding",
+      "properties": {
+        "AccessViewMask": {
+          "description": "SNMPv3 access view mask",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-tlvType": "54.3"
+        },
+        "AccessViewName": {
+          "description": "SNMPv3 access view name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-tlvType": "54.1"
+        },
+        "AccessViewSubtree": {
+          "description": "SNMPv3 access view subtree OID",
+          "type": "string",
+          "x-docsis-dataType": "oid",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-tlvType": "54.2"
+        },
+        "AccessViewType": {
+          "description": "SNMPv3 access view type",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+          "x-docsis-tlvType": "54.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+      "x-docsis-tlvType": 54
+    },
+    "TpidTranslationEntry": {
+      "additionalProperties": false,
+      "description": "TPID Translation encoding",
+      "properties": {
+        "DownstreamBTpidTranslation": {
+          "description": "Downstream B-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.6"
+        },
+        "DownstreamITpidTranslation": {
+          "description": "Downstream I-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.8"
+        },
+        "DownstreamSTpidTranslation": {
+          "description": "Downstream S-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.4"
+        },
+        "DownstreamTpidTranslation": {
+          "description": "Downstream TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.2"
+        },
+        "UpstreamBTpidTranslation": {
+          "description": "Upstream B-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.5"
+        },
+        "UpstreamITpidTranslation": {
+          "description": "Upstream I-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.7"
+        },
+        "UpstreamSTpidTranslation": {
+          "description": "Upstream S-TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.3"
+        },
+        "UpstreamTpidTranslation": {
+          "description": "Upstream TPID translation value",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-tlvType": "43.5.14.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+    },
+    "Tr069ManagementServerEntry": {
+      "additionalProperties": false,
+      "description": "TR-069 Management Server encoding for eRouter",
+      "properties": {
+        "AcsOverride": {
+          "description": "ACS override flag",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.7"
+        },
+        "ConnectionRequestPassword": {
+          "description": "Connection request password",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.6"
+        },
+        "ConnectionRequestUsername": {
+          "description": "Connection request username",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.5"
+        },
+        "EnableCwmp": {
+          "description": "Enable CWMP (TR-069) management",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.1"
+        },
+        "PasswordParameter": {
+          "description": "ACS password parameter",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.4"
+        },
+        "UrlParameter": {
+          "description": "ACS URL parameter",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.2"
+        },
+        "UsernameParameter": {
+          "description": "ACS username parameter",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-tlvType": "202.2.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22"
+    },
+    "UpstreamAggregateServiceFlowEntry": {
+      "additionalProperties": false,
+      "description": "Upstream Aggregate Service Flow encoding",
+      "properties": {
+        "AggregateServiceFlowReference": {
+          "description": "Reference to a parent aggregate service flow",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-tlvType": "70.36"
+        },
+        "AsfIdentifier": {
+          "description": "CMTS-assigned ASF identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-tlvType": "70.2"
+        },
+        "AsfReference": {
+          "description": "ASF reference within config file",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-tlvType": "70.1"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "description": "Assumed minimum reserved rate packet size in bytes",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-tlvType": "70.11"
+        },
+        "LowLatencyEncodings": {
+          "$ref": "#/$defs/LowLatencyEncodingsEntry",
+          "description": "Low latency encodings for this ASF",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-tlvType": "70.42"
+        },
+        "MaxSustainedTrafficRate": {
+          "description": "Maximum sustained traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-tlvType": "70.8"
+        },
+        "MaxTrafficBurst": {
+          "description": "Maximum traffic burst size in bytes",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-tlvType": "70.9"
+        },
+        "MespReference": {
+          "description": "Reference to a Metro Ethernet Service Profile",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-tlvType": "70.37"
+        },
+        "MinReservedTrafficRate": {
+          "description": "Minimum reserved traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-tlvType": "70.10"
+        },
+        "PeakTrafficRate": {
+          "description": "Peak traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-tlvType": "70.27"
+        },
+        "ServingGroup": {
+          "$ref": "#/$defs/AsfServingGroupEntry",
+          "description": "ASF serving group parameters",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-tlvType": "70.38"
+        },
+        "TrafficPriority": {
+          "description": "Relative priority for the aggregate service flow (0-7)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-tlvType": "70.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+      "x-docsis-tlvType": 70
+    },
+    "UpstreamDropPacketClassificationEntry": {
+      "additionalProperties": false,
+      "description": "Upstream Drop Packet Classification encoding. Defines match criteria for packets to be dropped.",
+      "properties": {
+        "ClassifierErrorEncoding": {
+          "$ref": "#/$defs/ClassifierErrorEntry",
+          "description": "Classifier error encoding",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "60.8"
+        },
+        "ClassifierIdentifier": {
+          "description": "CMTS-assigned classifier identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.2",
+          "x-docsis-tlvType": "60.2"
+        },
+        "ClassifierReference": {
+          "description": "Classifier reference within config file",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.1",
+          "x-docsis-tlvType": "60.1"
+        },
+        "DynamicServiceChangeAction": {
+          "description": "Action for dynamic service change",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
+          "x-docsis-tlvType": "60.7"
+        },
+        "EthernetLlcClassification": {
+          "$ref": "#/$defs/EthernetLlcClassificationEntry",
+          "description": "Ethernet LLC packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "60.10"
+        },
+        "IcmpClassification": {
+          "$ref": "#/$defs/IcmpClassificationEntry",
+          "description": "ICMPv4/ICMPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16",
+          "x-docsis-tlvType": "60.16"
+        },
+        "Ieee8021PqClassification": {
+          "$ref": "#/$defs/Ieee8021PqClassificationEntry",
+          "description": "IEEE 802.1P/Q packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11",
+          "x-docsis-tlvType": "60.11"
+        },
+        "Ieee8021adClassification": {
+          "$ref": "#/$defs/Ieee8021adClassificationEntry",
+          "description": "IEEE 802.1ad S-VLAN packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "60.14"
+        },
+        "Ieee8021ahClassification": {
+          "$ref": "#/$defs/Ieee8021ahClassificationEntry",
+          "description": "IEEE 802.1ah I-TAG packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "60.15"
+        },
+        "Ipv4Classification": {
+          "$ref": "#/$defs/Ipv4ClassificationEntry",
+          "description": "IPv4/TCP/UDP packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "60.9"
+        },
+        "Ipv6Classification": {
+          "$ref": "#/$defs/Ipv6ClassificationEntry",
+          "description": "IPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "60.12"
+        },
+        "MplsClassification": {
+          "$ref": "#/$defs/MplsClassificationEntry",
+          "description": "MPLS packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17",
+          "x-docsis-tlvType": "60.17"
+        },
+        "RulePriority": {
+          "description": "Priority of this classifier rule (0-255)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.5",
+          "x-docsis-tlvType": "60.5"
+        },
+        "VendorSpecificClassifierParameters": {
+          "description": "Vendor-specific classifier parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
+          "x-docsis-tlvType": "60.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.2",
+      "x-docsis-tlvType": 60
+    },
+    "UpstreamPacketClassificationEntry": {
+      "additionalProperties": false,
+      "description": "Upstream Packet Classification encoding. Defines match criteria for upstream traffic classification.",
+      "properties": {
+        "ClassifierActivationState": {
+          "description": "Activation state of the classifier",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.6",
+          "x-docsis-tlvType": "22.6"
+        },
+        "ClassifierErrorEncoding": {
+          "$ref": "#/$defs/ClassifierErrorEntry",
+          "description": "Classifier error encoding",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
+          "x-docsis-tlvType": "22.8"
+        },
+        "ClassifierIdentifier": {
+          "description": "CMTS-assigned classifier identifier",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.2",
+          "x-docsis-tlvType": "22.2"
+        },
+        "ClassifierReference": {
+          "description": "Classifier reference within config file",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.1",
+          "x-docsis-tlvType": "22.1"
+        },
+        "CmInterfaceMask": {
+          "description": "CM Interface Mask (CMIM) encoding",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-tlvType": "22.13"
+        },
+        "DynamicServiceChangeAction": {
+          "description": "Action for dynamic service change",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
+          "x-docsis-tlvType": "22.7"
+        },
+        "EthernetLlcClassification": {
+          "$ref": "#/$defs/EthernetLlcClassificationEntry",
+          "description": "Ethernet LLC packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.10",
+          "x-docsis-tlvType": "22.10"
+        },
+        "IcmpClassification": {
+          "$ref": "#/$defs/IcmpClassificationEntry",
+          "description": "ICMPv4/ICMPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.16",
+          "x-docsis-tlvType": "22.16"
+        },
+        "Ieee8021PqClassification": {
+          "$ref": "#/$defs/Ieee8021PqClassificationEntry",
+          "description": "IEEE 802.1P/Q packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.11",
+          "x-docsis-tlvType": "22.11"
+        },
+        "Ieee8021adClassification": {
+          "$ref": "#/$defs/Ieee8021adClassificationEntry",
+          "description": "IEEE 802.1ad S-VLAN packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.14",
+          "x-docsis-tlvType": "22.14"
+        },
+        "Ieee8021ahClassification": {
+          "$ref": "#/$defs/Ieee8021ahClassificationEntry",
+          "description": "IEEE 802.1ah I-TAG packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.15",
+          "x-docsis-tlvType": "22.15"
+        },
+        "Ipv4Classification": {
+          "$ref": "#/$defs/Ipv4ClassificationEntry",
+          "description": "IPv4/TCP/UDP packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.9",
+          "x-docsis-tlvType": "22.9"
+        },
+        "Ipv6Classification": {
+          "$ref": "#/$defs/Ipv6ClassificationEntry",
+          "description": "IPv6 packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12",
+          "x-docsis-tlvType": "22.12"
+        },
+        "MplsClassification": {
+          "$ref": "#/$defs/MplsClassificationEntry",
+          "description": "MPLS packet classification",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.17",
+          "x-docsis-tlvType": "22.17"
+        },
+        "RulePriority": {
+          "description": "Priority of this classifier rule (0-255)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.5",
+          "x-docsis-tlvType": "22.5"
+        },
+        "ServiceFlowIdentifier": {
+          "description": "CMTS-assigned service flow identifier",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.4",
+          "x-docsis-tlvType": "22.4"
+        },
+        "ServiceFlowReference": {
+          "description": "Service flow reference this classifier is associated with",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.3",
+          "x-docsis-tlvType": "22.3"
+        },
+        "VendorSpecificClassifierParameters": {
+          "description": "Vendor-specific classifier parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
+          "x-docsis-tlvType": "22.43"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.1",
+      "x-docsis-tlvType": 22
+    },
     "UpstreamServiceFlowEntry": {
       "additionalProperties": false,
       "description": "Upstream Service Flow encoding. Defines QoS parameters for an upstream service flow.",
       "properties": {
+        "AggregateServiceFlowReference": {
+          "description": "Reference to an aggregate service flow",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.36"
+        },
+        "ApplicationIdentifier": {
+          "description": "Application identifier for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.34",
+          "x-docsis-tlvType": "24.34"
+        },
+        "AqmEncodings": {
+          "$ref": "#/$defs/AqmEncodingsEntry",
+          "description": "Active Queue Management encodings",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-tlvType": "24.40"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "description": "Assumed minimum reserved rate packet size in bytes",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.11"
+        },
+        "BufferControl": {
+          "$ref": "#/$defs/BufferControlEntry",
+          "description": "Buffer control parameters for the service flow",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-tlvType": "24.35"
+        },
+        "DataRateUnitSetting": {
+          "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.41",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.41"
+        },
+        "GrantsPerInterval": {
+          "description": "Number of grants per interval",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.22"
+        },
+        "GuaranteedGrantInterval": {
+          "description": "Guaranteed grant interval in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.44"
+        },
+        "IpTypeOfServiceDscpOverwrite": {
+          "description": "IP ToS/DSCP overwrite value",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.23",
+          "x-docsis-tlvType": "24.23"
+        },
         "MaxConcatenatedBurst": {
           "description": "Maximum concatenated burst size in bytes (upstream only)",
           "maximum": 65535,
@@ -276,6 +4225,16 @@
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.9"
         },
+        "MespReference": {
+          "description": "Reference to a Metro Ethernet Service Profile",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.37"
+        },
         "MinReservedTrafficRate": {
           "description": "Minimum reserved traffic rate in bits per second",
           "maximum": 4294967295,
@@ -285,6 +4244,56 @@
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.10"
+        },
+        "MultiplierToContentionRequestBackoffWindow": {
+          "description": "Multiplier to contention request backoff window",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.25"
+        },
+        "MultiplierToNumberOfBytesRequested": {
+          "description": "Multiplier to number of bytes requested",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 1,
+          "x-docsis-tlvType": "24.26"
+        },
+        "NominalGrantInterval": {
+          "description": "Nominal grant interval in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.20"
+        },
+        "NominalPollingInterval": {
+          "description": "Nominal polling interval in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.17"
+        },
+        "PeakTrafficRate": {
+          "description": "Peak traffic rate in bits per second",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.27"
         },
         "QosParamSetType": {
           "description": "Defines which QoS parameter sets are provisioned: 7 = provisioned, admitted, and active",
@@ -338,11 +4347,31 @@
           "x-docsis-tlvLength": "2-16",
           "x-docsis-tlvType": "24.4"
         },
+        "ServiceFlowAttributeAggregationRuleMask": {
+          "description": "Attribute aggregation rule mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.33",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.33"
+        },
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
           "x-docsis-tlvType": "24.5"
+        },
+        "ServiceFlowForbiddenAttributeMask": {
+          "description": "Forbidden attribute mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.32",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.32"
         },
         "ServiceFlowIdentifier": {
           "description": "CMTS-assigned service flow identifier",
@@ -364,6 +4393,73 @@
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.1"
         },
+        "ServiceFlowRequiredAttributeMask": {
+          "description": "Required attribute mask for service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.31",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.31"
+        },
+        "ServiceIdentifier": {
+          "description": "Service Identifier (SID) for this service flow",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.3",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.3"
+        },
+        "ServingGroupName": {
+          "description": "Serving group name for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.38",
+          "x-docsis-tlvType": "24.38"
+        },
+        "TimeoutForActiveQosParameters": {
+          "description": "Timeout for active QoS parameters in seconds",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.12",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.12"
+        },
+        "TimeoutForAdmittedQosParameters": {
+          "description": "Timeout for admitted QoS parameters in seconds",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.13",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.13"
+        },
+        "ToleratedGrantJitter": {
+          "description": "Tolerated grant jitter in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.21"
+        },
+        "ToleratedPollJitter": {
+          "description": "Tolerated poll jitter in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.18"
+        },
         "TrafficPriority": {
           "description": "Relative priority for the service flow (0-7)",
           "maximum": 255,
@@ -373,17 +4469,173 @@
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.7"
+        },
+        "UnsolicitedGrantSize": {
+          "description": "Unsolicited grant size in bytes",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "24.19"
+        },
+        "UnsolicitedGrantTimeReference": {
+          "description": "Unsolicited grant time reference in microseconds",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "24.24"
+        },
+        "VendorSpecificQosParameters": {
+          "description": "Vendor-specific QoS parameters",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.43",
+          "x-docsis-tlvType": "24.43"
         }
       },
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.1",
       "x-docsis-tlvType": 24
+    },
+    "VsiEncodingEntry": {
+      "additionalProperties": false,
+      "description": "VSI Encoding",
+      "properties": {
+        "ETreeLeafVid": {
+          "description": "E-Tree leaf VID",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.20.4"
+        },
+        "ETreeRole": {
+          "description": "E-Tree role",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.20.2"
+        },
+        "ETreeRootVid": {
+          "description": "E-Tree root VID",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.20.3"
+        },
+        "VplsClass": {
+          "description": "VPLS class",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-tlvType": "43.5.20.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "CM-SP-MULPIv4.0",
   "properties": {
+    "AdvancedBandPlanSupport": {
+      "description": "Advanced Band Plan Support flag",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.25",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 97
+    },
+    "AdvancedDiplexerBandEdge": {
+      "description": "Advanced Diplexer Band Edge encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.24",
+      "x-docsis-tlvType": 96
+    },
+    "BaselinePrivacy": {
+      "description": "Baseline Privacy (BPI+) encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.1",
+      "x-docsis-tlvType": 17
+    },
+    "ChannelAssignmentConfigurationSettings": {
+      "description": "Channel Assignment Configuration Settings encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.25",
+      "x-docsis-tlvType": 56
+    },
+    "CmMic": {
+      "description": "CM Message Integrity Check (MIC) - 16-byte HMAC-MD5 digest",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.5",
+      "x-docsis-tlvLength": 16,
+      "x-docsis-tlvType": 6
+    },
+    "CmSshServerConfigurationSettings": {
+      "description": "CM SSH Server Configuration Settings encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2",
+      "x-docsis-tlvType": 103
+    },
+    "CmUpstreamAqmDisable": {
+      "description": "CM Upstream AQM Disable flag",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.20",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 76
+    },
+    "CmtsMic": {
+      "description": "CMTS Message Integrity Check (MIC) - 16-byte HMAC-MD5 digest",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.6",
+      "x-docsis-tlvLength": 16,
+      "x-docsis-tlvType": 7
+    },
+    "CmtsStaticMulticastSessionEncoding": {
+      "description": "CMTS Static Multicast Session Encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.27",
+      "x-docsis-tlvType": 64
+    },
+    "CoSignerCvc": {
+      "description": "Co-Signer Code Verification Certificate",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.11",
+      "x-docsis-tlvType": 33
+    },
+    "CoSignerCvcChain": {
+      "description": "Co-signer CVC Chain",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.22",
+      "x-docsis-tlvType": 82
+    },
     "CpeEthernetMacAddress": {
       "description": "Ethernet MAC address of a CPE device allowed through the CM",
       "type": "string",
@@ -391,6 +4643,38 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.6",
       "x-docsis-tlvLength": 6,
       "x-docsis-tlvType": 14
+    },
+    "DefaultUpstreamTargetBufferConfiguration": {
+      "description": "Default upstream target buffer configuration",
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint16",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.17",
+      "x-docsis-tlvLength": 2,
+      "x-docsis-tlvType": 68
+    },
+    "DhqosAsfSidBundleAssignment": {
+      "description": "DHQoS ASF SID Bundle Assignment encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.5.8",
+      "x-docsis-tlvType": 95
+    },
+    "DiplexerBandEdge": {
+      "description": "Diplexer Band Edge encoding (9 bytes)",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.23",
+      "x-docsis-tlvLength": 9,
+      "x-docsis-tlvType": 84
+    },
+    "DistributedHqosEnable": {
+      "description": "Distributed HQoS Enable encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.33",
+      "x-docsis-tlvType": 92
     },
     "DocsisExtensionField": {
       "description": "DOCSIS Extension Field (Vendor Specific / General Extension). Each entry begins with a VendorId (OUI). OUI=FFFFFF means General Extension with CANN-registered sub-TLVs; any other OUI is vendor-specific.",
@@ -403,6 +4687,49 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18",
       "x-docsis-tlvType": 43
     },
+    "DocsisSyncConfigurations": {
+      "description": "DOCSIS Sync Configurations encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-SYNC-I03",
+      "x-docsis-tlvType": 101
+    },
+    "DownstreamAggregateServiceFlowEncodings": {
+      "description": "Downstream Aggregate Service Flow Encodings",
+      "items": {
+        "$ref": "#/$defs/DownstreamAggregateServiceFlowEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.4",
+      "x-docsis-tlvType": 71
+    },
+    "DownstreamChannelList": {
+      "description": "Downstream Channel List encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.22",
+      "x-docsis-tlvType": 41
+    },
+    "DownstreamDutFiltering": {
+      "description": "Downstream Unencrypted Traffic (DUT) Filtering encoding",
+      "items": {
+        "$ref": "#/$defs/DownstreamDutFilteringEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.24",
+      "x-docsis-tlvType": 45
+    },
+    "DownstreamEnhancedHqosAsf": {
+      "description": "Downstream Enhanced HQoS ASF encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.6",
+      "x-docsis-tlvType": 94
+    },
     "DownstreamFrequency": {
       "description": "Center frequency of the downstream channel in Hz",
       "maximum": 4294967295,
@@ -412,6 +4739,17 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.1",
       "x-docsis-tlvLength": 4,
       "x-docsis-tlvType": 1
+    },
+    "DownstreamPacketClassification": {
+      "description": "Downstream Packet Classification definitions",
+      "items": {
+        "$ref": "#/$defs/DownstreamPacketClassificationEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.3",
+      "x-docsis-tlvType": 23
     },
     "DownstreamServiceFlow": {
       "description": "Downstream Service Flow definitions. Each entry defines QoS parameters for one downstream service flow.",
@@ -424,6 +4762,172 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.2",
       "x-docsis-tlvType": 25
     },
+    "Edva": {
+      "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "PKT-SP-RST-E-DVA-C01",
+      "x-docsis-tlvType": 220
+    },
+    "Emta": {
+      "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "PKT-SP-PROV1.5-C01",
+      "x-docsis-tlvType": 216
+    },
+    "Enable20Mode": {
+      "description": "Enable DOCSIS 2.0 mode",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.20",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 39
+    },
+    "EnableTestModes": {
+      "description": "Enable test modes",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.20",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 40
+    },
+    "EndOfData": {
+      "description": "End-of-Data marker encoding",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.1",
+      "x-docsis-tlvType": 255
+    },
+    "EnergyManagementParameterEncoding": {
+      "description": "Energy Management Parameter Encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.30",
+      "x-docsis-tlvType": 74
+    },
+    "Eps": {
+      "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31",
+      "x-docsis-tlvType": 201
+    },
+    "Erouter": {
+      "description": "eRouter configuration encoding",
+      "items": {
+        "$ref": "#/$defs/ErouterEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-eRouter-I22",
+      "x-docsis-tlvType": 202
+    },
+    "Esg": {
+      "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31",
+      "x-docsis-tlvType": 221
+    },
+    "Estb": {
+      "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-DSG-I25",
+      "x-docsis-tlvType": 217
+    },
+    "Etea": {
+      "description": "eTEA (TDM Emulation Adapter) configuration encoding",
+      "items": {
+        "$ref": "#/$defs/EteaEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-TEI-I06",
+      "x-docsis-tlvType": 219
+    },
+    "FdxDownstreamUpperBandEdge": {
+      "description": "FDX Downstream Upper Band Edge frequency",
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint16",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.26",
+      "x-docsis-tlvLength": 2,
+      "x-docsis-tlvType": 106
+    },
+    "L2cpManagement": {
+      "description": "L2CP Management encoding",
+      "items": {
+        "$ref": "#/$defs/L2cpManagementEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-tlvType": 83
+    },
+    "L2vpnMacAgingEncoding": {
+      "description": "L2VPN MAC Aging Encoding",
+      "items": {
+        "$ref": "#/$defs/L2vpnMacAgingEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-L2VPN-I17",
+      "x-docsis-tlvType": 65
+    },
+    "LowLatencyDisable": {
+      "description": "Low Latency Disable flag",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.32",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 91
+    },
+    "MacAddressLearningControlEncoding": {
+      "description": "MAC Address Learning Control Encoding",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.18",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 69
+    },
+    "ManagementEventControlEncoding": {
+      "description": "Management Event Control Encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.16",
+      "x-docsis-tlvType": 66
+    },
+    "ManufacturerCvc": {
+      "description": "Manufacturer Code Verification Certificate",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.10",
+      "x-docsis-tlvType": 32
+    },
+    "ManufacturerCvcChain": {
+      "description": "Manufacturer CVC Chain",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.21",
+      "x-docsis-tlvType": 81
+    },
     "MaxNumCpes": {
       "description": "Maximum number of CPEs allowed behind this CM",
       "maximum": 255,
@@ -433,6 +4937,27 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.7",
       "x-docsis-tlvLength": 1,
       "x-docsis-tlvType": 18
+    },
+    "MaximumNumberOfClassifiers": {
+      "description": "Maximum number of classifiers the CM supports",
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint16",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.16",
+      "x-docsis-tlvLength": 2,
+      "x-docsis-tlvType": 28
+    },
+    "MetroEthernetServiceProfile": {
+      "description": "Metro Ethernet Service Profile",
+      "items": {
+        "$ref": "#/$defs/MetroEthernetServiceProfileEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-tlvType": 72
     },
     "NetworkAccess": {
       "description": "Controls whether the CM has network access (0 = disabled, 1 = enabled)",
@@ -444,6 +4969,24 @@
       "x-docsis-tlvLength": 1,
       "x-docsis-tlvType": 3
     },
+    "NetworkTimingProfile": {
+      "description": "Network Timing Profile encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.19",
+      "x-docsis-tlvType": 73
+    },
+    "PayloadHeaderSuppression": {
+      "description": "Payload Header Suppression definitions",
+      "items": {
+        "$ref": "#/$defs/PayloadHeaderSuppressionEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
+      "x-docsis-tlvType": 26
+    },
     "PrivacyEnable": {
       "description": "Enable BPI+ privacy on the CM (0 = disabled, 1 = enabled)",
       "maximum": 255,
@@ -453,6 +4996,37 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.17",
       "x-docsis-tlvLength": 1,
       "x-docsis-tlvType": 29
+    },
+    "PtpAddressConfigurations": {
+      "description": "PTP Address Configurations encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-SYNC-I03",
+      "x-docsis-tlvType": 102
+    },
+    "QosFrameworkForDocsisEncodings": {
+      "description": "QoS Framework for DOCSIS Encodings",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.8",
+      "x-docsis-tlvType": 88
+    },
+    "SecurityConfigurationSettings": {
+      "description": "Security Configuration Settings encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3",
+      "x-docsis-tlvType": 104
+    },
+    "SnmpCpeAccessControl": {
+      "description": "SNMP CPE access control (0 = disabled, 1 = enabled)",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.15",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 55
     },
     "SnmpMibObject": {
       "description": "SNMP MIB objects to set on the CM during provisioning. Each entry is a BER-encoded varbind in the binary config file.",
@@ -465,12 +5039,117 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5",
       "x-docsis-tlvType": 11
     },
+    "SnmpWriteAccessControl": {
+      "description": "SNMP write access control encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.4",
+      "x-docsis-tlvType": 10
+    },
+    "Snmpv1v2cCoexistence": {
+      "description": "SNMPv1v2c Coexistence Configuration",
+      "items": {
+        "$ref": "#/$defs/Snmpv1v2cCoexistenceEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13",
+      "x-docsis-tlvType": 53
+    },
+    "Snmpv3AccessViewConfiguration": {
+      "description": "SNMPv3 Access View Configuration",
+      "items": {
+        "$ref": "#/$defs/Snmpv3AccessViewEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
+      "x-docsis-tlvType": 54
+    },
+    "Snmpv3KickstartValue": {
+      "description": "SNMPv3 Kickstart Value encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.9",
+      "x-docsis-tlvType": 34
+    },
+    "Snmpv3NotificationReceiver": {
+      "description": "SNMPv3 Notification Receiver encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.12",
+      "x-docsis-tlvType": 38
+    },
+    "StaticMulticastMacAddress": {
+      "description": "Static multicast MAC address",
+      "type": "string",
+      "x-docsis-dataType": "macAddress",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.23",
+      "x-docsis-tlvLength": 6,
+      "x-docsis-tlvType": 42
+    },
+    "SubscriberMgmtControl": {
+      "description": "Subscriber Management Control encoding (3 bytes)",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.1",
+      "x-docsis-tlvLength": 3,
+      "x-docsis-tlvType": 35
+    },
+    "SubscriberMgmtControlMaxCpeIpv6Prefix": {
+      "description": "Subscriber Management Control maximum CPE IPv6 prefix count",
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint16",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.5",
+      "x-docsis-tlvType": 63
+    },
+    "SubscriberMgmtCpeIpv4List": {
+      "description": "Subscriber Management CPE IPv4 address list",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.2",
+      "x-docsis-tlvType": 36
+    },
+    "SubscriberMgmtCpeIpv6List": {
+      "description": "Subscriber Management CPE IPv6 address list",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.6",
+      "x-docsis-tlvType": 67
+    },
+    "SubscriberMgmtCpeIpv6PrefixList": {
+      "description": "Subscriber Management CPE IPv6 prefix list",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.3",
+      "x-docsis-tlvType": 61
+    },
+    "SubscriberMgmtFilterGroups": {
+      "description": "Subscriber Management Filter Groups encoding (8 bytes)",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.19.4",
+      "x-docsis-tlvLength": 8,
+      "x-docsis-tlvType": 37
+    },
     "SwUpgradeFilename": {
       "description": "Filename for software upgrade via TFTP",
       "type": "string",
       "x-docsis-dataType": "string",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.3",
       "x-docsis-tlvType": 9
+    },
+    "SwUpgradeIpv4TftpServer": {
+      "description": "IPv4 address of the TFTP server for software upgrade",
+      "type": "string",
+      "x-docsis-dataType": "ipv4Address",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.7",
+      "x-docsis-tlvLength": 4,
+      "x-docsis-tlvType": 21
     },
     "SwUpgradeIpv6TftpServer": {
       "description": "IPv6 address of the TFTP server for software upgrade",
@@ -479,6 +5158,50 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.8",
       "x-docsis-tlvLength": 16,
       "x-docsis-tlvType": 58
+    },
+    "TftpServerProvisionedModemIpv4Address": {
+      "description": "TFTP server provisioned modem IPv4 address",
+      "type": "string",
+      "x-docsis-dataType": "ipv4Address",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.9",
+      "x-docsis-tlvLength": 4,
+      "x-docsis-tlvType": 20
+    },
+    "TftpServerProvisionedModemIpv6Address": {
+      "description": "TFTP server provisioned modem IPv6 address",
+      "type": "string",
+      "x-docsis-dataType": "ipv6Address",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.10",
+      "x-docsis-tlvLength": 16,
+      "x-docsis-tlvType": 59
+    },
+    "TftpServerTimestamp": {
+      "description": "TFTP server timestamp for config file",
+      "maximum": 4294967295,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint32",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.8",
+      "x-docsis-tlvLength": 4,
+      "x-docsis-tlvType": 19
+    },
+    "UniControlEncoding": {
+      "description": "UNI Control Encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.3",
+      "x-docsis-tlvType": 79
+    },
+    "UpstreamAggregateServiceFlowEncodings": {
+      "description": "Upstream Aggregate Service Flow Encodings",
+      "items": {
+        "$ref": "#/$defs/UpstreamAggregateServiceFlowEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+      "x-docsis-tlvType": 70
     },
     "UpstreamChannelId": {
       "description": "Upstream channel ID for the CM to use during initial ranging",
@@ -489,6 +5212,42 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.2",
       "x-docsis-tlvLength": 1,
       "x-docsis-tlvType": 2
+    },
+    "UpstreamDropClassifierGroupId": {
+      "description": "Upstream Drop Classifier Group ID",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.26",
+      "x-docsis-tlvType": 62
+    },
+    "UpstreamDropPacketClassification": {
+      "description": "Upstream Drop Packet Classification definitions",
+      "items": {
+        "$ref": "#/$defs/UpstreamDropPacketClassificationEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.2",
+      "x-docsis-tlvType": 60
+    },
+    "UpstreamEnhancedHqosAsf": {
+      "description": "Upstream Enhanced HQoS ASF encoding",
+      "type": "string",
+      "x-docsis-dataType": "hexstring",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5",
+      "x-docsis-tlvType": 93
+    },
+    "UpstreamPacketClassification": {
+      "description": "Upstream Packet Classification definitions",
+      "items": {
+        "$ref": "#/$defs/UpstreamPacketClassificationEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.1",
+      "x-docsis-tlvType": 22
     },
     "UpstreamServiceFlow": {
       "description": "Upstream Service Flow definitions. Each entry defines QoS parameters for one upstream service flow.",

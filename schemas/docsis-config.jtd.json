@@ -14,7 +14,7 @@
       "properties": {
         "oid": {
           "metadata": {
-            "description": "SNMP object identifier in dotted-decimal notation (e.g., 1.3.6.1.2.1.69.1.2.1.6.0)",
+            "description": "SNMP object identifier in dotted-decimal notation",
             "dataType": "oid",
             "spec": "CM-SP-MULPIv4.0 C.1.2.5"
           },
@@ -82,6 +82,1126 @@
         }
       }
     },
+    "ClassifierErrorEntry": {
+      "metadata": {
+        "description": "Classifier Error Encoding reported when a classifier parameter is rejected",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+      },
+      "optionalProperties": {
+        "ErroredParameter": {
+          "metadata": {
+            "description": "Type value of the TLV in error",
+            "tlvType": "x.8.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "type": "uint8"
+        },
+        "ErrorCode": {
+          "metadata": {
+            "description": "Error code value",
+            "tlvType": "x.8.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "type": "uint8"
+        },
+        "ErrorMessage": {
+          "metadata": {
+            "description": "Human-readable error message",
+            "tlvType": "x.8.3",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "BufferControlEntry": {
+      "metadata": {
+        "description": "Buffer Control encoding for service flow buffer management",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+      },
+      "optionalProperties": {
+        "MinimumBuffer": {
+          "metadata": {
+            "description": "Minimum buffer size in bytes",
+            "tlvType": "x.35.1",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+          },
+          "type": "uint32"
+        },
+        "TargetBuffer": {
+          "metadata": {
+            "description": "Target buffer size in bytes",
+            "tlvType": "x.35.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+          },
+          "type": "uint32"
+        },
+        "MaximumBuffer": {
+          "metadata": {
+            "description": "Maximum buffer size in bytes",
+            "tlvType": "x.35.3",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+          },
+          "type": "uint32"
+        }
+      }
+    },
+    "AqmEncodingsEntry": {
+      "metadata": {
+        "description": "Active Queue Management encodings for service flow queue management",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+      },
+      "optionalProperties": {
+        "AqmDisable": {
+          "metadata": {
+            "description": "Disable AQM for this service flow",
+            "tlvType": "x.40.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "uint8"
+        },
+        "AqmLatencyTarget": {
+          "metadata": {
+            "description": "AQM latency target in microseconds",
+            "tlvType": "x.40.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "uint32"
+        },
+        "AqmAlgorithm": {
+          "metadata": {
+            "description": "AQM algorithm selection",
+            "tlvType": "x.40.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "uint8"
+        },
+        "ImmediateAqmMinThreshold": {
+          "metadata": {
+            "description": "Immediate AQM minimum threshold",
+            "tlvType": "x.40.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "uint32"
+        },
+        "ImmediateAqmRangeExponentOfRampFunction": {
+          "metadata": {
+            "description": "Immediate AQM range exponent of ramp function",
+            "tlvType": "x.40.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "uint8"
+        },
+        "LatencyHistogramEncodings": {
+          "metadata": {
+            "description": "Latency histogram encodings",
+            "tlvType": "x.40.6",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Ipv4ClassificationEntry": {
+      "metadata": {
+        "description": "IPv4/TCP/UDP Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+      },
+      "optionalProperties": {
+        "Ipv4TypeOfServiceRangeAndMask": {
+          "metadata": {
+            "description": "IPv4 ToS range and mask (3 bytes)",
+            "tlvType": "x.9.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "string"
+        },
+        "IpProtocol": {
+          "metadata": {
+            "description": "IP protocol number",
+            "tlvType": "x.9.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "uint16"
+        },
+        "Ipv4SourceAddress": {
+          "metadata": {
+            "description": "IPv4 source address",
+            "tlvType": "x.9.3",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "string"
+        },
+        "Ipv4SourceMask": {
+          "metadata": {
+            "description": "IPv4 source address mask",
+            "tlvType": "x.9.4",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "string"
+        },
+        "Ipv4DestinationAddress": {
+          "metadata": {
+            "description": "IPv4 destination address",
+            "tlvType": "x.9.5",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "string"
+        },
+        "Ipv4DestinationMask": {
+          "metadata": {
+            "description": "IPv4 destination address mask",
+            "tlvType": "x.9.6",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "string"
+        },
+        "TcpUdpSourcePortStart": {
+          "metadata": {
+            "description": "TCP/UDP source port range start",
+            "tlvType": "x.9.7",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "uint16"
+        },
+        "TcpUdpSourcePortEnd": {
+          "metadata": {
+            "description": "TCP/UDP source port range end",
+            "tlvType": "x.9.8",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "uint16"
+        },
+        "TcpUdpDestinationPortStart": {
+          "metadata": {
+            "description": "TCP/UDP destination port range start",
+            "tlvType": "x.9.9",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "uint16"
+        },
+        "TcpUdpDestinationPortEnd": {
+          "metadata": {
+            "description": "TCP/UDP destination port range end",
+            "tlvType": "x.9.10",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "EthernetLlcClassificationEntry": {
+      "metadata": {
+        "description": "Ethernet LLC Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+      },
+      "optionalProperties": {
+        "DestinationMacAddress": {
+          "metadata": {
+            "description": "Destination MAC address and mask",
+            "tlvType": "x.10.1",
+            "dataType": "macAddress",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "type": "string"
+        },
+        "SourceMacAddress": {
+          "metadata": {
+            "description": "Source MAC address and mask",
+            "tlvType": "x.10.2",
+            "dataType": "macAddress",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "type": "string"
+        },
+        "EthertypeDsapMacType": {
+          "metadata": {
+            "description": "Ethertype/DSAP/MAC type value",
+            "tlvType": "x.10.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "type": "string"
+        },
+        "SlowProtocolSubtype": {
+          "metadata": {
+            "description": "Slow protocol subtype",
+            "tlvType": "x.10.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "Ieee8021PqClassificationEntry": {
+      "metadata": {
+        "description": "IEEE 802.1P/Q Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+      },
+      "optionalProperties": {
+        "UserPriority": {
+          "metadata": {
+            "description": "IEEE 802.1P user priority (0-7)",
+            "tlvType": "x.11.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+          },
+          "type": "uint16"
+        },
+        "VlanId": {
+          "metadata": {
+            "description": "IEEE 802.1Q VLAN ID",
+            "tlvType": "x.11.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "Ipv6ClassificationEntry": {
+      "metadata": {
+        "description": "IPv6 Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+      },
+      "optionalProperties": {
+        "Ipv6TrafficClass": {
+          "metadata": {
+            "description": "IPv6 traffic class range and mask",
+            "tlvType": "x.12.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "string"
+        },
+        "Ipv6FlowLabel": {
+          "metadata": {
+            "description": "IPv6 flow label",
+            "tlvType": "x.12.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "uint32"
+        },
+        "Ipv6NextHeaderType": {
+          "metadata": {
+            "description": "IPv6 next header type",
+            "tlvType": "x.12.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "uint16"
+        },
+        "Ipv6SourceAddress": {
+          "metadata": {
+            "description": "IPv6 source address",
+            "tlvType": "x.12.4",
+            "dataType": "ipv6Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "string"
+        },
+        "Ipv6SourcePrefixLength": {
+          "metadata": {
+            "description": "IPv6 source prefix length in bits",
+            "tlvType": "x.12.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "uint8"
+        },
+        "Ipv6DestinationAddress": {
+          "metadata": {
+            "description": "IPv6 destination address",
+            "tlvType": "x.12.6",
+            "dataType": "ipv6Address",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "string"
+        },
+        "Ipv6DestinationPrefixLength": {
+          "metadata": {
+            "description": "IPv6 destination prefix length in bits",
+            "tlvType": "x.12.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "Ieee8021adClassificationEntry": {
+      "metadata": {
+        "description": "IEEE 802.1ad S-VLAN Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+      },
+      "optionalProperties": {
+        "STpid": {
+          "metadata": {
+            "description": "S-TPID value",
+            "tlvType": "x.14.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint16"
+        },
+        "SVid": {
+          "metadata": {
+            "description": "S-VID value",
+            "tlvType": "x.14.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint16"
+        },
+        "SPcp": {
+          "metadata": {
+            "description": "S-PCP value",
+            "tlvType": "x.14.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint8"
+        },
+        "SDei": {
+          "metadata": {
+            "description": "S-DEI value",
+            "tlvType": "x.14.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint8"
+        },
+        "CTpid": {
+          "metadata": {
+            "description": "C-TPID value",
+            "tlvType": "x.14.5",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint16"
+        },
+        "CVid": {
+          "metadata": {
+            "description": "C-VID value",
+            "tlvType": "x.14.6",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint16"
+        },
+        "CPcp": {
+          "metadata": {
+            "description": "C-PCP value",
+            "tlvType": "x.14.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint8"
+        },
+        "CCfi": {
+          "metadata": {
+            "description": "C-CFI value",
+            "tlvType": "x.14.8",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "uint8"
+        },
+        "STci": {
+          "metadata": {
+            "description": "S-TCI value",
+            "tlvType": "x.14.9",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "string"
+        },
+        "CTci": {
+          "metadata": {
+            "description": "C-TCI value",
+            "tlvType": "x.14.10",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Ieee8021ahClassificationEntry": {
+      "metadata": {
+        "description": "IEEE 802.1ah I-TAG Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+      },
+      "optionalProperties": {
+        "ITpid": {
+          "metadata": {
+            "description": "I-TPID value",
+            "tlvType": "x.15.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint16"
+        },
+        "ISid": {
+          "metadata": {
+            "description": "I-SID value",
+            "tlvType": "x.15.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint32"
+        },
+        "ITci": {
+          "metadata": {
+            "description": "I-TCI value",
+            "tlvType": "x.15.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "string"
+        },
+        "IPcp": {
+          "metadata": {
+            "description": "I-PCP value",
+            "tlvType": "x.15.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint8"
+        },
+        "IDei": {
+          "metadata": {
+            "description": "I-DEI value",
+            "tlvType": "x.15.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint8"
+        },
+        "IUca": {
+          "metadata": {
+            "description": "I-UCA value",
+            "tlvType": "x.15.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint8"
+        },
+        "BTpid": {
+          "metadata": {
+            "description": "B-TPID value",
+            "tlvType": "x.15.7",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint16"
+        },
+        "BTci": {
+          "metadata": {
+            "description": "B-TCI value",
+            "tlvType": "x.15.8",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "string"
+        },
+        "BPcp": {
+          "metadata": {
+            "description": "B-PCP value",
+            "tlvType": "x.15.9",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint8"
+        },
+        "BDei": {
+          "metadata": {
+            "description": "B-DEI value",
+            "tlvType": "x.15.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint8"
+        },
+        "BVid": {
+          "metadata": {
+            "description": "B-VID value",
+            "tlvType": "x.15.11",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "uint16"
+        },
+        "BDa": {
+          "metadata": {
+            "description": "B-DA MAC address",
+            "tlvType": "x.15.12",
+            "dataType": "macAddress",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "string"
+        },
+        "BSa": {
+          "metadata": {
+            "description": "B-SA MAC address",
+            "tlvType": "x.15.13",
+            "dataType": "macAddress",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "IcmpClassificationEntry": {
+      "metadata": {
+        "description": "ICMPv4/ICMPv6 Packet Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+      },
+      "optionalProperties": {
+        "IcmpTypeStart": {
+          "metadata": {
+            "description": "ICMPv4/ICMPv6 type range start",
+            "tlvType": "x.16.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+          },
+          "type": "uint8"
+        },
+        "IcmpTypeEnd": {
+          "metadata": {
+            "description": "ICMPv4/ICMPv6 type range end",
+            "tlvType": "x.16.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "MplsClassificationEntry": {
+      "metadata": {
+        "description": "MPLS Classification Encodings",
+        "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+      },
+      "optionalProperties": {
+        "MplsTcBits": {
+          "metadata": {
+            "description": "MPLS TC bits value",
+            "tlvType": "x.17.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+          },
+          "type": "uint8"
+        },
+        "MplsLabel": {
+          "metadata": {
+            "description": "MPLS label value",
+            "tlvType": "x.17.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+          },
+          "type": "uint32"
+        }
+      }
+    },
+    "UpstreamPacketClassificationEntry": {
+      "metadata": {
+        "description": "Upstream Packet Classification encoding. Defines match criteria for upstream traffic classification.",
+        "tlvType": 22,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.1"
+      },
+      "optionalProperties": {
+        "ClassifierReference": {
+          "metadata": {
+            "description": "Classifier reference within config file",
+            "tlvType": "22.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.1"
+          },
+          "type": "uint8"
+        },
+        "ClassifierIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned classifier identifier",
+            "tlvType": "22.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.2"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowReference": {
+          "metadata": {
+            "description": "Service flow reference this classifier is associated with",
+            "tlvType": "22.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.3"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned service flow identifier",
+            "tlvType": "22.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.4"
+          },
+          "type": "uint32"
+        },
+        "RulePriority": {
+          "metadata": {
+            "description": "Priority of this classifier rule (0-255)",
+            "tlvType": "22.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.5"
+          },
+          "type": "uint8"
+        },
+        "ClassifierActivationState": {
+          "metadata": {
+            "description": "Activation state of the classifier",
+            "tlvType": "22.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.6"
+          },
+          "type": "uint8"
+        },
+        "DynamicServiceChangeAction": {
+          "metadata": {
+            "description": "Action for dynamic service change",
+            "tlvType": "22.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
+          },
+          "type": "uint8"
+        },
+        "ClassifierErrorEncoding": {
+          "metadata": {
+            "description": "Classifier error encoding",
+            "tlvType": "22.8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "ref": "ClassifierErrorEntry"
+        },
+        "Ipv4Classification": {
+          "metadata": {
+            "description": "IPv4/TCP/UDP packet classification",
+            "tlvType": "22.9",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "ref": "Ipv4ClassificationEntry"
+        },
+        "EthernetLlcClassification": {
+          "metadata": {
+            "description": "Ethernet LLC packet classification",
+            "tlvType": "22.10",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "ref": "EthernetLlcClassificationEntry"
+        },
+        "Ieee8021PqClassification": {
+          "metadata": {
+            "description": "IEEE 802.1P/Q packet classification",
+            "tlvType": "22.11",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+          },
+          "ref": "Ieee8021PqClassificationEntry"
+        },
+        "Ipv6Classification": {
+          "metadata": {
+            "description": "IPv6 packet classification",
+            "tlvType": "22.12",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "ref": "Ipv6ClassificationEntry"
+        },
+        "CmInterfaceMask": {
+          "metadata": {
+            "description": "CM Interface Mask (CMIM) encoding",
+            "tlvType": "22.13",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "Ieee8021adClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ad S-VLAN packet classification",
+            "tlvType": "22.14",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "ref": "Ieee8021adClassificationEntry"
+        },
+        "Ieee8021ahClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ah I-TAG packet classification",
+            "tlvType": "22.15",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "ref": "Ieee8021ahClassificationEntry"
+        },
+        "IcmpClassification": {
+          "metadata": {
+            "description": "ICMPv4/ICMPv6 packet classification",
+            "tlvType": "22.16",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+          },
+          "ref": "IcmpClassificationEntry"
+        },
+        "MplsClassification": {
+          "metadata": {
+            "description": "MPLS packet classification",
+            "tlvType": "22.17",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+          },
+          "ref": "MplsClassificationEntry"
+        },
+        "VendorSpecificClassifierParameters": {
+          "metadata": {
+            "description": "Vendor-specific classifier parameters",
+            "tlvType": "22.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "DownstreamPacketClassificationEntry": {
+      "metadata": {
+        "description": "Downstream Packet Classification encoding. Defines match criteria for downstream traffic classification.",
+        "tlvType": 23,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.3"
+      },
+      "optionalProperties": {
+        "ClassifierReference": {
+          "metadata": {
+            "description": "Classifier reference within config file",
+            "tlvType": "23.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.1"
+          },
+          "type": "uint8"
+        },
+        "ClassifierIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned classifier identifier",
+            "tlvType": "23.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.2"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowReference": {
+          "metadata": {
+            "description": "Service flow reference this classifier is associated with",
+            "tlvType": "23.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.3"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned service flow identifier",
+            "tlvType": "23.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.4"
+          },
+          "type": "uint32"
+        },
+        "RulePriority": {
+          "metadata": {
+            "description": "Priority of this classifier rule (0-255)",
+            "tlvType": "23.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.5"
+          },
+          "type": "uint8"
+        },
+        "ClassifierActivationState": {
+          "metadata": {
+            "description": "Activation state of the classifier",
+            "tlvType": "23.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.6"
+          },
+          "type": "uint8"
+        },
+        "DynamicServiceChangeAction": {
+          "metadata": {
+            "description": "Action for dynamic service change",
+            "tlvType": "23.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
+          },
+          "type": "uint8"
+        },
+        "ClassifierErrorEncoding": {
+          "metadata": {
+            "description": "Classifier error encoding",
+            "tlvType": "23.8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "ref": "ClassifierErrorEntry"
+        },
+        "Ipv4Classification": {
+          "metadata": {
+            "description": "IPv4/TCP/UDP packet classification",
+            "tlvType": "23.9",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "ref": "Ipv4ClassificationEntry"
+        },
+        "EthernetLlcClassification": {
+          "metadata": {
+            "description": "Ethernet LLC packet classification",
+            "tlvType": "23.10",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "ref": "EthernetLlcClassificationEntry"
+        },
+        "Ieee8021PqClassification": {
+          "metadata": {
+            "description": "IEEE 802.1P/Q packet classification",
+            "tlvType": "23.11",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+          },
+          "ref": "Ieee8021PqClassificationEntry"
+        },
+        "Ipv6Classification": {
+          "metadata": {
+            "description": "IPv6 packet classification",
+            "tlvType": "23.12",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "ref": "Ipv6ClassificationEntry"
+        },
+        "CmInterfaceMask": {
+          "metadata": {
+            "description": "CM Interface Mask (CMIM) encoding",
+            "tlvType": "23.13",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "Ieee8021adClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ad S-VLAN packet classification",
+            "tlvType": "23.14",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "ref": "Ieee8021adClassificationEntry"
+        },
+        "Ieee8021ahClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ah I-TAG packet classification",
+            "tlvType": "23.15",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "ref": "Ieee8021ahClassificationEntry"
+        },
+        "IcmpClassification": {
+          "metadata": {
+            "description": "ICMPv4/ICMPv6 packet classification",
+            "tlvType": "23.16",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+          },
+          "ref": "IcmpClassificationEntry"
+        },
+        "MplsClassification": {
+          "metadata": {
+            "description": "MPLS packet classification",
+            "tlvType": "23.17",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+          },
+          "ref": "MplsClassificationEntry"
+        },
+        "VendorSpecificClassifierParameters": {
+          "metadata": {
+            "description": "Vendor-specific classifier parameters",
+            "tlvType": "23.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "UpstreamDropPacketClassificationEntry": {
+      "metadata": {
+        "description": "Upstream Drop Packet Classification encoding. Defines match criteria for packets to be dropped.",
+        "tlvType": 60,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.2"
+      },
+      "optionalProperties": {
+        "ClassifierReference": {
+          "metadata": {
+            "description": "Classifier reference within config file",
+            "tlvType": "60.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.1"
+          },
+          "type": "uint8"
+        },
+        "ClassifierIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned classifier identifier",
+            "tlvType": "60.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.2"
+          },
+          "type": "uint16"
+        },
+        "RulePriority": {
+          "metadata": {
+            "description": "Priority of this classifier rule (0-255)",
+            "tlvType": "60.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.5"
+          },
+          "type": "uint8"
+        },
+        "DynamicServiceChangeAction": {
+          "metadata": {
+            "description": "Action for dynamic service change",
+            "tlvType": "60.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
+          },
+          "type": "uint8"
+        },
+        "ClassifierErrorEncoding": {
+          "metadata": {
+            "description": "Classifier error encoding",
+            "tlvType": "60.8",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "ref": "ClassifierErrorEntry"
+        },
+        "Ipv4Classification": {
+          "metadata": {
+            "description": "IPv4/TCP/UDP packet classification",
+            "tlvType": "60.9",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+          },
+          "ref": "Ipv4ClassificationEntry"
+        },
+        "EthernetLlcClassification": {
+          "metadata": {
+            "description": "Ethernet LLC packet classification",
+            "tlvType": "60.10",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+          },
+          "ref": "EthernetLlcClassificationEntry"
+        },
+        "Ieee8021PqClassification": {
+          "metadata": {
+            "description": "IEEE 802.1P/Q packet classification",
+            "tlvType": "60.11",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+          },
+          "ref": "Ieee8021PqClassificationEntry"
+        },
+        "Ipv6Classification": {
+          "metadata": {
+            "description": "IPv6 packet classification",
+            "tlvType": "60.12",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+          },
+          "ref": "Ipv6ClassificationEntry"
+        },
+        "Ieee8021adClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ad S-VLAN packet classification",
+            "tlvType": "60.14",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+          },
+          "ref": "Ieee8021adClassificationEntry"
+        },
+        "Ieee8021ahClassification": {
+          "metadata": {
+            "description": "IEEE 802.1ah I-TAG packet classification",
+            "tlvType": "60.15",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+          },
+          "ref": "Ieee8021ahClassificationEntry"
+        },
+        "IcmpClassification": {
+          "metadata": {
+            "description": "ICMPv4/ICMPv6 packet classification",
+            "tlvType": "60.16",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+          },
+          "ref": "IcmpClassificationEntry"
+        },
+        "MplsClassification": {
+          "metadata": {
+            "description": "MPLS packet classification",
+            "tlvType": "60.17",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+          },
+          "ref": "MplsClassificationEntry"
+        },
+        "VendorSpecificClassifierParameters": {
+          "metadata": {
+            "description": "Vendor-specific classifier parameters",
+            "tlvType": "60.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4"
+          },
+          "type": "string"
+        }
+      }
+    },
     "UpstreamServiceFlowEntry": {
       "metadata": {
         "description": "Upstream Service Flow encoding. Defines QoS parameters for an upstream service flow.",
@@ -106,6 +1226,16 @@
             "tlvLength": 4,
             "dataType": "uint32",
             "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "ServiceIdentifier": {
+          "metadata": {
+            "description": "Service Identifier (SID) for this service flow",
+            "tlvType": "24.3",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.3"
           },
           "type": "uint32"
         },
@@ -181,6 +1311,46 @@
           },
           "type": "uint32"
         },
+        "AssumedMinReservedRatePacketSize": {
+          "metadata": {
+            "description": "Assumed minimum reserved rate packet size in bytes",
+            "tlvType": "24.11",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+          },
+          "type": "uint16"
+        },
+        "TimeoutForActiveQosParameters": {
+          "metadata": {
+            "description": "Timeout for active QoS parameters in seconds",
+            "tlvType": "24.12",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.12"
+          },
+          "type": "uint16"
+        },
+        "TimeoutForAdmittedQosParameters": {
+          "metadata": {
+            "description": "Timeout for admitted QoS parameters in seconds",
+            "tlvType": "24.13",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.13"
+          },
+          "type": "uint16"
+        },
+        "MaxConcatenatedBurst": {
+          "metadata": {
+            "description": "Maximum concatenated burst size in bytes (upstream only)",
+            "tlvType": "24.14",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.1"
+          },
+          "type": "uint16"
+        },
         "SchedulingType": {
           "metadata": {
             "description": "Upstream scheduling type for this service flow",
@@ -211,15 +1381,229 @@
           },
           "type": "uint32"
         },
-        "MaxConcatenatedBurst": {
+        "NominalPollingInterval": {
           "metadata": {
-            "description": "Maximum concatenated burst size in bytes (upstream only)",
-            "tlvType": "24.14",
+            "description": "Nominal polling interval in microseconds",
+            "tlvType": "24.17",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
+        },
+        "ToleratedPollJitter": {
+          "metadata": {
+            "description": "Tolerated poll jitter in microseconds",
+            "tlvType": "24.18",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
+        },
+        "UnsolicitedGrantSize": {
+          "metadata": {
+            "description": "Unsolicited grant size in bytes",
+            "tlvType": "24.19",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
           },
           "type": "uint16"
+        },
+        "NominalGrantInterval": {
+          "metadata": {
+            "description": "Nominal grant interval in microseconds",
+            "tlvType": "24.20",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
+        },
+        "ToleratedGrantJitter": {
+          "metadata": {
+            "description": "Tolerated grant jitter in microseconds",
+            "tlvType": "24.21",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
+        },
+        "GrantsPerInterval": {
+          "metadata": {
+            "description": "Number of grants per interval",
+            "tlvType": "24.22",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint8"
+        },
+        "IpTypeOfServiceDscpOverwrite": {
+          "metadata": {
+            "description": "IP ToS/DSCP overwrite value",
+            "tlvType": "24.23",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.23"
+          },
+          "type": "string"
+        },
+        "UnsolicitedGrantTimeReference": {
+          "metadata": {
+            "description": "Unsolicited grant time reference in microseconds",
+            "tlvType": "24.24",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
+        },
+        "MultiplierToContentionRequestBackoffWindow": {
+          "metadata": {
+            "description": "Multiplier to contention request backoff window",
+            "tlvType": "24.25",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint8"
+        },
+        "MultiplierToNumberOfBytesRequested": {
+          "metadata": {
+            "description": "Multiplier to number of bytes requested",
+            "tlvType": "24.26",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint8"
+        },
+        "PeakTrafficRate": {
+          "metadata": {
+            "description": "Peak traffic rate in bits per second",
+            "tlvType": "24.27",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowRequiredAttributeMask": {
+          "metadata": {
+            "description": "Required attribute mask for service flow",
+            "tlvType": "24.31",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.31"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowForbiddenAttributeMask": {
+          "metadata": {
+            "description": "Forbidden attribute mask for service flow",
+            "tlvType": "24.32",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.32"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowAttributeAggregationRuleMask": {
+          "metadata": {
+            "description": "Attribute aggregation rule mask for service flow",
+            "tlvType": "24.33",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.33"
+          },
+          "type": "uint32"
+        },
+        "ApplicationIdentifier": {
+          "metadata": {
+            "description": "Application identifier for the service flow",
+            "tlvType": "24.34",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.34"
+          },
+          "type": "string"
+        },
+        "BufferControl": {
+          "metadata": {
+            "description": "Buffer control parameters for the service flow",
+            "tlvType": "24.35",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+          },
+          "ref": "BufferControlEntry"
+        },
+        "AggregateServiceFlowReference": {
+          "metadata": {
+            "description": "Reference to an aggregate service flow",
+            "tlvType": "24.36",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+          },
+          "type": "uint16"
+        },
+        "MespReference": {
+          "metadata": {
+            "description": "Reference to a Metro Ethernet Service Profile",
+            "tlvType": "24.37",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+          },
+          "type": "uint16"
+        },
+        "ServingGroupName": {
+          "metadata": {
+            "description": "Serving group name for the service flow",
+            "tlvType": "24.38",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.38"
+          },
+          "type": "string"
+        },
+        "AqmEncodings": {
+          "metadata": {
+            "description": "Active Queue Management encodings",
+            "tlvType": "24.40",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "ref": "AqmEncodingsEntry"
+        },
+        "DataRateUnitSetting": {
+          "metadata": {
+            "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+            "tlvType": "24.41",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
+          },
+          "type": "uint8"
+        },
+        "VendorSpecificQosParameters": {
+          "metadata": {
+            "description": "Vendor-specific QoS parameters",
+            "tlvType": "24.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.43"
+          },
+          "type": "string"
+        },
+        "GuaranteedGrantInterval": {
+          "metadata": {
+            "description": "Guaranteed grant interval in microseconds",
+            "tlvType": "24.44",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+          },
+          "type": "uint32"
         }
       }
     },
@@ -247,6 +1631,16 @@
             "tlvLength": 4,
             "dataType": "uint32",
             "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "ServiceIdentifier": {
+          "metadata": {
+            "description": "Service Identifier (SID) for this service flow",
+            "tlvType": "25.3",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.3"
           },
           "type": "uint32"
         },
@@ -322,6 +1716,36 @@
           },
           "type": "uint32"
         },
+        "AssumedMinReservedRatePacketSize": {
+          "metadata": {
+            "description": "Assumed minimum reserved rate packet size in bytes",
+            "tlvType": "25.11",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+          },
+          "type": "uint16"
+        },
+        "TimeoutForActiveQosParameters": {
+          "metadata": {
+            "description": "Timeout for active QoS parameters in seconds",
+            "tlvType": "25.12",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.12"
+          },
+          "type": "uint16"
+        },
+        "TimeoutForAdmittedQosParameters": {
+          "metadata": {
+            "description": "Timeout for admitted QoS parameters in seconds",
+            "tlvType": "25.13",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.13"
+          },
+          "type": "uint16"
+        },
         "MaxDownstreamLatency": {
           "metadata": {
             "description": "Maximum downstream latency in microseconds",
@@ -331,6 +1755,2016 @@
             "spec": "CM-SP-MULPIv4.0 C.2.2.6.1"
           },
           "type": "uint32"
+        },
+        "DownstreamResequencing": {
+          "metadata": {
+            "description": "Downstream resequencing control",
+            "tlvType": "25.17",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.6.2"
+          },
+          "type": "uint8"
+        },
+        "IpTypeOfServiceDscpOverwrite": {
+          "metadata": {
+            "description": "IP ToS/DSCP overwrite value",
+            "tlvType": "25.23",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.23"
+          },
+          "type": "string"
+        },
+        "PeakTrafficRate": {
+          "metadata": {
+            "description": "Peak traffic rate in bits per second",
+            "tlvType": "25.27",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowRequiredAttributeMask": {
+          "metadata": {
+            "description": "Required attribute mask for service flow",
+            "tlvType": "25.31",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.31"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowForbiddenAttributeMask": {
+          "metadata": {
+            "description": "Forbidden attribute mask for service flow",
+            "tlvType": "25.32",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.32"
+          },
+          "type": "uint32"
+        },
+        "ServiceFlowAttributeAggregationRuleMask": {
+          "metadata": {
+            "description": "Attribute aggregation rule mask for service flow",
+            "tlvType": "25.33",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.33"
+          },
+          "type": "uint32"
+        },
+        "ApplicationIdentifier": {
+          "metadata": {
+            "description": "Application identifier for the service flow",
+            "tlvType": "25.34",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.34"
+          },
+          "type": "string"
+        },
+        "BufferControl": {
+          "metadata": {
+            "description": "Buffer control parameters for the service flow",
+            "tlvType": "25.35",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+          },
+          "ref": "BufferControlEntry"
+        },
+        "AggregateServiceFlowReference": {
+          "metadata": {
+            "description": "Reference to an aggregate service flow",
+            "tlvType": "25.36",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+          },
+          "type": "uint16"
+        },
+        "MespReference": {
+          "metadata": {
+            "description": "Reference to a Metro Ethernet Service Profile",
+            "tlvType": "25.37",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+          },
+          "type": "uint16"
+        },
+        "ServingGroupName": {
+          "metadata": {
+            "description": "Serving group name for the service flow",
+            "tlvType": "25.38",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.38"
+          },
+          "type": "string"
+        },
+        "AqmEncodings": {
+          "metadata": {
+            "description": "Active Queue Management encodings",
+            "tlvType": "25.40",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+          },
+          "ref": "AqmEncodingsEntry"
+        },
+        "DataRateUnitSetting": {
+          "metadata": {
+            "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+            "tlvType": "25.41",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
+          },
+          "type": "uint8"
+        },
+        "VendorSpecificQosParameters": {
+          "metadata": {
+            "description": "Vendor-specific QoS parameters",
+            "tlvType": "25.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.43"
+          },
+          "type": "string"
+        },
+        "ServiceFlowCollection": {
+          "metadata": {
+            "description": "Service flow collection identifier",
+            "tlvType": "25.44",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint32"
+        }
+      }
+    },
+    "PhsErrorEntry": {
+      "metadata": {
+        "description": "Payload Header Suppression Error Encoding",
+        "spec": "CM-SP-MULPIv4.0 C.2.3"
+      },
+      "optionalProperties": {
+        "ErroredParameter": {
+          "metadata": {
+            "description": "Type value of the TLV in error",
+            "tlvType": "26.6.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "ErrorCode": {
+          "metadata": {
+            "description": "Error code value",
+            "tlvType": "26.6.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "ErrorMessage": {
+          "metadata": {
+            "description": "Human-readable error message",
+            "tlvType": "26.6.3",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "PayloadHeaderSuppressionEntry": {
+      "metadata": {
+        "description": "Payload Header Suppression encoding",
+        "tlvType": 26,
+        "spec": "CM-SP-MULPIv4.0 C.2.3"
+      },
+      "optionalProperties": {
+        "ClassifierReference": {
+          "metadata": {
+            "description": "Classifier reference",
+            "tlvType": "26.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "ClassifierIdentifier": {
+          "metadata": {
+            "description": "Classifier identifier",
+            "tlvType": "26.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowReference": {
+          "metadata": {
+            "description": "Service flow reference",
+            "tlvType": "26.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint16"
+        },
+        "ServiceFlowIdentifier": {
+          "metadata": {
+            "description": "Service flow identifier",
+            "tlvType": "26.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint32"
+        },
+        "DynamicServiceChangeAction": {
+          "metadata": {
+            "description": "Dynamic service change action",
+            "tlvType": "26.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "PhsErrorEncoding": {
+          "metadata": {
+            "description": "PHS error encoding",
+            "tlvType": "26.6",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "ref": "PhsErrorEntry"
+        },
+        "PhsField": {
+          "metadata": {
+            "description": "Payload Header Suppression Field (PHSF) - the header bytes to suppress",
+            "tlvType": "26.7",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "string"
+        },
+        "PhsIndex": {
+          "metadata": {
+            "description": "Payload Header Suppression Index (PHSI)",
+            "tlvType": "26.8",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "PhsMask": {
+          "metadata": {
+            "description": "Payload Header Suppression Mask (PHSM)",
+            "tlvType": "26.9",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "string"
+        },
+        "PhsSize": {
+          "metadata": {
+            "description": "Payload Header Suppression Size (PHSS) in bytes",
+            "tlvType": "26.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "PhsVerification": {
+          "metadata": {
+            "description": "Payload Header Suppression Verification (PHSV)",
+            "tlvType": "26.11",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "DynamicBondingChangeAction": {
+          "metadata": {
+            "description": "Dynamic bonding change action",
+            "tlvType": "26.13",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "uint8"
+        },
+        "VendorSpecificPhsParameters": {
+          "metadata": {
+            "description": "Vendor-specific PHS parameters",
+            "tlvType": "26.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.3"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "DownstreamDutFilteringEntry": {
+      "metadata": {
+        "description": "Downstream Unencrypted Traffic (DUT) Filtering encoding",
+        "tlvType": 45,
+        "spec": "CM-SP-MULPIv4.0 C.1.1.24"
+      },
+      "optionalProperties": {
+        "DutControl": {
+          "metadata": {
+            "description": "DUT filtering control (0=disabled, 1=enabled)",
+            "tlvType": "45.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.24"
+          },
+          "type": "uint8"
+        },
+        "DutCmim": {
+          "metadata": {
+            "description": "DUT CM Interface Mask",
+            "tlvType": "45.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.24"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Snmpv1v2cTransportAddressAccessEntry": {
+      "metadata": {
+        "description": "SNMPv1v2c Transport Address Access encoding",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+      },
+      "optionalProperties": {
+        "TransportAddress": {
+          "metadata": {
+            "description": "SNMPv1v2c transport address",
+            "tlvType": "53.2.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "type": "string"
+        },
+        "TransportAddressMask": {
+          "metadata": {
+            "description": "SNMPv1v2c transport address mask",
+            "tlvType": "53.2.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Snmpv1v2cCoexistenceEntry": {
+      "metadata": {
+        "description": "SNMPv1v2c Coexistence Configuration encoding",
+        "tlvType": 53,
+        "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+      },
+      "optionalProperties": {
+        "CommunityName": {
+          "metadata": {
+            "description": "SNMPv1v2c community name string",
+            "tlvType": "53.1",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "type": "string"
+        },
+        "TransportAddressAccess": {
+          "metadata": {
+            "description": "Transport address access control",
+            "tlvType": "53.2",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "ref": "Snmpv1v2cTransportAddressAccessEntry"
+        },
+        "AccessViewType": {
+          "metadata": {
+            "description": "SNMPv1v2c access view type",
+            "tlvType": "53.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "type": "uint8"
+        },
+        "AccessViewName": {
+          "metadata": {
+            "description": "SNMPv1v2c access view name",
+            "tlvType": "53.4",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Snmpv3AccessViewEntry": {
+      "metadata": {
+        "description": "SNMPv3 Access View Configuration encoding",
+        "tlvType": 54,
+        "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+      },
+      "optionalProperties": {
+        "AccessViewName": {
+          "metadata": {
+            "description": "SNMPv3 access view name",
+            "tlvType": "54.1",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+          },
+          "type": "string"
+        },
+        "AccessViewSubtree": {
+          "metadata": {
+            "description": "SNMPv3 access view subtree OID",
+            "tlvType": "54.2",
+            "dataType": "oid",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+          },
+          "type": "string"
+        },
+        "AccessViewMask": {
+          "metadata": {
+            "description": "SNMPv3 access view mask",
+            "tlvType": "54.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+          },
+          "type": "string"
+        },
+        "AccessViewType": {
+          "metadata": {
+            "description": "SNMPv3 access view type",
+            "tlvType": "54.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "L2vpnMacAgingEntry": {
+      "metadata": {
+        "description": "L2VPN MAC Aging encoding",
+        "tlvType": 65,
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "MacAgingMode": {
+          "metadata": {
+            "description": "L2VPN MAC aging mode",
+            "tlvType": "65.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "AsfServingGroupEntry": {
+      "metadata": {
+        "description": "ASF Serving Group encoding for aggregate service flows",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+      },
+      "optionalProperties": {
+        "ServiceFlowToAsfMatchingByApplicationId": {
+          "metadata": {
+            "description": "Match service flows to ASF by application identifier",
+            "tlvType": "x.38.1",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+          },
+          "type": "string"
+        },
+        "ServiceFlowToAsfMatchingByServiceClassName": {
+          "metadata": {
+            "description": "Match service flows to ASF by service class name",
+            "tlvType": "x.38.2",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+          },
+          "type": "string"
+        },
+        "ServiceFlowToAsfMatchingByTrafficPriorityRange": {
+          "metadata": {
+            "description": "Match service flows to ASF by traffic priority range",
+            "tlvType": "x.38.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "LowLatencyEncodingsEntry": {
+      "metadata": {
+        "description": "Low Latency encodings for aggregate service flows",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+      },
+      "optionalProperties": {
+        "LowLatencyServiceFlowReference": {
+          "metadata": {
+            "description": "Low latency service flow reference",
+            "tlvType": "x.42.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint16"
+        },
+        "LowLatencyServiceFlowIdentifier": {
+          "metadata": {
+            "description": "Low latency service flow identifier",
+            "tlvType": "x.42.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint32"
+        },
+        "ClassicSfScn": {
+          "metadata": {
+            "description": "Classic service flow service class name",
+            "tlvType": "x.42.3",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "string"
+        },
+        "LowLatencySfScn": {
+          "metadata": {
+            "description": "Low latency service flow service class name",
+            "tlvType": "x.42.4",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "string"
+        },
+        "AqmCouplingFactorExponent": {
+          "metadata": {
+            "description": "AQM coupling factor exponent",
+            "tlvType": "x.42.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint8"
+        },
+        "SchedulingWeight": {
+          "metadata": {
+            "description": "Scheduling weight",
+            "tlvType": "x.42.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint8"
+        },
+        "QueueProtectionEnable": {
+          "metadata": {
+            "description": "Queue protection enable",
+            "tlvType": "x.42.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint8"
+        },
+        "QpLatencyThreshold": {
+          "metadata": {
+            "description": "Queue protection latency threshold (CRITICALqL_us)",
+            "tlvType": "x.42.8",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint32"
+        },
+        "QpQueuingScoreThreshold": {
+          "metadata": {
+            "description": "Queue protection queuing score threshold (CRITICALqLSCORE_us)",
+            "tlvType": "x.42.9",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint32"
+        },
+        "QpDrainRateExponent": {
+          "metadata": {
+            "description": "Queue protection drain rate exponent (LG_AGING)",
+            "tlvType": "x.42.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "UpstreamAggregateServiceFlowEntry": {
+      "metadata": {
+        "description": "Upstream Aggregate Service Flow encoding",
+        "tlvType": 70,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+      },
+      "optionalProperties": {
+        "AsfReference": {
+          "metadata": {
+            "description": "ASF reference within config file",
+            "tlvType": "70.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+          },
+          "type": "uint16"
+        },
+        "AsfIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned ASF identifier",
+            "tlvType": "70.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "TrafficPriority": {
+          "metadata": {
+            "description": "Relative priority for the aggregate service flow (0-7)",
+            "tlvType": "70.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+          },
+          "type": "uint8"
+        },
+        "MaxSustainedTrafficRate": {
+          "metadata": {
+            "description": "Maximum sustained traffic rate in bits per second",
+            "tlvType": "70.8",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+          },
+          "type": "uint32"
+        },
+        "MaxTrafficBurst": {
+          "metadata": {
+            "description": "Maximum traffic burst size in bytes",
+            "tlvType": "70.9",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+          },
+          "type": "uint32"
+        },
+        "MinReservedTrafficRate": {
+          "metadata": {
+            "description": "Minimum reserved traffic rate in bits per second",
+            "tlvType": "70.10",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+          },
+          "type": "uint32"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "metadata": {
+            "description": "Assumed minimum reserved rate packet size in bytes",
+            "tlvType": "70.11",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+          },
+          "type": "uint16"
+        },
+        "PeakTrafficRate": {
+          "metadata": {
+            "description": "Peak traffic rate in bits per second",
+            "tlvType": "70.27",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+          },
+          "type": "uint32"
+        },
+        "AggregateServiceFlowReference": {
+          "metadata": {
+            "description": "Reference to a parent aggregate service flow",
+            "tlvType": "70.36",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+          },
+          "type": "uint16"
+        },
+        "MespReference": {
+          "metadata": {
+            "description": "Reference to a Metro Ethernet Service Profile",
+            "tlvType": "70.37",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+          },
+          "type": "uint16"
+        },
+        "ServingGroup": {
+          "metadata": {
+            "description": "ASF serving group parameters",
+            "tlvType": "70.38",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+          },
+          "ref": "AsfServingGroupEntry"
+        },
+        "LowLatencyEncodings": {
+          "metadata": {
+            "description": "Low latency encodings for this ASF",
+            "tlvType": "70.42",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "ref": "LowLatencyEncodingsEntry"
+        }
+      }
+    },
+    "DownstreamAggregateServiceFlowEntry": {
+      "metadata": {
+        "description": "Downstream Aggregate Service Flow encoding",
+        "tlvType": 71,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.4"
+      },
+      "optionalProperties": {
+        "AsfReference": {
+          "metadata": {
+            "description": "ASF reference within config file",
+            "tlvType": "71.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+          },
+          "type": "uint16"
+        },
+        "AsfIdentifier": {
+          "metadata": {
+            "description": "CMTS-assigned ASF identifier",
+            "tlvType": "71.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+          },
+          "type": "uint32"
+        },
+        "TrafficPriority": {
+          "metadata": {
+            "description": "Relative priority for the aggregate service flow (0-7)",
+            "tlvType": "71.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+          },
+          "type": "uint8"
+        },
+        "MaxSustainedTrafficRate": {
+          "metadata": {
+            "description": "Maximum sustained traffic rate in bits per second",
+            "tlvType": "71.8",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+          },
+          "type": "uint32"
+        },
+        "MaxTrafficBurst": {
+          "metadata": {
+            "description": "Maximum traffic burst size in bytes",
+            "tlvType": "71.9",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+          },
+          "type": "uint32"
+        },
+        "MinReservedTrafficRate": {
+          "metadata": {
+            "description": "Minimum reserved traffic rate in bits per second",
+            "tlvType": "71.10",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+          },
+          "type": "uint32"
+        },
+        "AssumedMinReservedRatePacketSize": {
+          "metadata": {
+            "description": "Assumed minimum reserved rate packet size in bytes",
+            "tlvType": "71.11",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+          },
+          "type": "uint16"
+        },
+        "PeakTrafficRate": {
+          "metadata": {
+            "description": "Peak traffic rate in bits per second",
+            "tlvType": "71.27",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+          },
+          "type": "uint32"
+        },
+        "AggregateServiceFlowReference": {
+          "metadata": {
+            "description": "Reference to a parent aggregate service flow",
+            "tlvType": "71.36",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+          },
+          "type": "uint16"
+        },
+        "MespReference": {
+          "metadata": {
+            "description": "Reference to a Metro Ethernet Service Profile",
+            "tlvType": "71.37",
+            "dataType": "uint16",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+          },
+          "type": "uint16"
+        },
+        "ServingGroup": {
+          "metadata": {
+            "description": "ASF serving group parameters",
+            "tlvType": "71.38",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+          },
+          "ref": "AsfServingGroupEntry"
+        },
+        "LowLatencyEncodings": {
+          "metadata": {
+            "description": "Low latency encodings for this ASF",
+            "tlvType": "71.42",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+          },
+          "ref": "LowLatencyEncodingsEntry"
+        }
+      }
+    },
+    "MespBpColorModeEntry": {
+      "metadata": {
+        "description": "MESP Bandwidth Profile Color Mode encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "ColorIdentificationField": {
+          "metadata": {
+            "description": "Color identification field",
+            "tlvType": "72.2.6.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ColorIdentificationFieldValue": {
+          "metadata": {
+            "description": "Color identification field value",
+            "tlvType": "72.2.6.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "MespBpColorMarkingEntry": {
+      "metadata": {
+        "description": "MESP Bandwidth Profile Color Marking encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "ColorMarkingField": {
+          "metadata": {
+            "description": "Color marking field",
+            "tlvType": "72.2.7.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ColorMarkingFieldValue": {
+          "metadata": {
+            "description": "Color marking field value",
+            "tlvType": "72.2.7.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "MespBandwidthProfileEntry": {
+      "metadata": {
+        "description": "MESP Bandwidth Profile encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "CommittedInformationRate": {
+          "metadata": {
+            "description": "Committed Information Rate in bits per second",
+            "tlvType": "72.2.1",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "CommittedBurstSize": {
+          "metadata": {
+            "description": "Committed Burst Size in bytes",
+            "tlvType": "72.2.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "ExcessInformationRate": {
+          "metadata": {
+            "description": "Excess Information Rate in bits per second",
+            "tlvType": "72.2.3",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "ExcessBurstSize": {
+          "metadata": {
+            "description": "Excess Burst Size in bytes",
+            "tlvType": "72.2.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "CouplingFlag": {
+          "metadata": {
+            "description": "Bandwidth profile coupling flag",
+            "tlvType": "72.2.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ColorMode": {
+          "metadata": {
+            "description": "Bandwidth profile color mode",
+            "tlvType": "72.2.6",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "MespBpColorModeEntry"
+        },
+        "ColorMarking": {
+          "metadata": {
+            "description": "Bandwidth profile color marking",
+            "tlvType": "72.2.7",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "MespBpColorMarkingEntry"
+        }
+      }
+    },
+    "MetroEthernetServiceProfileEntry": {
+      "metadata": {
+        "description": "Metro Ethernet Service Profile encoding",
+        "tlvType": 72,
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "MespReference": {
+          "metadata": {
+            "description": "MESP reference identifier",
+            "tlvType": "72.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "BandwidthProfile": {
+          "metadata": {
+            "description": "MESP bandwidth profile",
+            "tlvType": "72.2",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "MespBandwidthProfileEntry"
+        },
+        "MespName": {
+          "metadata": {
+            "description": "MESP name string",
+            "tlvType": "72.3",
+            "dataType": "string",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "L2cpManagementEntry": {
+      "metadata": {
+        "description": "L2CP Management encoding",
+        "tlvType": 83,
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "Cmim": {
+          "metadata": {
+            "description": "CM Interface Mask for L2CP",
+            "tlvType": "83.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "L2cpMode": {
+          "metadata": {
+            "description": "L2CP processing mode",
+            "tlvType": "83.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "L2cpL2ptDmacAddress": {
+          "metadata": {
+            "description": "L2CP L2PT destination MAC address",
+            "tlvType": "83.3",
+            "dataType": "macAddress",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "L2cpFilter": {
+          "metadata": {
+            "description": "L2CP filter encoding",
+            "tlvType": "83.4",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "MplsPwEntry": {
+      "metadata": {
+        "description": "MPLS Pseudowire encoding within NSI encapsulation",
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      },
+      "optionalProperties": {
+        "MplsPseudowireId": {
+          "metadata": {
+            "description": "MPLS Pseudowire ID",
+            "tlvType": "43.5.2.4.1",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "MplsPeerIpAddress": {
+          "metadata": {
+            "description": "MPLS peer IP address",
+            "tlvType": "43.5.2.4.2",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "PseudowireType": {
+          "metadata": {
+            "description": "Pseudowire type",
+            "tlvType": "43.5.2.4.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "MplsBackupPseudowireId": {
+          "metadata": {
+            "description": "MPLS backup pseudowire ID",
+            "tlvType": "43.5.2.4.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "MplsBackupPeerIpAddress": {
+          "metadata": {
+            "description": "MPLS backup peer IP address",
+            "tlvType": "43.5.2.4.5",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Ieee8021ahEncapsulationEntry": {
+      "metadata": {
+        "description": "IEEE 802.1ah Encapsulation encoding within NSI encapsulation",
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      },
+      "optionalProperties": {
+        "ITagTci": {
+          "metadata": {
+            "description": "I-Tag TCI value",
+            "tlvType": "43.5.2.6.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "DestinationBebMacAddress": {
+          "metadata": {
+            "description": "Destination Backbone Edge Bridge MAC address (B-DA)",
+            "tlvType": "43.5.2.6.2",
+            "dataType": "macAddress",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "BTagTci": {
+          "metadata": {
+            "description": "B-Tag TCI 16-bit value",
+            "tlvType": "43.5.2.6.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "ITagTpid": {
+          "metadata": {
+            "description": "I-Tag TPID 16-bit value",
+            "tlvType": "43.5.2.6.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "IPcp": {
+          "metadata": {
+            "description": "3-bit I-PCP value",
+            "tlvType": "43.5.2.6.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "IDei": {
+          "metadata": {
+            "description": "1-bit I-DEI value",
+            "tlvType": "43.5.2.6.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "IUca": {
+          "metadata": {
+            "description": "1-bit I-UCA value",
+            "tlvType": "43.5.2.6.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ISid": {
+          "metadata": {
+            "description": "24-bit I-SID Backbone Service Instance Identifier",
+            "tlvType": "43.5.2.6.8",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "BTagTpid": {
+          "metadata": {
+            "description": "B-Tag TPID 16-bit value",
+            "tlvType": "43.5.2.6.9",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "BPcp": {
+          "metadata": {
+            "description": "1-bit B-PCP value",
+            "tlvType": "43.5.2.6.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "BDei": {
+          "metadata": {
+            "description": "1-bit B-DEI value",
+            "tlvType": "43.5.2.6.11",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "BVid": {
+          "metadata": {
+            "description": "12-bit B-VID value",
+            "tlvType": "43.5.2.6.12",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "NsiEncapsulationFormatEntry": {
+      "metadata": {
+        "description": "NSI Encapsulation Format encoding",
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      },
+      "optionalProperties": {
+        "Other": {
+          "metadata": {
+            "description": "Other encapsulation format",
+            "tlvType": "43.5.2.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "Ieee8021Q": {
+          "metadata": {
+            "description": "IEEE 802.1Q encapsulation",
+            "tlvType": "43.5.2.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "Ieee8021ad": {
+          "metadata": {
+            "description": "IEEE 802.1ad encapsulation",
+            "tlvType": "43.5.2.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "MplsPw": {
+          "metadata": {
+            "description": "MPLS Pseudowire encapsulation",
+            "tlvType": "43.5.2.4",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "ref": "MplsPwEntry"
+        },
+        "L2tpv3Peer": {
+          "metadata": {
+            "description": "L2TPv3 peer encapsulation",
+            "tlvType": "43.5.2.5",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "Ieee8021ahEncapsulation": {
+          "metadata": {
+            "description": "IEEE 802.1ah encapsulation",
+            "tlvType": "43.5.2.6",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "ref": "Ieee8021ahEncapsulationEntry"
+        },
+        "STpid": {
+          "metadata": {
+            "description": "S-TPID 16-bit value",
+            "tlvType": "43.5.2.8",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "TpidTranslationEntry": {
+      "metadata": {
+        "description": "TPID Translation encoding",
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      },
+      "optionalProperties": {
+        "UpstreamTpidTranslation": {
+          "metadata": {
+            "description": "Upstream TPID translation value",
+            "tlvType": "43.5.14.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "DownstreamTpidTranslation": {
+          "metadata": {
+            "description": "Downstream TPID translation value",
+            "tlvType": "43.5.14.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "UpstreamSTpidTranslation": {
+          "metadata": {
+            "description": "Upstream S-TPID translation value",
+            "tlvType": "43.5.14.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "DownstreamSTpidTranslation": {
+          "metadata": {
+            "description": "Downstream S-TPID translation value",
+            "tlvType": "43.5.14.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "UpstreamBTpidTranslation": {
+          "metadata": {
+            "description": "Upstream B-TPID translation value",
+            "tlvType": "43.5.14.5",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "DownstreamBTpidTranslation": {
+          "metadata": {
+            "description": "Downstream B-TPID translation value",
+            "tlvType": "43.5.14.6",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "UpstreamITpidTranslation": {
+          "metadata": {
+            "description": "Upstream I-TPID translation value",
+            "tlvType": "43.5.14.7",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        },
+        "DownstreamITpidTranslation": {
+          "metadata": {
+            "description": "Downstream I-TPID translation value",
+            "tlvType": "43.5.14.8",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "L2cpProcessingEntry": {
+      "metadata": {
+        "description": "L2CP Processing encoding within L2VPN",
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      },
+      "optionalProperties": {
+        "L2cpTunnelMode": {
+          "metadata": {
+            "description": "L2CP tunnel mode",
+            "tlvType": "43.5.15.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint8"
+        },
+        "L2cpDmacAddress": {
+          "metadata": {
+            "description": "L2CP destination MAC address",
+            "tlvType": "43.5.15.2",
+            "dataType": "macAddress",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "L2cpL2ptDmacAddress": {
+          "metadata": {
+            "description": "L2CP L2PT destination MAC address",
+            "tlvType": "43.5.15.3",
+            "dataType": "macAddress",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "L2cpFilter": {
+          "metadata": {
+            "description": "L2CP filter encoding",
+            "tlvType": "43.5.15.4",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "ServiceDelimiterEntry": {
+      "metadata": {
+        "description": "Service Delimiter encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "CVid": {
+          "metadata": {
+            "description": "C-VID value",
+            "tlvType": "43.5.19.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "SVid": {
+          "metadata": {
+            "description": "S-VID value",
+            "tlvType": "43.5.19.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "ISid": {
+          "metadata": {
+            "description": "I-SID value",
+            "tlvType": "43.5.19.3",
+            "dataType": "uint32",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint32"
+        },
+        "BVid": {
+          "metadata": {
+            "description": "B-VID value",
+            "tlvType": "43.5.19.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "VsiEncodingEntry": {
+      "metadata": {
+        "description": "VSI Encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "VplsClass": {
+          "metadata": {
+            "description": "VPLS class",
+            "tlvType": "43.5.20.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ETreeRole": {
+          "metadata": {
+            "description": "E-Tree role",
+            "tlvType": "43.5.20.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ETreeRootVid": {
+          "metadata": {
+            "description": "E-Tree root VID",
+            "tlvType": "43.5.20.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "ETreeLeafVid": {
+          "metadata": {
+            "description": "E-Tree leaf VID",
+            "tlvType": "43.5.20.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "BgpAttributeEntry": {
+      "metadata": {
+        "description": "BGP Attribute encoding",
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "optionalProperties": {
+        "BgpVpnid": {
+          "metadata": {
+            "description": "BGP VPN ID",
+            "tlvType": "43.5.21.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "RouteDistinguisher": {
+          "metadata": {
+            "description": "Route Distinguisher",
+            "tlvType": "43.5.21.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "RouteTargetImport": {
+          "metadata": {
+            "description": "Route Target (import)",
+            "tlvType": "43.5.21.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "RouteTargetExport": {
+          "metadata": {
+            "description": "Route Target (export)",
+            "tlvType": "43.5.21.4",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "CeIdOrVeId": {
+          "metadata": {
+            "description": "CE-ID or VE-ID",
+            "tlvType": "43.5.21.5",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "MepConfigurationEntry": {
+      "metadata": {
+        "description": "MEP Configuration encoding for L2VPN SOAM",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "MdLevel": {
+          "metadata": {
+            "description": "Maintenance Domain level",
+            "tlvType": "43.5.24.1.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "MdName": {
+          "metadata": {
+            "description": "Maintenance Domain name",
+            "tlvType": "43.5.24.1.2",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "MaName": {
+          "metadata": {
+            "description": "Maintenance Association name",
+            "tlvType": "43.5.24.1.3",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "MepId": {
+          "metadata": {
+            "description": "MEP identifier",
+            "tlvType": "43.5.24.1.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "RemoteMepConfigurationEntry": {
+      "metadata": {
+        "description": "Remote MEP Configuration encoding for L2VPN SOAM",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "MdLevel": {
+          "metadata": {
+            "description": "Maintenance Domain level",
+            "tlvType": "43.5.24.2.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "MdName": {
+          "metadata": {
+            "description": "Maintenance Domain name",
+            "tlvType": "43.5.24.2.2",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "MaName": {
+          "metadata": {
+            "description": "Maintenance Association name",
+            "tlvType": "43.5.24.2.3",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "MepId": {
+          "metadata": {
+            "description": "Remote MEP identifier",
+            "tlvType": "43.5.24.2.4",
+            "dataType": "uint16",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "FaultManagementConfigurationEntry": {
+      "metadata": {
+        "description": "Fault Management Configuration encoding for L2VPN SOAM",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "ContinuityCheckMessages": {
+          "metadata": {
+            "description": "Continuity Check Messages enable/configuration",
+            "tlvType": "43.5.24.3.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "EnableLoopbackReplyMessages": {
+          "metadata": {
+            "description": "Enable Loopback Reply Messages",
+            "tlvType": "43.5.24.3.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "EnableLinktraceMessages": {
+          "metadata": {
+            "description": "Enable Linktrace Messages",
+            "tlvType": "43.5.24.3.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "PerformanceManagementConfigurationEntry": {
+      "metadata": {
+        "description": "Performance Management Configuration encoding for L2VPN SOAM",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "FrameDelayMeasurement": {
+          "metadata": {
+            "description": "Frame Delay Measurement enable/configuration",
+            "tlvType": "43.5.24.4.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "FrameLossMeasurement": {
+          "metadata": {
+            "description": "Frame Loss Measurement enable/configuration",
+            "tlvType": "43.5.24.4.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "L2vpnSoamEntry": {
+      "metadata": {
+        "description": "L2VPN Service OAM encoding",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "MepConfiguration": {
+          "metadata": {
+            "description": "MEP configuration",
+            "tlvType": "43.5.24.1",
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "MepConfigurationEntry"
+        },
+        "RemoteMepConfiguration": {
+          "metadata": {
+            "description": "Remote MEP configuration",
+            "tlvType": "43.5.24.2",
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "RemoteMepConfigurationEntry"
+        },
+        "FaultManagementConfiguration": {
+          "metadata": {
+            "description": "Fault management configuration",
+            "tlvType": "43.5.24.3",
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "FaultManagementConfigurationEntry"
+        },
+        "PerformanceManagementConfiguration": {
+          "metadata": {
+            "description": "Performance management configuration",
+            "tlvType": "43.5.24.4",
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "PerformanceManagementConfigurationEntry"
+        }
+      }
+    },
+    "L2vpnErrorEntry": {
+      "metadata": {
+        "description": "L2VPN Error Encoding",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "ErroredParameter": {
+          "metadata": {
+            "description": "L2VPN errored parameter type",
+            "tlvType": "43.5.254.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "ConfirmationCode": {
+          "metadata": {
+            "description": "L2VPN confirmation code",
+            "tlvType": "43.5.254.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "ErrorMessage": {
+          "metadata": {
+            "description": "L2VPN error message",
+            "tlvType": "43.5.254.3",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "L2vpnEncodingEntry": {
+      "metadata": {
+        "description": "L2VPN Encoding within DOCSIS Extension Field (TLV 43.5)",
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "optionalProperties": {
+        "VpnIdentifier": {
+          "metadata": {
+            "description": "VPN identifier",
+            "tlvType": "43.5.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "NsiEncapsulationFormat": {
+          "metadata": {
+            "description": "NSI encapsulation format",
+            "tlvType": "43.5.2",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "ref": "NsiEncapsulationFormatEntry"
+        },
+        "EsafeDhcpSnooping": {
+          "metadata": {
+            "description": "eSAFE DHCP snooping",
+            "tlvType": "43.5.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "CmInterfaceMask": {
+          "metadata": {
+            "description": "CM Interface Mask subtype",
+            "tlvType": "43.5.4",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "AttachmentGroupId": {
+          "metadata": {
+            "description": "Attachment Group ID (AGI)",
+            "tlvType": "43.5.5",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "SourceAttachmentIndividualId": {
+          "metadata": {
+            "description": "Source Attachment Individual ID (SAII)",
+            "tlvType": "43.5.6",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "TargetAttachmentIndividualId": {
+          "metadata": {
+            "description": "Target Attachment Individual ID (TAII)",
+            "tlvType": "43.5.7",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "UpstreamUserPriority": {
+          "metadata": {
+            "description": "Upstream user priority subtype",
+            "tlvType": "43.5.8",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "DownstreamUserPriorityRange": {
+          "metadata": {
+            "description": "Downstream user priority range",
+            "tlvType": "43.5.9",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "L2vpnSaDescriptor": {
+          "metadata": {
+            "description": "L2VPN SA-Descriptor subtypes",
+            "tlvType": "43.5.10",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "string"
+        },
+        "PseudowireType": {
+          "metadata": {
+            "description": "Pseudowire type",
+            "tlvType": "43.5.12",
+            "dataType": "uint16",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint16"
+        },
+        "L2vpnMode": {
+          "metadata": {
+            "description": "L2VPN mode",
+            "tlvType": "43.5.13",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "type": "uint8"
+        },
+        "TpidTranslation": {
+          "metadata": {
+            "description": "TPID Translation encoding",
+            "tlvType": "43.5.14",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "ref": "TpidTranslationEntry"
+        },
+        "L2cpProcessing": {
+          "metadata": {
+            "description": "L2CP Processing encoding",
+            "tlvType": "43.5.15",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+          },
+          "ref": "L2cpProcessingEntry"
+        },
+        "PseudowireClass": {
+          "metadata": {
+            "description": "Pseudowire class",
+            "tlvType": "43.5.18",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "ServiceDelimiter": {
+          "metadata": {
+            "description": "Service delimiter encoding",
+            "tlvType": "43.5.19",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "ServiceDelimiterEntry"
+        },
+        "VsiEncoding": {
+          "metadata": {
+            "description": "VSI encoding",
+            "tlvType": "43.5.20",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "VsiEncodingEntry"
+        },
+        "BgpAttribute": {
+          "metadata": {
+            "description": "BGP attribute encoding",
+            "tlvType": "43.5.21",
+            "dataType": "compound",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "ref": "BgpAttributeEntry"
+        },
+        "VpnSgAttribute": {
+          "metadata": {
+            "description": "VPN-SG attribute",
+            "tlvType": "43.5.22",
+            "dataType": "hexstring",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "string"
+        },
+        "PseudowireSignaling": {
+          "metadata": {
+            "description": "Pseudowire signaling",
+            "tlvType": "43.5.23",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "L2vpnSoam": {
+          "metadata": {
+            "description": "L2VPN Service OAM encoding",
+            "tlvType": "43.5.24",
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "L2vpnSoamEntry"
+        },
+        "NetworkTimingProfileReference": {
+          "metadata": {
+            "description": "Network Timing Profile reference",
+            "tlvType": "43.5.25",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "uint8"
+        },
+        "L2vpnDsid": {
+          "metadata": {
+            "description": "L2VPN DSID",
+            "tlvType": "43.5.26",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "MultipointEnableDisable": {
+          "metadata": {
+            "description": "Multipoint enable/disable",
+            "tlvType": "43.5.27",
+            "dataType": "uint8",
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+          },
+          "type": "uint8"
+        },
+        "VendorSpecificL2vpn": {
+          "metadata": {
+            "description": "Vendor-specific L2VPN subtype",
+            "tlvType": "43.5.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "type": "string"
+        },
+        "L2vpnErrorEncoding": {
+          "metadata": {
+            "description": "L2VPN error encoding",
+            "tlvType": "43.5.254",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "ref": "L2vpnErrorEntry"
         }
       }
     },
@@ -386,6 +3820,70 @@
           },
           "type": "uint32"
         },
+        "CmRangingClassIdExtension": {
+          "metadata": {
+            "description": "CM Ranging Class ID Extension (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.4",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.4"
+          },
+          "type": "uint32"
+        },
+        "L2vpnEncoding": {
+          "metadata": {
+            "description": "L2VPN Encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.5",
+            "dataType": "compound",
+            "repeatable": true,
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-L2VPN-I17"
+          },
+          "elements": {
+            "ref": "L2vpnEncodingEntry"
+          }
+        },
+        "ExtendedCmtsMicConfigurationSetting": {
+          "metadata": {
+            "description": "Extended CMTS MIC Configuration Setting (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.6",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.6"
+          },
+          "type": "string"
+        },
+        "SourceAddressVerification": {
+          "metadata": {
+            "description": "Source Address Verification (SAV) encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.7",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.7"
+          },
+          "type": "string"
+        },
+        "CableModemAttributeMasks": {
+          "metadata": {
+            "description": "Cable Modem Attribute Masks (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.8",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.8"
+          },
+          "type": "string"
+        },
+        "IpMulticastJoinAuthorization": {
+          "metadata": {
+            "description": "IP Multicast Join Authorization (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.9",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.9"
+          },
+          "type": "string"
+        },
         "ServiceTypeIdentifier": {
           "metadata": {
             "description": "Service type identifier string (General Extension, OUI=FFFFFF)",
@@ -395,9 +3893,1036 @@
             "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.10"
           },
           "type": "string"
+        },
+        "DemarcAutoConfiguration": {
+          "metadata": {
+            "description": "DEMARC Auto-Configuration (DAC) encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.12",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.11"
+          },
+          "type": "string"
         }
       },
       "additionalProperties": true
+    },
+    "Tr069ManagementServerEntry": {
+      "metadata": {
+        "description": "TR-069 Management Server encoding for eRouter",
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "optionalProperties": {
+        "EnableCwmp": {
+          "metadata": {
+            "description": "Enable CWMP (TR-069) management",
+            "tlvType": "202.2.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "UrlParameter": {
+          "metadata": {
+            "description": "ACS URL parameter",
+            "tlvType": "202.2.2",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "UsernameParameter": {
+          "metadata": {
+            "description": "ACS username parameter",
+            "tlvType": "202.2.3",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "PasswordParameter": {
+          "metadata": {
+            "description": "ACS password parameter",
+            "tlvType": "202.2.4",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "ConnectionRequestUsername": {
+          "metadata": {
+            "description": "Connection request username",
+            "tlvType": "202.2.5",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "ConnectionRequestPassword": {
+          "metadata": {
+            "description": "Connection request password",
+            "tlvType": "202.2.6",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "AcsOverride": {
+          "metadata": {
+            "description": "ACS override flag",
+            "tlvType": "202.2.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "ErouterSnmpv1v2cTransportAddressAccessEntry": {
+      "metadata": {
+        "description": "eRouter SNMPv1v2c Transport Address Access encoding",
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "optionalProperties": {
+        "TransportAddress": {
+          "metadata": {
+            "description": "SNMPv1v2c transport address",
+            "tlvType": "202.53.2.1",
+            "dataType": "hexstring",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "TransportAddressMask": {
+          "metadata": {
+            "description": "SNMPv1v2c transport address mask",
+            "tlvType": "202.53.2.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "AccessViewType": {
+          "metadata": {
+            "description": "SNMPv1v2c access view type",
+            "tlvType": "202.53.2.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "AccessViewName": {
+          "metadata": {
+            "description": "SNMPv1v2c access view name",
+            "tlvType": "202.53.2.4",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "ErouterSnmpv1v2cCoexistenceEntry": {
+      "metadata": {
+        "description": "eRouter SNMPv1v2c Coexistence Configuration encoding",
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "optionalProperties": {
+        "CommunityName": {
+          "metadata": {
+            "description": "SNMPv1v2c community name string",
+            "tlvType": "202.53.1",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "TransportAddressAccess": {
+          "metadata": {
+            "description": "Transport address access control",
+            "tlvType": "202.53.2",
+            "dataType": "compound",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "ref": "ErouterSnmpv1v2cTransportAddressAccessEntry"
+        }
+      }
+    },
+    "ErouterSnmpv3AccessViewEntry": {
+      "metadata": {
+        "description": "eRouter SNMPv3 Access View Configuration encoding",
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "optionalProperties": {
+        "AccessViewName": {
+          "metadata": {
+            "description": "SNMPv3 access view name",
+            "tlvType": "202.54.1",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "AccessViewSubtree": {
+          "metadata": {
+            "description": "SNMPv3 access view subtree OID",
+            "tlvType": "202.54.2",
+            "dataType": "oid",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "AccessViewMask": {
+          "metadata": {
+            "description": "SNMPv3 access view mask",
+            "tlvType": "202.54.3",
+            "dataType": "hexstring",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "AccessViewType": {
+          "metadata": {
+            "description": "SNMPv3 access view type",
+            "tlvType": "202.54.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "ErouterEntry": {
+      "metadata": {
+        "description": "eRouter configuration encoding",
+        "tlvType": 202,
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "optionalProperties": {
+        "InitializationMode": {
+          "metadata": {
+            "description": "eRouter initialization mode",
+            "tlvType": "202.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "Tr069ManagementServer": {
+          "metadata": {
+            "description": "TR-069 Management Server configuration",
+            "tlvType": "202.2",
+            "dataType": "compound",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "ref": "Tr069ManagementServerEntry"
+        },
+        "InitializationModeOverride": {
+          "metadata": {
+            "description": "eRouter initialization mode override",
+            "tlvType": "202.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "RaTransmissionInterval": {
+          "metadata": {
+            "description": "Router Advertisement transmission interval",
+            "tlvType": "202.10",
+            "dataType": "uint16",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint16"
+        },
+        "SnmpMibObject": {
+          "metadata": {
+            "description": "eRouter SNMP MIB objects",
+            "tlvType": "202.11",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "elements": {
+            "ref": "SnmpMibEntry"
+          }
+        },
+        "IpMulticastConfigurationServer": {
+          "metadata": {
+            "description": "IP Multicast Configuration Server address",
+            "tlvType": "202.12",
+            "dataType": "hexstring",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "LinkIdControl": {
+          "metadata": {
+            "description": "Link-ID control",
+            "tlvType": "202.13",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "TopologyModeEncoding": {
+          "metadata": {
+            "description": "Topology mode encoding",
+            "tlvType": "202.42",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "uint8"
+        },
+        "VendorSpecificInformation": {
+          "metadata": {
+            "description": "Vendor-specific information for eRouter",
+            "tlvType": "202.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "type": "string"
+        },
+        "Snmpv1v2cCoexistence": {
+          "metadata": {
+            "description": "eRouter SNMPv1v2c Coexistence configuration",
+            "tlvType": "202.53",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "elements": {
+            "ref": "ErouterSnmpv1v2cCoexistenceEntry"
+          }
+        },
+        "Snmpv3AccessView": {
+          "metadata": {
+            "description": "eRouter SNMPv3 Access View configuration",
+            "tlvType": "202.54",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-eRouter-I22"
+          },
+          "elements": {
+            "ref": "ErouterSnmpv3AccessViewEntry"
+          }
+        }
+      }
+    },
+    "EteaPwTdmCirculationMapEntry": {
+      "metadata": {
+        "description": "eTEA PW TDM Circulation Map encoding",
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "PwTdmPortNumber": {
+          "metadata": {
+            "description": "PW TDM port number",
+            "tlvType": "219.9.16.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwTdmTimeslotMap": {
+          "metadata": {
+            "description": "PW TDM timeslot map",
+            "tlvType": "219.9.16.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "EteaIwfCfgEncodingEntry": {
+      "metadata": {
+        "description": "eTEA IWF Configuration encoding",
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "PwIndexSetting": {
+          "metadata": {
+            "description": "PW index setting",
+            "tlvType": "219.9.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "EmulationType": {
+          "metadata": {
+            "description": "Emulation type",
+            "tlvType": "219.9.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwPeerAddress": {
+          "metadata": {
+            "description": "PW peer IPv4 address",
+            "tlvType": "219.9.3",
+            "dataType": "ipv4Address",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "PwPeerAddressIpv6": {
+          "metadata": {
+            "description": "PW peer IPv6 address",
+            "tlvType": "219.9.4",
+            "dataType": "ipv6Address",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "PwDestinationPort": {
+          "metadata": {
+            "description": "PW destination port",
+            "tlvType": "219.9.5",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwPeerDestinationPort": {
+          "metadata": {
+            "description": "PW peer destination port",
+            "tlvType": "219.9.6",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwName": {
+          "metadata": {
+            "description": "PW name",
+            "tlvType": "219.9.7",
+            "dataType": "string",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "PwDescription": {
+          "metadata": {
+            "description": "PW description",
+            "tlvType": "219.9.8",
+            "dataType": "string",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "PwAdminStatus": {
+          "metadata": {
+            "description": "PW administrative status",
+            "tlvType": "219.9.9",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "StatusChangeNotificationEnable": {
+          "metadata": {
+            "description": "Status change notification enable",
+            "tlvType": "219.9.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwTdmType": {
+          "metadata": {
+            "description": "PW TDM type",
+            "tlvType": "219.9.11",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwTdmConfigurationTableIndex": {
+          "metadata": {
+            "description": "PW TDM configuration table index",
+            "tlvType": "219.9.12",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwCesopsnConfigurationIndex": {
+          "metadata": {
+            "description": "PW CESoPSN configuration index",
+            "tlvType": "219.9.13",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwRtpSsrc": {
+          "metadata": {
+            "description": "PW RTP SSRC",
+            "tlvType": "219.9.14",
+            "dataType": "uint32",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint32"
+        },
+        "PwPeerSsrc": {
+          "metadata": {
+            "description": "PW peer SSRC",
+            "tlvType": "219.9.15",
+            "dataType": "uint32",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint32"
+        },
+        "PwTdmCirculationMap": {
+          "metadata": {
+            "description": "PW TDM circulation map",
+            "tlvType": "219.9.16",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "EteaPwTdmCirculationMapEntry"
+          }
+        }
+      }
+    },
+    "EteaPwTdmConfigurationTableEntry": {
+      "metadata": {
+        "description": "eTEA PW TDM Configuration Table encoding",
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "ConfigurationTableIndex": {
+          "metadata": {
+            "description": "Configuration table index",
+            "tlvType": "219.10.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwTdmPayloadSize": {
+          "metadata": {
+            "description": "PW TDM payload size",
+            "tlvType": "219.10.2",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwRtpHeaderUsed": {
+          "metadata": {
+            "description": "PW RTP header used flag",
+            "tlvType": "219.10.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "JitterBufferSetting": {
+          "metadata": {
+            "description": "Jitter buffer setting",
+            "tlvType": "219.10.5",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwPayloadSuppression": {
+          "metadata": {
+            "description": "PW payload suppression",
+            "tlvType": "219.10.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwLopsExitCriteria": {
+          "metadata": {
+            "description": "PW LOPS exit criteria",
+            "tlvType": "219.10.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwLopsEntranceCriteria": {
+          "metadata": {
+            "description": "PW LOPS entrance criteria",
+            "tlvType": "219.10.8",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwPacketReplacePolicy": {
+          "metadata": {
+            "description": "PW packet replace policy",
+            "tlvType": "219.10.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwPacketLossWindow": {
+          "metadata": {
+            "description": "PW packet loss window",
+            "tlvType": "219.10.11",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwExcessiveLossThreshold": {
+          "metadata": {
+            "description": "PW excessive loss threshold",
+            "tlvType": "219.10.12",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwSevereLossThreshold": {
+          "metadata": {
+            "description": "PW severe loss threshold",
+            "tlvType": "219.10.15",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "PwRtpTimestampMode": {
+          "metadata": {
+            "description": "PW RTP timestamp mode",
+            "tlvType": "219.10.16",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwDefaultFillPattern": {
+          "metadata": {
+            "description": "PW default fill pattern",
+            "tlvType": "219.10.17",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "PwLFlagPayloadPolicy": {
+          "metadata": {
+            "description": "PW L flag payload policy",
+            "tlvType": "219.10.18",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwTos": {
+          "metadata": {
+            "description": "PW Type of Service",
+            "tlvType": "219.10.19",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwRtpPayloadType": {
+          "metadata": {
+            "description": "PW RTP payload type",
+            "tlvType": "219.10.20",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwRtpPeerPayloadType": {
+          "metadata": {
+            "description": "PW RTP peer payload type",
+            "tlvType": "219.10.21",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "PwRtpTimestampReference": {
+          "metadata": {
+            "description": "PW RTP timestamp reference",
+            "tlvType": "219.10.22",
+            "dataType": "uint32",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint32"
+        },
+        "PwRtpPeerTimestampReference": {
+          "metadata": {
+            "description": "PW RTP peer timestamp reference",
+            "tlvType": "219.10.23",
+            "dataType": "uint32",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint32"
+        },
+        "PwSrtpEnable": {
+          "metadata": {
+            "description": "PW SRTP enable flag",
+            "tlvType": "219.10.24",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "EteaCesopsnConfigurationTableEntry": {
+      "metadata": {
+        "description": "CESoPSN Configuration Table encoding",
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "ConfigTableIndex": {
+          "metadata": {
+            "description": "PW CESoPSN config table index",
+            "tlvType": "219.13.1",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "DefaultIdlePattern": {
+          "metadata": {
+            "description": "Default idle pattern",
+            "tlvType": "219.13.2",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "LFlagPolicy": {
+          "metadata": {
+            "description": "L flag policy",
+            "tlvType": "219.13.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "RFlagPolicy": {
+          "metadata": {
+            "description": "R flag policy",
+            "tlvType": "219.13.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "RemoteDefectPolicy": {
+          "metadata": {
+            "description": "Remote defect policy",
+            "tlvType": "219.13.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "LopsPolicy": {
+          "metadata": {
+            "description": "LOPS policy",
+            "tlvType": "219.13.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "AppSigTos": {
+          "metadata": {
+            "description": "Application signal TOS",
+            "tlvType": "219.13.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "RtpCasPt": {
+          "metadata": {
+            "description": "RTP CAS payload type",
+            "tlvType": "219.13.8",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "RtpCasPeerPt": {
+          "metadata": {
+            "description": "RTP CAS peer payload type",
+            "tlvType": "219.13.9",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "AppSigIdle": {
+          "metadata": {
+            "description": "Application signal idle pattern",
+            "tlvType": "219.13.10",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "AppSigInterval": {
+          "metadata": {
+            "description": "Application signal interval",
+            "tlvType": "219.13.11",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "AppSigMaxInterval": {
+          "metadata": {
+            "description": "Application signal maximum interval",
+            "tlvType": "219.13.12",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "EteaDsx1ConfigurationTableEntry": {
+      "metadata": {
+        "description": "dsx1 Configuration Table encoding",
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "Dsx1PortId": {
+          "metadata": {
+            "description": "dsx1 port ID",
+            "tlvType": "219.14.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1LineType": {
+          "metadata": {
+            "description": "dsx1 line type",
+            "tlvType": "219.14.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1LineCoding": {
+          "metadata": {
+            "description": "dsx1 line coding",
+            "tlvType": "219.14.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1CircuitId": {
+          "metadata": {
+            "description": "dsx1 circuit ID",
+            "tlvType": "219.14.4",
+            "dataType": "string",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "Dsx1LoopbackConfiguration": {
+          "metadata": {
+            "description": "dsx1 loopback configuration",
+            "tlvType": "219.14.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1SignalMode": {
+          "metadata": {
+            "description": "dsx1 signal mode",
+            "tlvType": "219.14.6",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1TransmitClockSource": {
+          "metadata": {
+            "description": "dsx1 transmit clock source",
+            "tlvType": "219.14.7",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1Fdl": {
+          "metadata": {
+            "description": "dsx1 FDL",
+            "tlvType": "219.14.8",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1LineLength": {
+          "metadata": {
+            "description": "dsx1 line length",
+            "tlvType": "219.14.9",
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint16"
+        },
+        "Dsx1LineStatusTrapEnable": {
+          "metadata": {
+            "description": "dsx1 line status trap enable",
+            "tlvType": "219.14.10",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1Channelization": {
+          "metadata": {
+            "description": "dsx1 channelization",
+            "tlvType": "219.14.11",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1LineMode": {
+          "metadata": {
+            "description": "dsx1 line mode",
+            "tlvType": "219.14.12",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        },
+        "Dsx1LineBuildOut": {
+          "metadata": {
+            "description": "dsx1 line build out",
+            "tlvType": "219.14.13",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "EteaEntry": {
+      "metadata": {
+        "description": "eTEA (TDM Emulation Adapter) configuration encoding",
+        "tlvType": 219,
+        "spec": "CM-SP-TEI-I06"
+      },
+      "optionalProperties": {
+        "SymbolClock": {
+          "metadata": {
+            "description": "eTEA symbol clock configuration",
+            "tlvType": "219.8",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "IwfCfgEncoding": {
+          "metadata": {
+            "description": "eTEA IWF configuration encoding",
+            "tlvType": "219.9",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "EteaIwfCfgEncodingEntry"
+          }
+        },
+        "PwTdmConfigurationTable": {
+          "metadata": {
+            "description": "PW TDM configuration table",
+            "tlvType": "219.10",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "EteaPwTdmConfigurationTableEntry"
+          }
+        },
+        "SnmpMibObject": {
+          "metadata": {
+            "description": "eTEA SNMP MIB objects",
+            "tlvType": "219.11",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "SnmpMibEntry"
+          }
+        },
+        "SnmpWriteAccessControl": {
+          "metadata": {
+            "description": "eTEA SNMP write-access control",
+            "tlvType": "219.12",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "CesopsnConfigurationTable": {
+          "metadata": {
+            "description": "CESoPSN configuration table",
+            "tlvType": "219.13",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "EteaCesopsnConfigurationTableEntry"
+          }
+        },
+        "Dsx1ConfigurationTable": {
+          "metadata": {
+            "description": "dsx1 configuration table",
+            "tlvType": "219.14",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06"
+          },
+          "elements": {
+            "ref": "EteaDsx1ConfigurationTableEntry"
+          }
+        },
+        "VendorSpecificExtensions": {
+          "metadata": {
+            "description": "eTEA vendor-specific extensions",
+            "tlvType": "219.43",
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "string"
+        },
+        "EndOfText": {
+          "metadata": {
+            "description": "eTEA end of text marker",
+            "tlvType": "219.255",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06"
+          },
+          "type": "uint8"
+        }
+      }
     }
   },
   "optionalProperties": {
@@ -431,12 +4956,41 @@
       },
       "type": "uint8"
     },
+    "CmMic": {
+      "metadata": {
+        "description": "CM Message Integrity Check (MIC) - 16-byte HMAC-MD5 digest",
+        "tlvType": 6,
+        "tlvLength": 16,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.5"
+      },
+      "type": "string"
+    },
+    "CmtsMic": {
+      "metadata": {
+        "description": "CMTS Message Integrity Check (MIC) - 16-byte HMAC-MD5 digest",
+        "tlvType": 7,
+        "tlvLength": 16,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.6"
+      },
+      "type": "string"
+    },
     "SwUpgradeFilename": {
       "metadata": {
         "description": "Filename for software upgrade via TFTP",
         "tlvType": 9,
         "dataType": "string",
         "spec": "CM-SP-MULPIv4.0 C.1.2.3"
+      },
+      "type": "string"
+    },
+    "SnmpWriteAccessControl": {
+      "metadata": {
+        "description": "SNMP write access control encoding",
+        "tlvType": 10,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.4"
       },
       "type": "string"
     },
@@ -462,6 +5016,15 @@
       },
       "type": "string"
     },
+    "BaselinePrivacy": {
+      "metadata": {
+        "description": "Baseline Privacy (BPI+) encoding",
+        "tlvType": 17,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.1"
+      },
+      "type": "string"
+    },
     "MaxNumCpes": {
       "metadata": {
         "description": "Maximum number of CPEs allowed behind this CM",
@@ -472,15 +5035,59 @@
       },
       "type": "uint8"
     },
-    "PrivacyEnable": {
+    "TftpServerTimestamp": {
       "metadata": {
-        "description": "Enable BPI+ privacy on the CM (0 = disabled, 1 = enabled)",
-        "tlvType": 29,
-        "tlvLength": 1,
-        "dataType": "uint8",
-        "spec": "CM-SP-MULPIv4.0 C.1.1.17"
+        "description": "TFTP server timestamp for config file",
+        "tlvType": 19,
+        "tlvLength": 4,
+        "dataType": "uint32",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.8"
       },
-      "type": "uint8"
+      "type": "uint32"
+    },
+    "TftpServerProvisionedModemIpv4Address": {
+      "metadata": {
+        "description": "TFTP server provisioned modem IPv4 address",
+        "tlvType": 20,
+        "tlvLength": 4,
+        "dataType": "ipv4Address",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.9"
+      },
+      "type": "string"
+    },
+    "SwUpgradeIpv4TftpServer": {
+      "metadata": {
+        "description": "IPv4 address of the TFTP server for software upgrade",
+        "tlvType": 21,
+        "tlvLength": 4,
+        "dataType": "ipv4Address",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.7"
+      },
+      "type": "string"
+    },
+    "UpstreamPacketClassification": {
+      "metadata": {
+        "description": "Upstream Packet Classification definitions",
+        "tlvType": 22,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.1"
+      },
+      "elements": {
+        "ref": "UpstreamPacketClassificationEntry"
+      }
+    },
+    "DownstreamPacketClassification": {
+      "metadata": {
+        "description": "Downstream Packet Classification definitions",
+        "tlvType": 23,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.3"
+      },
+      "elements": {
+        "ref": "DownstreamPacketClassificationEntry"
+      }
     },
     "UpstreamServiceFlow": {
       "metadata": {
@@ -506,6 +5113,142 @@
         "ref": "DownstreamServiceFlowEntry"
       }
     },
+    "PayloadHeaderSuppression": {
+      "metadata": {
+        "description": "Payload Header Suppression definitions",
+        "tlvType": 26,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.3"
+      },
+      "elements": {
+        "ref": "PayloadHeaderSuppressionEntry"
+      }
+    },
+    "MaximumNumberOfClassifiers": {
+      "metadata": {
+        "description": "Maximum number of classifiers the CM supports",
+        "tlvType": 28,
+        "tlvLength": 2,
+        "dataType": "uint16",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.16"
+      },
+      "type": "uint16"
+    },
+    "PrivacyEnable": {
+      "metadata": {
+        "description": "Enable BPI+ privacy on the CM (0 = disabled, 1 = enabled)",
+        "tlvType": 29,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.17"
+      },
+      "type": "uint8"
+    },
+    "ManufacturerCvc": {
+      "metadata": {
+        "description": "Manufacturer Code Verification Certificate",
+        "tlvType": 32,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.10"
+      },
+      "type": "string"
+    },
+    "CoSignerCvc": {
+      "metadata": {
+        "description": "Co-Signer Code Verification Certificate",
+        "tlvType": 33,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.11"
+      },
+      "type": "string"
+    },
+    "Snmpv3KickstartValue": {
+      "metadata": {
+        "description": "SNMPv3 Kickstart Value encoding",
+        "tlvType": 34,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.9"
+      },
+      "type": "string"
+    },
+    "SubscriberMgmtControl": {
+      "metadata": {
+        "description": "Subscriber Management Control encoding (3 bytes)",
+        "tlvType": 35,
+        "tlvLength": 3,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.1"
+      },
+      "type": "string"
+    },
+    "SubscriberMgmtCpeIpv4List": {
+      "metadata": {
+        "description": "Subscriber Management CPE IPv4 address list",
+        "tlvType": 36,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.2"
+      },
+      "type": "string"
+    },
+    "SubscriberMgmtFilterGroups": {
+      "metadata": {
+        "description": "Subscriber Management Filter Groups encoding (8 bytes)",
+        "tlvType": 37,
+        "tlvLength": 8,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.4"
+      },
+      "type": "string"
+    },
+    "Snmpv3NotificationReceiver": {
+      "metadata": {
+        "description": "SNMPv3 Notification Receiver encoding",
+        "tlvType": 38,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.12"
+      },
+      "type": "string"
+    },
+    "Enable20Mode": {
+      "metadata": {
+        "description": "Enable DOCSIS 2.0 mode",
+        "tlvType": 39,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.20"
+      },
+      "type": "uint8"
+    },
+    "EnableTestModes": {
+      "metadata": {
+        "description": "Enable test modes",
+        "tlvType": 40,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.20"
+      },
+      "type": "uint8"
+    },
+    "DownstreamChannelList": {
+      "metadata": {
+        "description": "Downstream Channel List encoding",
+        "tlvType": 41,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.22"
+      },
+      "type": "string"
+    },
+    "StaticMulticastMacAddress": {
+      "metadata": {
+        "description": "Static multicast MAC address",
+        "tlvType": 42,
+        "tlvLength": 6,
+        "dataType": "macAddress",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.23"
+      },
+      "type": "string"
+    },
     "DocsisExtensionField": {
       "metadata": {
         "description": "DOCSIS Extension Field (Vendor Specific / General Extension). Each entry begins with a VendorId (OUI). OUI=FFFFFF means General Extension with CANN-registered sub-TLVs; any other OUI is vendor-specific.",
@@ -518,6 +5261,61 @@
         "ref": "DocsisExtensionFieldEntry"
       }
     },
+    "DownstreamDutFiltering": {
+      "metadata": {
+        "description": "Downstream Unencrypted Traffic (DUT) Filtering encoding",
+        "tlvType": 45,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.1.1.24"
+      },
+      "elements": {
+        "ref": "DownstreamDutFilteringEntry"
+      }
+    },
+    "Snmpv1v2cCoexistence": {
+      "metadata": {
+        "description": "SNMPv1v2c Coexistence Configuration",
+        "tlvType": 53,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.1.2.13"
+      },
+      "elements": {
+        "ref": "Snmpv1v2cCoexistenceEntry"
+      }
+    },
+    "Snmpv3AccessViewConfiguration": {
+      "metadata": {
+        "description": "SNMPv3 Access View Configuration",
+        "tlvType": 54,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.1.2.14"
+      },
+      "elements": {
+        "ref": "Snmpv3AccessViewEntry"
+      }
+    },
+    "SnmpCpeAccessControl": {
+      "metadata": {
+        "description": "SNMP CPE access control (0 = disabled, 1 = enabled)",
+        "tlvType": 55,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.15"
+      },
+      "type": "uint8"
+    },
+    "ChannelAssignmentConfigurationSettings": {
+      "metadata": {
+        "description": "Channel Assignment Configuration Settings encoding",
+        "tlvType": 56,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.25"
+      },
+      "type": "string"
+    },
     "SwUpgradeIpv6TftpServer": {
       "metadata": {
         "description": "IPv6 address of the TFTP server for software upgrade",
@@ -527,6 +5325,425 @@
         "spec": "CM-SP-MULPIv4.0 C.1.2.8"
       },
       "type": "string"
+    },
+    "TftpServerProvisionedModemIpv6Address": {
+      "metadata": {
+        "description": "TFTP server provisioned modem IPv6 address",
+        "tlvType": 59,
+        "tlvLength": 16,
+        "dataType": "ipv6Address",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.10"
+      },
+      "type": "string"
+    },
+    "UpstreamDropPacketClassification": {
+      "metadata": {
+        "description": "Upstream Drop Packet Classification definitions",
+        "tlvType": 60,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.1.2"
+      },
+      "elements": {
+        "ref": "UpstreamDropPacketClassificationEntry"
+      }
+    },
+    "SubscriberMgmtCpeIpv6PrefixList": {
+      "metadata": {
+        "description": "Subscriber Management CPE IPv6 prefix list",
+        "tlvType": 61,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.3"
+      },
+      "type": "string"
+    },
+    "UpstreamDropClassifierGroupId": {
+      "metadata": {
+        "description": "Upstream Drop Classifier Group ID",
+        "tlvType": 62,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.26"
+      },
+      "type": "string"
+    },
+    "SubscriberMgmtControlMaxCpeIpv6Prefix": {
+      "metadata": {
+        "description": "Subscriber Management Control maximum CPE IPv6 prefix count",
+        "tlvType": 63,
+        "dataType": "uint16",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.5"
+      },
+      "type": "uint16"
+    },
+    "CmtsStaticMulticastSessionEncoding": {
+      "metadata": {
+        "description": "CMTS Static Multicast Session Encoding",
+        "tlvType": 64,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.27"
+      },
+      "type": "string"
+    },
+    "L2vpnMacAgingEncoding": {
+      "metadata": {
+        "description": "L2VPN MAC Aging Encoding",
+        "tlvType": 65,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-L2VPN-I17"
+      },
+      "elements": {
+        "ref": "L2vpnMacAgingEntry"
+      }
+    },
+    "ManagementEventControlEncoding": {
+      "metadata": {
+        "description": "Management Event Control Encoding",
+        "tlvType": 66,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.16"
+      },
+      "type": "string"
+    },
+    "SubscriberMgmtCpeIpv6List": {
+      "metadata": {
+        "description": "Subscriber Management CPE IPv6 address list",
+        "tlvType": 67,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.19.6"
+      },
+      "type": "string"
+    },
+    "DefaultUpstreamTargetBufferConfiguration": {
+      "metadata": {
+        "description": "Default upstream target buffer configuration",
+        "tlvType": 68,
+        "tlvLength": 2,
+        "dataType": "uint16",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.17"
+      },
+      "type": "uint16"
+    },
+    "MacAddressLearningControlEncoding": {
+      "metadata": {
+        "description": "MAC Address Learning Control Encoding",
+        "tlvType": 69,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.18"
+      },
+      "type": "uint8"
+    },
+    "UpstreamAggregateServiceFlowEncodings": {
+      "metadata": {
+        "description": "Upstream Aggregate Service Flow Encodings",
+        "tlvType": 70,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+      },
+      "elements": {
+        "ref": "UpstreamAggregateServiceFlowEntry"
+      }
+    },
+    "DownstreamAggregateServiceFlowEncodings": {
+      "metadata": {
+        "description": "Downstream Aggregate Service Flow Encodings",
+        "tlvType": 71,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-MULPIv4.0 C.2.2.4"
+      },
+      "elements": {
+        "ref": "DownstreamAggregateServiceFlowEntry"
+      }
+    },
+    "MetroEthernetServiceProfile": {
+      "metadata": {
+        "description": "Metro Ethernet Service Profile",
+        "tlvType": 72,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "elements": {
+        "ref": "MetroEthernetServiceProfileEntry"
+      }
+    },
+    "NetworkTimingProfile": {
+      "metadata": {
+        "description": "Network Timing Profile encoding",
+        "tlvType": 73,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.19"
+      },
+      "type": "string"
+    },
+    "EnergyManagementParameterEncoding": {
+      "metadata": {
+        "description": "Energy Management Parameter Encoding",
+        "tlvType": 74,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.30"
+      },
+      "type": "string"
+    },
+    "CmUpstreamAqmDisable": {
+      "metadata": {
+        "description": "CM Upstream AQM Disable flag",
+        "tlvType": 76,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.20"
+      },
+      "type": "uint8"
+    },
+    "UniControlEncoding": {
+      "metadata": {
+        "description": "UNI Control Encoding",
+        "tlvType": 79,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.3.3"
+      },
+      "type": "string"
+    },
+    "ManufacturerCvcChain": {
+      "metadata": {
+        "description": "Manufacturer CVC Chain",
+        "tlvType": 81,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.21"
+      },
+      "type": "string"
+    },
+    "CoSignerCvcChain": {
+      "metadata": {
+        "description": "Co-signer CVC Chain",
+        "tlvType": 82,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.22"
+      },
+      "type": "string"
+    },
+    "L2cpManagement": {
+      "metadata": {
+        "description": "L2CP Management encoding",
+        "tlvType": 83,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      },
+      "elements": {
+        "ref": "L2cpManagementEntry"
+      }
+    },
+    "DiplexerBandEdge": {
+      "metadata": {
+        "description": "Diplexer Band Edge encoding (9 bytes)",
+        "tlvType": 84,
+        "tlvLength": 9,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.23"
+      },
+      "type": "string"
+    },
+    "QosFrameworkForDocsisEncodings": {
+      "metadata": {
+        "description": "QoS Framework for DOCSIS Encodings",
+        "tlvType": 88,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.8"
+      },
+      "type": "string"
+    },
+    "LowLatencyDisable": {
+      "metadata": {
+        "description": "Low Latency Disable flag",
+        "tlvType": 91,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.32"
+      },
+      "type": "uint8"
+    },
+    "DistributedHqosEnable": {
+      "metadata": {
+        "description": "Distributed HQoS Enable encoding",
+        "tlvType": 92,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.1.33"
+      },
+      "type": "string"
+    },
+    "UpstreamEnhancedHqosAsf": {
+      "metadata": {
+        "description": "Upstream Enhanced HQoS ASF encoding",
+        "tlvType": 93,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.5"
+      },
+      "type": "string"
+    },
+    "DownstreamEnhancedHqosAsf": {
+      "metadata": {
+        "description": "Downstream Enhanced HQoS ASF encoding",
+        "tlvType": 94,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.2.2.6"
+      },
+      "type": "string"
+    },
+    "DhqosAsfSidBundleAssignment": {
+      "metadata": {
+        "description": "DHQoS ASF SID Bundle Assignment encoding",
+        "tlvType": 95,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.5.8"
+      },
+      "type": "string"
+    },
+    "AdvancedDiplexerBandEdge": {
+      "metadata": {
+        "description": "Advanced Diplexer Band Edge encoding",
+        "tlvType": 96,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.24"
+      },
+      "type": "string"
+    },
+    "AdvancedBandPlanSupport": {
+      "metadata": {
+        "description": "Advanced Band Plan Support flag",
+        "tlvType": 97,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.25"
+      },
+      "type": "uint8"
+    },
+    "DocsisSyncConfigurations": {
+      "metadata": {
+        "description": "DOCSIS Sync Configurations encoding",
+        "tlvType": 101,
+        "dataType": "hexstring",
+        "spec": "CM-SP-SYNC-I03"
+      },
+      "type": "string"
+    },
+    "PtpAddressConfigurations": {
+      "metadata": {
+        "description": "PTP Address Configurations encoding",
+        "tlvType": 102,
+        "dataType": "hexstring",
+        "spec": "CM-SP-SYNC-I03"
+      },
+      "type": "string"
+    },
+    "CmSshServerConfigurationSettings": {
+      "metadata": {
+        "description": "CM SSH Server Configuration Settings encoding",
+        "tlvType": 103,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.2"
+      },
+      "type": "string"
+    },
+    "SecurityConfigurationSettings": {
+      "metadata": {
+        "description": "Security Configuration Settings encoding",
+        "tlvType": 104,
+        "dataType": "hexstring",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.3"
+      },
+      "type": "string"
+    },
+    "FdxDownstreamUpperBandEdge": {
+      "metadata": {
+        "description": "FDX Downstream Upper Band Edge frequency",
+        "tlvType": 106,
+        "tlvLength": 2,
+        "dataType": "uint16",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.26"
+      },
+      "type": "uint16"
+    },
+    "Eps": {
+      "metadata": {
+        "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
+        "tlvType": 201,
+        "dataType": "hexstring",
+        "spec": "CM-SP-eDOCSIS-I31"
+      },
+      "type": "string"
+    },
+    "Erouter": {
+      "metadata": {
+        "description": "eRouter configuration encoding",
+        "tlvType": 202,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-eRouter-I22"
+      },
+      "elements": {
+        "ref": "ErouterEntry"
+      }
+    },
+    "Emta": {
+      "metadata": {
+        "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
+        "tlvType": 216,
+        "dataType": "hexstring",
+        "spec": "PKT-SP-PROV1.5-C01"
+      },
+      "type": "string"
+    },
+    "Estb": {
+      "metadata": {
+        "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
+        "tlvType": 217,
+        "dataType": "hexstring",
+        "spec": "CM-SP-DSG-I25"
+      },
+      "type": "string"
+    },
+    "Etea": {
+      "metadata": {
+        "description": "eTEA (TDM Emulation Adapter) configuration encoding",
+        "tlvType": 219,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "CM-SP-TEI-I06"
+      },
+      "elements": {
+        "ref": "EteaEntry"
+      }
+    },
+    "Edva": {
+      "metadata": {
+        "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
+        "tlvType": 220,
+        "dataType": "hexstring",
+        "spec": "PKT-SP-RST-E-DVA-C01"
+      },
+      "type": "string"
+    },
+    "Esg": {
+      "metadata": {
+        "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
+        "tlvType": 221,
+        "dataType": "hexstring",
+        "spec": "CM-SP-eDOCSIS-I31"
+      },
+      "type": "string"
+    },
+    "EndOfData": {
+      "metadata": {
+        "description": "End-of-Data marker encoding",
+        "tlvType": 255,
+        "dataType": "uint8",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.1"
+      },
+      "type": "uint8"
     }
   }
 }
