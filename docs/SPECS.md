@@ -63,6 +63,12 @@ Once registered, you can download PDFs from the specification landing pages belo
 | DPoE-SP-MULPIv1.0 | C01 (Aug 2016) | Various | https://www.cablelabs.com/specifications/DPoE-SP-MULPIv1.0 |
 | DPoE-SP-MULPIv2.0 | I14 (Mar 2023) | TLV 43.5, 72, 83 | https://www.cablelabs.com/specifications/DPoE-SP-MULPIv2.0 |
 
+### DPoG
+
+| Spec ID | Current Version | TLV Area | Landing Page |
+|---------|----------------|----------|--------------|
+| DPoG-SP-MULPIv1.0 | C01 (Aug 2016) | TLV 5.42.10--5.42.11 | https://www.cablelabs.com/specifications/DPoG-SP-MULPIv1.0 |
+
 ### Common
 
 | Spec ID | Current Version | Landing Page |
@@ -134,6 +140,9 @@ Once registered, you can download PDFs from the specification landing pages belo
 - **DPoE-SP-MULPIv2.0** -- DPoE MAC and Upper Layer Protocols Interface v2.0.
   Defines TLV encodings for DOCSIS Provisioning of EPON (DPoE) v2.0 devices.
 
+- **DPoG-SP-MULPIv1.0** -- DPoG MAC and Upper Layer Protocols Interface v1.0.
+  Defines TLV encodings for DOCSIS Provisioning of GPON (DPoG) v1.0 D-ONU devices.
+
 ## Expected Files in `docs/external/`
 
 After downloading all specs, the `docs/external/` folder should contain:
@@ -165,4 +174,7 @@ docs/external/
   # DPoE
   DPoE-SP-MULPIv1.0-C01-160830.pdf
   DPoE-SP-MULPIv2.0-I14-230322.pdf
+
+  # DPoG
+  DPoG-SP-MULPIv1.0-C01-160830.pdf
 ```

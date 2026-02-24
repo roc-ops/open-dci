@@ -8,7 +8,7 @@ This document catalogs all DOCSIS provisioning TLVs from the CableLabs Assigned 
 
 - **CANN** -- CL-SP-CANN-I24-250320, Section 11.1 (DOCSIS Provisioning TLV Number Assignment Registry)
 - **MULPIv4.0** -- CM-SP-MULPIv4.0-I11-260219, Annex C (Configuration File and Registration TLV Encodings)
-- Individual extension specifications: L2VPN, eRouter, eDOCSIS, PacketCable, DSG, TEI, DPoE, DOCSIS SYNC
+- Individual extension specifications: L2VPN, eRouter, eDOCSIS, PacketCable, DSG, TEI, DPoE, DPoG, DOCSIS SYNC
 
 TLVs are used in CM configuration files and MAC Management messages. They are also used in the RPHY GCP Protocol. The Type-Length-Value encoding allows provisioning systems to configure cable modems and CMTS equipment with network parameters, QoS settings, security credentials, and service flow definitions.
 
@@ -27,6 +27,7 @@ TLVs are used in CM configuration files and MAC Management messages. They are al
 | PacketCable RST-E-DVA | PKT-SP-RST-E-DVA-C01-140314 | TLV 220 |
 | DPoE-MULPIv1.0 | DPoE-SP-MULPIv1.0-C01-160830 | Various |
 | DPoE-MULPIv2.0 | DPoE-SP-MULPIv2.0-I14-230322 | TLV 43.5, 72, 83 |
+| DPoG 1.0 | DPoG-SP-MULPIv1.0-C01-160830 | TLV 5.42.10--5.42.11 |
 | CANN | CL-SP-CANN-I24-250320 | TLV registry |
 
 ---
@@ -231,8 +232,8 @@ CANN Section 11.1.1. These sub-TLVs are carried within TLV 5 (Modem Capabilities
 | 5.42.5 | Number of D-ONU Ports | uint8 | DPoE-MULPIv2.0 I14 | C.8.5 |
 | 5.42.6 | PON Data Rate Support | uint8 | DPoE-MULPIv2.0 I14 | C.8.6 |
 | 5.42.7 | Service OAM | uint8 | DPoE-MULPIv2.0 I14 | C.8.7 |
-| 5.42.10 | Number of T-CONTs Supported | uint8 | DPoG 1.0 | *(no document)* |
-| 5.42.11 | Total Number of (X)GEM Ports Supported | uint8 | DPoG 1.0 | *(no document)* |
+| 5.42.10 | Number of T-CONTs Supported | uint8 | DPoG 1.0 | C.2.2 |
+| 5.42.11 | Total Number of (X)GEM Ports Supported | uint16 | DPoG 1.0 | C.2.3 |
 | 5.43 | Reserved | - | - | - |
 | 5.44 | Energy Management Capabilities | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.44 |
 | 5.45 | C-DOCSIS Capability Encoding | uint8 | DOCSIS 3.0 · MULPIv4.0 I11 | C.1.3.1.45 |
