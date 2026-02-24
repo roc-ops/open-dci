@@ -1,27 +1,92 @@
 # OpenDCI
 
-Open DOCSIS Configuration Interchange format
+**Open DOCSIS Configuration Interchange** -- A JSON-based data interchange format for DOCSIS cable modem configuration files.
 
-## Reference Specifications
+## What is this?
 
-OpenDCI is based on the following CableLabs specifications. See [`docs/SPECS.md`](docs/SPECS.md) for download instructions and local copies in `docs/external/`.
+DOCSIS cable modems are configured using binary files built from Type-Length-Value (TLV) encodings defined across multiple CableLabs specifications. These binary files are opaque, vendor-tool-dependent, and difficult to version, diff, or automate.
 
-| Specification | Version | Description |
-|---------------|---------|-------------|
-| [CM-SP-MULPIv4.0](https://www.cablelabs.com/specifications/CM-SP-MULPIv4.0) | I11 (Feb 2026) | DOCSIS 4.0 MAC and Upper Layer Protocols -- latest config file structure |
-| [CM-SP-MULPIv3.1](https://www.cablelabs.com/specifications/CM-SP-MULPIv3.1) | I25 (Apr 2023) | DOCSIS 3.1 MAC and Upper Layer Protocols |
-| [CM-SP-MULPIv3.0](https://www.cablelabs.com/specifications/CM-SP-MULPIv3.0) | C01 (Dec 2017) | DOCSIS 3.0 MAC and Upper Layer Protocols |
-| [CL-SP-CANN](https://www.cablelabs.com/specifications/CL-SP-CANN) | I24 (Mar 2025) | Assigned Names and Numbers -- central registry for all TLV values and sub-TLVs |
-| [CM-SP-CM-OSSIv4.0](https://www.cablelabs.com/specifications/CM-SP-CM-OSSIv4.0) | I12 (Jun 2025) | DOCSIS 4.0 CM Operations Support System Interface |
-| [CM-SP-CM-OSSIv3.1](https://www.cablelabs.com/specifications/CM-SP-CM-OSSIv3.1) | I27 (Feb 2025) | DOCSIS 3.1 CM Operations Support System Interface |
-| [CM-SP-OSSIv3.0](https://www.cablelabs.com/specifications/CM-SP-OSSIv3.0) | C01 (Dec 2017) | DOCSIS 3.0 Operations Support System Interface |
-| [CM-SP-L2VPN](https://www.cablelabs.com/specifications/business-services-over-docsis-layer-2-virtual-private-networks) | I17 (Oct 2025) | Layer 2 VPN encodings (TLV 43.5, 45, 65) |
-| [CM-SP-eRouter](https://www.cablelabs.com/specifications/CM-SP-eRouter) | I22 (May 2024) | eRouter sub-TLVs (TLV 202) |
-| [CM-SP-DSG](https://www.cablelabs.com/specifications/CM-SP-DSG) | I25 (Sep 2017) | DOCSIS Set-top Gateway (TLV 217) |
-| [CM-SP-eDOCSIS](https://www.cablelabs.com/specifications/CM-SP-eDOCSIS) | I31 (Aug 2022) | Embedded DOCSIS eSAFE TLVs (TLV 201-231) |
-| [CM-SP-TEI](https://www.cablelabs.com/specifications/CM-SP-TEI) | I06 (Jun 2010) | TDM Emulation Interface (TLV 219) |
-| [CM-SP-SYNC](https://www.cablelabs.com/specifications/CM-SP-SYNC) | I03 (Jul 2022) | DOCSIS Synchronization (TLV 98-102) |
-| [PKT-SP-PROV1.5](https://www.cablelabs.com/specifications/packetcable-mta-device-provisioning-specification) | C01 (Nov 2019) | PacketCable MTA provisioning (TLV 216) |
-| [PKT-SP-RST-E-DVA](https://www.cablelabs.com/specifications/PKT-SP-RST-E-DVA) | C01 (Mar 2014) | PacketCable 2.0 eDVA provisioning (TLV 220) |
-| [DPoE-SP-MULPIv1.0](https://www.cablelabs.com/specifications/DPoE-SP-MULPIv1.0) | C01 (Aug 2016) | DPoE MAC and Upper Layer Protocols v1.0 |
-| [DPoE-SP-MULPIv2.0](https://www.cablelabs.com/specifications/DPoE-SP-MULPIv2.0) | I14 (Mar 2023) | DPoE MAC and Upper Layer Protocols v2.0 |
+OpenDCI defines a JSON representation for DOCSIS configuration data. Instead of working with binary TLV blobs, you work with structured, human-readable JSON files that can be validated against a schema, version-controlled with git, and processed with standard tooling.
+
+```jsonc
+{
+  "NetworkAccess": 1,
+  "MaxNumCpes": 16,
+  "PrivacyEnable": 1,
+  "DownstreamFrequency": 855000000,
+
+  "UpstreamServiceFlow": [
+    {
+      "ServiceFlowReference": 1,
+      "QosParamSetType": 7,
+      "MaxSustainedTrafficRate": 5000000,
+      "SchedulingType": 2  // best effort
+    }
+  ],
+
+  "DownstreamServiceFlow": [
+    {
+      "ServiceFlowReference": 2,
+      "QosParamSetType": 7,
+      "MaxSustainedTrafficRate": 50000000
+    }
+  ]
+}
+```
+
+OpenDCI config files use the `.jsonc` extension and support JavaScript-style comments (`//` and `/* */`).
+
+## Schema
+
+OpenDCI uses a **dual-format schema** approach:
+
+- **JTD (canonical)** -- `schemas/docsis-config.jtd.json` is the authoritative schema, written in [JSON Type Definition (RFC 8927)](https://datatracker.ietf.org/doc/rfc8927/). This is the source of truth for property names, types, and DOCSIS metadata (TLV type numbers, wire lengths, spec references).
+
+- **JSON Schema (generated)** -- `schemas/generated/docsis-config.schema.json` is a JSON Schema 2020-12 file automatically generated from the JTD source. Use this for IDE autocompletion, linting, and CI validation. It is never hand-edited.
+
+JTD was chosen for its simplicity, code-generation support, and stable RFC standard. See [`schemas/README.md`](schemas/README.md) for the full schema documentation including metadata field reference, design decisions for complex TLVs (vendor-specific, SNMP MIBs), and validation examples.
+
+### Validating configs
+
+```bash
+# Using ajv-cli (Node.js)
+npx ajv validate -s schemas/generated/docsis-config.schema.json -d config.jsonc
+
+# Using check-jsonschema (Python)
+check-jsonschema --schemafile schemas/generated/docsis-config.schema.json config.jsonc
+```
+
+### Regenerating the JSON Schema
+
+```bash
+go run ./tools/jtd2jsonschema schemas/docsis-config.jtd.json > schemas/generated/docsis-config.schema.json
+```
+
+## Repository Layout
+
+```
+schemas/
+  docsis-config.jtd.json              # Canonical JTD schema (source of truth)
+  generated/
+    docsis-config.schema.json         # Generated JSON Schema 2020-12
+  vendors/                            # Optional vendor-specific extension schemas
+    001018.jtd.json                   # Example: Broadcom (OUI 00:10:18)
+  examples/
+    basic-config.jsonc                # Basic CM provisioning example
+    vendor-specific-config.jsonc      # Vendor extension example
+docs/
+  TLVs.md                            # Complete TLV reference (all CANN-registered TLVs)
+  SPECS.md                           # Specification download guide
+tools/
+  jtd2jsonschema/                    # JTD-to-JSON-Schema converter (Go)
+```
+
+## Specifications
+
+OpenDCI covers TLV encodings from across the DOCSIS specification family -- MULPI (core TLVs), L2VPN, eRouter, eDOCSIS, PacketCable, DSG, TEI, SYNC, DPoE, and DPoG.
+
+See [`docs/SPECS.md`](docs/SPECS.md) for the full list of specifications, versions, and download instructions. The complete TLV catalog with spec section references is in [`docs/TLVs.md`](docs/TLVs.md).
+
+## License
+
+[MIT](LICENSE)
