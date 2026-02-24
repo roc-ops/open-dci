@@ -847,7 +847,7 @@
             "description": "CM Interface Mask (CMIM) encoding",
             "tlvType": "22.13",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.6"
           },
           "type": "string"
         },
@@ -1016,7 +1016,7 @@
             "description": "CM Interface Mask (CMIM) encoding",
             "tlvType": "23.13",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.6"
           },
           "type": "string"
         },
@@ -1891,7 +1891,7 @@
             "tlvType": "25.44",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.7.1"
           },
           "type": "uint32"
         }
@@ -2203,7 +2203,7 @@
       "metadata": {
         "description": "L2VPN MAC Aging encoding",
         "tlvType": 65,
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.7"
       },
       "optionalProperties": {
         "MacAgingMode": {
@@ -2211,7 +2211,7 @@
             "description": "L2VPN MAC aging mode",
             "tlvType": "65.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.7.1"
           },
           "type": "uint8"
         }
@@ -2587,7 +2587,7 @@
     "MespBpColorModeEntry": {
       "metadata": {
         "description": "MESP Bandwidth Profile Color Mode encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
       },
       "optionalProperties": {
         "ColorIdentificationField": {
@@ -2595,7 +2595,7 @@
             "description": "Color identification field",
             "tlvType": "72.2.6.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.1"
           },
           "type": "uint8"
         },
@@ -2604,7 +2604,7 @@
             "description": "Color identification field value",
             "tlvType": "72.2.6.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.2"
           },
           "type": "string"
         }
@@ -2613,7 +2613,7 @@
     "MespBpColorMarkingEntry": {
       "metadata": {
         "description": "MESP Bandwidth Profile Color Marking encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
       },
       "optionalProperties": {
         "ColorMarkingField": {
@@ -2621,7 +2621,7 @@
             "description": "Color marking field",
             "tlvType": "72.2.7.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.1"
           },
           "type": "uint8"
         },
@@ -2630,7 +2630,7 @@
             "description": "Color marking field value",
             "tlvType": "72.2.7.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.2"
           },
           "type": "string"
         }
@@ -2639,7 +2639,7 @@
     "MespBandwidthProfileEntry": {
       "metadata": {
         "description": "MESP Bandwidth Profile encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
       },
       "optionalProperties": {
         "CommittedInformationRate": {
@@ -2647,7 +2647,7 @@
             "description": "Committed Information Rate in bits per second",
             "tlvType": "72.2.1",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "type": "uint32"
         },
@@ -2656,7 +2656,7 @@
             "description": "Committed Burst Size in bytes",
             "tlvType": "72.2.2",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "type": "uint32"
         },
@@ -2665,7 +2665,7 @@
             "description": "Excess Information Rate in bits per second",
             "tlvType": "72.2.3",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "type": "uint32"
         },
@@ -2674,7 +2674,7 @@
             "description": "Excess Burst Size in bytes",
             "tlvType": "72.2.4",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "type": "uint32"
         },
@@ -2683,7 +2683,7 @@
             "description": "Bandwidth profile coupling flag",
             "tlvType": "72.2.5",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "type": "uint8"
         },
@@ -2692,7 +2692,7 @@
             "description": "Bandwidth profile color mode",
             "tlvType": "72.2.6",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "ref": "MespBpColorModeEntry"
         },
@@ -2701,7 +2701,7 @@
             "description": "Bandwidth profile color marking",
             "tlvType": "72.2.7",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "ref": "MespBpColorMarkingEntry"
         }
@@ -2711,7 +2711,7 @@
       "metadata": {
         "description": "Metro Ethernet Service Profile encoding",
         "tlvType": 72,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5"
       },
       "optionalProperties": {
         "MespReference": {
@@ -2719,7 +2719,7 @@
             "description": "MESP reference identifier",
             "tlvType": "72.1",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.1"
           },
           "type": "uint16"
         },
@@ -2728,7 +2728,7 @@
             "description": "MESP bandwidth profile",
             "tlvType": "72.2",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
           },
           "ref": "MespBandwidthProfileEntry"
         },
@@ -2737,7 +2737,7 @@
             "description": "MESP name string",
             "tlvType": "72.3",
             "dataType": "string",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.3"
           },
           "type": "string"
         }
@@ -2747,7 +2747,7 @@
       "metadata": {
         "description": "L2CP Management encoding",
         "tlvType": 83,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
       },
       "optionalProperties": {
         "Cmim": {
@@ -2755,7 +2755,7 @@
             "description": "CM Interface Mask for L2CP",
             "tlvType": "83.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -2764,7 +2764,7 @@
             "description": "L2CP processing mode",
             "tlvType": "83.2",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2773,7 +2773,7 @@
             "description": "L2CP L2PT destination MAC address",
             "tlvType": "83.3",
             "dataType": "macAddress",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -2782,7 +2782,7 @@
             "description": "L2CP filter encoding",
             "tlvType": "83.4",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         }
@@ -2791,7 +2791,7 @@
     "MplsPwEntry": {
       "metadata": {
         "description": "MPLS Pseudowire encoding within NSI encapsulation",
-        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
       },
       "optionalProperties": {
         "MplsPseudowireId": {
@@ -2799,7 +2799,7 @@
             "description": "MPLS Pseudowire ID",
             "tlvType": "43.5.2.4.1",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint32"
         },
@@ -2808,7 +2808,7 @@
             "description": "MPLS peer IP address",
             "tlvType": "43.5.2.4.2",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -2817,7 +2817,7 @@
             "description": "Pseudowire type",
             "tlvType": "43.5.2.4.3",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -2826,7 +2826,7 @@
             "description": "MPLS backup pseudowire ID",
             "tlvType": "43.5.2.4.4",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint32"
         },
@@ -2835,7 +2835,7 @@
             "description": "MPLS backup peer IP address",
             "tlvType": "43.5.2.4.5",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         }
@@ -2844,7 +2844,7 @@
     "Ieee8021ahEncapsulationEntry": {
       "metadata": {
         "description": "IEEE 802.1ah Encapsulation encoding within NSI encapsulation",
-        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
       },
       "optionalProperties": {
         "ITagTci": {
@@ -2852,7 +2852,7 @@
             "description": "I-Tag TCI value",
             "tlvType": "43.5.2.6.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -2861,7 +2861,7 @@
             "description": "Destination Backbone Edge Bridge MAC address (B-DA)",
             "tlvType": "43.5.2.6.2",
             "dataType": "macAddress",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -2870,7 +2870,7 @@
             "description": "B-Tag TCI 16-bit value",
             "tlvType": "43.5.2.6.3",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -2879,7 +2879,7 @@
             "description": "I-Tag TPID 16-bit value",
             "tlvType": "43.5.2.6.4",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -2888,7 +2888,7 @@
             "description": "3-bit I-PCP value",
             "tlvType": "43.5.2.6.5",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2897,7 +2897,7 @@
             "description": "1-bit I-DEI value",
             "tlvType": "43.5.2.6.6",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2906,7 +2906,7 @@
             "description": "1-bit I-UCA value",
             "tlvType": "43.5.2.6.7",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2915,7 +2915,7 @@
             "description": "24-bit I-SID Backbone Service Instance Identifier",
             "tlvType": "43.5.2.6.8",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint32"
         },
@@ -2924,7 +2924,7 @@
             "description": "B-Tag TPID 16-bit value",
             "tlvType": "43.5.2.6.9",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -2933,7 +2933,7 @@
             "description": "1-bit B-PCP value",
             "tlvType": "43.5.2.6.10",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2942,7 +2942,7 @@
             "description": "1-bit B-DEI value",
             "tlvType": "43.5.2.6.11",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -2951,7 +2951,7 @@
             "description": "12-bit B-VID value",
             "tlvType": "43.5.2.6.12",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         }
@@ -2960,7 +2960,7 @@
     "NsiEncapsulationFormatEntry": {
       "metadata": {
         "description": "NSI Encapsulation Format encoding",
-        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
       },
       "optionalProperties": {
         "Other": {
@@ -2968,7 +2968,7 @@
             "description": "Other encapsulation format",
             "tlvType": "43.5.2.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -2977,7 +2977,7 @@
             "description": "IEEE 802.1Q encapsulation",
             "tlvType": "43.5.2.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -2986,7 +2986,7 @@
             "description": "IEEE 802.1ad encapsulation",
             "tlvType": "43.5.2.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -2995,7 +2995,7 @@
             "description": "MPLS Pseudowire encapsulation",
             "tlvType": "43.5.2.4",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "ref": "MplsPwEntry"
         },
@@ -3004,7 +3004,7 @@
             "description": "L2TPv3 peer encapsulation",
             "tlvType": "43.5.2.5",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3013,7 +3013,7 @@
             "description": "IEEE 802.1ah encapsulation",
             "tlvType": "43.5.2.6",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "ref": "Ieee8021ahEncapsulationEntry"
         },
@@ -3022,7 +3022,7 @@
             "description": "S-TPID 16-bit value",
             "tlvType": "43.5.2.8",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         }
@@ -3031,7 +3031,7 @@
     "TpidTranslationEntry": {
       "metadata": {
         "description": "TPID Translation encoding",
-        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
       },
       "optionalProperties": {
         "UpstreamTpidTranslation": {
@@ -3039,7 +3039,7 @@
             "description": "Upstream TPID translation value",
             "tlvType": "43.5.14.1",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3048,7 +3048,7 @@
             "description": "Downstream TPID translation value",
             "tlvType": "43.5.14.2",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3057,7 +3057,7 @@
             "description": "Upstream S-TPID translation value",
             "tlvType": "43.5.14.3",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3066,7 +3066,7 @@
             "description": "Downstream S-TPID translation value",
             "tlvType": "43.5.14.4",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3075,7 +3075,7 @@
             "description": "Upstream B-TPID translation value",
             "tlvType": "43.5.14.5",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3084,7 +3084,7 @@
             "description": "Downstream B-TPID translation value",
             "tlvType": "43.5.14.6",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3093,7 +3093,7 @@
             "description": "Upstream I-TPID translation value",
             "tlvType": "43.5.14.7",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         },
@@ -3102,7 +3102,7 @@
             "description": "Downstream I-TPID translation value",
             "tlvType": "43.5.14.8",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint16"
         }
@@ -3111,7 +3111,7 @@
     "L2cpProcessingEntry": {
       "metadata": {
         "description": "L2CP Processing encoding within L2VPN",
-        "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+        "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
       },
       "optionalProperties": {
         "L2cpTunnelMode": {
@@ -3119,7 +3119,7 @@
             "description": "L2CP tunnel mode",
             "tlvType": "43.5.15.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint8"
         },
@@ -3128,7 +3128,7 @@
             "description": "L2CP destination MAC address",
             "tlvType": "43.5.15.2",
             "dataType": "macAddress",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3137,7 +3137,7 @@
             "description": "L2CP L2PT destination MAC address",
             "tlvType": "43.5.15.3",
             "dataType": "macAddress",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3146,7 +3146,7 @@
             "description": "L2CP filter encoding",
             "tlvType": "43.5.15.4",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         }
@@ -3155,7 +3155,7 @@
     "ServiceDelimiterEntry": {
       "metadata": {
         "description": "Service Delimiter encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
       },
       "optionalProperties": {
         "CVid": {
@@ -3163,7 +3163,7 @@
             "description": "C-VID value",
             "tlvType": "43.5.19.1",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -3172,7 +3172,7 @@
             "description": "S-VID value",
             "tlvType": "43.5.19.2",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -3181,7 +3181,7 @@
             "description": "I-SID value",
             "tlvType": "43.5.19.3",
             "dataType": "uint32",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint32"
         },
@@ -3190,7 +3190,7 @@
             "description": "B-VID value",
             "tlvType": "43.5.19.4",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         }
@@ -3199,7 +3199,7 @@
     "VsiEncodingEntry": {
       "metadata": {
         "description": "VSI Encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
       },
       "optionalProperties": {
         "VplsClass": {
@@ -3207,7 +3207,7 @@
             "description": "VPLS class",
             "tlvType": "43.5.20.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -3216,7 +3216,7 @@
             "description": "E-Tree role",
             "tlvType": "43.5.20.2",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -3225,7 +3225,7 @@
             "description": "E-Tree root VID",
             "tlvType": "43.5.20.3",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -3234,7 +3234,7 @@
             "description": "E-Tree leaf VID",
             "tlvType": "43.5.20.4",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         }
@@ -3243,7 +3243,7 @@
     "BgpAttributeEntry": {
       "metadata": {
         "description": "BGP Attribute encoding",
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
       },
       "optionalProperties": {
         "BgpVpnid": {
@@ -3251,7 +3251,7 @@
             "description": "BGP VPN ID",
             "tlvType": "43.5.21.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -3260,7 +3260,7 @@
             "description": "Route Distinguisher",
             "tlvType": "43.5.21.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -3269,7 +3269,7 @@
             "description": "Route Target (import)",
             "tlvType": "43.5.21.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -3278,7 +3278,7 @@
             "description": "Route Target (export)",
             "tlvType": "43.5.21.4",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -3287,7 +3287,7 @@
             "description": "CE-ID or VE-ID",
             "tlvType": "43.5.21.5",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         }
@@ -3296,7 +3296,7 @@
     "MepConfigurationEntry": {
       "metadata": {
         "description": "MEP Configuration encoding for L2VPN SOAM",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3.24"
       },
       "optionalProperties": {
         "MdLevel": {
@@ -3304,7 +3304,7 @@
             "description": "Maintenance Domain level",
             "tlvType": "43.5.24.1.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.1.1"
           },
           "type": "uint8"
         },
@@ -3313,7 +3313,7 @@
             "description": "Maintenance Domain name",
             "tlvType": "43.5.24.1.2",
             "dataType": "string",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.1.2"
           },
           "type": "string"
         },
@@ -3322,7 +3322,7 @@
             "description": "Maintenance Association name",
             "tlvType": "43.5.24.1.3",
             "dataType": "string",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.1.3"
           },
           "type": "string"
         },
@@ -3331,7 +3331,7 @@
             "description": "MEP identifier",
             "tlvType": "43.5.24.1.4",
             "dataType": "uint16",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.1.4"
           },
           "type": "uint16"
         }
@@ -3340,7 +3340,7 @@
     "RemoteMepConfigurationEntry": {
       "metadata": {
         "description": "Remote MEP Configuration encoding for L2VPN SOAM",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3.24"
       },
       "optionalProperties": {
         "MdLevel": {
@@ -3348,7 +3348,7 @@
             "description": "Maintenance Domain level",
             "tlvType": "43.5.24.2.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.2.1"
           },
           "type": "uint8"
         },
@@ -3357,7 +3357,7 @@
             "description": "Maintenance Domain name",
             "tlvType": "43.5.24.2.2",
             "dataType": "string",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.2.2"
           },
           "type": "string"
         },
@@ -3366,7 +3366,7 @@
             "description": "Maintenance Association name",
             "tlvType": "43.5.24.2.3",
             "dataType": "string",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.2.3"
           },
           "type": "string"
         },
@@ -3375,7 +3375,7 @@
             "description": "Remote MEP identifier",
             "tlvType": "43.5.24.2.4",
             "dataType": "uint16",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.2.4"
           },
           "type": "uint16"
         }
@@ -3384,7 +3384,7 @@
     "FaultManagementConfigurationEntry": {
       "metadata": {
         "description": "Fault Management Configuration encoding for L2VPN SOAM",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3.24"
       },
       "optionalProperties": {
         "ContinuityCheckMessages": {
@@ -3392,7 +3392,7 @@
             "description": "Continuity Check Messages enable/configuration",
             "tlvType": "43.5.24.3.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.1"
           },
           "type": "uint8"
         },
@@ -3401,7 +3401,7 @@
             "description": "Enable Loopback Reply Messages",
             "tlvType": "43.5.24.3.2",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.2"
           },
           "type": "uint8"
         },
@@ -3410,7 +3410,7 @@
             "description": "Enable Linktrace Messages",
             "tlvType": "43.5.24.3.3",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.3"
           },
           "type": "uint8"
         }
@@ -3419,7 +3419,7 @@
     "PerformanceManagementConfigurationEntry": {
       "metadata": {
         "description": "Performance Management Configuration encoding for L2VPN SOAM",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3.24"
       },
       "optionalProperties": {
         "FrameDelayMeasurement": {
@@ -3427,7 +3427,7 @@
             "description": "Frame Delay Measurement enable/configuration",
             "tlvType": "43.5.24.4.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1"
           },
           "type": "uint8"
         },
@@ -3436,7 +3436,7 @@
             "description": "Frame Loss Measurement enable/configuration",
             "tlvType": "43.5.24.4.2",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2"
           },
           "type": "uint8"
         }
@@ -3445,7 +3445,7 @@
     "L2vpnSoamEntry": {
       "metadata": {
         "description": "L2VPN Service OAM encoding",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3.24"
       },
       "optionalProperties": {
         "MepConfiguration": {
@@ -3453,7 +3453,7 @@
             "description": "MEP configuration",
             "tlvType": "43.5.24.1",
             "dataType": "compound",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24"
           },
           "ref": "MepConfigurationEntry"
         },
@@ -3462,7 +3462,7 @@
             "description": "Remote MEP configuration",
             "tlvType": "43.5.24.2",
             "dataType": "compound",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24"
           },
           "ref": "RemoteMepConfigurationEntry"
         },
@@ -3471,7 +3471,7 @@
             "description": "Fault management configuration",
             "tlvType": "43.5.24.3",
             "dataType": "compound",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24"
           },
           "ref": "FaultManagementConfigurationEntry"
         },
@@ -3480,7 +3480,7 @@
             "description": "Performance management configuration",
             "tlvType": "43.5.24.4",
             "dataType": "compound",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24"
           },
           "ref": "PerformanceManagementConfigurationEntry"
         }
@@ -3489,7 +3489,7 @@
     "L2vpnErrorEntry": {
       "metadata": {
         "description": "L2VPN Error Encoding",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.5"
       },
       "optionalProperties": {
         "ErroredParameter": {
@@ -3497,7 +3497,7 @@
             "description": "L2VPN errored parameter type",
             "tlvType": "43.5.254.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.5.1"
           },
           "type": "uint8"
         },
@@ -3506,7 +3506,7 @@
             "description": "L2VPN confirmation code",
             "tlvType": "43.5.254.2",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.5.2"
           },
           "type": "uint8"
         },
@@ -3515,7 +3515,7 @@
             "description": "L2VPN error message",
             "tlvType": "43.5.254.3",
             "dataType": "string",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.5.3"
           },
           "type": "string"
         }
@@ -3524,7 +3524,7 @@
     "L2vpnEncodingEntry": {
       "metadata": {
         "description": "L2VPN Encoding within DOCSIS Extension Field (TLV 43.5)",
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.3"
       },
       "optionalProperties": {
         "VpnIdentifier": {
@@ -3532,7 +3532,7 @@
             "description": "VPN identifier",
             "tlvType": "43.5.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.1"
           },
           "type": "string"
         },
@@ -3541,7 +3541,7 @@
             "description": "NSI encapsulation format",
             "tlvType": "43.5.2",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "ref": "NsiEncapsulationFormatEntry"
         },
@@ -3550,7 +3550,7 @@
             "description": "eSAFE DHCP snooping",
             "tlvType": "43.5.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3559,7 +3559,7 @@
             "description": "CM Interface Mask subtype",
             "tlvType": "43.5.4",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.4"
           },
           "type": "string"
         },
@@ -3568,7 +3568,7 @@
             "description": "Attachment Group ID (AGI)",
             "tlvType": "43.5.5",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3577,7 +3577,7 @@
             "description": "Source Attachment Individual ID (SAII)",
             "tlvType": "43.5.6",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3586,7 +3586,7 @@
             "description": "Target Attachment Individual ID (TAII)",
             "tlvType": "43.5.7",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3595,7 +3595,7 @@
             "description": "Upstream user priority subtype",
             "tlvType": "43.5.8",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3604,7 +3604,7 @@
             "description": "Downstream user priority range",
             "tlvType": "43.5.9",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3613,7 +3613,7 @@
             "description": "L2VPN SA-Descriptor subtypes",
             "tlvType": "43.5.10",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "string"
         },
@@ -3622,7 +3622,7 @@
             "description": "Pseudowire type",
             "tlvType": "43.5.12",
             "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint16"
         },
@@ -3631,7 +3631,7 @@
             "description": "L2VPN mode",
             "tlvType": "43.5.13",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "type": "uint8"
         },
@@ -3640,7 +3640,7 @@
             "description": "TPID Translation encoding",
             "tlvType": "43.5.14",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "ref": "TpidTranslationEntry"
         },
@@ -3649,7 +3649,7 @@
             "description": "L2CP Processing encoding",
             "tlvType": "43.5.15",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
           },
           "ref": "L2cpProcessingEntry"
         },
@@ -3658,7 +3658,7 @@
             "description": "Pseudowire class",
             "tlvType": "43.5.18",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -3667,7 +3667,7 @@
             "description": "Service delimiter encoding",
             "tlvType": "43.5.19",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "ref": "ServiceDelimiterEntry"
         },
@@ -3676,7 +3676,7 @@
             "description": "VSI encoding",
             "tlvType": "43.5.20",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "ref": "VsiEncodingEntry"
         },
@@ -3685,7 +3685,7 @@
             "description": "BGP attribute encoding",
             "tlvType": "43.5.21",
             "dataType": "compound",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "ref": "BgpAttributeEntry"
         },
@@ -3694,7 +3694,7 @@
             "description": "VPN-SG attribute",
             "tlvType": "43.5.22",
             "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "string"
         },
@@ -3703,7 +3703,7 @@
             "description": "Pseudowire signaling",
             "tlvType": "43.5.23",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -3712,7 +3712,7 @@
             "description": "L2VPN Service OAM encoding",
             "tlvType": "43.5.24",
             "dataType": "compound",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.24"
           },
           "ref": "L2vpnSoamEntry"
         },
@@ -3721,7 +3721,7 @@
             "description": "Network Timing Profile reference",
             "tlvType": "43.5.25",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.25"
           },
           "type": "uint8"
         },
@@ -3730,7 +3730,7 @@
             "description": "L2VPN DSID",
             "tlvType": "43.5.26",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.26"
           },
           "type": "string"
         },
@@ -3739,7 +3739,7 @@
             "description": "Multipoint enable/disable",
             "tlvType": "43.5.27",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
           },
           "type": "uint8"
         },
@@ -3747,7 +3747,7 @@
           "metadata": {
             "description": "Vendor-specific L2VPN subtype",
             "tlvType": "43.5.43",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3.11"
           },
           "ref": "VendorSpecificContainer"
         },
@@ -3755,7 +3755,7 @@
           "metadata": {
             "description": "L2VPN error encoding",
             "tlvType": "43.5.254",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.5"
           },
           "ref": "L2vpnErrorEntry"
         }
@@ -3790,7 +3790,19 @@
             "description": "Optional encoding hint for the value field. Used during encode to accept typed input.",
             "spec": "CM-SP-MULPIv4.0 C.1.1.18.2"
           },
-          "enum": ["uint8", "uint16", "uint32", "int8", "int16", "int32", "string", "hexstring", "ipv4Address", "ipv6Address", "macAddress"]
+          "enum": [
+            "uint8",
+            "uint16",
+            "uint32",
+            "int8",
+            "int16",
+            "int32",
+            "string",
+            "hexstring",
+            "ipv4Address",
+            "ipv6Address",
+            "macAddress"
+          ]
         }
       }
     },
@@ -3892,7 +3904,7 @@
             "dataType": "compound",
             "repeatable": true,
             "context": "General Extension (OUI=FFFFFF)",
-            "spec": "CM-SP-L2VPN-I17"
+            "spec": "CM-SP-L2VPN-I17 B.3"
           },
           "elements": {
             "ref": "L2vpnEncodingEntry"
@@ -3972,7 +3984,7 @@
     "Tr069ManagementServerEntry": {
       "metadata": {
         "description": "TR-069 Management Server encoding for eRouter",
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4.3"
       },
       "optionalProperties": {
         "EnableCwmp": {
@@ -3980,7 +3992,7 @@
             "description": "Enable CWMP (TR-069) management",
             "tlvType": "202.2.1",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "uint8"
         },
@@ -3989,7 +4001,7 @@
             "description": "ACS URL parameter",
             "tlvType": "202.2.2",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "string"
         },
@@ -3998,7 +4010,7 @@
             "description": "ACS username parameter",
             "tlvType": "202.2.3",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "string"
         },
@@ -4007,7 +4019,7 @@
             "description": "ACS password parameter",
             "tlvType": "202.2.4",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "string"
         },
@@ -4016,7 +4028,7 @@
             "description": "Connection request username",
             "tlvType": "202.2.5",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "string"
         },
@@ -4025,7 +4037,7 @@
             "description": "Connection request password",
             "tlvType": "202.2.6",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "string"
         },
@@ -4034,7 +4046,7 @@
             "description": "ACS override flag",
             "tlvType": "202.2.7",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "type": "uint8"
         }
@@ -4043,7 +4055,7 @@
     "ErouterSnmpv1v2cTransportAddressAccessEntry": {
       "metadata": {
         "description": "eRouter SNMPv1v2c Transport Address Access encoding",
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4.6"
       },
       "optionalProperties": {
         "TransportAddress": {
@@ -4051,7 +4063,7 @@
             "description": "SNMPv1v2c transport address",
             "tlvType": "202.53.2.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "string"
         },
@@ -4060,7 +4072,7 @@
             "description": "SNMPv1v2c transport address mask",
             "tlvType": "202.53.2.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "string"
         },
@@ -4069,7 +4081,7 @@
             "description": "SNMPv1v2c access view type",
             "tlvType": "202.53.2.3",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "uint8"
         },
@@ -4078,7 +4090,7 @@
             "description": "SNMPv1v2c access view name",
             "tlvType": "202.53.2.4",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "string"
         }
@@ -4087,7 +4099,7 @@
     "ErouterSnmpv1v2cCoexistenceEntry": {
       "metadata": {
         "description": "eRouter SNMPv1v2c Coexistence Configuration encoding",
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4.6"
       },
       "optionalProperties": {
         "CommunityName": {
@@ -4095,7 +4107,7 @@
             "description": "SNMPv1v2c community name string",
             "tlvType": "202.53.1",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "string"
         },
@@ -4104,7 +4116,7 @@
             "description": "Transport address access control",
             "tlvType": "202.53.2",
             "dataType": "compound",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "ref": "ErouterSnmpv1v2cTransportAddressAccessEntry"
         }
@@ -4113,7 +4125,7 @@
     "ErouterSnmpv3AccessViewEntry": {
       "metadata": {
         "description": "eRouter SNMPv3 Access View Configuration encoding",
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4.7"
       },
       "optionalProperties": {
         "AccessViewName": {
@@ -4121,7 +4133,7 @@
             "description": "SNMPv3 access view name",
             "tlvType": "202.54.1",
             "dataType": "string",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
@@ -4130,7 +4142,7 @@
             "description": "SNMPv3 access view subtree OID",
             "tlvType": "202.54.2",
             "dataType": "oid",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
@@ -4139,7 +4151,7 @@
             "description": "SNMPv3 access view mask",
             "tlvType": "202.54.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
@@ -4148,7 +4160,7 @@
             "description": "SNMPv3 access view type",
             "tlvType": "202.54.4",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "uint8"
         }
@@ -4158,7 +4170,7 @@
       "metadata": {
         "description": "eRouter configuration encoding",
         "tlvType": 202,
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4"
       },
       "optionalProperties": {
         "InitializationMode": {
@@ -4166,7 +4178,7 @@
             "description": "eRouter initialization mode",
             "tlvType": "202.1",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.2"
           },
           "type": "uint8"
         },
@@ -4175,7 +4187,7 @@
             "description": "TR-069 Management Server configuration",
             "tlvType": "202.2",
             "dataType": "compound",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.3"
           },
           "ref": "Tr069ManagementServerEntry"
         },
@@ -4184,7 +4196,7 @@
             "description": "eRouter initialization mode override",
             "tlvType": "202.3",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.5"
           },
           "type": "uint8"
         },
@@ -4193,7 +4205,7 @@
             "description": "Router Advertisement transmission interval",
             "tlvType": "202.10",
             "dataType": "uint16",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.11"
           },
           "type": "uint16"
         },
@@ -4203,7 +4215,7 @@
             "tlvType": "202.11",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.9"
           },
           "elements": {
             "ref": "SnmpMibEntry"
@@ -4214,7 +4226,7 @@
             "description": "IP Multicast Configuration Server address",
             "tlvType": "202.12",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.12"
           },
           "type": "string"
         },
@@ -4223,7 +4235,7 @@
             "description": "Link-ID control",
             "tlvType": "202.13",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.13"
           },
           "type": "uint8"
         },
@@ -4232,7 +4244,7 @@
             "description": "Topology mode encoding",
             "tlvType": "202.42",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.10"
           },
           "type": "uint8"
         },
@@ -4240,7 +4252,7 @@
           "metadata": {
             "description": "Vendor-specific information for eRouter",
             "tlvType": "202.43",
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.8"
           },
           "ref": "VendorSpecificContainer"
         },
@@ -4250,7 +4262,7 @@
             "tlvType": "202.53",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "elements": {
             "ref": "ErouterSnmpv1v2cCoexistenceEntry"
@@ -4262,7 +4274,7 @@
             "tlvType": "202.54",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-eRouter-I22"
+            "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "elements": {
             "ref": "ErouterSnmpv3AccessViewEntry"
@@ -4273,7 +4285,7 @@
     "EteaPwTdmCirculationMapEntry": {
       "metadata": {
         "description": "eTEA PW TDM Circulation Map encoding",
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "PwTdmPortNumber": {
@@ -4281,7 +4293,7 @@
             "description": "PW TDM port number",
             "tlvType": "219.9.16.1",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4290,7 +4302,7 @@
             "description": "PW TDM timeslot map",
             "tlvType": "219.9.16.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         }
@@ -4299,7 +4311,7 @@
     "EteaIwfCfgEncodingEntry": {
       "metadata": {
         "description": "eTEA IWF Configuration encoding",
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "PwIndexSetting": {
@@ -4307,7 +4319,7 @@
             "description": "PW index setting",
             "tlvType": "219.9.1",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4316,7 +4328,7 @@
             "description": "Emulation type",
             "tlvType": "219.9.2",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4325,7 +4337,7 @@
             "description": "PW peer IPv4 address",
             "tlvType": "219.9.3",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4334,7 +4346,7 @@
             "description": "PW peer IPv6 address",
             "tlvType": "219.9.4",
             "dataType": "ipv6Address",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4343,7 +4355,7 @@
             "description": "PW destination port",
             "tlvType": "219.9.5",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4352,7 +4364,7 @@
             "description": "PW peer destination port",
             "tlvType": "219.9.6",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4361,7 +4373,7 @@
             "description": "PW name",
             "tlvType": "219.9.7",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4370,7 +4382,7 @@
             "description": "PW description",
             "tlvType": "219.9.8",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4379,7 +4391,7 @@
             "description": "PW administrative status",
             "tlvType": "219.9.9",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4388,7 +4400,7 @@
             "description": "Status change notification enable",
             "tlvType": "219.9.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4397,7 +4409,7 @@
             "description": "PW TDM type",
             "tlvType": "219.9.11",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4406,7 +4418,7 @@
             "description": "PW TDM configuration table index",
             "tlvType": "219.9.12",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4415,7 +4427,7 @@
             "description": "PW CESoPSN configuration index",
             "tlvType": "219.9.13",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4424,7 +4436,7 @@
             "description": "PW RTP SSRC",
             "tlvType": "219.9.14",
             "dataType": "uint32",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint32"
         },
@@ -4433,7 +4445,7 @@
             "description": "PW peer SSRC",
             "tlvType": "219.9.15",
             "dataType": "uint32",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint32"
         },
@@ -4443,7 +4455,7 @@
             "tlvType": "219.9.16",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "EteaPwTdmCirculationMapEntry"
@@ -4454,7 +4466,7 @@
     "EteaPwTdmConfigurationTableEntry": {
       "metadata": {
         "description": "eTEA PW TDM Configuration Table encoding",
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "ConfigurationTableIndex": {
@@ -4462,7 +4474,7 @@
             "description": "Configuration table index",
             "tlvType": "219.10.1",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4471,7 +4483,7 @@
             "description": "PW TDM payload size",
             "tlvType": "219.10.2",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4480,7 +4492,7 @@
             "description": "PW RTP header used flag",
             "tlvType": "219.10.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4489,7 +4501,7 @@
             "description": "Jitter buffer setting",
             "tlvType": "219.10.5",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4498,7 +4510,7 @@
             "description": "PW payload suppression",
             "tlvType": "219.10.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4507,7 +4519,7 @@
             "description": "PW LOPS exit criteria",
             "tlvType": "219.10.7",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4516,7 +4528,7 @@
             "description": "PW LOPS entrance criteria",
             "tlvType": "219.10.8",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4525,7 +4537,7 @@
             "description": "PW packet replace policy",
             "tlvType": "219.10.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4534,7 +4546,7 @@
             "description": "PW packet loss window",
             "tlvType": "219.10.11",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4543,7 +4555,7 @@
             "description": "PW excessive loss threshold",
             "tlvType": "219.10.12",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4552,7 +4564,7 @@
             "description": "PW severe loss threshold",
             "tlvType": "219.10.15",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4561,7 +4573,7 @@
             "description": "PW RTP timestamp mode",
             "tlvType": "219.10.16",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4570,7 +4582,7 @@
             "description": "PW default fill pattern",
             "tlvType": "219.10.17",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4579,7 +4591,7 @@
             "description": "PW L flag payload policy",
             "tlvType": "219.10.18",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4588,7 +4600,7 @@
             "description": "PW Type of Service",
             "tlvType": "219.10.19",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4597,7 +4609,7 @@
             "description": "PW RTP payload type",
             "tlvType": "219.10.20",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4606,7 +4618,7 @@
             "description": "PW RTP peer payload type",
             "tlvType": "219.10.21",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4615,7 +4627,7 @@
             "description": "PW RTP timestamp reference",
             "tlvType": "219.10.22",
             "dataType": "uint32",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint32"
         },
@@ -4624,7 +4636,7 @@
             "description": "PW RTP peer timestamp reference",
             "tlvType": "219.10.23",
             "dataType": "uint32",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint32"
         },
@@ -4633,7 +4645,7 @@
             "description": "PW SRTP enable flag",
             "tlvType": "219.10.24",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         }
@@ -4642,7 +4654,7 @@
     "EteaCesopsnConfigurationTableEntry": {
       "metadata": {
         "description": "CESoPSN Configuration Table encoding",
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "ConfigTableIndex": {
@@ -4650,7 +4662,7 @@
             "description": "PW CESoPSN config table index",
             "tlvType": "219.13.1",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4659,7 +4671,7 @@
             "description": "Default idle pattern",
             "tlvType": "219.13.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4668,7 +4680,7 @@
             "description": "L flag policy",
             "tlvType": "219.13.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4677,7 +4689,7 @@
             "description": "R flag policy",
             "tlvType": "219.13.4",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4686,7 +4698,7 @@
             "description": "Remote defect policy",
             "tlvType": "219.13.5",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4695,7 +4707,7 @@
             "description": "LOPS policy",
             "tlvType": "219.13.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4704,7 +4716,7 @@
             "description": "Application signal TOS",
             "tlvType": "219.13.7",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4713,7 +4725,7 @@
             "description": "RTP CAS payload type",
             "tlvType": "219.13.8",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4722,7 +4734,7 @@
             "description": "RTP CAS peer payload type",
             "tlvType": "219.13.9",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4731,7 +4743,7 @@
             "description": "Application signal idle pattern",
             "tlvType": "219.13.10",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4740,7 +4752,7 @@
             "description": "Application signal interval",
             "tlvType": "219.13.11",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4749,7 +4761,7 @@
             "description": "Application signal maximum interval",
             "tlvType": "219.13.12",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         }
@@ -4758,7 +4770,7 @@
     "EteaDsx1ConfigurationTableEntry": {
       "metadata": {
         "description": "dsx1 Configuration Table encoding",
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "Dsx1PortId": {
@@ -4766,7 +4778,7 @@
             "description": "dsx1 port ID",
             "tlvType": "219.14.1",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4775,7 +4787,7 @@
             "description": "dsx1 line type",
             "tlvType": "219.14.2",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4784,7 +4796,7 @@
             "description": "dsx1 line coding",
             "tlvType": "219.14.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4793,7 +4805,7 @@
             "description": "dsx1 circuit ID",
             "tlvType": "219.14.4",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4802,7 +4814,7 @@
             "description": "dsx1 loopback configuration",
             "tlvType": "219.14.5",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4811,7 +4823,7 @@
             "description": "dsx1 signal mode",
             "tlvType": "219.14.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4820,7 +4832,7 @@
             "description": "dsx1 transmit clock source",
             "tlvType": "219.14.7",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4829,7 +4841,7 @@
             "description": "dsx1 FDL",
             "tlvType": "219.14.8",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4838,7 +4850,7 @@
             "description": "dsx1 line length",
             "tlvType": "219.14.9",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint16"
         },
@@ -4847,7 +4859,7 @@
             "description": "dsx1 line status trap enable",
             "tlvType": "219.14.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4856,7 +4868,7 @@
             "description": "dsx1 channelization",
             "tlvType": "219.14.11",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4865,7 +4877,7 @@
             "description": "dsx1 line mode",
             "tlvType": "219.14.12",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         },
@@ -4874,7 +4886,7 @@
             "description": "dsx1 line build out",
             "tlvType": "219.14.13",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         }
@@ -4884,7 +4896,7 @@
       "metadata": {
         "description": "eTEA (TDM Emulation Adapter) configuration encoding",
         "tlvType": 219,
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
         "SymbolClock": {
@@ -4892,7 +4904,7 @@
             "description": "eTEA symbol clock configuration",
             "tlvType": "219.8",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4902,7 +4914,7 @@
             "tlvType": "219.9",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "EteaIwfCfgEncodingEntry"
@@ -4914,7 +4926,7 @@
             "tlvType": "219.10",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "EteaPwTdmConfigurationTableEntry"
@@ -4926,7 +4938,7 @@
             "tlvType": "219.11",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "SnmpMibEntry"
@@ -4937,7 +4949,7 @@
             "description": "eTEA SNMP write-access control",
             "tlvType": "219.12",
             "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "string"
         },
@@ -4947,7 +4959,7 @@
             "tlvType": "219.13",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "EteaCesopsnConfigurationTableEntry"
@@ -4959,7 +4971,7 @@
             "tlvType": "219.14",
             "dataType": "compound",
             "repeatable": true,
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "elements": {
             "ref": "EteaDsx1ConfigurationTableEntry"
@@ -4969,7 +4981,7 @@
           "metadata": {
             "description": "eTEA vendor-specific extensions",
             "tlvType": "219.43",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "ref": "VendorSpecificContainer"
         },
@@ -4978,7 +4990,7 @@
             "description": "eTEA end of text marker",
             "tlvType": "219.255",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "type": "uint8"
         }
@@ -5450,7 +5462,7 @@
         "tlvType": 65,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-L2VPN-I17"
+        "spec": "CM-SP-L2VPN-I17 B.7"
       },
       "elements": {
         "ref": "L2vpnMacAgingEntry"
@@ -5524,7 +5536,7 @@
         "tlvType": 72,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5"
       },
       "elements": {
         "ref": "MetroEthernetServiceProfileEntry"
@@ -5591,7 +5603,7 @@
         "tlvType": 83,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14"
+        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
       },
       "elements": {
         "ref": "L2cpManagementEntry"
@@ -5686,7 +5698,7 @@
         "description": "DOCSIS Sync Configurations encoding",
         "tlvType": 101,
         "dataType": "hexstring",
-        "spec": "CM-SP-SYNC-I03"
+        "spec": "CM-SP-SYNC-I03 D.2.1"
       },
       "type": "string"
     },
@@ -5695,7 +5707,7 @@
         "description": "PTP Address Configurations encoding",
         "tlvType": 102,
         "dataType": "hexstring",
-        "spec": "CM-SP-SYNC-I03"
+        "spec": "CM-SP-SYNC-I03 D.2.2"
       },
       "type": "string"
     },
@@ -5732,7 +5744,7 @@
         "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
         "tlvType": 201,
         "dataType": "hexstring",
-        "spec": "CM-SP-eDOCSIS-I31"
+        "spec": "CM-SP-eDOCSIS-I31 5.2.8.1"
       },
       "type": "string"
     },
@@ -5742,7 +5754,7 @@
         "tlvType": 202,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-eRouter-I22"
+        "spec": "CM-SP-eRouter-I22 B.4"
       },
       "elements": {
         "ref": "ErouterEntry"
@@ -5753,7 +5765,7 @@
         "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
         "tlvType": 216,
         "dataType": "hexstring",
-        "spec": "PKT-SP-PROV1.5-C01"
+        "spec": "PKT-SP-PROV1.5-C01 9.1"
       },
       "type": "string"
     },
@@ -5762,7 +5774,7 @@
         "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
         "tlvType": 217,
         "dataType": "hexstring",
-        "spec": "CM-SP-DSG-I25"
+        "spec": "CM-SP-eDOCSIS-I31 5.2.8.1, CM-SP-DSG-I25"
       },
       "type": "string"
     },
@@ -5772,7 +5784,7 @@
         "tlvType": 219,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-TEI-I06"
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "elements": {
         "ref": "EteaEntry"
@@ -5783,7 +5795,7 @@
         "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
         "tlvType": 220,
         "dataType": "hexstring",
-        "spec": "PKT-SP-RST-E-DVA-C01"
+        "spec": "CM-SP-eDOCSIS-I31 5.2.8.1, PKT-SP-RST-E-DVA-C01"
       },
       "type": "string"
     },
@@ -5792,7 +5804,7 @@
         "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
         "tlvType": 221,
         "dataType": "hexstring",
-        "spec": "CM-SP-eDOCSIS-I31"
+        "spec": "CM-SP-eDOCSIS-I31 5.2.8.1"
       },
       "type": "string"
     },

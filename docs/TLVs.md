@@ -12,6 +12,23 @@ This document catalogs all DOCSIS provisioning TLVs from the CableLabs Assigned 
 
 TLVs are used in CM configuration files and MAC Management messages. They are also used in the RPHY GCP Protocol. The Type-Length-Value encoding allows provisioning systems to configure cable modems and CMTS equipment with network parameters, QoS settings, security credentials, and service flow definitions.
 
+### Spec-to-Document Mapping
+
+| Short Name | Full Document Identifier | TLV Area |
+|------------|--------------------------|----------|
+| MULPI / MULPIv4.0 | CM-SP-MULPIv4.0-I11-260219 | Core TLVs (Annex C) |
+| L2VPN | CM-SP-L2VPN-I17-251013 | TLV 43.5, 45, 65 |
+| eRouter | CM-SP-eRouter-I22-240503 | TLV 202 |
+| eDOCSIS | CM-SP-eDOCSIS-I31-220831 | TLV 201--231 (eSAFE containers) |
+| DSG | CM-SP-DSG-I25-170906 | TLV 217 |
+| TEI | CM-SP-TEI-I06-100611 | TLV 219 |
+| SYNC | CM-SP-SYNC-I03-220715 | TLV 98--102 |
+| PacketCable PROV1.5 | PKT-SP-PROV1.5-C01-191120 | TLV 216 |
+| PacketCable RST-E-DVA | PKT-SP-RST-E-DVA-C01-140314 | TLV 220 |
+| DPoE-MULPIv1.0 | DPoE-SP-MULPIv1.0-C01-160830 | Various |
+| DPoE-MULPIv2.0 | DPoE-SP-MULPIv2.0-I14-230322 | TLV 43.5, 72, 83 |
+| CANN | CL-SP-CANN-I24-250320 | TLV registry |
+
 ---
 
 ## 2. Top-Level DOCSIS TLVs (CANN 11.1)
@@ -120,11 +137,11 @@ This table lists all top-level TLV types registered in CANN Section 11.1, cross-
 | 95 | DHQoS ASF SID Bundle Assignment | hexstring | n | Yes | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.5.8 |
 | 96 | Advanced Diplexer Band Edge | hexstring | n | Yes | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.2.24 |
 | 97 | Advanced Band Plan Support | uint8 | 1 | Yes | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.2.25 |
-| 98 | DOCSIS Sync Capabilities | encapsulated | n | No | SYNC I03 | [SYNC] |
-| 99 | DOCSIS CM System Information | encapsulated | n | No | SYNC I03 | [SYNC] |
-| 100 | Sync DSID Assignment | encapsulated | n | No | SYNC I03 | [SYNC] |
-| 101 | DOCSIS Sync Configurations | hexstring | n | Yes | SYNC I03 | [SYNC] |
-| 102 | PTP Address Configurations | hexstring | n | Yes | SYNC I03 | [SYNC] |
+| 98 | DOCSIS Sync Capabilities | encapsulated | n | No | SYNC I03 | D.1.1 |
+| 99 | DOCSIS CM System Information | encapsulated | n | No | SYNC I03 | D.1.2 |
+| 100 | Sync DSID Assignment | encapsulated | n | No | SYNC I03 | D.1.3 |
+| 101 | DOCSIS Sync Configurations | hexstring | n | Yes | SYNC I03 | D.2.1 |
+| 102 | PTP Address Configurations | hexstring | n | Yes | SYNC I03 | D.2.2 |
 | 103 | CM SSH Server Configuration Settings | hexstring | n | Yes | DOCSIS 4.0 · MULPIv4.0 I11 | C.3.1.2 |
 | 104 | Security Configuration Settings | hexstring | n | Yes | DOCSIS 4.0 · MULPIv4.0 I11 | C.3.1.3 |
 | 105 | Extended Modem Capabilities | encapsulated | n | No | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.3.1 |
@@ -136,15 +153,15 @@ This table lists all top-level TLV types registered in CANN Section 11.1, cross-
 
 | Type | CANN Name | Data Type | Length | Cfg File | Spec | Reference |
 |------|-----------|-----------|--------|----------|------|-----------|
-| 201 | ePS | hexstring | n | Yes | eDOCSIS I31 | [eDOCSIS] |
-| 202 | eRouter | encapsulated | n | Yes | eRouter I22 | [eRouter] |
+| 201 | ePS | hexstring | n | Yes | eDOCSIS I31 | 5.2.8.1 |
+| 202 | eRouter | encapsulated | n | Yes | eRouter I22 | B.4 |
 | 203--215 | *(Reserved)* | - | - | - | - | - |
-| 216 | eMTA | hexstring | n | Yes | PacketCable PROV1.5 C01 | [PacketCable] |
-| 217 | eSTB | hexstring | n | Yes | DSG I25 | [DSG] |
+| 216 | eMTA | hexstring | n | Yes | PacketCable PROV1.5 C01 | 9.1 |
+| 217 | eSTB | hexstring | n | Yes | eDOCSIS I31 · DSG I25 | 5.2.8.1 |
 | 218 | *(Reserved)* | - | - | - | - | - |
-| 219 | eTEA | encapsulated | n | Yes | TEI I06 | [TEI] |
-| 220 | eDVA | hexstring | n | Yes | PacketCable RST-E-DVA C01 | [PacketCable 2.0] |
-| 221 | eSG | hexstring | n | Yes | eDOCSIS I31 | [eDOCSIS] |
+| 219 | eTEA | encapsulated | n | Yes | TEI I06 | 6.7.1.10.1 |
+| 220 | eDVA | hexstring | n | Yes | eDOCSIS I31 · PacketCable RST-E-DVA C01 | 5.2.8.1 |
+| 221 | eSG | hexstring | n | Yes | eDOCSIS I31 | 5.2.8.1 |
 | 222--231 | *(Reserved)* | - | - | - | - | - |
 
 > **Note:** Types 232--254 are reserved/unassigned.
@@ -286,102 +303,102 @@ CANN Section 11.1.2.1. These sub-TLVs are carried within TLV 43.5 (L2VPN Encodin
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 43.5.1 | VPN Identifier | hexstring | L2VPN I17 | - |
-| 43.5.2 | NSI encapsulation format | encapsulated | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.1 | Other | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.2 | IEEE 802.1Q | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.3 | IEEE 802.1ad | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.4 | MPLS PW | encapsulated | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.4.1 | MPLS Pseudowire ID | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.4.2 | MPLS Peer IP address | ipv4Address | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.4.3 | Pseudowire Type | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.4.4 | MPLS Backup Pseudowire ID | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.4.5 | MPLS Backup Peer IP address | ipv4Address | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.5 | L2TPv3 Peer | ipv4Address | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.6 | IEEE 802.1ah Encapsulation | encapsulated | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.6.1 | IEEE 802.1ah Backbone Service Instance Tag (I-Tag) TCI | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.6.2 | IEEE 802.1ah Destination Backbone Edge Bridge (BEB) MAC Address (B-DA) | macAddress | DPoE-MULPIv1.0 C01 | - |
-| 43.5.2.6.3 | 16-bit value of [802.1ah] B-Tag TCI | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.4 | 16-bit value of [802.1ah] I-Tag TPID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.5 | 3 bit I-PCP | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.6 | 1 bit I-DEI | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.7 | 1 bit I-UCA | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.8 | 24-bit value of [802.1ah] I-SID Backbone Service Instance Identifier | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.9 | 16-bit value of [802.1ah] B-Tag TPID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.10 | 1 bit B-PCP | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.11 | 1 bit B-DEI | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.6.12 | 12-bit value of [802.1ah] B-VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.2.8 | 16-bit value of [802.1ad] S-TPID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.3 | eSafe DHCP snooping | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.4 | CM Interface Mask subtype | hexstring | L2VPN I17 | - |
-| 43.5.5 | Attachment Group ID (AGI) | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.6 | source attachment individual id (SAII) | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.7 | target attachment individual id (TAII) | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.8 | Upstream User Priority subtype | uint8 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.9 | Downstream User Priority Range | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.10 | L2VPN SA-Descriptor Subtypes | hexstring | DPoE-MULPIv1.0 C01 | - |
-| 43.5.43 | Vendor Specific L2VPN Subtype | hexstring | L2VPN I17 | - |
-| 43.5.12 | Pseudowire Type | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.13 | L2VPN Mode | uint8 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14 | Tag Protocol Identifier (TPID) Translation | encapsulated | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.1 | Upstream TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.2 | Downstream TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.3 | Upstream S-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.4 | Downstream S-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.5 | Upstream B-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.6 | Downstream B-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.7 | Upstream I-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.14.8 | Downstream I-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | - |
-| 43.5.15 | L2CP Processing | encapsulated | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | - |
-| 43.5.15.1 | L2CP Tunnel Mode | uint8 | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | - |
-| 43.5.15.2 | L2CP D-MAC Address | macAddress | DPoE-MULPIv1.0 C01 | - |
-| 43.5.15.3 | L2CP L2PT D-MAC Address | macAddress | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | - |
-| 43.5.15.4 | L2CP Filter | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.16 | Reserved (formerly DAC) | - | DPoE-MULPIv2.0 I14 | - |
-| 43.5.18 | Pseudowire Class | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.19 | Service Delimiter | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 43.5.19.1 | C-VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.19.2 | S-VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.19.3 | I-SID | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.19.4 | B-VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.20 | VSI Encoding | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 43.5.20.1 | VPLS Class | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.20.2 | E-Tree Role | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.20.3 | E-Tree Root VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.20.4 | E-Tree Leaf VID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21 | BGP Attribute | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21.1 | BGP VPNID | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21.2 | Route Distinguisher | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21.3 | Route Target (import) | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21.4 | Route Target (export) | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.21.5 | CE-ID or VE-ID | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.22 | VPN-SG Attribute | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 43.5.23 | Pseudowire Signaling | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.24 | L2VPN SOAM Subtype | encapsulated | L2VPN I17 | - |
-| 43.5.24.1 | MEP Configuration | encapsulated | L2VPN I17 | - |
-| 43.5.24.1.1 | MD Level | uint8 | L2VPN I17 | - |
-| 43.5.24.1.2 | MD Name | string | L2VPN I17 | - |
-| 43.5.24.1.3 | MA Name | string | L2VPN I17 | - |
-| 43.5.24.1.4 | MEP ID | uint16 | L2VPN I17 | - |
-| 43.5.24.2 | Remote MEP Configuration | encapsulated | L2VPN I17 | - |
-| 43.5.24.2.1 | MD Level | uint8 | L2VPN I17 | - |
-| 43.5.24.2.2 | MD Name | string | L2VPN I17 | - |
-| 43.5.24.2.3 | MA Name | string | L2VPN I17 | - |
-| 43.5.24.2.4 | MEP ID | uint16 | L2VPN I17 | - |
-| 43.5.24.3 | Fault Management Configuration | encapsulated | L2VPN I17 | - |
-| 43.5.24.3.1 | Continuity Check Messages | uint8 | L2VPN I17 | - |
-| 43.5.24.3.2 | Enable Loopback Reply Messages | uint8 | L2VPN I17 | - |
-| 43.5.24.3.3 | Enable Linktrace Messages | uint8 | L2VPN I17 | - |
-| 43.5.24.4 | Performance Management Configuration | encapsulated | L2VPN I17 | - |
-| 43.5.24.4.1 | Frame Delay Measurement | uint8 | L2VPN I17 | - |
-| 43.5.24.4.2 | Frame Loss Measurement | uint8 | L2VPN I17 | - |
-| 43.5.25 | Network Timing Profile Reference | uint8 | L2VPN I17 | - |
-| 43.5.26 | L2VPN DSID | uint32 | L2VPN I17 | - |
-| 43.5.27 | Multipoint Enable/Disable | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 43.5.254 | L2VPN Error Encoding | encapsulated | L2VPN I17 | - |
-| 43.5.254.1 | L2VPN Errored Parameter | uint8 | L2VPN I17 | - |
-| 43.5.254.2 | L2VPN Confirmation Code | uint8 | L2VPN I17 | - |
-| 43.5.254.3 | L2VPN Error Message Subtype | string | L2VPN I17 | - |
+| 43.5.1 | VPN Identifier | hexstring | L2VPN I17 | B.3.1 |
+| 43.5.2 | NSI encapsulation format | encapsulated | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.1 | Other | hexstring | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.2 | IEEE 802.1Q | hexstring | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.3 | IEEE 802.1ad | hexstring | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.4 | MPLS PW | encapsulated | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.4.1 | MPLS Pseudowire ID | uint32 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.4.2 | MPLS Peer IP address | ipv4Address | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.4.3 | Pseudowire Type | uint16 | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.4.4 | MPLS Backup Pseudowire ID | uint32 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.4.5 | MPLS Backup Peer IP address | ipv4Address | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.5 | L2TPv3 Peer | ipv4Address | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.6 | IEEE 802.1ah Encapsulation | encapsulated | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.6.1 | IEEE 802.1ah Backbone Service Instance Tag (I-Tag) TCI | hexstring | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.6.2 | IEEE 802.1ah Destination Backbone Edge Bridge (BEB) MAC Address (B-DA) | macAddress | DPoE-MULPIv1.0 C01 | B.3.2 |
+| 43.5.2.6.3 | 16-bit value of [802.1ah] B-Tag TCI | uint16 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.4 | 16-bit value of [802.1ah] I-Tag TPID | uint16 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.5 | 3 bit I-PCP | uint8 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.6 | 1 bit I-DEI | uint8 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.7 | 1 bit I-UCA | uint8 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.8 | 24-bit value of [802.1ah] I-SID Backbone Service Instance Identifier | uint32 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.9 | 16-bit value of [802.1ah] B-Tag TPID | uint16 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.10 | 1 bit B-PCP | uint8 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.11 | 1 bit B-DEI | uint8 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.6.12 | 12-bit value of [802.1ah] B-VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.2.8 | 16-bit value of [802.1ad] S-TPID | uint16 | DPoE-MULPIv2.0 I14 | B.3.2 |
+| 43.5.3 | eSafe DHCP snooping | hexstring | DPoE-MULPIv1.0 C01 | B.3.3 |
+| 43.5.4 | CM Interface Mask subtype | hexstring | L2VPN I17 | B.3.4 |
+| 43.5.5 | Attachment Group ID (AGI) | hexstring | DPoE-MULPIv1.0 C01 | B.3.5 |
+| 43.5.6 | source attachment individual id (SAII) | hexstring | DPoE-MULPIv1.0 C01 | B.3.6 |
+| 43.5.7 | target attachment individual id (TAII) | hexstring | DPoE-MULPIv1.0 C01 | B.3.7 |
+| 43.5.8 | Upstream User Priority subtype | uint8 | DPoE-MULPIv1.0 C01 | B.3.8 |
+| 43.5.9 | Downstream User Priority Range | hexstring | DPoE-MULPIv1.0 C01 | B.3.9 |
+| 43.5.10 | L2VPN SA-Descriptor Subtypes | hexstring | DPoE-MULPIv1.0 C01 | B.3.10 |
+| 43.5.43 | Vendor Specific L2VPN Subtype | hexstring | L2VPN I17 | B.3.11 |
+| 43.5.12 | Pseudowire Type | uint16 | DPoE-MULPIv2.0 I14 | B.3.13 |
+| 43.5.13 | L2VPN Mode | uint8 | DPoE-MULPIv1.0 C01 | B.3.14 |
+| 43.5.14 | Tag Protocol Identifier (TPID) Translation | encapsulated | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.1 | Upstream TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.2 | Downstream TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.3 | Upstream S-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.4 | Downstream S-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.5 | Upstream B-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.6 | Downstream B-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.7 | Upstream I-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.14.8 | Downstream I-TPID Translation | uint16 | DPoE-MULPIv1.0 C01 | B.3.15 |
+| 43.5.15 | L2CP Processing | encapsulated | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | B.3.16 |
+| 43.5.15.1 | L2CP Tunnel Mode | uint8 | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | B.3.16 |
+| 43.5.15.2 | L2CP D-MAC Address | macAddress | DPoE-MULPIv1.0 C01 | B.3.16 |
+| 43.5.15.3 | L2CP L2PT D-MAC Address | macAddress | DPoE-MULPIv1.0 C01 / DPoE-MULPIv2.0 I14 | B.3.16 |
+| 43.5.15.4 | L2CP Filter | hexstring | DPoE-MULPIv2.0 I14 | B.3.16 |
+| 43.5.16 | Reserved (formerly DAC) | - | DPoE-MULPIv2.0 I14 | B.3.17 |
+| 43.5.18 | Pseudowire Class | uint8 | DPoE-MULPIv2.0 I14 | B.3.18 |
+| 43.5.19 | Service Delimiter | encapsulated | DPoE-MULPIv2.0 I14 | B.3.19 |
+| 43.5.19.1 | C-VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.19 |
+| 43.5.19.2 | S-VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.19 |
+| 43.5.19.3 | I-SID | uint32 | DPoE-MULPIv2.0 I14 | B.3.19 |
+| 43.5.19.4 | B-VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.19 |
+| 43.5.20 | VSI Encoding | encapsulated | DPoE-MULPIv2.0 I14 | B.3.20 |
+| 43.5.20.1 | VPLS Class | uint8 | DPoE-MULPIv2.0 I14 | B.3.20 |
+| 43.5.20.2 | E-Tree Role | uint8 | DPoE-MULPIv2.0 I14 | B.3.20 |
+| 43.5.20.3 | E-Tree Root VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.20 |
+| 43.5.20.4 | E-Tree Leaf VID | uint16 | DPoE-MULPIv2.0 I14 | B.3.20 |
+| 43.5.21 | BGP Attribute | encapsulated | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.21.1 | BGP VPNID | hexstring | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.21.2 | Route Distinguisher | hexstring | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.21.3 | Route Target (import) | hexstring | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.21.4 | Route Target (export) | hexstring | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.21.5 | CE-ID or VE-ID | uint16 | DPoE-MULPIv2.0 I14 | B.3.21 |
+| 43.5.22 | VPN-SG Attribute | hexstring | DPoE-MULPIv2.0 I14 | B.3.22 |
+| 43.5.23 | Pseudowire Signaling | uint8 | DPoE-MULPIv2.0 I14 | B.3.23 |
+| 43.5.24 | L2VPN SOAM Subtype | encapsulated | L2VPN I17 | B.3.24 |
+| 43.5.24.1 | MEP Configuration | encapsulated | L2VPN I17 | B.3.24.1 |
+| 43.5.24.1.1 | MD Level | uint8 | L2VPN I17 | B.3.24.1 |
+| 43.5.24.1.2 | MD Name | string | L2VPN I17 | B.3.24.1 |
+| 43.5.24.1.3 | MA Name | string | L2VPN I17 | B.3.24.1 |
+| 43.5.24.1.4 | MEP ID | uint16 | L2VPN I17 | B.3.24.1 |
+| 43.5.24.2 | Remote MEP Configuration | encapsulated | L2VPN I17 | B.3.24.2 |
+| 43.5.24.2.1 | MD Level | uint8 | L2VPN I17 | B.3.24.2 |
+| 43.5.24.2.2 | MD Name | string | L2VPN I17 | B.3.24.2 |
+| 43.5.24.2.3 | MA Name | string | L2VPN I17 | B.3.24.2 |
+| 43.5.24.2.4 | MEP ID | uint16 | L2VPN I17 | B.3.24.2 |
+| 43.5.24.3 | Fault Management Configuration | encapsulated | L2VPN I17 | B.3.24.3 |
+| 43.5.24.3.1 | Continuity Check Messages | uint8 | L2VPN I17 | B.3.24.3 |
+| 43.5.24.3.2 | Enable Loopback Reply Messages | uint8 | L2VPN I17 | B.3.24.3 |
+| 43.5.24.3.3 | Enable Linktrace Messages | uint8 | L2VPN I17 | B.3.24.3 |
+| 43.5.24.4 | Performance Management Configuration | encapsulated | L2VPN I17 | B.3.24.4 |
+| 43.5.24.4.1 | Frame Delay Measurement | uint8 | L2VPN I17 | B.3.24.4 |
+| 43.5.24.4.2 | Frame Loss Measurement | uint8 | L2VPN I17 | B.3.24.4 |
+| 43.5.25 | Network Timing Profile Reference | uint8 | L2VPN I17 | B.3.25 |
+| 43.5.26 | L2VPN DSID | uint32 | L2VPN I17 | B.3.26 |
+| 43.5.27 | Multipoint Enable/Disable | uint8 | DPoE-MULPIv2.0 I14 | B.3.27 |
+| 43.5.254 | L2VPN Error Encoding | encapsulated | L2VPN I17 | B.5 |
+| 43.5.254.1 | L2VPN Errored Parameter | uint8 | L2VPN I17 | B.5.1 |
+| 43.5.254.2 | L2VPN Confirmation Code | uint8 | L2VPN I17 | B.5.2 |
+| 43.5.254.3 | L2VPN Error Message Subtype | string | L2VPN I17 | B.5.3 |
 
 ### 3.4 TLV 45 -- L2VPN DUT Filtering Sub-TLVs
 
@@ -398,7 +415,7 @@ CANN Section 11.1.2.3. Sub-TLVs within TLV 65 (L2VPN MAC Aging Encoding).
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 65.1 | L2VPN MAC Aging Mode | uint8 | L2VPN I17 | - |
+| 65.1 | L2VPN MAC Aging Mode | uint8 | L2VPN I17 | B.7.1 |
 
 ### 3.6 TLV 24/25/70/71 -- Service Flow Sub-TLVs
 
@@ -676,20 +693,20 @@ CANN Section 11.1.7. Sub-TLVs within TLV 72 (Metro Ethernet Service Profile).
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 72.1 | MESP Reference | uint16 | DPoE-MULPIv2.0 I14 | - |
-| 72.2 | MESP Bandwidth Profile (MESP-BP) | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 72.2.1 | MESP-BP Committed Information Rate | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.2 | MESP-BP Committed Burst Size | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.3 | MESP-BP Excess Information Rate | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.4 | MESP-BP Excess Burst Size | uint32 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.5 | MESP-BP Coupling Flag | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.6 | MESP-BP Color Mode | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 72.2.6.1 | MESP-BP-CM Color Identification Field | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.6.2 | MESP-BP-CM Color Identification Field Value | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 72.2.7 | MESP-BP Color Marking | encapsulated | DPoE-MULPIv2.0 I14 | - |
-| 72.2.7.1 | MESP-BP-CR Color Marking Field | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 72.2.7.2 | MESP-BP-CR Color Marking Field Value | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 72.3 | MESP Name | string | DPoE-MULPIv2.0 I14 | - |
+| 72.1 | MESP Reference | uint16 | DPoE-MULPIv2.0 I14 | C.5.1 |
+| 72.2 | MESP Bandwidth Profile (MESP-BP) | encapsulated | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.1 | MESP-BP Committed Information Rate | uint32 | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.2 | MESP-BP Committed Burst Size | uint32 | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.3 | MESP-BP Excess Information Rate | uint32 | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.4 | MESP-BP Excess Burst Size | uint32 | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.5 | MESP-BP Coupling Flag | uint8 | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.6 | MESP-BP Color Mode | encapsulated | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.6.1 | MESP-BP-CM Color Identification Field | uint8 | DPoE-MULPIv2.0 I14 | C.5.2.6.1 |
+| 72.2.6.2 | MESP-BP-CM Color Identification Field Value | hexstring | DPoE-MULPIv2.0 I14 | C.5.2.6.2 |
+| 72.2.7 | MESP-BP Color Marking | encapsulated | DPoE-MULPIv2.0 I14 | C.5.2 |
+| 72.2.7.1 | MESP-BP-CR Color Marking Field | uint8 | DPoE-MULPIv2.0 I14 | C.5.2.7.1 |
+| 72.2.7.2 | MESP-BP-CR Color Marking Field Value | hexstring | DPoE-MULPIv2.0 I14 | C.5.2.7.2 |
+| 72.3 | MESP Name | string | DPoE-MULPIv2.0 I14 | C.5.3 |
 
 ### 3.11 TLV 83 -- L2CP Sub-TLVs
 
@@ -697,10 +714,10 @@ CANN Section 11.1.8. Sub-TLVs within TLV 83 (L2CP Management).
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 83.1 | CMIM | hexstring | DPoE-MULPIv2.0 I14 | - |
-| 83.2 | L2CP Mode | uint8 | DPoE-MULPIv2.0 I14 | - |
-| 83.3 | L2CP L2PT D-MAC Address | macAddress | DPoE-MULPIv2.0 I14 | - |
-| 83.4 | L2CP Filter | hexstring | DPoE-MULPIv2.0 I14 | - |
+| 83.1 | CMIM | hexstring | DPoE-MULPIv2.0 I14 | C.17 |
+| 83.2 | L2CP Mode | uint8 | DPoE-MULPIv2.0 I14 | C.17 |
+| 83.3 | L2CP L2PT D-MAC Address | macAddress | DPoE-MULPIv2.0 I14 | C.17 |
+| 83.4 | L2CP Filter | hexstring | DPoE-MULPIv2.0 I14 | C.17 |
 
 ### 3.12 TLV 202 -- eRouter Sub-TLVs
 
@@ -708,35 +725,35 @@ CANN Section 11.1.9. Sub-TLVs within TLV 202 (eRouter).
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 202.1 | eRouter Initialization Mode Encoding | uint8 | eRouter I22 | - |
-| 202.2 | TR-069 Management Server | encapsulated | eRouter I22 | - |
-| 202.2.1 | EnableCWMP | uint8 | eRouter I22 | - |
-| 202.2.2 | URL Parameter | string | eRouter I22 | - |
-| 202.2.3 | Username Parameter | string | eRouter I22 | - |
-| 202.2.4 | Password Parameter | string | eRouter I22 | - |
-| 202.2.5 | Connection Request Username | string | eRouter I22 | - |
-| 202.2.6 | Connection Request Password | string | eRouter I22 | - |
-| 202.2.7 | ACSOverride | uint8 | eRouter I22 | - |
-| 202.3 | eRouter Initialization Mode Override | uint8 | eRouter I22 | - |
-| 202.10 | Router Advertisement (RA) Transmission Interval | uint16 | eRouter I22 | - |
-| 202.11 | SNMP MIB Object | hexstring | eRouter I22 | - |
-| 202.12 | IP Multicast Configuration Server | ipv4Address | eRouter I22 | - |
-| 202.13 | Link-ID Control | uint8 | eRouter I22 | - |
-| 202.42 | Topology Mode Encoding | uint8 | eRouter I22 | - |
-| 202.43 | Vendor Specific Information | encapsulated | eRouter I22 | - |
-| 202.43.8 | Vendor ID Encoding | hexstring | eRouter I22 | - |
-| 202.53 | SNMPv1v2c Coexistence Configuration | encapsulated | eRouter I22 | - |
-| 202.53.1 | SNMPv1v2c Community Name | string | eRouter I22 | - |
-| 202.53.2 | SNMPv1v2c Community Name | encapsulated | eRouter I22 | - |
-| 202.53.2.1 | SNMPv1v2c Transport Address | hexstring | eRouter I22 | - |
-| 202.53.2.2 | SNMPv1v2c Transport Address Mask | hexstring | eRouter I22 | - |
-| 202.53.2.3 | SNMPv1v2c Access View Type | uint8 | eRouter I22 | - |
-| 202.53.2.4 | SNMPv1v2c Access View Name | string | eRouter I22 | - |
-| 202.54 | SNMPv3 Access View Configuration | encapsulated | eRouter I22 | - |
-| 202.54.1 | SNMPv3 Access View Name | string | eRouter I22 | - |
-| 202.54.2 | SNMPv3 Access View Subtree | oid | eRouter I22 | - |
-| 202.54.3 | SNMPv3 Access View Mask | hexstring | eRouter I22 | - |
-| 202.54.4 | SNMPv3 Access View Type | uint8 | eRouter I22 | - |
+| 202.1 | eRouter Initialization Mode Encoding | uint8 | eRouter I22 | B.4.2 |
+| 202.2 | TR-069 Management Server | encapsulated | eRouter I22 | B.4.3 |
+| 202.2.1 | EnableCWMP | uint8 | eRouter I22 | B.4.3 |
+| 202.2.2 | URL Parameter | string | eRouter I22 | B.4.3 |
+| 202.2.3 | Username Parameter | string | eRouter I22 | B.4.3 |
+| 202.2.4 | Password Parameter | string | eRouter I22 | B.4.3 |
+| 202.2.5 | Connection Request Username | string | eRouter I22 | B.4.3 |
+| 202.2.6 | Connection Request Password | string | eRouter I22 | B.4.3 |
+| 202.2.7 | ACSOverride | uint8 | eRouter I22 | B.4.3 |
+| 202.3 | eRouter Initialization Mode Override | uint8 | eRouter I22 | B.4.5 |
+| 202.10 | Router Advertisement (RA) Transmission Interval | uint16 | eRouter I22 | B.4.11 |
+| 202.11 | SNMP MIB Object | hexstring | eRouter I22 | B.4.9 |
+| 202.12 | IP Multicast Configuration Server | ipv4Address | eRouter I22 | B.4.12 |
+| 202.13 | Link-ID Control | uint8 | eRouter I22 | B.4.13 |
+| 202.42 | Topology Mode Encoding | uint8 | eRouter I22 | B.4.10 |
+| 202.43 | Vendor Specific Information | encapsulated | eRouter I22 | B.4.8 |
+| 202.43.8 | Vendor ID Encoding | hexstring | eRouter I22 | B.4.8 |
+| 202.53 | SNMPv1v2c Coexistence Configuration | encapsulated | eRouter I22 | B.4.6 |
+| 202.53.1 | SNMPv1v2c Community Name | string | eRouter I22 | B.4.6 |
+| 202.53.2 | SNMPv1v2c Community Name | encapsulated | eRouter I22 | B.4.6 |
+| 202.53.2.1 | SNMPv1v2c Transport Address | hexstring | eRouter I22 | B.4.6 |
+| 202.53.2.2 | SNMPv1v2c Transport Address Mask | hexstring | eRouter I22 | B.4.6 |
+| 202.53.2.3 | SNMPv1v2c Access View Type | uint8 | eRouter I22 | B.4.6 |
+| 202.53.2.4 | SNMPv1v2c Access View Name | string | eRouter I22 | B.4.6 |
+| 202.54 | SNMPv3 Access View Configuration | encapsulated | eRouter I22 | B.4.7 |
+| 202.54.1 | SNMPv3 Access View Name | string | eRouter I22 | B.4.7 |
+| 202.54.2 | SNMPv3 Access View Subtree | oid | eRouter I22 | B.4.7 |
+| 202.54.3 | SNMPv3 Access View Mask | hexstring | eRouter I22 | B.4.7 |
+| 202.54.4 | SNMPv3 Access View Type | uint8 | eRouter I22 | B.4.7 |
 
 ### 3.13 TLV 219 -- eTEA Sub-TLVs
 
@@ -744,78 +761,78 @@ CANN Section 11.1.10. Sub-TLVs within TLV 219 (eTEA -- TDM Emulation Adapter). A
 
 | Type | CANN Name | Data Type | Spec | Reference |
 |------|-----------|-----------|------|-----------|
-| 219.8 | eTEA Symbol Clock | uint8 | TEI I06 | - |
-| 219.9 | eTEA IWF cfg-encoding | encapsulated | TEI I06 | - |
-| 219.9.1 | eTEA PW Index Setting | uint8 | TEI I06 | - |
-| 219.9.2 | eTEA Emulation Type | uint8 | TEI I06 | - |
-| 219.9.3 | eTEA PW Peer Address | ipv4Address | TEI I06 | - |
-| 219.9.4 | eTEA PW Peer Address IPv6 | ipv6Address | TEI I06 | - |
-| 219.9.5 | eTEA PW Destination Port | uint16 | TEI I06 | - |
-| 219.9.6 | eTEA PW Peer Destination Port | uint16 | TEI I06 | - |
-| 219.9.7 | eTEA PW Name | string | TEI I06 | - |
-| 219.9.8 | eTEA PW Description | string | TEI I06 | - |
-| 219.9.9 | eTEA PW Admin Status | uint8 | TEI I06 | - |
-| 219.9.10 | eTEA Status Change Notification Enable | uint8 | TEI I06 | - |
-| 219.9.11 | eTEA PW TDM Type | uint8 | TEI I06 | - |
-| 219.9.12 | eTEA PW TDM Configuration Table Index | uint8 | TEI I06 | - |
-| 219.9.13 | eTEA PW CESoPSNConfiguration Index | uint8 | TEI I06 | - |
-| 219.9.14 | eTEA PW RTP SSRC | uint32 | TEI I06 | - |
-| 219.9.15 | eTEA PW Peer SSRC | uint32 | TEI I06 | - |
-| 219.9.16 | eTEA PW TDM Circulation Map | encapsulated | TEI I06 | - |
-| 219.9.16.1 | eTEA PW TDM Port # | uint8 | TEI I06 | - |
-| 219.9.16.2 | eTEA PW TDM Timeslot Map | hexstring | TEI I06 | - |
-| 219.10 | eTEA PW TDM Configuration Table | encapsulated | TEI I06 | - |
-| 219.10.1 | eTEA PW TDM Configuration Table Index | uint8 | TEI I06 | - |
-| 219.10.2 | eTEA PW TDM Payload Size | uint16 | TEI I06 | - |
-| 219.10.3 | eTEA PW RTP Header Used | uint8 | TEI I06 | - |
-| 219.10.5 | eTEA Jitter Buffer Setting | uint8 | TEI I06 | - |
-| 219.10.6 | eTEA PW Payload Suppression | uint8 | TEI I06 | - |
-| 219.10.7 | eTEA PW LOPS Exit Criteria | uint8 | TEI I06 | - |
-| 219.10.8 | eTEA PW LOPS Entrance Criteria | uint8 | TEI I06 | - |
-| 219.10.10 | eTEA PW Packet Replace Policy | uint8 | TEI I06 | - |
-| 219.10.11 | eTEA PW Packet Loss Window | uint16 | TEI I06 | - |
-| 219.10.12 | eTEA PW Excessive Loss Threshold | uint8 | TEI I06 | - |
-| 219.10.15 | eTEA PW Severe Loss Threshold | uint8 | TEI I06 | - |
-| 219.10.16 | eTEA PW RTP Timestamp Mode | uint8 | TEI I06 | - |
-| 219.10.17 | eTEA PW Default Fill Pattern | hexstring | TEI I06 | - |
-| 219.10.18 | eTEA PW L Flag Payload Policy | uint8 | TEI I06 | - |
-| 219.10.19 | eTEA PW TOS | uint8 | TEI I06 | - |
-| 219.10.20 | eTEA PW RTP Payload Type | uint8 | TEI I06 | - |
-| 219.10.21 | eTEA PW RTP Peer Payload Type | uint8 | TEI I06 | - |
-| 219.10.22 | eTEA PW RTP Timestamp Reference | uint32 | TEI I06 | - |
-| 219.10.23 | eTEA PW RTP Peer Timestamp Reference | uint32 | TEI I06 | - |
-| 219.10.24 | eTEA PW SRTP Enable | uint8 | TEI I06 | - |
-| 219.11 | eTEA SNMP MIB Object | hexstring | TEI I06 | - |
-| 219.12 | eTEA SNMP Write-Access Control | hexstring | TEI I06 | - |
-| 219.13 | CESoPSN Configuration Table | encapsulated | TEI I06 | - |
-| 219.13.1 | PW CESoPSN Config Table Index | uint8 | TEI I06 | - |
-| 219.13.2 | Default Idle Pattern | hexstring | TEI I06 | - |
-| 219.13.3 | LFlag Policy | uint8 | TEI I06 | - |
-| 219.13.4 | RFlag Policy | uint8 | TEI I06 | - |
-| 219.13.5 | Remote Defect Policy | uint8 | TEI I06 | - |
-| 219.13.6 | LOPS Policy | uint8 | TEI I06 | - |
-| 219.13.7 | App Sig TOS | uint8 | TEI I06 | - |
-| 219.13.8 | RTP CAS PT | uint8 | TEI I06 | - |
-| 219.13.9 | RTP CAS Peer PT | uint8 | TEI I06 | - |
-| 219.13.10 | App Sig Idle | hexstring | TEI I06 | - |
-| 219.13.11 | App Sig Interval | uint16 | TEI I06 | - |
-| 219.13.12 | App Sig Max Interval | uint16 | TEI I06 | - |
-| 219.14 | dsx1 Configuration Table | encapsulated | TEI I06 | - |
-| 219.14.1 | dsx1 Port ID | uint8 | TEI I06 | - |
-| 219.14.2 | dsx1 Line Type | uint8 | TEI I06 | - |
-| 219.14.3 | dsx1 Line Coding | uint8 | TEI I06 | - |
-| 219.14.4 | dsx1 Circuit ID | string | TEI I06 | - |
-| 219.14.5 | dsx1 Loopback Configuration | uint8 | TEI I06 | - |
-| 219.14.6 | dsx1 Signal Mode | uint8 | TEI I06 | - |
-| 219.14.7 | dsx1 Transmit Clock Source | uint8 | TEI I06 | - |
-| 219.14.8 | dsx1 Fdl | uint8 | TEI I06 | - |
-| 219.14.9 | dsx1 Line Length | uint16 | TEI I06 | - |
-| 219.14.10 | dsx1 Line Status Trap Enable | uint8 | TEI I06 | - |
-| 219.14.11 | dsx1 Channelization | uint8 | TEI I06 | - |
-| 219.14.12 | dsx1 Line Mode | uint8 | TEI I06 | - |
-| 219.14.13 | dsx1 Line Build Out | uint8 | TEI I06 | - |
-| 219.43 | eTEA Vendor Specific Extensions | hexstring | TEI I06 | - |
-| 219.255 | eTEA End of Text | uint8 | TEI I06 | - |
+| 219.8 | eTEA Symbol Clock | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9 | eTEA IWF cfg-encoding | encapsulated | TEI I06 | 6.7.1.10.1 |
+| 219.9.1 | eTEA PW Index Setting | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.2 | eTEA Emulation Type | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.3 | eTEA PW Peer Address | ipv4Address | TEI I06 | 6.7.1.10.1 |
+| 219.9.4 | eTEA PW Peer Address IPv6 | ipv6Address | TEI I06 | 6.7.1.10.1 |
+| 219.9.5 | eTEA PW Destination Port | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.9.6 | eTEA PW Peer Destination Port | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.9.7 | eTEA PW Name | string | TEI I06 | 6.7.1.10.1 |
+| 219.9.8 | eTEA PW Description | string | TEI I06 | 6.7.1.10.1 |
+| 219.9.9 | eTEA PW Admin Status | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.10 | eTEA Status Change Notification Enable | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.11 | eTEA PW TDM Type | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.12 | eTEA PW TDM Configuration Table Index | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.13 | eTEA PW CESoPSNConfiguration Index | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.14 | eTEA PW RTP SSRC | uint32 | TEI I06 | 6.7.1.10.1 |
+| 219.9.15 | eTEA PW Peer SSRC | uint32 | TEI I06 | 6.7.1.10.1 |
+| 219.9.16 | eTEA PW TDM Circulation Map | encapsulated | TEI I06 | 6.7.1.10.1 |
+| 219.9.16.1 | eTEA PW TDM Port # | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.9.16.2 | eTEA PW TDM Timeslot Map | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.10 | eTEA PW TDM Configuration Table | encapsulated | TEI I06 | 6.7.1.10.1 |
+| 219.10.1 | eTEA PW TDM Configuration Table Index | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.2 | eTEA PW TDM Payload Size | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.10.3 | eTEA PW RTP Header Used | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.5 | eTEA Jitter Buffer Setting | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.6 | eTEA PW Payload Suppression | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.7 | eTEA PW LOPS Exit Criteria | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.8 | eTEA PW LOPS Entrance Criteria | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.10 | eTEA PW Packet Replace Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.11 | eTEA PW Packet Loss Window | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.10.12 | eTEA PW Excessive Loss Threshold | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.15 | eTEA PW Severe Loss Threshold | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.16 | eTEA PW RTP Timestamp Mode | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.17 | eTEA PW Default Fill Pattern | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.10.18 | eTEA PW L Flag Payload Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.19 | eTEA PW TOS | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.20 | eTEA PW RTP Payload Type | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.21 | eTEA PW RTP Peer Payload Type | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.10.22 | eTEA PW RTP Timestamp Reference | uint32 | TEI I06 | 6.7.1.10.1 |
+| 219.10.23 | eTEA PW RTP Peer Timestamp Reference | uint32 | TEI I06 | 6.7.1.10.1 |
+| 219.10.24 | eTEA PW SRTP Enable | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.11 | eTEA SNMP MIB Object | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.12 | eTEA SNMP Write-Access Control | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.13 | CESoPSN Configuration Table | encapsulated | TEI I06 | 6.7.1.10.1 |
+| 219.13.1 | PW CESoPSN Config Table Index | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.2 | Default Idle Pattern | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.13.3 | LFlag Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.4 | RFlag Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.5 | Remote Defect Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.6 | LOPS Policy | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.7 | App Sig TOS | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.8 | RTP CAS PT | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.9 | RTP CAS Peer PT | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.13.10 | App Sig Idle | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.13.11 | App Sig Interval | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.13.12 | App Sig Max Interval | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.14 | dsx1 Configuration Table | encapsulated | TEI I06 | 6.7.1.10.1 |
+| 219.14.1 | dsx1 Port ID | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.2 | dsx1 Line Type | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.3 | dsx1 Line Coding | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.4 | dsx1 Circuit ID | string | TEI I06 | 6.7.1.10.1 |
+| 219.14.5 | dsx1 Loopback Configuration | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.6 | dsx1 Signal Mode | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.7 | dsx1 Transmit Clock Source | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.8 | dsx1 Fdl | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.9 | dsx1 Line Length | uint16 | TEI I06 | 6.7.1.10.1 |
+| 219.14.10 | dsx1 Line Status Trap Enable | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.11 | dsx1 Channelization | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.12 | dsx1 Line Mode | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.14.13 | dsx1 Line Build Out | uint8 | TEI I06 | 6.7.1.10.1 |
+| 219.43 | eTEA Vendor Specific Extensions | hexstring | TEI I06 | 6.7.1.10.1 |
+| 219.255 | eTEA End of Text | uint8 | TEI I06 | 6.7.1.10.1 |
 
 ---
 

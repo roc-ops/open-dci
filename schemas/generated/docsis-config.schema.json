@@ -97,7 +97,7 @@
           "description": "BGP VPN ID",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21.1"
         },
         "CeIdOrVeId": {
@@ -106,33 +106,33 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21.5"
         },
         "RouteDistinguisher": {
           "description": "Route Distinguisher",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21.2"
         },
         "RouteTargetExport": {
           "description": "Route Target (export)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21.4"
         },
         "RouteTargetImport": {
           "description": "Route Target (import)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21.3"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
     },
     "BufferControlEntry": {
       "additionalProperties": false,
@@ -291,7 +291,7 @@
           "x-docsis-context": "General Extension (OUI=FFFFFF)",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3",
           "x-docsis-tlvType": "43.5"
         },
         "ServiceTypeIdentifier": {
@@ -513,7 +513,7 @@
           "description": "CM Interface Mask (CMIM) encoding",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.6",
           "x-docsis-tlvType": "23.13"
         },
         "DynamicServiceChangeAction": {
@@ -789,7 +789,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.7.1",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.44"
         },
@@ -907,7 +907,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.2",
           "x-docsis-tlvType": "202.1"
         },
         "InitializationModeOverride": {
@@ -916,14 +916,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.5",
           "x-docsis-tlvType": "202.3"
         },
         "IpMulticastConfigurationServer": {
           "description": "IP Multicast Configuration Server address",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.12",
           "x-docsis-tlvType": "202.12"
         },
         "LinkIdControl": {
@@ -932,7 +932,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.13",
           "x-docsis-tlvType": "202.13"
         },
         "RaTransmissionInterval": {
@@ -941,7 +941,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.11",
           "x-docsis-tlvType": "202.10"
         },
         "SnmpMibObject": {
@@ -952,7 +952,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.9",
           "x-docsis-tlvType": "202.11"
         },
         "Snmpv1v2cCoexistence": {
@@ -963,7 +963,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53"
         },
         "Snmpv3AccessView": {
@@ -974,7 +974,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54"
         },
         "TopologyModeEncoding": {
@@ -983,25 +983,25 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.10",
           "x-docsis-tlvType": "202.42"
         },
         "Tr069ManagementServer": {
           "$ref": "#/$defs/Tr069ManagementServerEntry",
           "description": "TR-069 Management Server configuration",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2"
         },
         "VendorSpecificInformation": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific information for eRouter",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.8",
           "x-docsis-tlvType": "202.43"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-eRouter-I22",
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4",
       "x-docsis-tlvType": 202
     },
     "ErouterSnmpv1v2cCoexistenceEntry": {
@@ -1012,19 +1012,19 @@
           "description": "SNMPv1v2c community name string",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.1"
         },
         "TransportAddressAccess": {
           "$ref": "#/$defs/ErouterSnmpv1v2cTransportAddressAccessEntry",
           "description": "Transport address access control",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-eRouter-I22"
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6"
     },
     "ErouterSnmpv1v2cTransportAddressAccessEntry": {
       "additionalProperties": false,
@@ -1034,7 +1034,7 @@
           "description": "SNMPv1v2c access view name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2.4"
         },
         "AccessViewType": {
@@ -1043,26 +1043,26 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2.3"
         },
         "TransportAddress": {
           "description": "SNMPv1v2c transport address",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2.1"
         },
         "TransportAddressMask": {
           "description": "SNMPv1v2c transport address mask",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-eRouter-I22"
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6"
     },
     "ErouterSnmpv3AccessViewEntry": {
       "additionalProperties": false,
@@ -1072,21 +1072,21 @@
           "description": "SNMPv3 access view mask",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.3"
         },
         "AccessViewName": {
           "description": "SNMPv3 access view name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.1"
         },
         "AccessViewSubtree": {
           "description": "SNMPv3 access view subtree OID",
           "type": "string",
           "x-docsis-dataType": "oid",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.2"
         },
         "AccessViewType": {
@@ -1095,12 +1095,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.4"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-eRouter-I22"
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7"
     },
     "EteaCesopsnConfigurationTableEntry": {
       "additionalProperties": false,
@@ -1110,7 +1110,7 @@
           "description": "Application signal idle pattern",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.10"
         },
         "AppSigInterval": {
@@ -1119,7 +1119,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.11"
         },
         "AppSigMaxInterval": {
@@ -1128,7 +1128,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.12"
         },
         "AppSigTos": {
@@ -1137,7 +1137,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.7"
         },
         "ConfigTableIndex": {
@@ -1146,14 +1146,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.1"
         },
         "DefaultIdlePattern": {
           "description": "Default idle pattern",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.2"
         },
         "LFlagPolicy": {
@@ -1162,7 +1162,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.3"
         },
         "LopsPolicy": {
@@ -1171,7 +1171,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.6"
         },
         "RFlagPolicy": {
@@ -1180,7 +1180,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.4"
         },
         "RemoteDefectPolicy": {
@@ -1189,7 +1189,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.5"
         },
         "RtpCasPeerPt": {
@@ -1198,7 +1198,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.9"
         },
         "RtpCasPt": {
@@ -1207,12 +1207,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.8"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06"
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
     },
     "EteaDsx1ConfigurationTableEntry": {
       "additionalProperties": false,
@@ -1224,14 +1224,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.11"
         },
         "Dsx1CircuitId": {
           "description": "dsx1 circuit ID",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.4"
         },
         "Dsx1Fdl": {
@@ -1240,7 +1240,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.8"
         },
         "Dsx1LineBuildOut": {
@@ -1249,7 +1249,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.13"
         },
         "Dsx1LineCoding": {
@@ -1258,7 +1258,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.3"
         },
         "Dsx1LineLength": {
@@ -1267,7 +1267,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.9"
         },
         "Dsx1LineMode": {
@@ -1276,7 +1276,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.12"
         },
         "Dsx1LineStatusTrapEnable": {
@@ -1285,7 +1285,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.10"
         },
         "Dsx1LineType": {
@@ -1294,7 +1294,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.2"
         },
         "Dsx1LoopbackConfiguration": {
@@ -1303,7 +1303,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.5"
         },
         "Dsx1PortId": {
@@ -1312,7 +1312,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.1"
         },
         "Dsx1SignalMode": {
@@ -1321,7 +1321,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.6"
         },
         "Dsx1TransmitClockSource": {
@@ -1330,12 +1330,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.7"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06"
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
     },
     "EteaEntry": {
       "additionalProperties": false,
@@ -1349,7 +1349,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13"
         },
         "Dsx1ConfigurationTable": {
@@ -1360,7 +1360,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14"
         },
         "EndOfText": {
@@ -1369,7 +1369,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.255"
         },
         "IwfCfgEncoding": {
@@ -1380,7 +1380,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9"
         },
         "PwTdmConfigurationTable": {
@@ -1391,7 +1391,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10"
         },
         "SnmpMibObject": {
@@ -1402,32 +1402,32 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.11"
         },
         "SnmpWriteAccessControl": {
           "description": "eTEA SNMP write-access control",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.12"
         },
         "SymbolClock": {
           "description": "eTEA symbol clock configuration",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.8"
         },
         "VendorSpecificExtensions": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "eTEA vendor-specific extensions",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.43"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06",
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
       "x-docsis-tlvType": 219
     },
     "EteaIwfCfgEncodingEntry": {
@@ -1440,7 +1440,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.2"
         },
         "PwAdminStatus": {
@@ -1449,7 +1449,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.9"
         },
         "PwCesopsnConfigurationIndex": {
@@ -1458,14 +1458,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.13"
         },
         "PwDescription": {
           "description": "PW description",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.8"
         },
         "PwDestinationPort": {
@@ -1474,7 +1474,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.5"
         },
         "PwIndexSetting": {
@@ -1483,28 +1483,28 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.1"
         },
         "PwName": {
           "description": "PW name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.7"
         },
         "PwPeerAddress": {
           "description": "PW peer IPv4 address",
           "type": "string",
           "x-docsis-dataType": "ipv4Address",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.3"
         },
         "PwPeerAddressIpv6": {
           "description": "PW peer IPv6 address",
           "type": "string",
           "x-docsis-dataType": "ipv6Address",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.4"
         },
         "PwPeerDestinationPort": {
@@ -1513,7 +1513,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.6"
         },
         "PwPeerSsrc": {
@@ -1522,7 +1522,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.15"
         },
         "PwRtpSsrc": {
@@ -1531,7 +1531,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.14"
         },
         "PwTdmCirculationMap": {
@@ -1542,7 +1542,7 @@
           "type": "array",
           "x-docsis-dataType": "compound",
           "x-docsis-repeatable": true,
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.16"
         },
         "PwTdmConfigurationTableIndex": {
@@ -1551,7 +1551,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.12"
         },
         "PwTdmType": {
@@ -1560,7 +1560,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.11"
         },
         "StatusChangeNotificationEnable": {
@@ -1569,12 +1569,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.10"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06"
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
     },
     "EteaPwTdmCirculationMapEntry": {
       "additionalProperties": false,
@@ -1586,19 +1586,19 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.16.1"
         },
         "PwTdmTimeslotMap": {
           "description": "PW TDM timeslot map",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.16.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06"
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
     },
     "EteaPwTdmConfigurationTableEntry": {
       "additionalProperties": false,
@@ -1610,7 +1610,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.1"
         },
         "JitterBufferSetting": {
@@ -1619,14 +1619,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.5"
         },
         "PwDefaultFillPattern": {
           "description": "PW default fill pattern",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.17"
         },
         "PwExcessiveLossThreshold": {
@@ -1635,7 +1635,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.12"
         },
         "PwLFlagPayloadPolicy": {
@@ -1644,7 +1644,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.18"
         },
         "PwLopsEntranceCriteria": {
@@ -1653,7 +1653,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.8"
         },
         "PwLopsExitCriteria": {
@@ -1662,7 +1662,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.7"
         },
         "PwPacketLossWindow": {
@@ -1671,7 +1671,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.11"
         },
         "PwPacketReplacePolicy": {
@@ -1680,7 +1680,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.10"
         },
         "PwPayloadSuppression": {
@@ -1689,7 +1689,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.6"
         },
         "PwRtpHeaderUsed": {
@@ -1698,7 +1698,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.3"
         },
         "PwRtpPayloadType": {
@@ -1707,7 +1707,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.20"
         },
         "PwRtpPeerPayloadType": {
@@ -1716,7 +1716,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.21"
         },
         "PwRtpPeerTimestampReference": {
@@ -1725,7 +1725,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.23"
         },
         "PwRtpTimestampMode": {
@@ -1734,7 +1734,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.16"
         },
         "PwRtpTimestampReference": {
@@ -1743,7 +1743,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.22"
         },
         "PwSevereLossThreshold": {
@@ -1752,7 +1752,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.15"
         },
         "PwSrtpEnable": {
@@ -1761,7 +1761,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.24"
         },
         "PwTdmPayloadSize": {
@@ -1770,7 +1770,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.2"
         },
         "PwTos": {
@@ -1779,12 +1779,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-TEI-I06",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.19"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-TEI-I06"
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
     },
     "EthernetLlcClassificationEntry": {
       "additionalProperties": false,
@@ -1834,7 +1834,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.3.1",
           "x-docsis-tlvType": "43.5.24.3.1"
         },
         "EnableLinktraceMessages": {
@@ -1843,7 +1843,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.3.3",
           "x-docsis-tlvType": "43.5.24.3.3"
         },
         "EnableLoopbackReplyMessages": {
@@ -1852,12 +1852,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.3.2",
           "x-docsis-tlvType": "43.5.24.3.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
     "IcmpClassificationEntry": {
       "additionalProperties": false,
@@ -2132,7 +2132,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.11"
         },
         "BPcp": {
@@ -2141,7 +2141,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.10"
         },
         "BTagTci": {
@@ -2150,7 +2150,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.3"
         },
         "BTagTpid": {
@@ -2159,7 +2159,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.9"
         },
         "BVid": {
@@ -2168,14 +2168,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.12"
         },
         "DestinationBebMacAddress": {
           "description": "Destination Backbone Edge Bridge MAC address (B-DA)",
           "type": "string",
           "x-docsis-dataType": "macAddress",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.6.2"
         },
         "IDei": {
@@ -2184,7 +2184,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.6"
         },
         "IPcp": {
@@ -2193,7 +2193,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.5"
         },
         "ISid": {
@@ -2202,14 +2202,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.8"
         },
         "ITagTci": {
           "description": "I-Tag TCI value",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.6.1"
         },
         "ITagTpid": {
@@ -2218,7 +2218,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.4"
         },
         "IUca": {
@@ -2227,12 +2227,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.6.7"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
     },
     "Ipv4ClassificationEntry": {
       "additionalProperties": false,
@@ -2395,21 +2395,21 @@
           "description": "CM Interface Mask for L2CP",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "83.1"
         },
         "L2cpFilter": {
           "description": "L2CP filter encoding",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "83.4"
         },
         "L2cpL2ptDmacAddress": {
           "description": "L2CP L2PT destination MAC address",
           "type": "string",
           "x-docsis-dataType": "macAddress",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "83.3"
         },
         "L2cpMode": {
@@ -2418,12 +2418,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "83.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
       "x-docsis-tlvType": 83
     },
     "L2cpProcessingEntry": {
@@ -2434,21 +2434,21 @@
           "description": "L2CP destination MAC address",
           "type": "string",
           "x-docsis-dataType": "macAddress",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.15.2"
         },
         "L2cpFilter": {
           "description": "L2CP filter encoding",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.15.4"
         },
         "L2cpL2ptDmacAddress": {
           "description": "L2CP L2PT destination MAC address",
           "type": "string",
           "x-docsis-dataType": "macAddress",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.15.3"
         },
         "L2cpTunnelMode": {
@@ -2457,12 +2457,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.15.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
     },
     "L2vpnEncodingEntry": {
       "additionalProperties": false,
@@ -2472,55 +2472,55 @@
           "description": "Attachment Group ID (AGI)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.5"
         },
         "BgpAttribute": {
           "$ref": "#/$defs/BgpAttributeEntry",
           "description": "BGP attribute encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.21"
         },
         "CmInterfaceMask": {
           "description": "CM Interface Mask subtype",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.4",
           "x-docsis-tlvType": "43.5.4"
         },
         "DownstreamUserPriorityRange": {
           "description": "Downstream user priority range",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.9"
         },
         "EsafeDhcpSnooping": {
           "description": "eSAFE DHCP snooping",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.3"
         },
         "L2cpProcessing": {
           "$ref": "#/$defs/L2cpProcessingEntry",
           "description": "L2CP Processing encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.15"
         },
         "L2vpnDsid": {
           "description": "L2VPN DSID",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.26",
           "x-docsis-tlvType": "43.5.26"
         },
         "L2vpnErrorEncoding": {
           "$ref": "#/$defs/L2vpnErrorEntry",
           "description": "L2VPN error encoding",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.5",
           "x-docsis-tlvType": "43.5.254"
         },
         "L2vpnMode": {
@@ -2529,21 +2529,21 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.13"
         },
         "L2vpnSaDescriptor": {
           "description": "L2VPN SA-Descriptor subtypes",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.10"
         },
         "L2vpnSoam": {
           "$ref": "#/$defs/L2vpnSoamEntry",
           "description": "L2VPN Service OAM encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24",
           "x-docsis-tlvType": "43.5.24"
         },
         "MultipointEnableDisable": {
@@ -2552,7 +2552,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.27"
         },
         "NetworkTimingProfileReference": {
@@ -2561,14 +2561,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.25",
           "x-docsis-tlvType": "43.5.25"
         },
         "NsiEncapsulationFormat": {
           "$ref": "#/$defs/NsiEncapsulationFormatEntry",
           "description": "NSI encapsulation format",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2"
         },
         "PseudowireClass": {
@@ -2577,7 +2577,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.18"
         },
         "PseudowireSignaling": {
@@ -2586,7 +2586,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.23"
         },
         "PseudowireType": {
@@ -2595,74 +2595,74 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.12"
         },
         "ServiceDelimiter": {
           "$ref": "#/$defs/ServiceDelimiterEntry",
           "description": "Service delimiter encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.19"
         },
         "SourceAttachmentIndividualId": {
           "description": "Source Attachment Individual ID (SAII)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.6"
         },
         "TargetAttachmentIndividualId": {
           "description": "Target Attachment Individual ID (TAII)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.7"
         },
         "TpidTranslation": {
           "$ref": "#/$defs/TpidTranslationEntry",
           "description": "TPID Translation encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14"
         },
         "UpstreamUserPriority": {
           "description": "Upstream user priority subtype",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.8"
         },
         "VendorSpecificL2vpn": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific L2VPN subtype",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.11",
           "x-docsis-tlvType": "43.5.43"
         },
         "VpnIdentifier": {
           "description": "VPN identifier",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.1",
           "x-docsis-tlvType": "43.5.1"
         },
         "VpnSgAttribute": {
           "description": "VPN-SG attribute",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.22"
         },
         "VsiEncoding": {
           "$ref": "#/$defs/VsiEncodingEntry",
           "description": "VSI encoding",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.20"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3"
     },
     "L2vpnErrorEntry": {
       "additionalProperties": false,
@@ -2674,14 +2674,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.5.2",
           "x-docsis-tlvType": "43.5.254.2"
         },
         "ErrorMessage": {
           "description": "L2VPN error message",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.5.3",
           "x-docsis-tlvType": "43.5.254.3"
         },
         "ErroredParameter": {
@@ -2690,12 +2690,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.5.1",
           "x-docsis-tlvType": "43.5.254.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.5"
     },
     "L2vpnMacAgingEntry": {
       "additionalProperties": false,
@@ -2707,12 +2707,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.7.1",
           "x-docsis-tlvType": "65.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17",
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.7",
       "x-docsis-tlvType": 65
     },
     "L2vpnSoamEntry": {
@@ -2723,33 +2723,33 @@
           "$ref": "#/$defs/FaultManagementConfigurationEntry",
           "description": "Fault management configuration",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24",
           "x-docsis-tlvType": "43.5.24.3"
         },
         "MepConfiguration": {
           "$ref": "#/$defs/MepConfigurationEntry",
           "description": "MEP configuration",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24",
           "x-docsis-tlvType": "43.5.24.1"
         },
         "PerformanceManagementConfiguration": {
           "$ref": "#/$defs/PerformanceManagementConfigurationEntry",
           "description": "Performance management configuration",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24",
           "x-docsis-tlvType": "43.5.24.4"
         },
         "RemoteMepConfiguration": {
           "$ref": "#/$defs/RemoteMepConfigurationEntry",
           "description": "Remote MEP configuration",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24",
           "x-docsis-tlvType": "43.5.24.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
     "LowLatencyEncodingsEntry": {
       "additionalProperties": false,
@@ -2853,7 +2853,7 @@
           "description": "Maintenance Association name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.1.3",
           "x-docsis-tlvType": "43.5.24.1.3"
         },
         "MdLevel": {
@@ -2862,14 +2862,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.1.1",
           "x-docsis-tlvType": "43.5.24.1.1"
         },
         "MdName": {
           "description": "Maintenance Domain name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.1.2",
           "x-docsis-tlvType": "43.5.24.1.2"
         },
         "MepId": {
@@ -2878,12 +2878,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.1.4",
           "x-docsis-tlvType": "43.5.24.1.4"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
     "MespBandwidthProfileEntry": {
       "additionalProperties": false,
@@ -2893,14 +2893,14 @@
           "$ref": "#/$defs/MespBpColorMarkingEntry",
           "description": "Bandwidth profile color marking",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.7"
         },
         "ColorMode": {
           "$ref": "#/$defs/MespBpColorModeEntry",
           "description": "Bandwidth profile color mode",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.6"
         },
         "CommittedBurstSize": {
@@ -2909,7 +2909,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.2"
         },
         "CommittedInformationRate": {
@@ -2918,7 +2918,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.1"
         },
         "CouplingFlag": {
@@ -2927,7 +2927,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.5"
         },
         "ExcessBurstSize": {
@@ -2936,7 +2936,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.4"
         },
         "ExcessInformationRate": {
@@ -2945,12 +2945,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2.3"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
     },
     "MespBpColorMarkingEntry": {
       "additionalProperties": false,
@@ -2962,19 +2962,19 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.1",
           "x-docsis-tlvType": "72.2.7.1"
         },
         "ColorMarkingFieldValue": {
           "description": "Color marking field value",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.2",
           "x-docsis-tlvType": "72.2.7.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
     },
     "MespBpColorModeEntry": {
       "additionalProperties": false,
@@ -2986,19 +2986,19 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.1",
           "x-docsis-tlvType": "72.2.6.1"
         },
         "ColorIdentificationFieldValue": {
           "description": "Color identification field value",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.2",
           "x-docsis-tlvType": "72.2.6.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
     },
     "MetroEthernetServiceProfileEntry": {
       "additionalProperties": false,
@@ -3008,14 +3008,14 @@
           "$ref": "#/$defs/MespBandwidthProfileEntry",
           "description": "MESP bandwidth profile",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
           "x-docsis-tlvType": "72.2"
         },
         "MespName": {
           "description": "MESP name string",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.3",
           "x-docsis-tlvType": "72.3"
         },
         "MespReference": {
@@ -3024,12 +3024,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.1",
           "x-docsis-tlvType": "72.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5",
       "x-docsis-tlvType": 72
     },
     "MplsClassificationEntry": {
@@ -3066,7 +3066,7 @@
           "description": "MPLS backup peer IP address",
           "type": "string",
           "x-docsis-dataType": "ipv4Address",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.4.5"
         },
         "MplsBackupPseudowireId": {
@@ -3075,14 +3075,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.4.4"
         },
         "MplsPeerIpAddress": {
           "description": "MPLS peer IP address",
           "type": "string",
           "x-docsis-dataType": "ipv4Address",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.4.2"
         },
         "MplsPseudowireId": {
@@ -3091,7 +3091,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.4.1"
         },
         "PseudowireType": {
@@ -3100,12 +3100,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.4.3"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
     },
     "NsiEncapsulationFormatEntry": {
       "additionalProperties": false,
@@ -3115,42 +3115,42 @@
           "description": "IEEE 802.1Q encapsulation",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.2"
         },
         "Ieee8021ad": {
           "description": "IEEE 802.1ad encapsulation",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.3"
         },
         "Ieee8021ahEncapsulation": {
           "$ref": "#/$defs/Ieee8021ahEncapsulationEntry",
           "description": "IEEE 802.1ah encapsulation",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.6"
         },
         "L2tpv3Peer": {
           "description": "L2TPv3 peer encapsulation",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.5"
         },
         "MplsPw": {
           "$ref": "#/$defs/MplsPwEntry",
           "description": "MPLS Pseudowire encapsulation",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.4"
         },
         "Other": {
           "description": "Other encapsulation format",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.2.1"
         },
         "STpid": {
@@ -3159,12 +3159,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.2.8"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
     },
     "PayloadHeaderSuppressionEntry": {
       "additionalProperties": false,
@@ -3292,7 +3292,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1",
           "x-docsis-tlvType": "43.5.24.4.1"
         },
         "FrameLossMeasurement": {
@@ -3301,12 +3301,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.2",
           "x-docsis-tlvType": "43.5.24.4.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
     "PhsErrorEntry": {
       "additionalProperties": false,
@@ -3349,7 +3349,7 @@
           "description": "Maintenance Association name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.2.3",
           "x-docsis-tlvType": "43.5.24.2.3"
         },
         "MdLevel": {
@@ -3358,14 +3358,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.2.1",
           "x-docsis-tlvType": "43.5.24.2.1"
         },
         "MdName": {
           "description": "Maintenance Domain name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.2.2",
           "x-docsis-tlvType": "43.5.24.2.2"
         },
         "MepId": {
@@ -3374,12 +3374,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.2.4",
           "x-docsis-tlvType": "43.5.24.2.4"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-L2VPN-I17"
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
     "ServiceDelimiterEntry": {
       "additionalProperties": false,
@@ -3391,7 +3391,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.19.4"
         },
         "CVid": {
@@ -3400,7 +3400,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.19.1"
         },
         "ISid": {
@@ -3409,7 +3409,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.19.3"
         },
         "SVid": {
@@ -3418,12 +3418,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.19.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
     },
     "ServiceFlowErrorEntry": {
       "additionalProperties": false,
@@ -3609,7 +3609,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.6"
         },
         "DownstreamITpidTranslation": {
@@ -3618,7 +3618,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.8"
         },
         "DownstreamSTpidTranslation": {
@@ -3627,7 +3627,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.4"
         },
         "DownstreamTpidTranslation": {
@@ -3636,7 +3636,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.2"
         },
         "UpstreamBTpidTranslation": {
@@ -3645,7 +3645,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.5"
         },
         "UpstreamITpidTranslation": {
@@ -3654,7 +3654,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.7"
         },
         "UpstreamSTpidTranslation": {
@@ -3663,7 +3663,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.3"
         },
         "UpstreamTpidTranslation": {
@@ -3672,12 +3672,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
           "x-docsis-tlvType": "43.5.14.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
     },
     "Tr069ManagementServerEntry": {
       "additionalProperties": false,
@@ -3689,21 +3689,21 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.7"
         },
         "ConnectionRequestPassword": {
           "description": "Connection request password",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.6"
         },
         "ConnectionRequestUsername": {
           "description": "Connection request username",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.5"
         },
         "EnableCwmp": {
@@ -3712,33 +3712,33 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.1"
         },
         "PasswordParameter": {
           "description": "ACS password parameter",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.4"
         },
         "UrlParameter": {
           "description": "ACS URL parameter",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.2"
         },
         "UsernameParameter": {
           "description": "ACS username parameter",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2.3"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-eRouter-I22"
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3"
     },
     "UpstreamAggregateServiceFlowEntry": {
       "additionalProperties": false,
@@ -4007,7 +4007,7 @@
           "description": "CM Interface Mask (CMIM) encoding",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-L2VPN-I17",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.6",
           "x-docsis-tlvType": "22.13"
         },
         "DynamicServiceChangeAction": {
@@ -4581,7 +4581,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.20.4"
         },
         "ETreeRole": {
@@ -4590,7 +4590,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.20.2"
         },
         "ETreeRootVid": {
@@ -4599,7 +4599,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.20.3"
         },
         "VplsClass": {
@@ -4608,12 +4608,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
           "x-docsis-tlvType": "43.5.20.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14"
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -4760,7 +4760,7 @@
       "description": "DOCSIS Sync Configurations encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-SYNC-I03",
+      "x-docsis-spec": "CM-SP-SYNC-I03 D.2.1",
       "x-docsis-tlvType": 101
     },
     "DownstreamAggregateServiceFlowEncodings": {
@@ -4835,14 +4835,14 @@
       "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "PKT-SP-RST-E-DVA-C01",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1, PKT-SP-RST-E-DVA-C01",
       "x-docsis-tlvType": 220
     },
     "Emta": {
       "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "PKT-SP-PROV1.5-C01",
+      "x-docsis-spec": "PKT-SP-PROV1.5-C01 9.1",
       "x-docsis-tlvType": 216
     },
     "Enable20Mode": {
@@ -4885,7 +4885,7 @@
       "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-eDOCSIS-I31",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1",
       "x-docsis-tlvType": 201
     },
     "Erouter": {
@@ -4896,21 +4896,21 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-eRouter-I22",
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4",
       "x-docsis-tlvType": 202
     },
     "Esg": {
       "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-eDOCSIS-I31",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1",
       "x-docsis-tlvType": 221
     },
     "Estb": {
       "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-DSG-I25",
+      "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1, CM-SP-DSG-I25",
       "x-docsis-tlvType": 217
     },
     "Etea": {
@@ -4921,7 +4921,7 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-TEI-I06",
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
       "x-docsis-tlvType": 219
     },
     "FdxDownstreamUpperBandEdge": {
@@ -4942,7 +4942,7 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
       "x-docsis-tlvType": 83
     },
     "L2vpnMacAgingEncoding": {
@@ -4953,7 +4953,7 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-L2VPN-I17",
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.7",
       "x-docsis-tlvType": 65
     },
     "LowLatencyDisable": {
@@ -5025,7 +5025,7 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14",
+      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5",
       "x-docsis-tlvType": 72
     },
     "NetworkAccess": {
@@ -5070,7 +5070,7 @@
       "description": "PTP Address Configurations encoding",
       "type": "string",
       "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-SYNC-I03",
+      "x-docsis-spec": "CM-SP-SYNC-I03 D.2.2",
       "x-docsis-tlvType": 102
     },
     "QosFrameworkForDocsisEncodings": {
