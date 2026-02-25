@@ -261,12 +261,33 @@ func opendciLoadMIBs(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciQueryMIBTree returns the entire loaded MIB tree as a JSON string.
+// The tree is rooted at OID "1" (iso) with recursive children.
+// JS signature: opendciQueryMIBTree() -> {result: string} | {error: string}
+func opendciQueryMIBTree(_ js.Value, args []js.Value) interface{} {
+	if resolver == nil {
+		return jsError("no MIBs loaded: call opendciInitMIBs first")
+	}
+	tree, err := resolver.QueryTree()
+	if err != nil {
+		return jsError("querying MIB tree: " + err.Error())
+	}
+	jsonBytes, err := json.Marshal(tree)
+	if err != nil {
+		return jsError("serializing MIB tree: " + err.Error())
+	}
+	obj := js.Global().Get("Object").New()
+	obj.Set("result", string(jsonBytes))
+	return obj
+}
+
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
 	js.Global().Set("opendciDecode", js.FuncOf(opendciDecode))
 	js.Global().Set("opendciEncode", js.FuncOf(opendciEncode))
 	js.Global().Set("opendciInitMIBs", js.FuncOf(opendciInitMIBs))
 	js.Global().Set("opendciLoadMIBs", js.FuncOf(opendciLoadMIBs))
+	js.Global().Set("opendciQueryMIBTree", js.FuncOf(opendciQueryMIBTree))
 
 	// Block forever to keep the Go runtime alive for JS callbacks.
 	select {}
