@@ -15,6 +15,7 @@ type TLVDef struct {
 	DataType    DataType          // Wire data type
 	Repeatable  bool              // Whether this TLV can appear multiple times
 	Chunked     bool              // Whether this TLV uses 254-byte chunked encoding (e.g. CVC certificates)
+	LengthSize  int               // Number of bytes for the length field: 1 (default) or 2 (big-endian)
 	SubTLVs     map[int]*TLVDef   // For compound types: sub-TLV definitions keyed by type number
 	RefName     string            // Name of the referenced definition (for compound types)
 	ValidValues map[string]string // Human-readable labels for enum-like integer values
@@ -107,6 +108,7 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 		dt := DataType(getStringMeta(meta, "dataType"))
 		repeatable := getBoolMeta(meta, "repeatable")
 		chunked := getBoolMeta(meta, "chunked")
+		lengthSize := getIntMeta(meta, "tlvLengthSize", 1)
 
 		def := &TLVDef{
 			TypeNum:    typeNum,
@@ -114,6 +116,7 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 			DataType:   dt,
 			Repeatable: repeatable,
 			Chunked:    chunked,
+			LengthSize: lengthSize,
 		}
 		def.ValidValues = getValidValuesMeta(meta)
 
@@ -203,12 +206,14 @@ func processSubTLVProperty(parent *TLVDef, name string, raw json.RawMessage, def
 
 	dt := DataType(getStringMeta(meta, "dataType"))
 	repeatable := getBoolMeta(meta, "repeatable")
+	lengthSize := getIntMeta(meta, "tlvLengthSize", 1)
 
 	subDef := &TLVDef{
 		TypeNum:    typeNum,
 		Name:       name,
 		DataType:   dt,
 		Repeatable: repeatable,
+		LengthSize: lengthSize,
 	}
 	subDef.ValidValues = getValidValuesMeta(meta)
 
@@ -274,6 +279,18 @@ func getBoolMeta(meta map[string]interface{}, key string) bool {
 		}
 	}
 	return false
+}
+
+// getIntMeta safely extracts an integer value from metadata.
+// JSON numbers unmarshal as float64, so we convert. Returns defaultVal if the
+// key is absent or not a number.
+func getIntMeta(meta map[string]interface{}, key string, defaultVal int) int {
+	if v, ok := meta[key]; ok {
+		if f, ok := v.(float64); ok {
+			return int(f)
+		}
+	}
+	return defaultVal
 }
 
 // getValidValuesMeta extracts the validValues map from metadata.

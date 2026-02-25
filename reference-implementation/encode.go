@@ -44,16 +44,21 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 		// Handle chunked TLVs (e.g. CVC certificates): single value split into
 		// consecutive ≤254-byte TLV instances on the wire.
 		if def.Chunked {
+			ls := defLengthSize(def)
+			maxChunk := 254
+			if ls == 2 {
+				maxChunk = 65535
+			}
 			valueBytes, err := EncodeValue(val, def.DataType)
 			if err != nil {
 				return nil, fmt.Errorf("encoding chunked %s: %w", name, err)
 			}
 			for len(valueBytes) > 0 {
 				chunkSize := len(valueBytes)
-				if chunkSize > 254 {
-					chunkSize = 254
+				if chunkSize > maxChunk {
+					chunkSize = maxChunk
 				}
-				out = append(out, makeTLV(def.TypeNum, valueBytes[:chunkSize])...)
+				out = append(out, makeTLVn(def.TypeNum, valueBytes[:chunkSize], ls)...)
 				valueBytes = valueBytes[chunkSize:]
 			}
 			continue
@@ -107,6 +112,8 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 
 // encodeSingleTLV encodes a single TLV (simple, compound, TLV 11, or TLV 43).
 func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error) {
+	ls := defLengthSize(def)
+
 	// Special case: TLV 11 (SNMP MIB Object)
 	if def.TypeNum == 11 {
 		m, ok := val.(map[string]interface{})
@@ -117,7 +124,7 @@ func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error
 		if err != nil {
 			return nil, err
 		}
-		return makeTLV(def.TypeNum, varbind), nil
+		return makeTLVn(def.TypeNum, varbind, ls), nil
 	}
 
 	// Special case: TLV 43 (DOCSIS Extension Field)
@@ -130,7 +137,7 @@ func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error
 		if err != nil {
 			return nil, err
 		}
-		return makeTLV(def.TypeNum, body), nil
+		return makeTLVn(def.TypeNum, body, ls), nil
 	}
 
 	// Compound TLV
@@ -143,7 +150,7 @@ func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error
 		if err != nil {
 			return nil, err
 		}
-		return makeTLV(def.TypeNum, body), nil
+		return makeTLVn(def.TypeNum, body, ls), nil
 	}
 
 	// Simple TLV
@@ -151,7 +158,7 @@ func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error
 	if err != nil {
 		return nil, err
 	}
-	return makeTLV(def.TypeNum, valueBytes), nil
+	return makeTLVn(def.TypeNum, valueBytes, ls), nil
 }
 
 // encodeCompound encodes a compound TLV's sub-TLVs into a byte slice.
@@ -220,6 +227,8 @@ func encodeCompound(m map[string]interface{}, parent *TLVDef) ([]byte, error) {
 
 // encodeSingleSubTLV encodes a single sub-TLV.
 func encodeSingleSubTLV(subDef *TLVDef, val interface{}) ([]byte, error) {
+	ls := defLengthSize(subDef)
+
 	if subDef.DataType == DataTypeCompound {
 		m, ok := val.(map[string]interface{})
 		if !ok {
@@ -229,14 +238,14 @@ func encodeSingleSubTLV(subDef *TLVDef, val interface{}) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		return makeTLV(subDef.TypeNum, body), nil
+		return makeTLVn(subDef.TypeNum, body, ls), nil
 	}
 
 	valueBytes, err := EncodeValue(val, subDef.DataType)
 	if err != nil {
 		return nil, err
 	}
-	return makeTLV(subDef.TypeNum, valueBytes), nil
+	return makeTLVn(subDef.TypeNum, valueBytes, ls), nil
 }
 
 // encodeTLV43 encodes a TLV 43 (DOCSIS Extension Field) value.
@@ -369,9 +378,32 @@ func encodeUnknownTLV(m map[string]interface{}) ([]byte, error) {
 	return makeTLV(typeNum, valueBytes), nil
 }
 
+// defLengthSize returns the effective length field size for a TLVDef.
+// Returns 1 if the def is nil or LengthSize is not explicitly set.
+func defLengthSize(def *TLVDef) int {
+	if def != nil && def.LengthSize == 2 {
+		return 2
+	}
+	return 1
+}
+
 // makeTLV builds a binary TLV: [type_byte][length_byte][value_bytes...].
+// Uses a 1-byte length field (standard).
 func makeTLV(typeNum int, value []byte) []byte {
-	result := []byte{byte(typeNum), byte(len(value))}
+	return makeTLVn(typeNum, value, 1)
+}
+
+// makeTLVn builds a binary TLV with a configurable length field size.
+// lengthSize=1: [type][1-byte length][value] (standard)
+// lengthSize=2: [type][2-byte big-endian length][value]
+func makeTLVn(typeNum int, value []byte, lengthSize int) []byte {
+	var result []byte
+	if lengthSize == 2 {
+		l := len(value)
+		result = []byte{byte(typeNum), byte(l >> 8), byte(l & 0xFF)}
+	} else {
+		result = []byte{byte(typeNum), byte(len(value))}
+	}
 	result = append(result, value...)
 	return result
 }

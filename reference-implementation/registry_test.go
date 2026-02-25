@@ -338,3 +338,96 @@ func TestValidValuesMap(t *testing.T) {
 
 	t.Logf("ValidValuesMap has %d entries", len(vvm))
 }
+
+func TestLoadRegistryTLV103LengthSize(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	def, ok := reg.TopLevel[103]
+	if !ok {
+		t.Fatal("TLV 103 (CmSshServerConfigurationSettings) not found")
+	}
+
+	if def.LengthSize != 2 {
+		t.Errorf("expected LengthSize=2 for TLV 103, got %d", def.LengthSize)
+	}
+	if def.DataType != DataTypeCompound {
+		t.Errorf("expected compound data type, got %q", def.DataType)
+	}
+}
+
+func TestLoadRegistryTLV104LengthSize(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	def, ok := reg.TopLevel[104]
+	if !ok {
+		t.Fatal("TLV 104 (SecurityConfigurationSettings) not found")
+	}
+
+	if def.LengthSize != 2 {
+		t.Errorf("expected LengthSize=2 for TLV 104, got %d", def.LengthSize)
+	}
+	if def.DataType != DataTypeCompound {
+		t.Errorf("expected compound data type, got %q", def.DataType)
+	}
+}
+
+func TestLoadRegistryTLV1LengthSizeDefault(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	def, ok := reg.TopLevel[1]
+	if !ok {
+		t.Fatal("TLV 1 (DownstreamFrequency) not found")
+	}
+
+	if def.LengthSize != 1 {
+		t.Errorf("expected LengthSize=1 (default) for TLV 1, got %d", def.LengthSize)
+	}
+}
+
+func TestLoadRegistrySubTLVLengthSize(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// TLV 103 sub-TLV 3 = SnmpBasedAuthConfiguration (compound),
+	// which itself has sub-TLV 1 = SshCmCds with tlvLengthSize=2.
+	def, ok := reg.TopLevel[103]
+	if !ok {
+		t.Fatal("TLV 103 not found")
+	}
+
+	subDef3, ok := def.SubTLVs[3]
+	if !ok {
+		t.Fatal("TLV 103.3 (SnmpBasedAuthConfiguration) not found")
+	}
+	if subDef3.DataType != DataTypeCompound {
+		t.Fatalf("expected compound, got %q", subDef3.DataType)
+	}
+
+	sshCmCds, ok := subDef3.SubTLVs[1]
+	if !ok {
+		t.Fatal("TLV 103.3.1 (SshCmCds) not found")
+	}
+	if sshCmCds.LengthSize != 2 {
+		t.Errorf("expected LengthSize=2 for TLV 103.3.1 (SshCmCds), got %d", sshCmCds.LengthSize)
+	}
+
+	// Sub-TLV 103.3.2 = SshCmCdsDownloadUrl should have default LengthSize=1
+	sshCmCdsUrl, ok := subDef3.SubTLVs[2]
+	if !ok {
+		t.Fatal("TLV 103.3.2 (SshCmCdsDownloadUrl) not found")
+	}
+	if sshCmCdsUrl.LengthSize != 1 {
+		t.Errorf("expected LengthSize=1 for TLV 103.3.2, got %d", sshCmCdsUrl.LengthSize)
+	}
+}

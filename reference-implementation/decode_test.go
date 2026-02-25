@@ -539,3 +539,165 @@ func TestDecodeEmptyConfig(t *testing.T) {
 		t.Errorf("expected empty config, got %d entries", len(result.Config))
 	}
 }
+
+// buildTLV2 constructs a binary TLV with a 2-byte big-endian length field:
+// [type][length_hi][length_lo][value].
+func buildTLV2(t int, value []byte) []byte {
+	l := len(value)
+	result := []byte{byte(t), byte(l >> 8), byte(l & 0xFF)}
+	result = append(result, value...)
+	return result
+}
+
+// makeTestRegistry2ByteLen builds a registry with a 2-byte-length compound TLV
+// (type 103) and sub-TLVs, mimicking the real schema's TLV 103.
+func makeTestRegistry2ByteLen() *Registry {
+	reg := &Registry{
+		TopLevel: map[int]*TLVDef{
+			3: {
+				TypeNum:    3,
+				Name:       "NetworkAccess",
+				DataType:   DataTypeUint8,
+				LengthSize: 1,
+			},
+			103: {
+				TypeNum:    103,
+				Name:       "CmSshServerConfigurationSettings",
+				DataType:   DataTypeCompound,
+				LengthSize: 2,
+				SubTLVs: map[int]*TLVDef{
+					1: {
+						TypeNum:    1,
+						Name:       "SshCmCds",
+						DataType:   DataTypeHexString,
+						LengthSize: 2,
+					},
+					2: {
+						TypeNum:    2,
+						Name:       "SshCmCdsDownloadUrl",
+						DataType:   DataTypeString,
+						LengthSize: 1,
+					},
+				},
+			},
+		},
+		NameLookup: make(map[string]*TLVDef),
+	}
+	for _, def := range reg.TopLevel {
+		reg.NameLookup[def.Name] = def
+	}
+	return reg
+}
+
+func TestDecode2ByteLenTopLevel(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// Build a TLV 103 with 2-byte length containing a sub-TLV with 2-byte length.
+	// Sub-TLV 1 (SshCmCds) = 4 bytes of hex data, 2-byte length
+	subTLV := buildTLV2(1, []byte{0xDE, 0xAD, 0xBE, 0xEF})
+	// Sub-TLV 2 (SshCmCdsDownloadUrl) = a URL string, 1-byte length
+	subTLV = append(subTLV, buildTLV(2, []byte("http://example.com\x00"))...)
+
+	// TLV 103 with 2-byte length wrapping the sub-TLVs
+	data := buildTLV2(103, subTLV)
+	// Add end-of-data
+	data = append(data, 0xFF, 0x00)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	cfg, ok := result.Config["CmSshServerConfigurationSettings"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("expected map, got %T", result.Config["CmSshServerConfigurationSettings"])
+	}
+
+	if cfg["SshCmCds"] != "DEADBEEF" {
+		t.Errorf("expected SshCmCds='DEADBEEF', got %v", cfg["SshCmCds"])
+	}
+	if cfg["SshCmCdsDownloadUrl"] != "http://example.com" {
+		t.Errorf("expected SshCmCdsDownloadUrl='http://example.com', got %v", cfg["SshCmCdsDownloadUrl"])
+	}
+}
+
+func TestDecode2ByteLenLargePayload(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// Create a sub-TLV 1 (SshCmCds) with a 300-byte payload (exceeds 1-byte max of 255).
+	bigPayload := make([]byte, 300)
+	for i := range bigPayload {
+		bigPayload[i] = byte(i % 256)
+	}
+	subTLV := buildTLV2(1, bigPayload)
+
+	// TLV 103 wrapping that sub-TLV, also 2-byte length
+	data := buildTLV2(103, subTLV)
+	data = append(data, 0xFF, 0x00)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	cfg := result.Config["CmSshServerConfigurationSettings"].(map[string]interface{})
+	hexVal := cfg["SshCmCds"].(string)
+
+	// 300 bytes -> 600 hex chars
+	if len(hexVal) != 600 {
+		t.Errorf("expected 600 hex chars, got %d", len(hexVal))
+	}
+}
+
+func TestDecode2ByteLenMixedWith1Byte(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// Mix 1-byte length TLV (type 3) with 2-byte length TLV (type 103)
+	var data []byte
+	data = append(data, buildTLV(3, []byte{1})...)   // NetworkAccess, 1-byte length
+	subTLV := buildTLV2(1, []byte{0xCA, 0xFE})        // SshCmCds sub-TLV, 2-byte length
+	data = append(data, buildTLV2(103, subTLV)...)     // TLV 103, 2-byte length
+	data = append(data, 0xFF, 0x00)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if result.Config["NetworkAccess"] != 1 {
+		t.Errorf("expected NetworkAccess=1, got %v", result.Config["NetworkAccess"])
+	}
+
+	cfg := result.Config["CmSshServerConfigurationSettings"].(map[string]interface{})
+	if cfg["SshCmCds"] != "CAFE" {
+		t.Errorf("expected SshCmCds='CAFE', got %v", cfg["SshCmCds"])
+	}
+}
+
+func TestDecode2ByteLenUnknownTLVStill1Byte(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// An unknown TLV (type 200) should still use 1-byte length
+	data := buildConfig(
+		buildTLV(3, []byte{1}),
+		buildTLV(200, []byte{0xAB, 0xCD}),
+	)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if result.Config["NetworkAccess"] != 1 {
+		t.Errorf("expected NetworkAccess=1, got %v", result.Config["NetworkAccess"])
+	}
+
+	unknowns := result.Config["UnknownTlvs"].([]interface{})
+	if len(unknowns) != 1 {
+		t.Fatalf("expected 1 unknown TLV, got %d", len(unknowns))
+	}
+	unk := unknowns[0].(map[string]interface{})
+	if unk["value"] != "ABCD" {
+		t.Errorf("expected unknown value 'ABCD', got %v", unk["value"])
+	}
+}

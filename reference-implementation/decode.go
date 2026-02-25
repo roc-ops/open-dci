@@ -47,12 +47,25 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			break
 		}
 
-		if offset+1 >= len(data) {
+		// Determine the length field size: look up the registry first,
+		// then read 1 or 2 bytes for the length accordingly.
+		def, ok := reg.TopLevel[tlvType]
+		lengthSize := 1
+		if ok && def.LengthSize == 2 {
+			lengthSize = 2
+		}
+
+		if offset+1+lengthSize > len(data) {
 			return nil, fmt.Errorf("truncated TLV at offset %d", offset)
 		}
 
-		tlvLen := int(data[offset+1])
-		valueStart := offset + 2
+		var tlvLen int
+		if lengthSize == 2 {
+			tlvLen = int(data[offset+1])<<8 | int(data[offset+2])
+		} else {
+			tlvLen = int(data[offset+1])
+		}
+		valueStart := offset + 1 + lengthSize
 		valueEnd := valueStart + tlvLen
 
 		if valueEnd > len(data) {
@@ -70,8 +83,6 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			result.CmtsMic = make([]byte, len(value))
 			copy(result.CmtsMic, value)
 		}
-
-		def, ok := reg.TopLevel[tlvType]
 		if !ok {
 			// Unknown TLV
 			hexVal, _ := DecodeValue(value, DataTypeHexString)
@@ -92,17 +103,22 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			var assembled []byte
 			assembled = append(assembled, value...)
 			scanOffset := valueEnd
-			for scanOffset+1 < len(data) {
+			for scanOffset+1+lengthSize <= len(data) {
 				nextType := int(data[scanOffset])
 				if nextType != tlvType {
 					break
 				}
-				nextLen := int(data[scanOffset+1])
-				nextEnd := scanOffset + 2 + nextLen
+				var nextLen int
+				if lengthSize == 2 {
+					nextLen = int(data[scanOffset+1])<<8 | int(data[scanOffset+2])
+				} else {
+					nextLen = int(data[scanOffset+1])
+				}
+				nextEnd := scanOffset + 1 + lengthSize + nextLen
 				if nextEnd > len(data) {
 					break
 				}
-				assembled = append(assembled, data[scanOffset+2:nextEnd]...)
+				assembled = append(assembled, data[scanOffset+1+lengthSize:nextEnd]...)
 				scanOffset = nextEnd
 			}
 			decoded, err := DecodeValue(assembled, def.DataType)
@@ -181,12 +197,24 @@ func decodeCompound(data []byte, parent *TLVDef) (map[string]interface{}, error)
 			continue
 		}
 
-		if offset+1 >= len(data) {
+		// Determine the length field size from sub-TLV definition.
+		subDef, ok := parent.SubTLVs[subType]
+		subLengthSize := 1
+		if ok && subDef.LengthSize == 2 {
+			subLengthSize = 2
+		}
+
+		if offset+1+subLengthSize > len(data) {
 			return nil, fmt.Errorf("truncated sub-TLV at offset %d", offset)
 		}
 
-		subLen := int(data[offset+1])
-		valueStart := offset + 2
+		var subLen int
+		if subLengthSize == 2 {
+			subLen = int(data[offset+1])<<8 | int(data[offset+2])
+		} else {
+			subLen = int(data[offset+1])
+		}
+		valueStart := offset + 1 + subLengthSize
 		valueEnd := valueStart + subLen
 
 		if valueEnd > len(data) {
@@ -194,8 +222,6 @@ func decodeCompound(data []byte, parent *TLVDef) (map[string]interface{}, error)
 		}
 
 		value := data[valueStart:valueEnd]
-
-		subDef, ok := parent.SubTLVs[subType]
 		if !ok {
 			// Unknown sub-TLV
 			hexVal, _ := DecodeValue(value, DataTypeHexString)

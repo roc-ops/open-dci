@@ -538,3 +538,169 @@ func TestEncodeMICsSkipped(t *testing.T) {
 		t.Errorf("expected no MIC TLVs in output:\n  got:  %X\n  want: %X", encoded, expected)
 	}
 }
+
+func TestEncode2ByteLenTopLevel(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	result := &DecodeResult{
+		Config: map[string]interface{}{
+			"CmSshServerConfigurationSettings": map[string]interface{}{
+				"SshCmCds":            "DEADBEEF",
+				"SshCmCdsDownloadUrl": "http://example.com",
+				"_tlvOrder":           []string{"SshCmCds", "SshCmCdsDownloadUrl"},
+			},
+		},
+		TLVOrder: []string{"CmSshServerConfigurationSettings"},
+	}
+
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Build the expected binary manually.
+	// Sub-TLV 1 (SshCmCds, 2-byte len): type=1, len=0x00 0x04, value=DEADBEEF
+	subTLV := buildTLV2(1, []byte{0xDE, 0xAD, 0xBE, 0xEF})
+	// Sub-TLV 2 (SshCmCdsDownloadUrl, 1-byte len)
+	subTLV = append(subTLV, buildTLV(2, []byte("http://example.com\x00"))...)
+	// TLV 103 (2-byte len) wrapping the sub-TLVs
+	var expected []byte
+	expected = append(expected, buildTLV2(103, subTLV)...)
+	expected = append(expected, 0xFF, 0x00) // end-of-data
+
+	if !bytes.Equal(encoded, expected) {
+		t.Errorf("2-byte length encode mismatch:\n  got:  %X\n  want: %X", encoded, expected)
+	}
+}
+
+func TestEncode2ByteLenLargePayload(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// Create a 300-byte hex payload (600 hex chars)
+	bigPayload := make([]byte, 300)
+	for i := range bigPayload {
+		bigPayload[i] = byte(i % 256)
+	}
+	bigHex := strings.ToUpper(hex.EncodeToString(bigPayload))
+
+	result := &DecodeResult{
+		Config: map[string]interface{}{
+			"CmSshServerConfigurationSettings": map[string]interface{}{
+				"SshCmCds": bigHex,
+				"_tlvOrder": []string{"SshCmCds"},
+			},
+		},
+		TLVOrder: []string{"CmSshServerConfigurationSettings"},
+	}
+
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// The TLV 103 header should be: type=103(0x67), length=303 (300 payload + 3 for sub-TLV header)
+	// Sub-TLV 1 header: type=1, length_hi=0x01, length_lo=0x2C (300 = 0x012C)
+	// TLV 103 total sub-body length = 3 + 300 = 303 = 0x012F
+	if encoded[0] != 103 {
+		t.Errorf("expected type byte 103, got %d", encoded[0])
+	}
+	outerLen := int(encoded[1])<<8 | int(encoded[2])
+	if outerLen != 303 {
+		t.Errorf("expected outer 2-byte length 303, got %d", outerLen)
+	}
+	// Inner sub-TLV type should be 1
+	if encoded[3] != 1 {
+		t.Errorf("expected sub-TLV type 1, got %d", encoded[3])
+	}
+	innerLen := int(encoded[4])<<8 | int(encoded[5])
+	if innerLen != 300 {
+		t.Errorf("expected inner 2-byte length 300, got %d", innerLen)
+	}
+}
+
+func TestMakeTLVn(t *testing.T) {
+	// 1-byte length
+	result1 := makeTLVn(10, []byte{0xAA, 0xBB}, 1)
+	if !bytes.Equal(result1, []byte{10, 2, 0xAA, 0xBB}) {
+		t.Errorf("makeTLVn(1) mismatch: got %X", result1)
+	}
+
+	// 2-byte length
+	result2 := makeTLVn(10, []byte{0xAA, 0xBB}, 2)
+	if !bytes.Equal(result2, []byte{10, 0x00, 0x02, 0xAA, 0xBB}) {
+		t.Errorf("makeTLVn(2) mismatch: got %X", result2)
+	}
+
+	// 2-byte length with value > 255 bytes
+	bigVal := make([]byte, 300)
+	result3 := makeTLVn(5, bigVal, 2)
+	if result3[0] != 5 {
+		t.Errorf("expected type 5, got %d", result3[0])
+	}
+	gotLen := int(result3[1])<<8 | int(result3[2])
+	if gotLen != 300 {
+		t.Errorf("expected length 300, got %d", gotLen)
+	}
+	if len(result3) != 3+300 {
+		t.Errorf("expected total length 303, got %d", len(result3))
+	}
+}
+
+func TestRoundTrip2ByteLen(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// Build original binary with 2-byte length TLVs.
+	subTLV := buildTLV2(1, []byte{0xDE, 0xAD, 0xBE, 0xEF})
+	subTLV = append(subTLV, buildTLV(2, []byte("test\x00"))...)
+	var original []byte
+	original = append(original, buildTLV(3, []byte{1})...)
+	original = append(original, buildTLV2(103, subTLV)...)
+	original = append(original, 0xFF, 0x00)
+
+	// Decode
+	result, err := Decode(original, reg)
+	if err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+
+	// Re-encode
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatalf("encode: %v", err)
+	}
+
+	if !bytes.Equal(encoded, original) {
+		t.Errorf("2-byte length round-trip failed:\n  got:  %X\n  want: %X", encoded, original)
+	}
+}
+
+func TestRoundTrip2ByteLenLargePayload(t *testing.T) {
+	reg := makeTestRegistry2ByteLen()
+
+	// 300-byte payload (exceeds 1-byte length limit of 255)
+	bigPayload := make([]byte, 300)
+	for i := range bigPayload {
+		bigPayload[i] = byte(i % 256)
+	}
+
+	subTLV := buildTLV2(1, bigPayload)
+	var original []byte
+	original = append(original, buildTLV2(103, subTLV)...)
+	original = append(original, 0xFF, 0x00)
+
+	// Decode
+	result, err := Decode(original, reg)
+	if err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+
+	// Re-encode
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatalf("encode: %v", err)
+	}
+
+	if !bytes.Equal(encoded, original) {
+		t.Errorf("large payload 2-byte length round-trip failed:\n  got len=%d, want len=%d", len(encoded), len(original))
+	}
+}
