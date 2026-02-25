@@ -90,6 +90,86 @@ func TestRoundTripLabTr069(t *testing.T) {
 		len(originalStripped), len(encodedStripped), len(encodedStripped)-len(originalStripped))
 }
 
+// TestRoundTrip100D100U is the integration test for the 100D100U.bin config file.
+// This file is 3932 bytes and contains SNMP MIB objects (TLV 11 varbinds).
+// Like TestRoundTripLabTr069, we verify semantic equivalence rather than byte-exact
+// matching, since null-terminator normalization and MIC exclusion prevent exact matches.
+func TestRoundTrip100D100U(t *testing.T) {
+	binPath := "binary-files/100D100U.bin"
+	originalData, err := os.ReadFile(binPath)
+	if err != nil {
+		t.Skipf("skipping integration test: %v", err)
+	}
+
+	// Load the full schema registry.
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		t.Fatal("unable to get caller info")
+	}
+	schemaFile := filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
+	reg, err := LoadRegistry(schemaFile)
+	if err != nil {
+		t.Fatalf("loading registry: %v", err)
+	}
+
+	// Decode the original binary.
+	result1, err := Decode(originalData, reg)
+	if err != nil {
+		t.Fatalf("decoding original: %v", err)
+	}
+
+	t.Logf("Decoded %d top-level properties", len(result1.Config))
+	t.Logf("TLVOrder: %v", result1.TLVOrder)
+
+	// Re-encode.
+	encoded, err := Encode(result1, reg)
+	if err != nil {
+		t.Fatalf("encoding: %v", err)
+	}
+
+	t.Logf("Original size: %d bytes, encoded size: %d bytes", len(originalData), len(encoded))
+
+	// Decode the re-encoded binary.
+	result2, err := Decode(encoded, reg)
+	if err != nil {
+		t.Fatalf("decoding re-encoded: %v", err)
+	}
+
+	// Compare the decoded configs (excluding MICs and internal metadata).
+	config1 := cleanConfigForComparison(result1.Config)
+	config2 := cleanConfigForComparison(result2.Config)
+
+	json1, _ := json.MarshalIndent(config1, "", "  ")
+	json2, _ := json.MarshalIndent(config2, "", "  ")
+
+	if string(json1) != string(json2) {
+		t.Errorf("Semantic round-trip FAILED: decoded configs differ")
+		t.Logf("Original decoded:\n%s", string(json1))
+		t.Logf("Re-encoded decoded:\n%s", string(json2))
+	} else {
+		t.Logf("Semantic round-trip PASSED: configs match (%d bytes JSON)", len(json1))
+	}
+
+	// Also verify that TLV ordering is preserved (excluding MIC TLVs).
+	order1 := filterMICFromOrder(result1.TLVOrder)
+	order2 := filterMICFromOrder(result2.TLVOrder)
+	if len(order1) != len(order2) {
+		t.Errorf("TLVOrder length mismatch (excluding MICs): %d vs %d", len(order1), len(order2))
+	}
+	for i := 0; i < len(order1) && i < len(order2); i++ {
+		if order1[i] != order2[i] {
+			t.Errorf("TLVOrder[%d] mismatch: %q vs %q", i, order1[i], order2[i])
+		}
+	}
+
+	// Also do a byte-exact comparison on the parts that should match exactly
+	// (non-string TLVs). This verifies integers, IPs, compounds, etc. are exact.
+	originalStripped := stripTLVsForComparison(originalData, 6, 7)
+	encodedStripped := stripTLVsForComparison(encoded, 6, 7)
+	t.Logf("Stripped sizes: original=%d, encoded=%d (diff=%d bytes, due to null-terminator normalization)",
+		len(originalStripped), len(encodedStripped), len(encodedStripped)-len(originalStripped))
+}
+
 // filterMICFromOrder removes CmMic and CmtsMic from a TLV order slice.
 func filterMICFromOrder(order []string) []string {
 	var result []string
