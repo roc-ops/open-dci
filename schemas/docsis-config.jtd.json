@@ -6151,6 +6151,7 @@
         "description": "Manufacturer Code Verification Certificate",
         "tlvType": 32,
         "dataType": "hexstring",
+        "repeatable": true,
         "spec": "CM-SP-MULPIv4.0 C.1.2.10"
       },
       "type": "string"
@@ -6160,6 +6161,7 @@
         "description": "Co-Signer Code Verification Certificate",
         "tlvType": 33,
         "dataType": "hexstring",
+        "repeatable": true,
         "spec": "CM-SP-MULPIv4.0 C.1.2.11"
       },
       "type": "string"
@@ -6533,6 +6535,7 @@
         "description": "Manufacturer CVC Chain",
         "tlvType": 81,
         "dataType": "hexstring",
+        "repeatable": true,
         "spec": "CM-SP-MULPIv4.0 C.1.2.21"
       },
       "type": "string"
@@ -6542,6 +6545,7 @@
         "description": "Co-signer CVC Chain",
         "tlvType": 82,
         "dataType": "hexstring",
+        "repeatable": true,
         "spec": "CM-SP-MULPIv4.0 C.1.2.22"
       },
       "type": "string"
