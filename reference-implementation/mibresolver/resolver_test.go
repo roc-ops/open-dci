@@ -263,6 +263,140 @@ func TestNewResolver_invalidDir(t *testing.T) {
 	}
 }
 
+func TestNewFromMIBData_coreOnly(t *testing.T) {
+	r, err := NewFromMIBData(nil)
+	if err != nil {
+		t.Fatalf("NewFromMIBData(nil) error: %v", err)
+	}
+	defer r.Close()
+
+	// Core MIBs should resolve SNMPv2-MIB OIDs.
+	got := r.ResolveOID("1.3.6.1.2.1.1.1.0")
+	if got == "" {
+		t.Error("ResolveOID(sysDescr.0) returned empty with core MIBs")
+	}
+}
+
+func TestNewFromMIBData_withUserMIBs(t *testing.T) {
+	// Read a real MIB file from the repository to use as test data.
+	mibsRoot := mibsDir(t)
+
+	// Read IF-MIB from the ietf directory.
+	ifMibPath := mibsRoot + "/ietf/IF-MIB.mib"
+	ifMibData, err := os.ReadFile(ifMibPath)
+	if err != nil {
+		// Try following the symlink.
+		resolved, resolveErr := os.Readlink(ifMibPath)
+		if resolveErr != nil {
+			t.Skipf("IF-MIB.mib not found: %v", err)
+		}
+		ifMibData, err = os.ReadFile(mibsRoot + "/ietf/" + resolved)
+		if err != nil {
+			t.Skipf("IF-MIB.mib not readable: %v", err)
+		}
+	}
+
+	// Also need IANAifType-MIB which IF-MIB imports.
+	ianaPath := mibsRoot + "/iana/IANAifType-MIB.mib"
+	ianaData, err := os.ReadFile(ianaPath)
+	if err != nil {
+		resolved, resolveErr := os.Readlink(ianaPath)
+		if resolveErr != nil {
+			t.Skipf("IANAifType-MIB.mib not found: %v", err)
+		}
+		ianaData, err = os.ReadFile(mibsRoot + "/iana/" + resolved)
+		if err != nil {
+			t.Skipf("IANAifType-MIB.mib not readable: %v", err)
+		}
+	}
+
+	// Also need SNMPv2-MIB for sysDescr.
+	snmpv2Path := mibsRoot + "/ietf/SNMPv2-MIB.mib"
+	snmpv2Data, err := os.ReadFile(snmpv2Path)
+	if err != nil {
+		resolved, resolveErr := os.Readlink(snmpv2Path)
+		if resolveErr != nil {
+			t.Skipf("SNMPv2-MIB.mib not found: %v", err)
+		}
+		snmpv2Data, err = os.ReadFile(mibsRoot + "/ietf/" + resolved)
+		if err != nil {
+			t.Skipf("SNMPv2-MIB.mib not readable: %v", err)
+		}
+	}
+
+	r, err := NewFromMIBData(map[string][]byte{
+		"IF-MIB.mib":         ifMibData,
+		"IANAifType-MIB.mib": ianaData,
+		"SNMPv2-MIB.mib":     snmpv2Data,
+	})
+	if err != nil {
+		t.Fatalf("NewFromMIBData error: %v", err)
+	}
+	defer r.Close()
+
+	// Should resolve IF-MIB OIDs.
+	got := r.ResolveOID("1.3.6.1.2.1.2.2.1.7.1")
+	want := "IF-MIB::ifAdminStatus.1"
+	if got != want {
+		t.Errorf("ResolveOID(ifAdminStatus.1) = %q, want %q", got, want)
+	}
+
+	// Should resolve enums.
+	enumGot := r.ResolveEnum("1.3.6.1.2.1.2.2.1.7", 1)
+	enumWant := "up(1)"
+	if enumGot != enumWant {
+		t.Errorf("ResolveEnum(ifAdminStatus, 1) = %q, want %q", enumGot, enumWant)
+	}
+}
+
+func TestLoadAdditionalMIBs(t *testing.T) {
+	// Start with core MIBs only.
+	r, err := NewFromMIBData(nil)
+	if err != nil {
+		t.Fatalf("NewFromMIBData(nil) error: %v", err)
+	}
+	defer r.Close()
+
+	// ifAdminStatus should NOT resolve with only core MIBs.
+	got := r.ResolveOID("1.3.6.1.2.1.2.2.1.7.1")
+	if strings.Contains(got, "ifAdminStatus") {
+		t.Skipf("ifAdminStatus already resolved with core MIBs only — test invalid")
+	}
+
+	// Load IF-MIB incrementally.
+	mibsRoot := mibsDir(t)
+
+	ifMibData, err := os.ReadFile(mibsRoot + "/ietf/IF-MIB.mib")
+	if err != nil {
+		t.Skipf("IF-MIB.mib not readable: %v", err)
+	}
+	ianaData, err := os.ReadFile(mibsRoot + "/iana/IANAifType-MIB.mib")
+	if err != nil {
+		t.Skipf("IANAifType-MIB.mib not readable: %v", err)
+	}
+	snmpv2Data, err := os.ReadFile(mibsRoot + "/ietf/SNMPv2-MIB.mib")
+	if err != nil {
+		t.Skipf("SNMPv2-MIB.mib not readable: %v", err)
+	}
+
+	loaded, err := r.LoadAdditionalMIBs(map[string][]byte{
+		"IF-MIB.mib":         ifMibData,
+		"IANAifType-MIB.mib": ianaData,
+		"SNMPv2-MIB.mib":     snmpv2Data,
+	})
+	if err != nil {
+		t.Fatalf("LoadAdditionalMIBs error: %v", err)
+	}
+	t.Logf("Loaded %d additional modules", loaded)
+
+	// Now ifAdminStatus should resolve.
+	got = r.ResolveOID("1.3.6.1.2.1.2.2.1.7.1")
+	want := "IF-MIB::ifAdminStatus.1"
+	if got != want {
+		t.Errorf("ResolveOID(ifAdminStatus.1) after incremental load = %q, want %q", got, want)
+	}
+}
+
 func TestWithVersionOverrides(t *testing.T) {
 	// Test that the option function correctly parses overrides.
 	cfg := &config{versionOverrides: make(map[string]string)}
