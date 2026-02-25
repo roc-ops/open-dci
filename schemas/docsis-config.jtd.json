@@ -1579,6 +1579,10 @@
             "tlvType": "24.41",
             "tlvLength": 1,
             "dataType": "uint8",
+            "validValues": {
+              "0": "bits/sec",
+              "1": "kbits/sec"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
           },
           "type": "uint8"
@@ -1873,6 +1877,10 @@
             "tlvType": "25.41",
             "tlvLength": 1,
             "dataType": "uint8",
+            "validValues": {
+              "0": "bits/sec",
+              "1": "kbits/sec"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
           },
           "type": "uint8"
@@ -2068,6 +2076,10 @@
             "description": "DUT filtering control (0=disabled, 1=enabled)",
             "tlvType": "45.1",
             "dataType": "uint8",
+            "validValues": {
+              "0": "disabled",
+              "1": "enabled"
+            },
             "spec": "CM-SP-MULPIv4.0 C.1.1.24"
           },
           "type": "uint8"
@@ -5024,6 +5036,10 @@
         "tlvType": 3,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.1.3"
       },
       "type": "uint8"
@@ -5213,6 +5229,10 @@
         "tlvType": 29,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.1.17"
       },
       "type": "uint8"
@@ -5375,6 +5395,10 @@
         "tlvType": 55,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.2.15"
       },
       "type": "uint8"
