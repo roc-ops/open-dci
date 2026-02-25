@@ -3127,51 +3127,6 @@
         }
       }
     },
-    "L2cpManagementEntry": {
-      "metadata": {
-        "description": "L2CP Management encoding",
-        "tlvType": 83,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
-      },
-      "optionalProperties": {
-        "Cmim": {
-          "metadata": {
-            "description": "CM Interface Mask for L2CP",
-            "tlvType": "83.1",
-            "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
-          },
-          "type": "string"
-        },
-        "L2cpMode": {
-          "metadata": {
-            "description": "L2CP processing mode",
-            "tlvType": "83.2",
-            "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
-          },
-          "type": "uint8"
-        },
-        "L2cpL2ptDmacAddress": {
-          "metadata": {
-            "description": "L2CP L2PT destination MAC address",
-            "tlvType": "83.3",
-            "dataType": "macAddress",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
-          },
-          "type": "string"
-        },
-        "L2cpFilter": {
-          "metadata": {
-            "description": "L2CP filter encoding",
-            "tlvType": "83.4",
-            "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
-          },
-          "type": "string"
-        }
-      }
-    },
     "MplsPwEntry": {
       "metadata": {
         "description": "MPLS Pseudowire encoding within NSI encapsulation",
@@ -5746,7 +5701,7 @@
           "0": "disable",
           "1": "enable"
         },
-        "spec": "CM-SP-MULPIv4.0 C.1.1.21"
+        "spec": "CM-SP-MULPIv4.0 C.1.1.20"
       },
       "type": "uint8"
     },
@@ -5992,7 +5947,7 @@
         "tlvType": 72,
         "dataType": "compound",
         "repeatable": true,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.12"
       },
       "elements": {
         "ref": "MetroEthernetServiceProfileEntry"
@@ -6057,17 +6012,20 @@
       },
       "type": "string"
     },
-    "L2cpManagement": {
+    "DtpModeConfiguration": {
       "metadata": {
-        "description": "L2CP Management encoding",
+        "description": "DTP Mode Configuration: specifies the provisioned Downstream Topology Protocol (DTP) mode for a CM (0=reserved, 1=DTP Slave Mode, 2=DTP Master Mode)",
         "tlvType": 83,
-        "dataType": "compound",
-        "repeatable": true,
-        "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "validValues": {
+          "0": "reserved",
+          "1": "DTP Slave Mode",
+          "2": "DTP Master Mode"
+        },
+        "spec": "CM-SP-MULPIv4.0 C.1.1.31"
       },
-      "elements": {
-        "ref": "L2cpManagementEntry"
-      }
+      "type": "uint8"
     },
     "DiplexerBandEdge": {
       "metadata": {

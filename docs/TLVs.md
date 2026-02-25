@@ -123,7 +123,7 @@ This table lists all top-level TLV types registered in CANN Section 11.1, cross-
 | 80 | Energy Management -- DOCSIS Light Sleep Encodings | encapsulated | n | No | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.4.5 |
 | 81 | Manufacturer CVC Chain | hexstring | n | Yes | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.2.21 |
 | 82 | Co-signer CVC Chain | hexstring | n | Yes | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.2.22 |
-| 83 | L2CP Management | encapsulated | 1 | Yes | DPoE-MULPIv2.0 I14 | C.1.1.31 |
+| 83 | DTP Mode Configuration | uint8 | 1 | Yes | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.1.31 |
 | 84 | Diplexer Band Edge | hexstring | 9 | Yes | DOCSIS 3.1 · MULPIv4.0 I11 | C.1.2.23 |
 | 85 | FDX Transmission Group Assignment | encapsulated | n | No | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.4.6 |
 | 86 | FDX Reset | uint8 | 1 | No | DOCSIS 4.0 · MULPIv4.0 I11 | C.1.4.7 |

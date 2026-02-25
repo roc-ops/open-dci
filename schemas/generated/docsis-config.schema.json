@@ -2710,45 +2710,6 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
     },
-    "L2cpManagementEntry": {
-      "additionalProperties": false,
-      "description": "L2CP Management encoding",
-      "properties": {
-        "Cmim": {
-          "description": "CM Interface Mask for L2CP",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-          "x-docsis-tlvType": "83.1"
-        },
-        "L2cpFilter": {
-          "description": "L2CP filter encoding",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-          "x-docsis-tlvType": "83.4"
-        },
-        "L2cpL2ptDmacAddress": {
-          "description": "L2CP L2PT destination MAC address",
-          "type": "string",
-          "x-docsis-dataType": "macAddress",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-          "x-docsis-tlvType": "83.3"
-        },
-        "L2cpMode": {
-          "description": "L2CP processing mode",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-          "x-docsis-tlvType": "83.2"
-        }
-      },
-      "type": "object",
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-      "x-docsis-tlvType": 83
-    },
     "L2cpProcessingEntry": {
       "additionalProperties": false,
       "description": "L2CP Processing encoding within L2VPN",
@@ -5466,6 +5427,21 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.2",
       "x-docsis-tlvType": 25
     },
+    "DtpModeConfiguration": {
+      "description": "DTP Mode Configuration: specifies the provisioned Downstream Topology Protocol (DTP) mode for a CM (0=reserved, 1=DTP Slave Mode, 2=DTP Master Mode)",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.31",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 83,
+      "x-docsis-validValues": {
+        "0": "reserved",
+        "1": "DTP Slave Mode",
+        "2": "DTP Master Mode"
+      }
+    },
     "Edva": {
       "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
       "type": "string",
@@ -5500,7 +5476,7 @@
       "minimum": 0,
       "type": "integer",
       "x-docsis-dataType": "uint8",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.21",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.20",
       "x-docsis-tlvLength": 1,
       "x-docsis-tlvType": 40,
       "x-docsis-validValues": {
@@ -5576,17 +5552,6 @@
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.26",
       "x-docsis-tlvLength": 2,
       "x-docsis-tlvType": 106
-    },
-    "L2cpManagement": {
-      "description": "L2CP Management encoding",
-      "items": {
-        "$ref": "#/$defs/L2cpManagementEntry"
-      },
-      "type": "array",
-      "x-docsis-dataType": "compound",
-      "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
-      "x-docsis-tlvType": 83
     },
     "L2vpnMacAgingEncoding": {
       "description": "L2VPN MAC Aging Encoding",
@@ -5676,7 +5641,7 @@
       "type": "array",
       "x-docsis-dataType": "compound",
       "x-docsis-repeatable": true,
-      "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.12",
       "x-docsis-tlvType": 72
     },
     "NetworkAccess": {
