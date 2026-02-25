@@ -6710,6 +6710,7 @@
         "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
         "tlvType": 201,
         "dataType": "hexstring",
+        "chunked": true,
         "spec": "CM-SP-eDOCSIS-I31 5.2.8.1"
       },
       "type": "string"
@@ -6731,6 +6732,7 @@
         "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
         "tlvType": 216,
         "dataType": "hexstring",
+        "chunked": true,
         "spec": "PKT-SP-PROV1.5-C01 9.1"
       },
       "type": "string"
@@ -6740,6 +6742,7 @@
         "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
         "tlvType": 217,
         "dataType": "hexstring",
+        "chunked": true,
         "spec": "CM-SP-eDOCSIS-I31 5.2.8.1, CM-SP-DSG-I25"
       },
       "type": "string"
@@ -6761,6 +6764,7 @@
         "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
         "tlvType": 220,
         "dataType": "hexstring",
+        "chunked": true,
         "spec": "CM-SP-eDOCSIS-I31 5.2.8.1, PKT-SP-RST-E-DVA-C01"
       },
       "type": "string"
@@ -6770,6 +6774,7 @@
         "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
         "tlvType": 221,
         "dataType": "hexstring",
+        "chunked": true,
         "spec": "CM-SP-eDOCSIS-I31 5.2.8.1"
       },
       "type": "string"
