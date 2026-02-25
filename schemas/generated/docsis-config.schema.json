@@ -10,8 +10,13 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
-          "x-docsis-tlvType": "x.40.3"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.3",
+          "x-docsis-tlvType": "x.40.3",
+          "x-docsis-validValues": {
+            "0": "default AQM for the type of Service Flow",
+            "1": "docsisPIE",
+            "2": "ImmediateAqm"
+          }
         },
         "AqmDisable": {
           "description": "Disable AQM for this service flow",
@@ -19,8 +24,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
-          "x-docsis-tlvType": "x.40.1"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.1",
+          "x-docsis-tlvType": "x.40.1",
+          "x-docsis-validValues": {
+            "0": "Enable AQM on service flow",
+            "1": "Disable AQM on service flow"
+          }
         },
         "AqmLatencyTarget": {
           "description": "AQM latency target in microseconds",
@@ -174,13 +183,106 @@
       "description": "Classifier Error Encoding reported when a classifier parameter is rejected",
       "properties": {
         "ErrorCode": {
-          "description": "Error code value",
+          "description": "Error code value (Confirmation Code per C.4)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8",
-          "x-docsis-tlvType": "x.8.2"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.8, C.4",
+          "x-docsis-tlvType": "x.8.2",
+          "x-docsis-validValues": {
+            "0": "okay/success",
+            "1": "reject-other",
+            "10": "reject-unknown-transaction-id",
+            "11": "reject-authentication-failure",
+            "12": "reject-add-aborted",
+            "13": "reject-multiple-errors",
+            "14": "reject-classifier-not-found",
+            "15": "reject-classifier-exists",
+            "160": "reject-unknown-RCP-ID",
+            "161": "reject-multiple-RCP-IDs",
+            "162": "reject-missing-Receive-Module-Index",
+            "163": "reject-invalid-Receive-Module-Index",
+            "164": "reject-invalid-receive-channel-center-frequency",
+            "165": "reject-invalid-RM-first-channel-center-frequency",
+            "166": "reject-missing-RM-first-channel-center-frequency",
+            "167": "reject-no-primary-downstream-channel-assigned",
+            "168": "reject-multiple-primary-downstream-channel-assigned",
+            "169": "reject-receive-module-connectivity-error",
+            "170": "reject-invalid-receive-channel-index",
+            "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+            "18": "reject-duplicate-reference-ID-or-index-in-message",
+            "180": "depart",
+            "181": "arrive",
+            "182": "reject-already-there",
+            "183": "reject-20-disable",
+            "19": "reject-multiple-upstream-service-flows",
+            "2": "reject-unrecognized-configuration-setting",
+            "20": "reject-multiple-downstream-service-flows",
+            "200": "reject-major-service-flow-error",
+            "201": "reject-major-classifier-error",
+            "203": "reject-multiple-major-errors",
+            "204": "reject-message-syntax-error",
+            "205": "reject-primary-service-flow-error",
+            "206": "reject-message-too-big",
+            "207": "reject-invalid-modem-capabilities",
+            "208": "reject-bad-rcc",
+            "209": "reject-bad-tcc",
+            "21": "reject-classifier-for-another-service-flow",
+            "210": "reject-dynamic-range-window-violation",
+            "211": "reject-unable-to-support-queue-depth",
+            "212": "reject-energy-mgmt-params",
+            "213": "reject-invalid-backup-primary-downstream",
+            "214": "reject-insufficient-SID-bundle-resources",
+            "215": "reject-invalid-low-latency-config",
+            "216": "reject-unknown-scn-or-aqp",
+            "23": "reject-parameter-invalid-for-context",
+            "24": "reject-authorization-failure",
+            "25": "reject-temporary-DCC",
+            "26": "reject-downstream-inconsistency",
+            "27": "reject-upstream-inconsistency",
+            "28": "reject-insufficient-SID-cluster-resources",
+            "29": "reject-missing-RCP",
+            "3": "reject-temporary/reject-resource",
+            "30": "partial-service",
+            "31": "reject-temporary-DBC",
+            "32": "reject-unknown-DSID",
+            "33": "reject-unknown-SID-Cluster",
+            "34": "reject-invalid-initialization-technique",
+            "35": "reject-no-change",
+            "36": "reject-invalid-DBC-request",
+            "37": "reject-mode-switch",
+            "38": "reject-insufficient-transmitters",
+            "4": "reject-permanent/reject-admin",
+            "40": "reject-insufficient-DSID-resources",
+            "41": "reject-invalid-DSID-encoding",
+            "42": "reject-unknown-client-mac-address",
+            "43": "reject-unknown-SAID",
+            "44": "reject-insufficient-SA-resources",
+            "45": "reject-invalid-SA-encoding",
+            "46": "reject-invalid-SA-crypto-suite",
+            "47": "reject-tek-exists",
+            "48": "reject-invalid-SID-cluster-encoding",
+            "49": "reject-insufficient-SID-resources",
+            "5": "reject-not-owner",
+            "50": "reject-unsupported-parameter-change",
+            "52": "reject-NoMAPsOrUCDs",
+            "53": "error-T3RetriesExceeded",
+            "54": "error-T2Timeout",
+            "55": "error-T4Timeout",
+            "56": "error-RangeAbort",
+            "57": "error-InitChanTimeout",
+            "58": "error-DBC-REQ-incomplete",
+            "59": "reject-too-many-ofdma-profiles",
+            "6": "reject-service-flow-not-found",
+            "60": "reject-too-many-ofdm-profiles",
+            "61": "reject-em-incorrect-primary-ds",
+            "62": "reject-aqm-not-supported",
+            "63": "reject-invalid-dpd",
+            "7": "reject-service-flow-exists",
+            "8": "reject-required-parameter-not-present",
+            "9": "reject-header-suppression"
+          }
         },
         "ErrorMessage": {
           "description": "Human-readable error message",
@@ -465,7 +567,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.24",
-          "x-docsis-tlvType": "45.1"
+          "x-docsis-tlvType": "45.1",
+          "x-docsis-validValues": {
+            "0": "disabled",
+            "1": "enabled"
+          }
         }
       },
       "type": "object",
@@ -483,7 +589,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.6",
-          "x-docsis-tlvType": "23.6"
+          "x-docsis-tlvType": "23.6",
+          "x-docsis-validValues": {
+            "0": "inactive",
+            "1": "active"
+          }
         },
         "ClassifierErrorEncoding": {
           "$ref": "#/$defs/ClassifierErrorEntry",
@@ -523,7 +633,12 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
-          "x-docsis-tlvType": "23.7"
+          "x-docsis-tlvType": "23.7",
+          "x-docsis-validValues": {
+            "0": "DSC Add Classifier",
+            "1": "DSC Replace Classifier",
+            "2": "DSC Delete Classifier"
+          }
         },
         "EthernetLlcClassification": {
           "$ref": "#/$defs/EthernetLlcClassificationEntry",
@@ -672,7 +787,11 @@
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.41",
           "x-docsis-tlvLength": 1,
-          "x-docsis-tlvType": "25.41"
+          "x-docsis-tlvType": "25.41",
+          "x-docsis-validValues": {
+            "0": "bits/sec",
+            "1": "kbits/sec"
+          }
         },
         "DownstreamResequencing": {
           "description": "Downstream resequencing control",
@@ -680,9 +799,13 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.6.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.11.2",
           "x-docsis-tlvLength": 1,
-          "x-docsis-tlvType": "25.17"
+          "x-docsis-tlvType": "25.17",
+          "x-docsis-validValues": {
+            "0": "associate with resequencing DSID if assigned to DS bonding group",
+            "1": "do not associate with resequencing DSID"
+          }
         },
         "IpTypeOfServiceDscpOverwrite": {
           "description": "IP ToS/DSCP overwrite value",
@@ -1044,7 +1167,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
-          "x-docsis-tlvType": "202.53.2.3"
+          "x-docsis-tlvType": "202.53.2.3",
+          "x-docsis-validValues": {
+            "1": "read-only",
+            "2": "read-write"
+          }
         },
         "TransportAddress": {
           "description": "SNMPv1v2c transport address",
@@ -1096,7 +1223,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
-          "x-docsis-tlvType": "202.54.4"
+          "x-docsis-tlvType": "202.54.4",
+          "x-docsis-validValues": {
+            "1": "included",
+            "2": "excluded"
+          }
         }
       },
       "type": "object",
@@ -2824,13 +2955,17 @@
           "x-docsis-tlvType": "x.42.9"
         },
         "QueueProtectionEnable": {
-          "description": "Queue protection enable",
+          "description": "Queue protection enable (bit 0 only; bits 1-7 reserved)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
-          "x-docsis-tlvType": "x.42.7"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.7",
+          "x-docsis-tlvType": "x.42.7",
+          "x-docsis-validValues": {
+            "0": "Queue Protection disabled",
+            "1": "Queue Protection enabled"
+          }
         },
         "SchedulingWeight": {
           "description": "Scheduling weight",
@@ -3189,7 +3324,7 @@
           "x-docsis-tlvType": "26.1"
         },
         "DynamicBondingChangeAction": {
-          "description": "Dynamic bonding change action",
+          "description": "Dynamic bonding change action - deprecated as of DOCSIS 3.1",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -3203,8 +3338,13 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
-          "x-docsis-tlvType": "26.5"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
+          "x-docsis-tlvType": "26.5",
+          "x-docsis-validValues": {
+            "0": "DSC Add Classifier",
+            "1": "DSC Replace Classifier",
+            "2": "DSC Delete Classifier"
+          }
         },
         "PhsErrorEncoding": {
           "$ref": "#/$defs/PhsErrorEntry",
@@ -3245,7 +3385,7 @@
           "x-docsis-tlvType": "26.10"
         },
         "PhsVerification": {
-          "description": "Payload Header Suppression Verification (PHSV)",
+          "description": "Payload Header Suppression Verification (PHSV) - deprecated as of DOCSIS 3.1",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -3313,13 +3453,106 @@
       "description": "Payload Header Suppression Error Encoding",
       "properties": {
         "ErrorCode": {
-          "description": "Error code value",
+          "description": "Error code value (Confirmation Code per C.4) - PHS deprecated as of DOCSIS 3.1",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3",
-          "x-docsis-tlvType": "26.6.2"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.3, C.4",
+          "x-docsis-tlvType": "26.6.2",
+          "x-docsis-validValues": {
+            "0": "okay/success",
+            "1": "reject-other",
+            "10": "reject-unknown-transaction-id",
+            "11": "reject-authentication-failure",
+            "12": "reject-add-aborted",
+            "13": "reject-multiple-errors",
+            "14": "reject-classifier-not-found",
+            "15": "reject-classifier-exists",
+            "160": "reject-unknown-RCP-ID",
+            "161": "reject-multiple-RCP-IDs",
+            "162": "reject-missing-Receive-Module-Index",
+            "163": "reject-invalid-Receive-Module-Index",
+            "164": "reject-invalid-receive-channel-center-frequency",
+            "165": "reject-invalid-RM-first-channel-center-frequency",
+            "166": "reject-missing-RM-first-channel-center-frequency",
+            "167": "reject-no-primary-downstream-channel-assigned",
+            "168": "reject-multiple-primary-downstream-channel-assigned",
+            "169": "reject-receive-module-connectivity-error",
+            "170": "reject-invalid-receive-channel-index",
+            "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+            "18": "reject-duplicate-reference-ID-or-index-in-message",
+            "180": "depart",
+            "181": "arrive",
+            "182": "reject-already-there",
+            "183": "reject-20-disable",
+            "19": "reject-multiple-upstream-service-flows",
+            "2": "reject-unrecognized-configuration-setting",
+            "20": "reject-multiple-downstream-service-flows",
+            "200": "reject-major-service-flow-error",
+            "201": "reject-major-classifier-error",
+            "203": "reject-multiple-major-errors",
+            "204": "reject-message-syntax-error",
+            "205": "reject-primary-service-flow-error",
+            "206": "reject-message-too-big",
+            "207": "reject-invalid-modem-capabilities",
+            "208": "reject-bad-rcc",
+            "209": "reject-bad-tcc",
+            "21": "reject-classifier-for-another-service-flow",
+            "210": "reject-dynamic-range-window-violation",
+            "211": "reject-unable-to-support-queue-depth",
+            "212": "reject-energy-mgmt-params",
+            "213": "reject-invalid-backup-primary-downstream",
+            "214": "reject-insufficient-SID-bundle-resources",
+            "215": "reject-invalid-low-latency-config",
+            "216": "reject-unknown-scn-or-aqp",
+            "23": "reject-parameter-invalid-for-context",
+            "24": "reject-authorization-failure",
+            "25": "reject-temporary-DCC",
+            "26": "reject-downstream-inconsistency",
+            "27": "reject-upstream-inconsistency",
+            "28": "reject-insufficient-SID-cluster-resources",
+            "29": "reject-missing-RCP",
+            "3": "reject-temporary/reject-resource",
+            "30": "partial-service",
+            "31": "reject-temporary-DBC",
+            "32": "reject-unknown-DSID",
+            "33": "reject-unknown-SID-Cluster",
+            "34": "reject-invalid-initialization-technique",
+            "35": "reject-no-change",
+            "36": "reject-invalid-DBC-request",
+            "37": "reject-mode-switch",
+            "38": "reject-insufficient-transmitters",
+            "4": "reject-permanent/reject-admin",
+            "40": "reject-insufficient-DSID-resources",
+            "41": "reject-invalid-DSID-encoding",
+            "42": "reject-unknown-client-mac-address",
+            "43": "reject-unknown-SAID",
+            "44": "reject-insufficient-SA-resources",
+            "45": "reject-invalid-SA-encoding",
+            "46": "reject-invalid-SA-crypto-suite",
+            "47": "reject-tek-exists",
+            "48": "reject-invalid-SID-cluster-encoding",
+            "49": "reject-insufficient-SID-resources",
+            "5": "reject-not-owner",
+            "50": "reject-unsupported-parameter-change",
+            "52": "reject-NoMAPsOrUCDs",
+            "53": "error-T3RetriesExceeded",
+            "54": "error-T2Timeout",
+            "55": "error-T4Timeout",
+            "56": "error-RangeAbort",
+            "57": "error-InitChanTimeout",
+            "58": "error-DBC-REQ-incomplete",
+            "59": "reject-too-many-ofdma-profiles",
+            "6": "reject-service-flow-not-found",
+            "60": "reject-too-many-ofdm-profiles",
+            "61": "reject-em-incorrect-primary-ds",
+            "62": "reject-aqm-not-supported",
+            "63": "reject-invalid-dpd",
+            "7": "reject-service-flow-exists",
+            "8": "reject-required-parameter-not-present",
+            "9": "reject-header-suppression"
+          }
         },
         "ErrorMessage": {
           "description": "Human-readable error message",
@@ -3430,13 +3663,106 @@
       "description": "Service Flow Error Encoding reported when a service flow parameter is rejected",
       "properties": {
         "ErrorCode": {
-          "description": "Error code value",
+          "description": "Error code value (Confirmation Code per C.4)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
-          "x-docsis-tlvType": "x.5.2"
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5, C.4",
+          "x-docsis-tlvType": "x.5.2",
+          "x-docsis-validValues": {
+            "0": "okay/success",
+            "1": "reject-other",
+            "10": "reject-unknown-transaction-id",
+            "11": "reject-authentication-failure",
+            "12": "reject-add-aborted",
+            "13": "reject-multiple-errors",
+            "14": "reject-classifier-not-found",
+            "15": "reject-classifier-exists",
+            "160": "reject-unknown-RCP-ID",
+            "161": "reject-multiple-RCP-IDs",
+            "162": "reject-missing-Receive-Module-Index",
+            "163": "reject-invalid-Receive-Module-Index",
+            "164": "reject-invalid-receive-channel-center-frequency",
+            "165": "reject-invalid-RM-first-channel-center-frequency",
+            "166": "reject-missing-RM-first-channel-center-frequency",
+            "167": "reject-no-primary-downstream-channel-assigned",
+            "168": "reject-multiple-primary-downstream-channel-assigned",
+            "169": "reject-receive-module-connectivity-error",
+            "170": "reject-invalid-receive-channel-index",
+            "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+            "18": "reject-duplicate-reference-ID-or-index-in-message",
+            "180": "depart",
+            "181": "arrive",
+            "182": "reject-already-there",
+            "183": "reject-20-disable",
+            "19": "reject-multiple-upstream-service-flows",
+            "2": "reject-unrecognized-configuration-setting",
+            "20": "reject-multiple-downstream-service-flows",
+            "200": "reject-major-service-flow-error",
+            "201": "reject-major-classifier-error",
+            "203": "reject-multiple-major-errors",
+            "204": "reject-message-syntax-error",
+            "205": "reject-primary-service-flow-error",
+            "206": "reject-message-too-big",
+            "207": "reject-invalid-modem-capabilities",
+            "208": "reject-bad-rcc",
+            "209": "reject-bad-tcc",
+            "21": "reject-classifier-for-another-service-flow",
+            "210": "reject-dynamic-range-window-violation",
+            "211": "reject-unable-to-support-queue-depth",
+            "212": "reject-energy-mgmt-params",
+            "213": "reject-invalid-backup-primary-downstream",
+            "214": "reject-insufficient-SID-bundle-resources",
+            "215": "reject-invalid-low-latency-config",
+            "216": "reject-unknown-scn-or-aqp",
+            "23": "reject-parameter-invalid-for-context",
+            "24": "reject-authorization-failure",
+            "25": "reject-temporary-DCC",
+            "26": "reject-downstream-inconsistency",
+            "27": "reject-upstream-inconsistency",
+            "28": "reject-insufficient-SID-cluster-resources",
+            "29": "reject-missing-RCP",
+            "3": "reject-temporary/reject-resource",
+            "30": "partial-service",
+            "31": "reject-temporary-DBC",
+            "32": "reject-unknown-DSID",
+            "33": "reject-unknown-SID-Cluster",
+            "34": "reject-invalid-initialization-technique",
+            "35": "reject-no-change",
+            "36": "reject-invalid-DBC-request",
+            "37": "reject-mode-switch",
+            "38": "reject-insufficient-transmitters",
+            "4": "reject-permanent/reject-admin",
+            "40": "reject-insufficient-DSID-resources",
+            "41": "reject-invalid-DSID-encoding",
+            "42": "reject-unknown-client-mac-address",
+            "43": "reject-unknown-SAID",
+            "44": "reject-insufficient-SA-resources",
+            "45": "reject-invalid-SA-encoding",
+            "46": "reject-invalid-SA-crypto-suite",
+            "47": "reject-tek-exists",
+            "48": "reject-invalid-SID-cluster-encoding",
+            "49": "reject-insufficient-SID-resources",
+            "5": "reject-not-owner",
+            "50": "reject-unsupported-parameter-change",
+            "52": "reject-NoMAPsOrUCDs",
+            "53": "error-T3RetriesExceeded",
+            "54": "error-T2Timeout",
+            "55": "error-T4Timeout",
+            "56": "error-RangeAbort",
+            "57": "error-InitChanTimeout",
+            "58": "error-DBC-REQ-incomplete",
+            "59": "reject-too-many-ofdma-profiles",
+            "6": "reject-service-flow-not-found",
+            "60": "reject-too-many-ofdm-profiles",
+            "61": "reject-em-incorrect-primary-ds",
+            "62": "reject-aqm-not-supported",
+            "63": "reject-invalid-dpd",
+            "7": "reject-service-flow-exists",
+            "8": "reject-required-parameter-not-present",
+            "9": "reject-header-suppression"
+          }
         },
         "ErrorMessage": {
           "description": "Human-readable error message",
@@ -3517,7 +3843,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.13.3",
-          "x-docsis-tlvType": "53.3"
+          "x-docsis-tlvType": "53.3",
+          "x-docsis-validValues": {
+            "1": "read-only",
+            "2": "read-write"
+          }
         },
         "CommunityName": {
           "description": "SNMPv1v2c community name string",
@@ -3592,7 +3922,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14.4",
-          "x-docsis-tlvType": "54.4"
+          "x-docsis-tlvType": "54.4",
+          "x-docsis-validValues": {
+            "1": "included",
+            "2": "excluded"
+          }
         }
       },
       "type": "object",
@@ -3888,7 +4222,12 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
-          "x-docsis-tlvType": "60.7"
+          "x-docsis-tlvType": "60.7",
+          "x-docsis-validValues": {
+            "0": "DSC Add Classifier",
+            "1": "DSC Replace Classifier",
+            "2": "DSC Delete Classifier"
+          }
         },
         "EthernetLlcClassification": {
           "$ref": "#/$defs/EthernetLlcClassificationEntry",
@@ -3977,7 +4316,11 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.6",
-          "x-docsis-tlvType": "22.6"
+          "x-docsis-tlvType": "22.6",
+          "x-docsis-validValues": {
+            "0": "inactive",
+            "1": "active"
+          }
         },
         "ClassifierErrorEncoding": {
           "$ref": "#/$defs/ClassifierErrorEntry",
@@ -4017,7 +4360,12 @@
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4.7",
-          "x-docsis-tlvType": "22.7"
+          "x-docsis-tlvType": "22.7",
+          "x-docsis-validValues": {
+            "0": "DSC Add Classifier",
+            "1": "DSC Replace Classifier",
+            "2": "DSC Delete Classifier"
+          }
         },
         "EthernetLlcClassification": {
           "$ref": "#/$defs/EthernetLlcClassificationEntry",
@@ -4166,7 +4514,11 @@
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.41",
           "x-docsis-tlvLength": 1,
-          "x-docsis-tlvType": "24.41"
+          "x-docsis-tlvType": "24.41",
+          "x-docsis-validValues": {
+            "0": "bits/sec",
+            "1": "kbits/sec"
+          }
         },
         "GrantsPerInterval": {
           "description": "Number of grants per interval",
@@ -4628,7 +4980,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.25",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 97
+      "x-docsis-tlvType": 97,
+      "x-docsis-validValues": {
+        "0": "Disable support",
+        "1": "Enable support"
+      }
     },
     "AdvancedDiplexerBandEdge": {
       "description": "Advanced Diplexer Band Edge encoding",
@@ -4674,7 +5030,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.20",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 76
+      "x-docsis-tlvType": 76,
+      "x-docsis-validValues": {
+        "0": "Enable AQM",
+        "1": "Disable AQM"
+      }
     },
     "CmtsMic": {
       "description": "CMTS Message Integrity Check (MIC) - 16-byte HMAC-MD5 digest",
@@ -4853,7 +5213,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.20",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 39
+      "x-docsis-tlvType": 39,
+      "x-docsis-validValues": {
+        "0": "disable",
+        "1": "enable"
+      }
     },
     "EnableTestModes": {
       "description": "Enable test modes",
@@ -4861,9 +5225,13 @@
       "minimum": 0,
       "type": "integer",
       "x-docsis-dataType": "uint8",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.20",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.21",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 40
+      "x-docsis-tlvType": 40,
+      "x-docsis-validValues": {
+        "0": "disable",
+        "1": "enable"
+      }
     },
     "EndOfData": {
       "description": "End-of-Data marker encoding",
@@ -4964,7 +5332,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.32",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 91
+      "x-docsis-tlvType": 91,
+      "x-docsis-validValues": {
+        "0": "Low Latency Enabled",
+        "1": "Low Latency Disabled"
+      }
     },
     "MacAddressLearningControlEncoding": {
       "description": "MAC Address Learning Control Encoding",
@@ -4974,7 +5346,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.18",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 69
+      "x-docsis-tlvType": 69,
+      "x-docsis-validValues": {
+        "0": "Do Not Remove",
+        "1": "Remove"
+      }
     },
     "ManagementEventControlEncoding": {
       "description": "Management Event Control Encoding",
@@ -5036,7 +5412,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.3",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 3
+      "x-docsis-tlvType": 3,
+      "x-docsis-validValues": {
+        "0": "disabled",
+        "1": "enabled"
+      }
     },
     "NetworkTimingProfile": {
       "description": "Network Timing Profile encoding",
@@ -5064,7 +5444,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.17",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 29
+      "x-docsis-tlvType": 29,
+      "x-docsis-validValues": {
+        "0": "disabled",
+        "1": "enabled"
+      }
     },
     "PtpAddressConfigurations": {
       "description": "PTP Address Configurations encoding",
@@ -5095,7 +5479,11 @@
       "x-docsis-dataType": "uint8",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.15",
       "x-docsis-tlvLength": 1,
-      "x-docsis-tlvType": 55
+      "x-docsis-tlvType": 55,
+      "x-docsis-validValues": {
+        "0": "disabled",
+        "1": "enabled"
+      }
     },
     "SnmpMibObject": {
       "description": "SNMP MIB objects to set on the CM during provisioning. Each entry is a BER-encoded varbind in the binary config file.",

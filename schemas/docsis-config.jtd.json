@@ -64,10 +64,103 @@
         },
         "ErrorCode": {
           "metadata": {
-            "description": "Error code value",
+            "description": "Error code value (Confirmation Code per C.4)",
             "tlvType": "x.5.2",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+            "validValues": {
+              "0": "okay/success",
+              "1": "reject-other",
+              "2": "reject-unrecognized-configuration-setting",
+              "3": "reject-temporary/reject-resource",
+              "4": "reject-permanent/reject-admin",
+              "5": "reject-not-owner",
+              "6": "reject-service-flow-not-found",
+              "7": "reject-service-flow-exists",
+              "8": "reject-required-parameter-not-present",
+              "9": "reject-header-suppression",
+              "10": "reject-unknown-transaction-id",
+              "11": "reject-authentication-failure",
+              "12": "reject-add-aborted",
+              "13": "reject-multiple-errors",
+              "14": "reject-classifier-not-found",
+              "15": "reject-classifier-exists",
+              "18": "reject-duplicate-reference-ID-or-index-in-message",
+              "19": "reject-multiple-upstream-service-flows",
+              "20": "reject-multiple-downstream-service-flows",
+              "21": "reject-classifier-for-another-service-flow",
+              "23": "reject-parameter-invalid-for-context",
+              "24": "reject-authorization-failure",
+              "25": "reject-temporary-DCC",
+              "26": "reject-downstream-inconsistency",
+              "27": "reject-upstream-inconsistency",
+              "28": "reject-insufficient-SID-cluster-resources",
+              "29": "reject-missing-RCP",
+              "30": "partial-service",
+              "31": "reject-temporary-DBC",
+              "32": "reject-unknown-DSID",
+              "33": "reject-unknown-SID-Cluster",
+              "34": "reject-invalid-initialization-technique",
+              "35": "reject-no-change",
+              "36": "reject-invalid-DBC-request",
+              "37": "reject-mode-switch",
+              "38": "reject-insufficient-transmitters",
+              "40": "reject-insufficient-DSID-resources",
+              "41": "reject-invalid-DSID-encoding",
+              "42": "reject-unknown-client-mac-address",
+              "43": "reject-unknown-SAID",
+              "44": "reject-insufficient-SA-resources",
+              "45": "reject-invalid-SA-encoding",
+              "46": "reject-invalid-SA-crypto-suite",
+              "47": "reject-tek-exists",
+              "48": "reject-invalid-SID-cluster-encoding",
+              "49": "reject-insufficient-SID-resources",
+              "50": "reject-unsupported-parameter-change",
+              "52": "reject-NoMAPsOrUCDs",
+              "53": "error-T3RetriesExceeded",
+              "54": "error-T2Timeout",
+              "55": "error-T4Timeout",
+              "56": "error-RangeAbort",
+              "57": "error-InitChanTimeout",
+              "58": "error-DBC-REQ-incomplete",
+              "59": "reject-too-many-ofdma-profiles",
+              "60": "reject-too-many-ofdm-profiles",
+              "61": "reject-em-incorrect-primary-ds",
+              "62": "reject-aqm-not-supported",
+              "63": "reject-invalid-dpd",
+              "160": "reject-unknown-RCP-ID",
+              "161": "reject-multiple-RCP-IDs",
+              "162": "reject-missing-Receive-Module-Index",
+              "163": "reject-invalid-Receive-Module-Index",
+              "164": "reject-invalid-receive-channel-center-frequency",
+              "165": "reject-invalid-RM-first-channel-center-frequency",
+              "166": "reject-missing-RM-first-channel-center-frequency",
+              "167": "reject-no-primary-downstream-channel-assigned",
+              "168": "reject-multiple-primary-downstream-channel-assigned",
+              "169": "reject-receive-module-connectivity-error",
+              "170": "reject-invalid-receive-channel-index",
+              "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+              "180": "depart",
+              "181": "arrive",
+              "182": "reject-already-there",
+              "183": "reject-20-disable",
+              "200": "reject-major-service-flow-error",
+              "201": "reject-major-classifier-error",
+              "203": "reject-multiple-major-errors",
+              "204": "reject-message-syntax-error",
+              "205": "reject-primary-service-flow-error",
+              "206": "reject-message-too-big",
+              "207": "reject-invalid-modem-capabilities",
+              "208": "reject-bad-rcc",
+              "209": "reject-bad-tcc",
+              "210": "reject-dynamic-range-window-violation",
+              "211": "reject-unable-to-support-queue-depth",
+              "212": "reject-energy-mgmt-params",
+              "213": "reject-invalid-backup-primary-downstream",
+              "214": "reject-insufficient-SID-bundle-resources",
+              "215": "reject-invalid-low-latency-config",
+              "216": "reject-unknown-scn-or-aqp"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5, C.4"
           },
           "type": "uint8"
         },
@@ -99,10 +192,103 @@
         },
         "ErrorCode": {
           "metadata": {
-            "description": "Error code value",
+            "description": "Error code value (Confirmation Code per C.4)",
             "tlvType": "x.8.2",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "validValues": {
+              "0": "okay/success",
+              "1": "reject-other",
+              "2": "reject-unrecognized-configuration-setting",
+              "3": "reject-temporary/reject-resource",
+              "4": "reject-permanent/reject-admin",
+              "5": "reject-not-owner",
+              "6": "reject-service-flow-not-found",
+              "7": "reject-service-flow-exists",
+              "8": "reject-required-parameter-not-present",
+              "9": "reject-header-suppression",
+              "10": "reject-unknown-transaction-id",
+              "11": "reject-authentication-failure",
+              "12": "reject-add-aborted",
+              "13": "reject-multiple-errors",
+              "14": "reject-classifier-not-found",
+              "15": "reject-classifier-exists",
+              "18": "reject-duplicate-reference-ID-or-index-in-message",
+              "19": "reject-multiple-upstream-service-flows",
+              "20": "reject-multiple-downstream-service-flows",
+              "21": "reject-classifier-for-another-service-flow",
+              "23": "reject-parameter-invalid-for-context",
+              "24": "reject-authorization-failure",
+              "25": "reject-temporary-DCC",
+              "26": "reject-downstream-inconsistency",
+              "27": "reject-upstream-inconsistency",
+              "28": "reject-insufficient-SID-cluster-resources",
+              "29": "reject-missing-RCP",
+              "30": "partial-service",
+              "31": "reject-temporary-DBC",
+              "32": "reject-unknown-DSID",
+              "33": "reject-unknown-SID-Cluster",
+              "34": "reject-invalid-initialization-technique",
+              "35": "reject-no-change",
+              "36": "reject-invalid-DBC-request",
+              "37": "reject-mode-switch",
+              "38": "reject-insufficient-transmitters",
+              "40": "reject-insufficient-DSID-resources",
+              "41": "reject-invalid-DSID-encoding",
+              "42": "reject-unknown-client-mac-address",
+              "43": "reject-unknown-SAID",
+              "44": "reject-insufficient-SA-resources",
+              "45": "reject-invalid-SA-encoding",
+              "46": "reject-invalid-SA-crypto-suite",
+              "47": "reject-tek-exists",
+              "48": "reject-invalid-SID-cluster-encoding",
+              "49": "reject-insufficient-SID-resources",
+              "50": "reject-unsupported-parameter-change",
+              "52": "reject-NoMAPsOrUCDs",
+              "53": "error-T3RetriesExceeded",
+              "54": "error-T2Timeout",
+              "55": "error-T4Timeout",
+              "56": "error-RangeAbort",
+              "57": "error-InitChanTimeout",
+              "58": "error-DBC-REQ-incomplete",
+              "59": "reject-too-many-ofdma-profiles",
+              "60": "reject-too-many-ofdm-profiles",
+              "61": "reject-em-incorrect-primary-ds",
+              "62": "reject-aqm-not-supported",
+              "63": "reject-invalid-dpd",
+              "160": "reject-unknown-RCP-ID",
+              "161": "reject-multiple-RCP-IDs",
+              "162": "reject-missing-Receive-Module-Index",
+              "163": "reject-invalid-Receive-Module-Index",
+              "164": "reject-invalid-receive-channel-center-frequency",
+              "165": "reject-invalid-RM-first-channel-center-frequency",
+              "166": "reject-missing-RM-first-channel-center-frequency",
+              "167": "reject-no-primary-downstream-channel-assigned",
+              "168": "reject-multiple-primary-downstream-channel-assigned",
+              "169": "reject-receive-module-connectivity-error",
+              "170": "reject-invalid-receive-channel-index",
+              "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+              "180": "depart",
+              "181": "arrive",
+              "182": "reject-already-there",
+              "183": "reject-20-disable",
+              "200": "reject-major-service-flow-error",
+              "201": "reject-major-classifier-error",
+              "203": "reject-multiple-major-errors",
+              "204": "reject-message-syntax-error",
+              "205": "reject-primary-service-flow-error",
+              "206": "reject-message-too-big",
+              "207": "reject-invalid-modem-capabilities",
+              "208": "reject-bad-rcc",
+              "209": "reject-bad-tcc",
+              "210": "reject-dynamic-range-window-violation",
+              "211": "reject-unable-to-support-queue-depth",
+              "212": "reject-energy-mgmt-params",
+              "213": "reject-invalid-backup-primary-downstream",
+              "214": "reject-insufficient-SID-bundle-resources",
+              "215": "reject-invalid-low-latency-config",
+              "216": "reject-unknown-scn-or-aqp"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8, C.4"
           },
           "type": "uint8"
         },
@@ -163,7 +349,11 @@
             "description": "Disable AQM for this service flow",
             "tlvType": "x.40.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "validValues": {
+              "0": "Enable AQM on service flow",
+              "1": "Disable AQM on service flow"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.1"
           },
           "type": "uint8"
         },
@@ -181,7 +371,12 @@
             "description": "AQM algorithm selection",
             "tlvType": "x.40.3",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "validValues": {
+              "0": "default AQM for the type of Service Flow",
+              "1": "docsisPIE",
+              "2": "ImmediateAqm"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.3"
           },
           "type": "uint8"
         },
@@ -785,6 +980,10 @@
             "description": "Activation state of the classifier",
             "tlvType": "22.6",
             "dataType": "uint8",
+            "validValues": {
+              "0": "inactive",
+              "1": "active"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.1.4.6"
           },
           "type": "uint8"
@@ -794,6 +993,11 @@
             "description": "Action for dynamic service change",
             "tlvType": "22.7",
             "dataType": "uint8",
+            "validValues": {
+              "0": "DSC Add Classifier",
+              "1": "DSC Replace Classifier",
+              "2": "DSC Delete Classifier"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
           },
           "type": "uint8"
@@ -954,6 +1158,10 @@
             "description": "Activation state of the classifier",
             "tlvType": "23.6",
             "dataType": "uint8",
+            "validValues": {
+              "0": "inactive",
+              "1": "active"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.1.4.6"
           },
           "type": "uint8"
@@ -963,6 +1171,11 @@
             "description": "Action for dynamic service change",
             "tlvType": "23.7",
             "dataType": "uint8",
+            "validValues": {
+              "0": "DSC Add Classifier",
+              "1": "DSC Replace Classifier",
+              "2": "DSC Delete Classifier"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
           },
           "type": "uint8"
@@ -1105,6 +1318,11 @@
             "description": "Action for dynamic service change",
             "tlvType": "60.7",
             "dataType": "uint8",
+            "validValues": {
+              "0": "DSC Add Classifier",
+              "1": "DSC Replace Classifier",
+              "2": "DSC Delete Classifier"
+            },
             "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
           },
           "type": "uint8"
@@ -1762,7 +1980,11 @@
             "tlvType": "25.17",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.6.2"
+            "validValues": {
+              "0": "associate with resequencing DSID if assigned to DS bonding group",
+              "1": "do not associate with resequencing DSID"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.11.2"
           },
           "type": "uint8"
         },
@@ -1922,10 +2144,103 @@
         },
         "ErrorCode": {
           "metadata": {
-            "description": "Error code value",
+            "description": "Error code value (Confirmation Code per C.4) - PHS deprecated as of DOCSIS 3.1",
             "tlvType": "26.6.2",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
+            "validValues": {
+              "0": "okay/success",
+              "1": "reject-other",
+              "2": "reject-unrecognized-configuration-setting",
+              "3": "reject-temporary/reject-resource",
+              "4": "reject-permanent/reject-admin",
+              "5": "reject-not-owner",
+              "6": "reject-service-flow-not-found",
+              "7": "reject-service-flow-exists",
+              "8": "reject-required-parameter-not-present",
+              "9": "reject-header-suppression",
+              "10": "reject-unknown-transaction-id",
+              "11": "reject-authentication-failure",
+              "12": "reject-add-aborted",
+              "13": "reject-multiple-errors",
+              "14": "reject-classifier-not-found",
+              "15": "reject-classifier-exists",
+              "18": "reject-duplicate-reference-ID-or-index-in-message",
+              "19": "reject-multiple-upstream-service-flows",
+              "20": "reject-multiple-downstream-service-flows",
+              "21": "reject-classifier-for-another-service-flow",
+              "23": "reject-parameter-invalid-for-context",
+              "24": "reject-authorization-failure",
+              "25": "reject-temporary-DCC",
+              "26": "reject-downstream-inconsistency",
+              "27": "reject-upstream-inconsistency",
+              "28": "reject-insufficient-SID-cluster-resources",
+              "29": "reject-missing-RCP",
+              "30": "partial-service",
+              "31": "reject-temporary-DBC",
+              "32": "reject-unknown-DSID",
+              "33": "reject-unknown-SID-Cluster",
+              "34": "reject-invalid-initialization-technique",
+              "35": "reject-no-change",
+              "36": "reject-invalid-DBC-request",
+              "37": "reject-mode-switch",
+              "38": "reject-insufficient-transmitters",
+              "40": "reject-insufficient-DSID-resources",
+              "41": "reject-invalid-DSID-encoding",
+              "42": "reject-unknown-client-mac-address",
+              "43": "reject-unknown-SAID",
+              "44": "reject-insufficient-SA-resources",
+              "45": "reject-invalid-SA-encoding",
+              "46": "reject-invalid-SA-crypto-suite",
+              "47": "reject-tek-exists",
+              "48": "reject-invalid-SID-cluster-encoding",
+              "49": "reject-insufficient-SID-resources",
+              "50": "reject-unsupported-parameter-change",
+              "52": "reject-NoMAPsOrUCDs",
+              "53": "error-T3RetriesExceeded",
+              "54": "error-T2Timeout",
+              "55": "error-T4Timeout",
+              "56": "error-RangeAbort",
+              "57": "error-InitChanTimeout",
+              "58": "error-DBC-REQ-incomplete",
+              "59": "reject-too-many-ofdma-profiles",
+              "60": "reject-too-many-ofdm-profiles",
+              "61": "reject-em-incorrect-primary-ds",
+              "62": "reject-aqm-not-supported",
+              "63": "reject-invalid-dpd",
+              "160": "reject-unknown-RCP-ID",
+              "161": "reject-multiple-RCP-IDs",
+              "162": "reject-missing-Receive-Module-Index",
+              "163": "reject-invalid-Receive-Module-Index",
+              "164": "reject-invalid-receive-channel-center-frequency",
+              "165": "reject-invalid-RM-first-channel-center-frequency",
+              "166": "reject-missing-RM-first-channel-center-frequency",
+              "167": "reject-no-primary-downstream-channel-assigned",
+              "168": "reject-multiple-primary-downstream-channel-assigned",
+              "169": "reject-receive-module-connectivity-error",
+              "170": "reject-invalid-receive-channel-index",
+              "171": "reject-center-frequency-not-multiple-of-62500-Hz",
+              "180": "depart",
+              "181": "arrive",
+              "182": "reject-already-there",
+              "183": "reject-20-disable",
+              "200": "reject-major-service-flow-error",
+              "201": "reject-major-classifier-error",
+              "203": "reject-multiple-major-errors",
+              "204": "reject-message-syntax-error",
+              "205": "reject-primary-service-flow-error",
+              "206": "reject-message-too-big",
+              "207": "reject-invalid-modem-capabilities",
+              "208": "reject-bad-rcc",
+              "209": "reject-bad-tcc",
+              "210": "reject-dynamic-range-window-violation",
+              "211": "reject-unable-to-support-queue-depth",
+              "212": "reject-energy-mgmt-params",
+              "213": "reject-invalid-backup-primary-downstream",
+              "214": "reject-insufficient-SID-bundle-resources",
+              "215": "reject-invalid-low-latency-config",
+              "216": "reject-unknown-scn-or-aqp"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.3, C.4"
           },
           "type": "uint8"
         },
@@ -1988,7 +2303,12 @@
             "description": "Dynamic service change action",
             "tlvType": "26.5",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
+            "validValues": {
+              "0": "DSC Add Classifier",
+              "1": "DSC Replace Classifier",
+              "2": "DSC Delete Classifier"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
           },
           "type": "uint8"
         },
@@ -2038,7 +2358,7 @@
         },
         "PhsVerification": {
           "metadata": {
-            "description": "Payload Header Suppression Verification (PHSV)",
+            "description": "Payload Header Suppression Verification (PHSV) - deprecated as of DOCSIS 3.1",
             "tlvType": "26.11",
             "dataType": "uint8",
             "spec": "CM-SP-MULPIv4.0 C.2.3"
@@ -2047,7 +2367,7 @@
         },
         "DynamicBondingChangeAction": {
           "metadata": {
-            "description": "Dynamic bonding change action",
+            "description": "Dynamic bonding change action - deprecated as of DOCSIS 3.1",
             "tlvType": "26.13",
             "dataType": "uint8",
             "spec": "CM-SP-MULPIv4.0 C.2.3"
@@ -2151,6 +2471,10 @@
             "description": "SNMPv1v2c access view type",
             "tlvType": "53.3",
             "dataType": "uint8",
+            "validValues": {
+              "1": "read-only",
+              "2": "read-write"
+            },
             "spec": "CM-SP-MULPIv4.0 C.1.2.13.3"
           },
           "type": "uint8"
@@ -2205,6 +2529,10 @@
             "description": "SNMPv3 access view type",
             "tlvType": "54.4",
             "dataType": "uint8",
+            "validValues": {
+              "1": "included",
+              "2": "excluded"
+            },
             "spec": "CM-SP-MULPIv4.0 C.1.2.14.4"
           },
           "type": "uint8"
@@ -2223,7 +2551,8 @@
             "description": "L2VPN MAC aging mode",
             "tlvType": "65.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.7.1"
+            "spec": "CM-SP-L2VPN-I17 B.7.1",
+            "validValues": {"0": "disable", "1": "enable"}
           },
           "type": "uint8"
         }
@@ -2326,10 +2655,14 @@
         },
         "QueueProtectionEnable": {
           "metadata": {
-            "description": "Queue protection enable",
+            "description": "Queue protection enable (bit 0 only; bits 1-7 reserved)",
             "tlvType": "x.42.7",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "validValues": {
+              "0": "Queue Protection disabled",
+              "1": "Queue Protection enabled"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.7"
           },
           "type": "uint8"
         },
@@ -2607,7 +2940,8 @@
             "description": "Color identification field",
             "tlvType": "72.2.6.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.1"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.6.1",
+            "validValues": {"0": "IPv4 ToS field", "1": "IPv6 DSCP field", "2": "PCP in S-Tag", "3": "PCP in C-Tag", "4": "PCP in I-Tag", "5": "PCP in B-Tag", "6": "DEI in S-Tag", "7": "CFI in C-Tag", "8": "DEI in I-Tag", "9": "DEI in B-Tag"}
           },
           "type": "uint8"
         },
@@ -2633,7 +2967,8 @@
             "description": "Color marking field",
             "tlvType": "72.2.7.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.1"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2.7.1",
+            "validValues": {"0": "PCP in S-Tag", "1": "PCP in I-Tag", "2": "PCP in B-Tag", "3": "DEI in S-Tag", "4": "DEI in I-Tag", "5": "DEI in B-Tag"}
           },
           "type": "uint8"
         },
@@ -2695,7 +3030,8 @@
             "description": "Bandwidth profile coupling flag",
             "tlvType": "72.2.5",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.5.2",
+            "validValues": {"0": "coupling flag disabled", "1": "coupling flag enabled"}
           },
           "type": "uint8"
         },
@@ -3131,7 +3467,8 @@
             "description": "L2CP tunnel mode",
             "tlvType": "43.5.15.1",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
+            "validValues": {"0": "tunnel with L2PT", "1": "tunnel without L2PT"}
           },
           "type": "uint8"
         },
@@ -3228,7 +3565,8 @@
             "description": "E-Tree role",
             "tlvType": "43.5.20.2",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+            "validValues": {"0": "root", "1": "leaf"}
           },
           "type": "uint8"
         },
@@ -3404,7 +3742,8 @@
             "description": "Continuity Check Messages enable/configuration",
             "tlvType": "43.5.24.3.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.3.1"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.1",
+            "validValues": {"0": "CCM disabled", "1": "10 second periodicity", "2": "1 second periodicity"}
           },
           "type": "uint8"
         },
@@ -3413,7 +3752,8 @@
             "description": "Enable Loopback Reply Messages",
             "tlvType": "43.5.24.3.2",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.3.2"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.2",
+            "validValues": {"0": "disabled", "1": "loopback responder enabled"}
           },
           "type": "uint8"
         },
@@ -3422,7 +3762,8 @@
             "description": "Enable Linktrace Messages",
             "tlvType": "43.5.24.3.3",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.3.3"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.3.3",
+            "validValues": {"0": "disabled", "1": "linktrace responder enabled"}
           },
           "type": "uint8"
         }
@@ -3439,7 +3780,8 @@
             "description": "Frame Delay Measurement enable/configuration",
             "tlvType": "43.5.24.4.1",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1",
+            "validValues": {"0": "disabled", "1": "frame delay responder enabled"}
           },
           "type": "uint8"
         },
@@ -3448,7 +3790,8 @@
             "description": "Frame Loss Measurement enable/configuration",
             "tlvType": "43.5.24.4.2",
             "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2"
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2",
+            "validValues": {"0": "disabled", "1": "frame loss responder enabled"}
           },
           "type": "uint8"
         }
@@ -3643,7 +3986,8 @@
             "description": "L2VPN mode",
             "tlvType": "43.5.13",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10"
+            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
+            "validValues": {"0": "L2VPN encapsulation mode", "1": "L2VPN transport mode"}
           },
           "type": "uint8"
         },
@@ -3715,7 +4059,8 @@
             "description": "Pseudowire signaling",
             "tlvType": "43.5.23",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+            "validValues": {"0": "BGP", "1": "LDP", "2": "L2TPv3"}
           },
           "type": "uint8"
         },
@@ -3751,7 +4096,8 @@
             "description": "Multipoint enable/disable",
             "tlvType": "43.5.27",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+            "validValues": {"0": "disabled", "1": "enabled"}
           },
           "type": "uint8"
         },
@@ -4004,7 +4350,8 @@
             "description": "Enable CWMP (TR-069) management",
             "tlvType": "202.2.1",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.3"
+            "spec": "CM-SP-eRouter-I22 B.4.3",
+            "validValues": {"0": "false", "1": "true"}
           },
           "type": "uint8"
         },
@@ -4058,7 +4405,8 @@
             "description": "ACS override flag",
             "tlvType": "202.2.7",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.3"
+            "spec": "CM-SP-eRouter-I22 B.4.3",
+            "validValues": {"0": "disabled", "1": "enabled"}
           },
           "type": "uint8"
         }
@@ -4093,6 +4441,10 @@
             "description": "SNMPv1v2c access view type",
             "tlvType": "202.53.2.3",
             "dataType": "uint8",
+            "validValues": {
+              "1": "read-only",
+              "2": "read-write"
+            },
             "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "uint8"
@@ -4172,6 +4524,10 @@
             "description": "SNMPv3 access view type",
             "tlvType": "202.54.4",
             "dataType": "uint8",
+            "validValues": {
+              "1": "included",
+              "2": "excluded"
+            },
             "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "uint8"
@@ -4190,7 +4546,8 @@
             "description": "eRouter initialization mode",
             "tlvType": "202.1",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.2"
+            "spec": "CM-SP-eRouter-I22 B.4.2",
+            "validValues": {"0": "disabled", "1": "IPv4 only", "2": "IPv6 only", "3": "dual IP", "4": "non-prefix-delegation", "5": "invalid"}
           },
           "type": "uint8"
         },
@@ -4208,7 +4565,8 @@
             "description": "eRouter initialization mode override",
             "tlvType": "202.3",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.5"
+            "spec": "CM-SP-eRouter-I22 B.4.5",
+            "validValues": {"0": "follow initialization mode TLV", "1": "ignore initialization mode TLV and keep disabled"}
           },
           "type": "uint8"
         },
@@ -4247,7 +4605,8 @@
             "description": "Link-ID control",
             "tlvType": "202.13",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.13"
+            "spec": "CM-SP-eRouter-I22 B.4.13",
+            "validValues": {"0": "disabled", "1": "enabled"}
           },
           "type": "uint8"
         },
@@ -4256,7 +4615,8 @@
             "description": "Topology mode encoding",
             "tlvType": "202.42",
             "dataType": "uint8",
-            "spec": "CM-SP-eRouter-I22 B.4.10"
+            "spec": "CM-SP-eRouter-I22 B.4.10",
+            "validValues": {"1": "favor depth", "2": "favor width"}
           },
           "type": "uint8"
         },
@@ -4340,7 +4700,8 @@
             "description": "Emulation type",
             "tlvType": "219.9.2",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"17": "e1Satop", "18": "t1Satop", "21": "basicCesPsn", "23": "tdmCasCesPsn"}
           },
           "type": "uint8"
         },
@@ -4403,7 +4764,8 @@
             "description": "PW administrative status",
             "tlvType": "219.9.9",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "up", "2": "down", "3": "testing", "4": "app_loopback"}
           },
           "type": "uint8"
         },
@@ -4412,7 +4774,8 @@
             "description": "Status change notification enable",
             "tlvType": "219.9.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "disable", "1": "enable"}
           },
           "type": "uint8"
         },
@@ -4421,7 +4784,8 @@
             "description": "PW TDM type",
             "tlvType": "219.9.11",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "other", "2": "ds1", "3": "e1", "4": "ds3", "5": "e3", "6": "octetAlignedT1", "7": "nXds0", "8": "nXds0WithCASe1", "9": "nXds0WithCASds1Esf", "10": "nXds0WithCASds1Sf"}
           },
           "type": "uint8"
         },
@@ -4504,7 +4868,8 @@
             "description": "PW RTP header used flag",
             "tlvType": "219.10.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "true", "2": "false"}
           },
           "type": "uint8"
         },
@@ -4522,7 +4887,8 @@
             "description": "PW payload suppression",
             "tlvType": "219.10.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "enable", "2": "disable"}
           },
           "type": "uint8"
         },
@@ -4549,7 +4915,8 @@
             "description": "PW packet replace policy",
             "tlvType": "219.10.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "filler", "1": "ais", "2": "other"}
           },
           "type": "uint8"
         },
@@ -4585,7 +4952,8 @@
             "description": "PW RTP timestamp mode",
             "tlvType": "219.10.16",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "absolute", "2": "differential", "3": "prime", "4": "other"}
           },
           "type": "uint8"
         },
@@ -4603,7 +4971,8 @@
             "description": "PW L flag payload policy",
             "tlvType": "219.10.18",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "ignore", "1": "use"}
           },
           "type": "uint8"
         },
@@ -4657,7 +5026,8 @@
             "description": "PW SRTP enable flag",
             "tlvType": "219.10.24",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "true", "2": "false"}
           },
           "type": "uint8"
         }
@@ -4692,7 +5062,8 @@
             "description": "L flag policy",
             "tlvType": "219.13.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "idle", "1": "trunkAIS", "2": "idle_code"}
           },
           "type": "uint8"
         },
@@ -4701,7 +5072,8 @@
             "description": "R flag policy",
             "tlvType": "219.13.4",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "nothing", "1": "rai", "2": "idle_code"}
           },
           "type": "uint8"
         },
@@ -4710,7 +5082,8 @@
             "description": "Remote defect policy",
             "tlvType": "219.13.5",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "nothing", "1": "rai", "2": "channelIdle"}
           },
           "type": "uint8"
         },
@@ -4719,7 +5092,8 @@
             "description": "LOPS policy",
             "tlvType": "219.13.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "idle", "2": "trunkAIS", "3": "channelIdle"}
           },
           "type": "uint8"
         },
@@ -4799,7 +5173,8 @@
             "description": "dsx1 line type",
             "tlvType": "219.14.2",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "other", "2": "dsx1ESF", "3": "dsx1D4", "4": "dsx1E1", "5": "dsx1E1CRC", "6": "dsx1E1MF", "7": "dsx1E1CRCMF", "8": "dsx1Unframed", "9": "dsx1E1Unframed"}
           },
           "type": "uint8"
         },
@@ -4808,7 +5183,8 @@
             "description": "dsx1 line coding",
             "tlvType": "219.14.3",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "dsx1JBZS", "2": "dsx1B8ZS", "3": "dsx1HDB3", "4": "dsx1ZBTSI", "5": "dsx1AMI", "6": "other", "7": "dsx1B6ZS"}
           },
           "type": "uint8"
         },
@@ -4826,7 +5202,8 @@
             "description": "dsx1 loopback configuration",
             "tlvType": "219.14.5",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "dsx1NoLoop", "2": "dsx1PayloadLoop", "3": "dsx1LineLoop", "4": "dsx1OtherLoop", "5": "dsx1InwardLoop", "6": "dsx1DualLoop"}
           },
           "type": "uint8"
         },
@@ -4835,7 +5212,8 @@
             "description": "dsx1 signal mode",
             "tlvType": "219.14.6",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "none", "2": "robbedBit", "3": "bitOriented", "4": "messageOriented", "5": "other"}
           },
           "type": "uint8"
         },
@@ -4844,7 +5222,8 @@
             "description": "dsx1 transmit clock source",
             "tlvType": "219.14.7",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "loopTiming", "2": "localTiming", "3": "throughTiming", "4": "adaptive"}
           },
           "type": "uint8"
         },
@@ -4853,7 +5232,8 @@
             "description": "dsx1 FDL",
             "tlvType": "219.14.8",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "other", "2": "dsx1AnsiT1403", "4": "dsx1Att54016", "8": "dsx1FdlNone"}
           },
           "type": "uint8"
         },
@@ -4871,7 +5251,8 @@
             "description": "dsx1 line status trap enable",
             "tlvType": "219.14.10",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "enabled", "2": "disabled"}
           },
           "type": "uint8"
         },
@@ -4880,7 +5261,8 @@
             "description": "dsx1 channelization",
             "tlvType": "219.14.11",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "disabled", "2": "enabledDS0"}
           },
           "type": "uint8"
         },
@@ -4889,7 +5271,8 @@
             "description": "dsx1 line mode",
             "tlvType": "219.14.12",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "csu", "2": "dsu"}
           },
           "type": "uint8"
         },
@@ -4898,7 +5281,8 @@
             "description": "dsx1 line build out",
             "tlvType": "219.14.13",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "notApplicable", "2": "neg75dB", "3": "neg15dB", "4": "neg225dB", "5": "zerodB"}
           },
           "type": "uint8"
         }
@@ -5308,6 +5692,10 @@
         "tlvType": 39,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "disable",
+          "1": "enable"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.1.20"
       },
       "type": "uint8"
@@ -5318,7 +5706,11 @@
         "tlvType": 40,
         "tlvLength": 1,
         "dataType": "uint8",
-        "spec": "CM-SP-MULPIv4.0 C.1.1.20"
+        "validValues": {
+          "0": "disable",
+          "1": "enable"
+        },
+        "spec": "CM-SP-MULPIv4.0 C.1.1.21"
       },
       "type": "uint8"
     },
@@ -5526,6 +5918,10 @@
         "tlvType": 69,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "Do Not Remove",
+          "1": "Remove"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.2.18"
       },
       "type": "uint8"
@@ -5590,6 +5986,10 @@
         "tlvType": 76,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "Enable AQM",
+          "1": "Disable AQM"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.2.20"
       },
       "type": "uint8"
@@ -5658,6 +6058,10 @@
         "tlvType": 91,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "Low Latency Enabled",
+          "1": "Low Latency Disabled"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.1.32"
       },
       "type": "uint8"
@@ -5713,6 +6117,10 @@
         "tlvType": 97,
         "tlvLength": 1,
         "dataType": "uint8",
+        "validValues": {
+          "0": "Disable support",
+          "1": "Enable support"
+        },
         "spec": "CM-SP-MULPIv4.0 C.1.2.25"
       },
       "type": "uint8"
