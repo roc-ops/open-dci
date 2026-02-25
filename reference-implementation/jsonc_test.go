@@ -1,0 +1,281 @@
+package main
+
+import (
+	"encoding/json"
+	"strings"
+	"testing"
+)
+
+func TestFormatJSONC_NoComments(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+		"MaxNumCpes":    16,
+	}
+
+	out, err := FormatJSONC(config, nil, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// With no comments, the output should be valid JSON.
+	var parsed map[string]interface{}
+	if err := json.Unmarshal([]byte(out), &parsed); err != nil {
+		t.Fatalf("expected valid JSON when no comments, got error: %v\noutput:\n%s", err, out)
+	}
+
+	if int(parsed["NetworkAccess"].(float64)) != 1 {
+		t.Errorf("expected NetworkAccess=1, got %v", parsed["NetworkAccess"])
+	}
+	if int(parsed["MaxNumCpes"].(float64)) != 16 {
+		t.Errorf("expected MaxNumCpes=16, got %v", parsed["MaxNumCpes"])
+	}
+}
+
+func TestFormatJSONC_WithMICComments(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+	}
+
+	comments := []string{
+		"// CM MIC: INVALID (expected AABB, computed CCDD)",
+		"// \"CmMic\": \"AABB\",",
+		"// \"CmtsMic\": \"EEFF\",",
+		"// CMTS MIC: SKIPPED (no --cmts-secret provided)",
+	}
+
+	out, err := FormatJSONC(config, comments, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Verify schema property is present as regular JSON.
+	if !strings.Contains(out, `"NetworkAccess": 1`) {
+		t.Errorf("expected NetworkAccess as regular property, got:\n%s", out)
+	}
+
+	// Verify each comment line is present (indented with 2 spaces).
+	for _, c := range comments {
+		indented := "  " + c
+		if !strings.Contains(out, indented) {
+			t.Errorf("expected comment %q in output, got:\n%s", indented, out)
+		}
+	}
+
+	// Comments should appear before the closing brace.
+	closingIdx := strings.LastIndex(out, "}")
+	for _, c := range comments {
+		idx := strings.Index(out, c)
+		if idx >= closingIdx {
+			t.Errorf("comment %q should appear before closing brace", c)
+		}
+	}
+
+	// The output should start with { and end with }
+	trimmed := strings.TrimSpace(out)
+	if !strings.HasPrefix(trimmed, "{") || !strings.HasSuffix(trimmed, "}") {
+		t.Errorf("expected output to be wrapped in braces, got:\n%s", out)
+	}
+}
+
+func TestFormatJSONC_WithUnknownTlvs(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+	}
+
+	comments := []string{
+		"// \"UnknownTlvs\": [",
+		"//   {",
+		"//     \"type\": 47,",
+		"//     \"value\": \"0602000007020016\"",
+		"//   }",
+		"// ]",
+	}
+
+	out, err := FormatJSONC(config, comments, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Verify UnknownTlvs appear as comments, not as properties.
+	for _, c := range comments {
+		indented := "  " + c
+		if !strings.Contains(out, indented) {
+			t.Errorf("expected comment %q in output, got:\n%s", indented, out)
+		}
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_EmptyConfigWithComments(t *testing.T) {
+	config := map[string]interface{}{}
+
+	comments := []string{
+		"// CM MIC: VALID",
+		"// \"CmMic\": \"AABBCCDD\",",
+	}
+
+	out, err := FormatJSONC(config, comments, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Should still produce valid structure with braces.
+	trimmed := strings.TrimSpace(out)
+	if !strings.HasPrefix(trimmed, "{") || !strings.HasSuffix(trimmed, "}") {
+		t.Errorf("expected output wrapped in braces, got:\n%s", out)
+	}
+
+	// Comments should be present.
+	for _, c := range comments {
+		if !strings.Contains(out, c) {
+			t.Errorf("expected comment %q in output, got:\n%s", c, out)
+		}
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_SchemaPropertiesRemain(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+		"MaxNumCpes":    16,
+		"DownstreamServiceFlow": []interface{}{
+			map[string]interface{}{
+				"MaxSustainedTrafficRate": 500000000,
+				"QosParamSetType":         7,
+				"ServiceFlowReference":    1,
+			},
+		},
+	}
+
+	comments := []string{
+		"// \"CmMic\": \"AABB\",",
+	}
+
+	out, err := FormatJSONC(config, comments, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// All schema properties should be in the output as regular JSON (not commented).
+	if !strings.Contains(out, `"NetworkAccess"`) {
+		t.Error("missing NetworkAccess property")
+	}
+	if !strings.Contains(out, `"MaxNumCpes"`) {
+		t.Error("missing MaxNumCpes property")
+	}
+	if !strings.Contains(out, `"DownstreamServiceFlow"`) {
+		t.Error("missing DownstreamServiceFlow property")
+	}
+	if !strings.Contains(out, `"MaxSustainedTrafficRate"`) {
+		t.Error("missing MaxSustainedTrafficRate property")
+	}
+
+	// CmMic should only appear as a comment.
+	lines := strings.Split(out, "\n")
+	for _, line := range lines {
+		trimmedLine := strings.TrimSpace(line)
+		if strings.Contains(trimmedLine, "CmMic") && !strings.HasPrefix(trimmedLine, "//") {
+			t.Errorf("CmMic should be a comment, found as property: %s", line)
+		}
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_InlineComments(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+	}
+	vv := map[string]map[string]string{
+		"NetworkAccess": {"0": "disabled", "1": "enabled"},
+	}
+
+	out, err := FormatJSONC(config, nil, vv, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !strings.Contains(out, `"NetworkAccess": 1 // enabled`) {
+		t.Errorf("expected inline comment '// enabled' on NetworkAccess line, got:\n%s", out)
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_InlineCommentNoMatch(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 99,
+	}
+	vv := map[string]map[string]string{
+		"NetworkAccess": {"0": "disabled", "1": "enabled"},
+	}
+
+	out, err := FormatJSONC(config, nil, vv, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if strings.Contains(out, "//") {
+		t.Errorf("expected no inline comment for value 99, got:\n%s", out)
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_InlineAndBlockComments(t *testing.T) {
+	config := map[string]interface{}{
+		"NetworkAccess": 1,
+	}
+	comments := []string{
+		"// CM MIC: VALID",
+	}
+	vv := map[string]map[string]string{
+		"NetworkAccess": {"0": "disabled", "1": "enabled"},
+	}
+
+	out, err := FormatJSONC(config, comments, vv, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Inline comment on the property line.
+	if !strings.Contains(out, `"NetworkAccess": 1 // enabled`) {
+		t.Errorf("expected inline comment on NetworkAccess, got:\n%s", out)
+	}
+
+	// Block comment before closing brace.
+	if !strings.Contains(out, "  // CM MIC: VALID") {
+		t.Errorf("expected block comment in output, got:\n%s", out)
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}
+
+func TestFormatJSONC_NestedInlineComments(t *testing.T) {
+	config := map[string]interface{}{
+		"UpstreamServiceFlow": []interface{}{
+			map[string]interface{}{
+				"QosParamSetType":      7,
+				"ServiceFlowReference": 1,
+			},
+		},
+	}
+	vv := map[string]map[string]string{
+		"QosParamSetType": {"0": "reserved", "7": "provisioned, admitted, and active set"},
+	}
+
+	out, err := FormatJSONC(config, nil, vv, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// The property may have a trailing comma if it's not the last in the object.
+	if !strings.Contains(out, `"QosParamSetType": 7, // provisioned, admitted, and active set`) &&
+		!strings.Contains(out, `"QosParamSetType": 7 // provisioned, admitted, and active set`) {
+		t.Errorf("expected inline comment on nested QosParamSetType, got:\n%s", out)
+	}
+
+	t.Logf("JSONC output:\n%s", out)
+}

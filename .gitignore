@@ -4,8 +4,8 @@ do-work/
 # External spec PDFs (downloaded locally, not committed)
 docs/external/
 
-# Example decoder (in development, not yet committed)
-example-decoder/
+# Compiled binaries
+reference-implementation/opendci-decode
 
 # Downloaded MIBs (large, downloadable via tools/mib-downloader)
 mibs/ietf/
