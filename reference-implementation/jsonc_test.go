@@ -17,10 +17,11 @@ func TestFormatJSONC_NoComments(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// With no comments, the output should be valid JSON.
+	// Output has a header comment; stripping comments should produce valid JSON.
+	stripped := StripJSONCComments(out)
 	var parsed map[string]interface{}
-	if err := json.Unmarshal([]byte(out), &parsed); err != nil {
-		t.Fatalf("expected valid JSON when no comments, got error: %v\noutput:\n%s", err, out)
+	if err := json.Unmarshal([]byte(stripped), &parsed); err != nil {
+		t.Fatalf("expected valid JSON after stripping comments, got error: %v\noutput:\n%s", err, out)
 	}
 
 	if int(parsed["NetworkAccess"].(float64)) != 1 {
@@ -28,6 +29,11 @@ func TestFormatJSONC_NoComments(t *testing.T) {
 	}
 	if int(parsed["MaxNumCpes"].(float64)) != 16 {
 		t.Errorf("expected MaxNumCpes=16, got %v", parsed["MaxNumCpes"])
+	}
+
+	// Header comment should be present.
+	if !strings.Contains(out, "// OpenDCI JSONC") {
+		t.Errorf("expected header comment in output, got:\n%s", out)
 	}
 }
 
@@ -70,10 +76,10 @@ func TestFormatJSONC_WithMICComments(t *testing.T) {
 		}
 	}
 
-	// The output should start with { and end with }
+	// The output should start with the header comment and end with }
 	trimmed := strings.TrimSpace(out)
-	if !strings.HasPrefix(trimmed, "{") || !strings.HasSuffix(trimmed, "}") {
-		t.Errorf("expected output to be wrapped in braces, got:\n%s", out)
+	if !strings.HasPrefix(trimmed, "// OpenDCI") || !strings.HasSuffix(trimmed, "}") {
+		t.Errorf("expected output to start with header comment and end with }, got:\n%s", out)
 	}
 }
 
@@ -120,10 +126,10 @@ func TestFormatJSONC_EmptyConfigWithComments(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Should still produce valid structure with braces.
+	// Should still produce valid structure with header and braces.
 	trimmed := strings.TrimSpace(out)
-	if !strings.HasPrefix(trimmed, "{") || !strings.HasSuffix(trimmed, "}") {
-		t.Errorf("expected output wrapped in braces, got:\n%s", out)
+	if !strings.HasPrefix(trimmed, "// OpenDCI") || !strings.HasSuffix(trimmed, "}") {
+		t.Errorf("expected output to start with header and end with }, got:\n%s", out)
 	}
 
 	// Comments should be present.
@@ -217,8 +223,17 @@ func TestFormatJSONC_InlineCommentNoMatch(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if strings.Contains(out, "//") {
-		t.Errorf("expected no inline comment for value 99, got:\n%s", out)
+	// Should have the header comment but no inline enum comment.
+	lines := strings.Split(out, "\n")
+	for _, line := range lines {
+		trimmedLine := strings.TrimSpace(line)
+		// Skip header comment lines.
+		if strings.HasPrefix(trimmedLine, "// OpenDCI") || strings.HasPrefix(trimmedLine, "// https://") {
+			continue
+		}
+		if strings.Contains(trimmedLine, "//") {
+			t.Errorf("expected no inline comment for value 99, got line: %s", line)
+		}
 	}
 
 	t.Logf("JSONC output:\n%s", out)
