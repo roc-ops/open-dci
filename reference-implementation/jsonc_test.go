@@ -279,3 +279,59 @@ func TestFormatJSONC_NestedInlineComments(t *testing.T) {
 
 	t.Logf("JSONC output:\n%s", out)
 }
+
+func TestStripJSONCComments_InlineComment(t *testing.T) {
+	input := `{
+  "NetworkAccess": 1 // enabled
+}`
+	expected := `{
+  "NetworkAccess": 1
+}`
+	result := StripJSONCComments(input)
+	if result != expected {
+		t.Errorf("expected:\n%s\ngot:\n%s", expected, result)
+	}
+
+	// The result should be parseable as JSON.
+	var parsed map[string]interface{}
+	if err := json.Unmarshal([]byte(result), &parsed); err != nil {
+		t.Fatalf("result should be valid JSON: %v", err)
+	}
+}
+
+func TestStripJSONCComments_FullLineComment(t *testing.T) {
+	input := `{
+  "NetworkAccess": 1,
+  // CM MIC: VALID
+  // "CmMic": "AABBCCDD",
+}`
+	result := StripJSONCComments(input)
+
+	// Full-line comments should be removed entirely.
+	if strings.Contains(result, "CM MIC") {
+		t.Errorf("full-line comment should be stripped, got:\n%s", result)
+	}
+	if strings.Contains(result, "CmMic") {
+		t.Errorf("commented property should be stripped, got:\n%s", result)
+	}
+}
+
+func TestStripJSONCComments_QuotedSlashes(t *testing.T) {
+	input := `{
+  "url": "http://example.com"
+}`
+	result := StripJSONCComments(input)
+	if !strings.Contains(result, "http://example.com") {
+		t.Errorf("// inside string should be preserved, got:\n%s", result)
+	}
+}
+
+func TestStripJSONCComments_NoComments(t *testing.T) {
+	input := `{
+  "NetworkAccess": 1
+}`
+	result := StripJSONCComments(input)
+	if result != input {
+		t.Errorf("expected no change, got:\n%s", result)
+	}
+}

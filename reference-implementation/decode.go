@@ -12,10 +12,11 @@ type UnknownTLV struct {
 
 // DecodeResult holds the decoded config and raw data for MIC verification.
 type DecodeResult struct {
-	Config  map[string]interface{}
-	RawData []byte // Original binary data for MIC verification
-	CmMic   []byte // Extracted CM MIC value (TLV 6)
-	CmtsMic []byte // Extracted CMTS MIC value (TLV 7)
+	Config   map[string]interface{}
+	RawData  []byte   // Original binary data for MIC verification
+	CmMic    []byte   // Extracted CM MIC value (TLV 6)
+	CmtsMic  []byte   // Extracted CMTS MIC value (TLV 7)
+	TLVOrder []string // Insertion order of top-level TLV property names
 }
 
 // Decode reads the binary DOCSIS config and returns the decoded JSON structure.
@@ -81,6 +82,9 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			offset = valueEnd
 			continue
 		}
+
+		// Track top-level ordering (first occurrence only for repeatables).
+		result.appendTopOrder(def.Name)
 
 		// Special case: TLV 11 (SNMP MIB Object) - BER-encoded varbind
 		if tlvType == 11 {
@@ -175,6 +179,8 @@ func decodeCompound(data []byte, parent *TLVDef) (map[string]interface{}, error)
 			continue
 		}
 
+		appendOrder(result, subDef.Name)
+
 		// Nested compound sub-TLV
 		if subDef.DataType == DataTypeCompound {
 			subResult, err := decodeCompound(value, subDef)
@@ -262,6 +268,8 @@ func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte) error 
 				offset = valueEnd
 				continue
 			}
+
+			appendOrder(result, subDef.Name)
 
 			if subDef.DataType == DataTypeCompound {
 				subResult, err := decodeCompound(value, subDef)
@@ -379,6 +387,47 @@ func addToResult(result map[string]interface{}, def *TLVDef, value interface{}) 
 		}
 	} else {
 		result[def.Name] = value
+	}
+}
+
+// appendTopOrder adds a name to the top-level TLVOrder, avoiding duplicates.
+func (r *DecodeResult) appendTopOrder(name string) {
+	for _, n := range r.TLVOrder {
+		if n == name {
+			return
+		}
+	}
+	r.TLVOrder = append(r.TLVOrder, name)
+}
+
+// appendOrder adds a name to the _tlvOrder slice in a map, avoiding duplicates
+// for repeatable TLVs (the first occurrence records the position).
+func appendOrder(m map[string]interface{}, name string) {
+	order, _ := m["_tlvOrder"].([]string)
+	for _, n := range order {
+		if n == name {
+			return
+		}
+	}
+	m["_tlvOrder"] = append(order, name)
+}
+
+// StripTLVOrder removes "_tlvOrder" keys from a config map and all nested maps,
+// preparing it for clean JSON output. The top-level TLVOrder on DecodeResult is
+// not affected.
+func StripTLVOrder(config map[string]interface{}) {
+	delete(config, "_tlvOrder")
+	for _, v := range config {
+		switch val := v.(type) {
+		case map[string]interface{}:
+			StripTLVOrder(val)
+		case []interface{}:
+			for _, elem := range val {
+				if m, ok := elem.(map[string]interface{}); ok {
+					StripTLVOrder(m)
+				}
+			}
+		}
 	}
 }
 

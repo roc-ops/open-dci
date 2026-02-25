@@ -46,6 +46,24 @@ func VerifyCmtsMic(configData []byte, cmtsMic []byte, sharedSecret string) *MICR
 	}
 }
 
+// ComputeCmMic computes the CM MIC (TLV 6) for encoded config bytes.
+// The input should be the TLV stream WITHOUT TLV 6, TLV 7, and TLV 255.
+// Returns the 16-byte MD5 digest.
+func ComputeCmMic(configTLVBytes []byte) []byte {
+	h := md5.New()
+	h.Write(configTLVBytes)
+	return h.Sum(nil)
+}
+
+// ComputeCmtsMic computes the CMTS MIC (TLV 7) for encoded config bytes.
+// The input should be the TLV stream WITHOUT TLV 7 and TLV 255 (but including
+// TLV 6 / CM MIC). Returns the 16-byte HMAC-MD5 digest.
+func ComputeCmtsMic(configTLVBytes []byte, sharedSecret string) []byte {
+	mac := hmac.New(md5.New, []byte(sharedSecret))
+	mac.Write(configTLVBytes)
+	return mac.Sum(nil)
+}
+
 // filterTLVs returns a copy of the config data with the specified TLV types removed.
 // It walks the TLV stream and copies all TLVs except the excluded types.
 func filterTLVs(data []byte, excludeTypes ...int) []byte {

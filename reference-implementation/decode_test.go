@@ -25,8 +25,8 @@ func buildConfig(tlvs ...[]byte) []byte {
 
 // makeTestRegistry builds a minimal registry for testing.
 func makeTestRegistry() *Registry {
-	return &Registry{
-		TopLevel: map[int]*TLVDef{
+	reg := &Registry{
+		TopLevel:   map[int]*TLVDef{
 			1: {
 				TypeNum:  1,
 				Name:     "DownstreamFrequency",
@@ -102,7 +102,12 @@ func makeTestRegistry() *Registry {
 				},
 			},
 		},
+		NameLookup: make(map[string]*TLVDef),
 	}
+	for _, def := range reg.TopLevel {
+		reg.NameLookup[def.Name] = def
+	}
+	return reg
 }
 
 func TestDecodeSimpleTLVs(t *testing.T) {

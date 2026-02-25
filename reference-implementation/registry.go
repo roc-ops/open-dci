@@ -21,7 +21,8 @@ type TLVDef struct {
 
 // Registry holds the complete TLV definition hierarchy.
 type Registry struct {
-	TopLevel map[int]*TLVDef
+	TopLevel   map[int]*TLVDef
+	NameLookup map[string]*TLVDef // Reverse lookup: name → definition
 }
 
 // jtdSchema represents the top-level JTD schema structure.
@@ -68,7 +69,10 @@ func LoadRegistry(schemaPath string) (*Registry, error) {
 		defs[name] = &prop
 	}
 
-	reg := &Registry{TopLevel: make(map[int]*TLVDef)}
+	reg := &Registry{
+		TopLevel:   make(map[int]*TLVDef),
+		NameLookup: make(map[string]*TLVDef),
+	}
 
 	// Process top-level optionalProperties.
 	for name, raw := range schema.OptionalProperties {
@@ -116,9 +120,29 @@ func LoadRegistry(schemaPath string) (*Registry, error) {
 		}
 
 		reg.TopLevel[typeNum] = def
+		reg.NameLookup[name] = def
 	}
 
 	return reg, nil
+}
+
+// TopLevelByName returns the top-level TLVDef for the given property name, or nil.
+func (r *Registry) TopLevelByName(name string) *TLVDef {
+	return r.NameLookup[name]
+}
+
+// SubTLVByName returns the sub-TLV definition matching the given name within a
+// compound TLVDef, or nil if not found.
+func SubTLVByName(parent *TLVDef, name string) *TLVDef {
+	if parent == nil || parent.SubTLVs == nil {
+		return nil
+	}
+	for _, sub := range parent.SubTLVs {
+		if sub.Name == name {
+			return sub
+		}
+	}
+	return nil
 }
 
 // resolveRefName extracts the definition reference name from a property.

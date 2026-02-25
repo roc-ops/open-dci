@@ -192,3 +192,50 @@ func stripLastOIDComponent(oid string) string {
 	}
 	return oid[:idx]
 }
+
+// StripJSONCComments removes single-line // comments from JSONC text, producing
+// valid JSON. It handles comments at the end of lines (inline comments) and
+// full-line comments. It is careful not to strip // inside quoted strings.
+func StripJSONCComments(input string) string {
+	lines := strings.Split(input, "\n")
+	var result []string
+
+	for _, line := range lines {
+		stripped := stripLineComment(line)
+		// Skip lines that are entirely comments (now empty or whitespace-only).
+		trimmed := strings.TrimSpace(stripped)
+		if trimmed == "" {
+			continue
+		}
+		result = append(result, stripped)
+	}
+
+	return strings.Join(result, "\n")
+}
+
+// stripLineComment removes the // comment portion from a single line,
+// respecting quoted strings. Returns the line with the comment removed.
+func stripLineComment(line string) string {
+	inString := false
+	escape := false
+
+	for i, ch := range line {
+		if escape {
+			escape = false
+			continue
+		}
+		if ch == '\\' && inString {
+			escape = true
+			continue
+		}
+		if ch == '"' {
+			inString = !inString
+			continue
+		}
+		if !inString && ch == '/' && i+1 < len(line) && line[i+1] == '/' {
+			return strings.TrimRight(line[:i], " \t")
+		}
+	}
+
+	return line
+}
