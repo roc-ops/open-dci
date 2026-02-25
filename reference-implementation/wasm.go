@@ -4,6 +4,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"strings"
 	"syscall/js"
 
 	"github.com/roc-ops/open-dci/reference-implementation/mibresolver"
@@ -68,13 +70,61 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 	// Strip internal ordering metadata before JSON output.
 	StripTLVOrder(result.Config)
 
+	// Collect JSONC comment lines for MIC verification (mirrors CLI behavior).
+	var comments []string
+
+	// Extract optional shared secret for MIC verification.
+	var cmtsSecret string
+	if len(args) >= 2 {
+		cmtsSecret = args[1].String()
+	}
+
+	if result.CmMic != nil {
+		micResult := VerifyCmMic(data, result.CmMic)
+		if micResult.Valid {
+			comments = append(comments, "// CM MIC: VALID")
+		} else {
+			comments = append(comments, fmt.Sprintf("// CM MIC: INVALID (expected %X, computed %X)",
+				micResult.Expected, micResult.Computed))
+		}
+		comments = append(comments, fmt.Sprintf("// \"CmMic\": \"%X\",", result.CmMic))
+	}
+
+	if result.CmtsMic != nil {
+		comments = append(comments, fmt.Sprintf("// \"CmtsMic\": \"%X\",", result.CmtsMic))
+		if cmtsSecret == "" {
+			comments = append(comments, "// CMTS MIC: SKIPPED (no --cmts-secret provided)")
+		} else {
+			micResult := VerifyCmtsMic(data, result.CmtsMic, cmtsSecret)
+			if micResult.Valid {
+				comments = append(comments, "// CMTS MIC: VALID")
+			} else {
+				comments = append(comments, fmt.Sprintf("// CMTS MIC: INVALID (expected %X, computed %X)",
+					micResult.Expected, micResult.Computed))
+			}
+		}
+	}
+
+	// Extract UnknownTlvs from config — they become JSONC comments.
+	if unknowns, ok := result.Config["UnknownTlvs"]; ok {
+		delete(result.Config, "UnknownTlvs")
+		utJSON, jsonErr := json.MarshalIndent(unknowns, "", "  ")
+		if jsonErr == nil {
+			lines := strings.Split(string(utJSON), "\n")
+			comments = append(comments, fmt.Sprintf("// \"UnknownTlvs\": %s", lines[0]))
+			for _, line := range lines[1:] {
+				comments = append(comments, "// "+line)
+			}
+		}
+	}
+
 	// Remove MIC values from config (they are verification-only data).
 	delete(result.Config, "CmMic")
 	delete(result.Config, "CmtsMic")
 
 	// Format as JSONC with MIB resolver if available.
 	validValues := registry.ValidValuesMap()
-	jsoncData, err := FormatJSONC(result.Config, nil, validValues, resolver)
+	jsoncData, err := FormatJSONC(result.Config, comments, validValues, resolver)
 	if err != nil {
 		return jsError("formatting output: " + err.Error())
 	}
@@ -113,6 +163,17 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	encoded, err := Encode(result, registry)
 	if err != nil {
 		return jsError("encoding: " + err.Error())
+	}
+
+	// Optionally compute and insert MICs if a shared secret is provided.
+	if len(args) >= 2 {
+		secret := args[1].String()
+		if secret != "" {
+			encoded, err = insertMICs(encoded, secret)
+			if err != nil {
+				return jsError("computing MICs: " + err.Error())
+			}
+		}
 	}
 
 	// Copy the encoded bytes into a JS Uint8Array.
