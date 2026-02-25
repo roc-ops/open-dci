@@ -37,7 +37,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.2",
           "x-docsis-tlvType": "x.40.2"
         },
         "ImmediateAqmMinThreshold": {
@@ -46,7 +46,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.4",
           "x-docsis-tlvType": "x.40.4"
         },
         "ImmediateAqmRangeExponentOfRampFunction": {
@@ -55,19 +55,19 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.5",
           "x-docsis-tlvType": "x.40.5"
         },
         "LatencyHistogramEncodings": {
           "description": "Latency histogram encodings",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15.6",
           "x-docsis-tlvType": "x.40.6"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9"
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15"
     },
     "AsfServingGroupEntry": {
       "additionalProperties": false,
@@ -77,26 +77,26 @@
           "description": "Match service flows to ASF by application identifier",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13.1",
           "x-docsis-tlvType": "x.38.1"
         },
         "ServiceFlowToAsfMatchingByServiceClassName": {
           "description": "Match service flows to ASF by service class name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13.2",
           "x-docsis-tlvType": "x.38.2"
         },
         "ServiceFlowToAsfMatchingByTrafficPriorityRange": {
           "description": "Match service flows to ASF by traffic priority range",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13.3",
           "x-docsis-tlvType": "x.38.3"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3"
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13"
     },
     "BgpAttributeEntry": {
       "additionalProperties": false,
@@ -153,7 +153,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11.5",
           "x-docsis-tlvType": "x.35.3"
         },
         "MinimumBuffer": {
@@ -162,7 +162,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11.3",
           "x-docsis-tlvType": "x.35.1"
         },
         "TargetBuffer": {
@@ -171,12 +171,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11.4",
           "x-docsis-tlvType": "x.35.2"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8"
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11"
     },
     "ClassifierErrorEntry": {
       "additionalProperties": false,
@@ -446,7 +446,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.10",
           "x-docsis-tlvType": "71.36"
         },
         "AsfIdentifier": {
@@ -455,7 +455,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.2",
           "x-docsis-tlvType": "71.2"
         },
         "AsfReference": {
@@ -464,7 +464,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.1",
           "x-docsis-tlvType": "71.1"
         },
         "AssumedMinReservedRatePacketSize": {
@@ -473,7 +473,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.5",
           "x-docsis-tlvType": "71.11"
         },
         "DataRateUnitSetting": {
@@ -496,7 +496,7 @@
           "$ref": "#/$defs/LowLatencyEncodingsEntry",
           "description": "Low latency encodings for this ASF",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17",
           "x-docsis-tlvType": "71.42"
         },
         "MaxSustainedTrafficRate": {
@@ -505,7 +505,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.2",
           "x-docsis-tlvType": "71.8"
         },
         "MaxTrafficBurst": {
@@ -514,7 +514,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.3",
           "x-docsis-tlvType": "71.9"
         },
         "MespReference": {
@@ -523,7 +523,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.12",
           "x-docsis-tlvType": "71.37"
         },
         "MinReservedTrafficRate": {
@@ -532,7 +532,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.4",
           "x-docsis-tlvType": "71.10"
         },
         "PeakTrafficRate": {
@@ -541,14 +541,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.10",
           "x-docsis-tlvType": "71.27"
         },
         "ServingGroup": {
           "$ref": "#/$defs/AsfServingGroupEntry",
           "description": "ASF serving group parameters",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13",
           "x-docsis-tlvType": "71.38"
         },
         "TrafficPriority": {
@@ -557,7 +557,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.1",
           "x-docsis-tlvType": "71.7"
         }
       },
@@ -760,22 +760,25 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.10",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.36"
         },
         "ApplicationIdentifier": {
           "description": "Application identifier for the service flow",
-          "type": "string",
-          "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.34",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.9",
+          "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.34"
         },
         "AqmEncodings": {
           "$ref": "#/$defs/AqmEncodingsEntry",
           "description": "Active Queue Management encodings",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15",
           "x-docsis-tlvType": "25.40"
         },
         "AssumedMinReservedRatePacketSize": {
@@ -784,7 +787,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.5",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.11"
         },
@@ -792,7 +795,7 @@
           "$ref": "#/$defs/BufferControlEntry",
           "description": "Buffer control parameters for the service flow",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11",
           "x-docsis-tlvType": "25.35"
         },
         "DataRateUnitSetting": {
@@ -825,11 +828,18 @@
             "1": "do not associate with resequencing DSID"
           }
         },
+        "IatcProfileNameReference": {
+          "description": "IATC profile name reference for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.14",
+          "x-docsis-tlvType": "25.39"
+        },
         "IpTypeOfServiceDscpOverwrite": {
           "description": "IP ToS/DSCP overwrite value",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.23",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.9",
           "x-docsis-tlvType": "25.23"
         },
         "MaxDownstreamLatency": {
@@ -838,7 +848,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.6.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.11.1",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.14"
         },
@@ -848,7 +858,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.2",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.8"
         },
@@ -858,7 +868,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.3",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.9"
         },
@@ -868,7 +878,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.12",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.37"
         },
@@ -878,7 +888,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.4",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.10"
         },
@@ -888,7 +898,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.10",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.27"
         },
@@ -898,7 +908,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.6",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.5",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "25.6",
           "x-docsis-validValues": {
@@ -910,7 +920,7 @@
           "description": "Name of the service class to use for this service flow",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.4",
           "x-docsis-tlvLength": "2-16",
           "x-docsis-tlvType": "25.4"
         },
@@ -920,7 +930,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.33",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.8",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.33"
         },
@@ -937,7 +947,7 @@
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
           "x-docsis-tlvType": "25.5"
         },
         "ServiceFlowForbiddenAttributeMask": {
@@ -946,7 +956,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.7",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.32"
         },
@@ -956,7 +966,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.2",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.2"
         },
@@ -966,7 +976,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.1",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.1"
         },
@@ -976,7 +986,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.31",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.6",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.31"
         },
@@ -986,16 +996,9 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.3",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "25.3"
-        },
-        "ServingGroupName": {
-          "description": "Serving group name for the service flow",
-          "type": "string",
-          "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.38",
-          "x-docsis-tlvType": "25.38"
         },
         "TimeoutForActiveQosParameters": {
           "description": "Timeout for active QoS parameters in seconds",
@@ -1003,7 +1006,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.12",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.6",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.12"
         },
@@ -1013,7 +1016,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.7",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "25.13"
         },
@@ -1023,14 +1026,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.1",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "25.7"
         },
         "VendorSpecificQosParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific QoS parameters",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.43",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.8",
           "x-docsis-tlvType": "25.43"
         }
       },
@@ -3066,14 +3069,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.5",
           "x-docsis-tlvType": "x.42.5"
         },
         "ClassicSfScn": {
           "description": "Classic service flow service class name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.3",
           "x-docsis-tlvType": "x.42.3"
         },
         "LowLatencyServiceFlowIdentifier": {
@@ -3082,7 +3085,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.2",
           "x-docsis-tlvType": "x.42.2"
         },
         "LowLatencyServiceFlowReference": {
@@ -3091,14 +3094,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.1",
           "x-docsis-tlvType": "x.42.1"
         },
         "LowLatencySfScn": {
           "description": "Low latency service flow service class name",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.4",
           "x-docsis-tlvType": "x.42.4"
         },
         "QpDrainRateExponent": {
@@ -3107,7 +3110,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.10",
           "x-docsis-tlvType": "x.42.10"
         },
         "QpLatencyThreshold": {
@@ -3116,7 +3119,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.8",
           "x-docsis-tlvType": "x.42.8"
         },
         "QpQueuingScoreThreshold": {
@@ -3125,7 +3128,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.9",
           "x-docsis-tlvType": "x.42.9"
         },
         "QueueProtectionEnable": {
@@ -3147,12 +3150,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17.6",
           "x-docsis-tlvType": "x.42.6"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10"
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17"
     },
     "MepConfigurationEntry": {
       "additionalProperties": false,
@@ -3874,7 +3877,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5, C.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8.2, C.4",
           "x-docsis-tlvType": "x.5.2",
           "x-docsis-validValues": {
             "0": "okay/success",
@@ -3974,7 +3977,7 @@
           "description": "Human-readable error message",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8.3",
           "x-docsis-tlvType": "x.5.3"
         },
         "ErroredParameter": {
@@ -3983,12 +3986,12 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8.1",
           "x-docsis-tlvType": "x.5.1"
         }
       },
       "type": "object",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8"
     },
     "SnmpMibEntry": {
       "additionalProperties": false,
@@ -4298,7 +4301,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.10",
           "x-docsis-tlvType": "70.36"
         },
         "AsfIdentifier": {
@@ -4307,7 +4310,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.2",
           "x-docsis-tlvType": "70.2"
         },
         "AsfReference": {
@@ -4316,7 +4319,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.1",
           "x-docsis-tlvType": "70.1"
         },
         "AssumedMinReservedRatePacketSize": {
@@ -4325,7 +4328,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.5",
           "x-docsis-tlvType": "70.11"
         },
         "DataRateUnitSetting": {
@@ -4348,7 +4351,7 @@
           "$ref": "#/$defs/LowLatencyEncodingsEntry",
           "description": "Low latency encodings for this ASF",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.17",
           "x-docsis-tlvType": "70.42"
         },
         "MaxSustainedTrafficRate": {
@@ -4357,7 +4360,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.2",
           "x-docsis-tlvType": "70.8"
         },
         "MaxTrafficBurst": {
@@ -4366,7 +4369,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.3",
           "x-docsis-tlvType": "70.9"
         },
         "MespReference": {
@@ -4375,7 +4378,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.12",
           "x-docsis-tlvType": "70.37"
         },
         "MinReservedTrafficRate": {
@@ -4384,7 +4387,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.4",
           "x-docsis-tlvType": "70.10"
         },
         "PeakTrafficRate": {
@@ -4393,14 +4396,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.10",
           "x-docsis-tlvType": "70.27"
         },
         "ServingGroup": {
           "$ref": "#/$defs/AsfServingGroupEntry",
           "description": "ASF serving group parameters",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13",
           "x-docsis-tlvType": "70.38"
         },
         "TrafficPriority": {
@@ -4409,7 +4412,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.1",
           "x-docsis-tlvType": "70.7"
         }
       },
@@ -4701,22 +4704,25 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.36",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.10",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.36"
         },
         "ApplicationIdentifier": {
           "description": "Application identifier for the service flow",
-          "type": "string",
-          "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.34",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.9",
+          "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.34"
         },
         "AqmEncodings": {
           "$ref": "#/$defs/AqmEncodingsEntry",
           "description": "Active Queue Management encodings",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.15",
           "x-docsis-tlvType": "24.40"
         },
         "AssumedMinReservedRatePacketSize": {
@@ -4725,7 +4731,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.11",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.5",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.11"
         },
@@ -4733,7 +4739,7 @@
           "$ref": "#/$defs/BufferControlEntry",
           "description": "Buffer control parameters for the service flow",
           "x-docsis-dataType": "compound",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.11",
           "x-docsis-tlvType": "24.35"
         },
         "DataRateUnitSetting": {
@@ -4758,7 +4764,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.9",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.22"
         },
@@ -4768,15 +4774,22 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.13",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.44"
+        },
+        "IatcProfileNameReference": {
+          "description": "IATC profile name reference for the service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.14",
+          "x-docsis-tlvType": "24.39"
         },
         "IpTypeOfServiceDscpOverwrite": {
           "description": "IP ToS/DSCP overwrite value",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.23",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.9",
           "x-docsis-tlvType": "24.23"
         },
         "MaxConcatenatedBurst": {
@@ -4785,7 +4798,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.1",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.14"
         },
@@ -4795,7 +4808,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.8",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.2",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.8"
         },
@@ -4805,7 +4818,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.9",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.3",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.9"
         },
@@ -4815,7 +4828,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.37",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.12",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.37"
         },
@@ -4825,7 +4838,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.10",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.4",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.10"
         },
@@ -4835,7 +4848,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.11",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.25"
         },
@@ -4845,7 +4858,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.12",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.26"
         },
@@ -4855,7 +4868,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.7",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.20"
         },
@@ -4865,7 +4878,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.4",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.17"
         },
@@ -4875,7 +4888,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.27",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.10",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.27"
         },
@@ -4885,7 +4898,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.6",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.5",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.6",
           "x-docsis-validValues": {
@@ -4900,7 +4913,7 @@
           "type": "integer",
           "x-docsis-dataType": "uint32",
           "x-docsis-encoding": "bitmask",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.3",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.16"
         },
@@ -4910,7 +4923,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.2",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.15",
           "x-docsis-validValues": {
@@ -4927,7 +4940,7 @@
           "description": "Name of the service class to use for this service flow",
           "type": "string",
           "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.4",
           "x-docsis-tlvLength": "2-16",
           "x-docsis-tlvType": "24.4"
         },
@@ -4937,14 +4950,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.33",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.8",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.33"
         },
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.5",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
           "x-docsis-tlvType": "24.5"
         },
         "ServiceFlowForbiddenAttributeMask": {
@@ -4953,7 +4966,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.32",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.7",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.32"
         },
@@ -4963,7 +4976,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.2",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.2",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.2"
         },
@@ -4973,7 +4986,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.1",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.1",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.1"
         },
@@ -4983,7 +4996,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.31",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.6",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.31"
         },
@@ -4993,16 +5006,9 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.3",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.7.3",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.3"
-        },
-        "ServingGroupName": {
-          "description": "Serving group name for the service flow",
-          "type": "string",
-          "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.38",
-          "x-docsis-tlvType": "24.38"
         },
         "TimeoutForActiveQosParameters": {
           "description": "Timeout for active QoS parameters in seconds",
@@ -5010,7 +5016,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.12",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.6",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.12"
         },
@@ -5020,7 +5026,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.13",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.7",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.13"
         },
@@ -5030,7 +5036,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.8",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.21"
         },
@@ -5040,7 +5046,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.5",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.18"
         },
@@ -5050,7 +5056,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.7",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.1",
           "x-docsis-tlvLength": 1,
           "x-docsis-tlvType": "24.7"
         },
@@ -5060,7 +5066,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.6",
           "x-docsis-tlvLength": 2,
           "x-docsis-tlvType": "24.19"
         },
@@ -5070,14 +5076,14 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.5.4",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.10.10",
           "x-docsis-tlvLength": 4,
           "x-docsis-tlvType": "24.24"
         },
         "VendorSpecificQosParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific QoS parameters",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.3.43",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.8",
           "x-docsis-tlvType": "24.43"
         }
       },

@@ -50,7 +50,7 @@
     "ServiceFlowErrorEntry": {
       "metadata": {
         "description": "Service Flow Error Encoding reported when a service flow parameter is rejected",
-        "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.8"
       },
       "optionalProperties": {
         "ErroredParameter": {
@@ -58,7 +58,7 @@
             "description": "Type value of the TLV in error",
             "tlvType": "x.5.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8.1"
           },
           "type": "uint8"
         },
@@ -160,7 +160,7 @@
               "215": "reject-invalid-low-latency-config",
               "216": "reject-unknown-scn-or-aqp"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5, C.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8.2, C.4"
           },
           "type": "uint8"
         },
@@ -169,7 +169,7 @@
             "description": "Human-readable error message",
             "tlvType": "x.5.3",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8.3"
           },
           "type": "string"
         }
@@ -306,7 +306,7 @@
     "BufferControlEntry": {
       "metadata": {
         "description": "Buffer Control encoding for service flow buffer management",
-        "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.9.11"
       },
       "optionalProperties": {
         "MinimumBuffer": {
@@ -314,7 +314,7 @@
             "description": "Minimum buffer size in bytes",
             "tlvType": "x.35.1",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.11.3"
           },
           "type": "uint32"
         },
@@ -323,7 +323,7 @@
             "description": "Target buffer size in bytes",
             "tlvType": "x.35.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.11.4"
           },
           "type": "uint32"
         },
@@ -332,7 +332,7 @@
             "description": "Maximum buffer size in bytes",
             "tlvType": "x.35.3",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.11.5"
           },
           "type": "uint32"
         }
@@ -341,7 +341,7 @@
     "AqmEncodingsEntry": {
       "metadata": {
         "description": "Active Queue Management encodings for service flow queue management",
-        "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.9.15"
       },
       "optionalProperties": {
         "AqmDisable": {
@@ -362,7 +362,7 @@
             "description": "AQM latency target in microseconds",
             "tlvType": "x.40.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.2"
           },
           "type": "uint32"
         },
@@ -385,7 +385,7 @@
             "description": "Immediate AQM minimum threshold",
             "tlvType": "x.40.4",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.4"
           },
           "type": "uint32"
         },
@@ -394,7 +394,7 @@
             "description": "Immediate AQM range exponent of ramp function",
             "tlvType": "x.40.5",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.5"
           },
           "type": "uint8"
         },
@@ -403,7 +403,7 @@
             "description": "Latency histogram encodings",
             "tlvType": "x.40.6",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15.6"
           },
           "type": "string"
         }
@@ -1430,7 +1430,7 @@
             "tlvType": "24.1",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.1"
           },
           "type": "uint16"
         },
@@ -1440,7 +1440,7 @@
             "tlvType": "24.2",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.2"
           },
           "type": "uint32"
         },
@@ -1450,7 +1450,7 @@
             "tlvType": "24.3",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.3"
           },
           "type": "uint32"
         },
@@ -1460,7 +1460,7 @@
             "tlvType": "24.4",
             "tlvLength": "2-16",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.4"
           },
           "type": "string"
         },
@@ -1468,7 +1468,7 @@
           "metadata": {
             "description": "Error encoding for this service flow",
             "tlvType": "24.5",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
           },
           "ref": "ServiceFlowErrorEntry"
         },
@@ -1482,7 +1482,7 @@
               "0": "reserved",
               "7": "provisioned, admitted, and active set"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.6"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.5"
           },
           "type": "uint8"
         },
@@ -1492,7 +1492,7 @@
             "tlvType": "24.7",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.1"
           },
           "type": "uint8"
         },
@@ -1502,7 +1502,7 @@
             "tlvType": "24.8",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.2"
           },
           "type": "uint32"
         },
@@ -1512,7 +1512,7 @@
             "tlvType": "24.9",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.3"
           },
           "type": "uint32"
         },
@@ -1522,7 +1522,7 @@
             "tlvType": "24.10",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.4"
           },
           "type": "uint32"
         },
@@ -1532,7 +1532,7 @@
             "tlvType": "24.11",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.5"
           },
           "type": "uint16"
         },
@@ -1542,7 +1542,7 @@
             "tlvType": "24.12",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.6"
           },
           "type": "uint16"
         },
@@ -1552,7 +1552,7 @@
             "tlvType": "24.13",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.13"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.7"
           },
           "type": "uint16"
         },
@@ -1562,7 +1562,7 @@
             "tlvType": "24.14",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.1"
           },
           "type": "uint16"
         },
@@ -1581,7 +1581,7 @@
               "5": "unsolicited grant service with AD",
               "6": "unsolicited grant service"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.2"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.2"
           },
           "type": "uint8"
         },
@@ -1592,7 +1592,7 @@
             "tlvLength": 4,
             "dataType": "uint32",
             "encoding": "bitmask",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.3"
           },
           "type": "uint32"
         },
@@ -1602,7 +1602,7 @@
             "tlvType": "24.17",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.4"
           },
           "type": "uint32"
         },
@@ -1612,7 +1612,7 @@
             "tlvType": "24.18",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.5"
           },
           "type": "uint32"
         },
@@ -1622,7 +1622,7 @@
             "tlvType": "24.19",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.6"
           },
           "type": "uint16"
         },
@@ -1632,7 +1632,7 @@
             "tlvType": "24.20",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.7"
           },
           "type": "uint32"
         },
@@ -1642,7 +1642,7 @@
             "tlvType": "24.21",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.8"
           },
           "type": "uint32"
         },
@@ -1652,7 +1652,7 @@
             "tlvType": "24.22",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.9"
           },
           "type": "uint8"
         },
@@ -1661,7 +1661,7 @@
             "description": "IP ToS/DSCP overwrite value",
             "tlvType": "24.23",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.23"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.9"
           },
           "type": "string"
         },
@@ -1671,7 +1671,7 @@
             "tlvType": "24.24",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.10"
           },
           "type": "uint32"
         },
@@ -1681,7 +1681,7 @@
             "tlvType": "24.25",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.11"
           },
           "type": "uint8"
         },
@@ -1691,7 +1691,7 @@
             "tlvType": "24.26",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.12"
           },
           "type": "uint8"
         },
@@ -1701,7 +1701,7 @@
             "tlvType": "24.27",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.10"
           },
           "type": "uint32"
         },
@@ -1711,7 +1711,7 @@
             "tlvType": "24.31",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.31"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.6"
           },
           "type": "uint32"
         },
@@ -1721,7 +1721,7 @@
             "tlvType": "24.32",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.32"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.7"
           },
           "type": "uint32"
         },
@@ -1731,7 +1731,7 @@
             "tlvType": "24.33",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.33"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.8"
           },
           "type": "uint32"
         },
@@ -1739,17 +1739,18 @@
           "metadata": {
             "description": "Application identifier for the service flow",
             "tlvType": "24.34",
-            "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.34"
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.9"
           },
-          "type": "string"
+          "type": "uint32"
         },
         "BufferControl": {
           "metadata": {
             "description": "Buffer control parameters for the service flow",
             "tlvType": "24.35",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.11"
           },
           "ref": "BufferControlEntry"
         },
@@ -1759,7 +1760,7 @@
             "tlvType": "24.36",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.10"
           },
           "type": "uint16"
         },
@@ -1769,16 +1770,16 @@
             "tlvType": "24.37",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.12"
           },
           "type": "uint16"
         },
-        "ServingGroupName": {
+        "IatcProfileNameReference": {
           "metadata": {
-            "description": "Serving group name for the service flow",
-            "tlvType": "24.38",
+            "description": "IATC profile name reference for the service flow",
+            "tlvType": "24.39",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.38"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.14"
           },
           "type": "string"
         },
@@ -1787,7 +1788,7 @@
             "description": "Active Queue Management encodings",
             "tlvType": "24.40",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15"
           },
           "ref": "AqmEncodingsEntry"
         },
@@ -1811,7 +1812,7 @@
           "metadata": {
             "description": "Vendor-specific QoS parameters",
             "tlvType": "24.43",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.43"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.8"
           },
           "ref": "VendorSpecificContainer"
         },
@@ -1821,7 +1822,7 @@
             "tlvType": "24.44",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.10.13"
           },
           "type": "uint32"
         }
@@ -1840,7 +1841,7 @@
             "tlvType": "25.1",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.1"
           },
           "type": "uint16"
         },
@@ -1850,7 +1851,7 @@
             "tlvType": "25.2",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.2"
           },
           "type": "uint32"
         },
@@ -1860,7 +1861,7 @@
             "tlvType": "25.3",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.3"
           },
           "type": "uint32"
         },
@@ -1870,7 +1871,7 @@
             "tlvType": "25.4",
             "tlvLength": "2-16",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.4"
           },
           "type": "string"
         },
@@ -1878,7 +1879,7 @@
           "metadata": {
             "description": "Error encoding for this service flow",
             "tlvType": "25.5",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.5.5"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
           },
           "ref": "ServiceFlowErrorEntry"
         },
@@ -1892,7 +1893,7 @@
               "0": "reserved",
               "7": "provisioned, admitted, and active set"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.6"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.5"
           },
           "type": "uint8"
         },
@@ -1902,7 +1903,7 @@
             "tlvType": "25.7",
             "tlvLength": 1,
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.1"
           },
           "type": "uint8"
         },
@@ -1912,7 +1913,7 @@
             "tlvType": "25.8",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.2"
           },
           "type": "uint32"
         },
@@ -1922,7 +1923,7 @@
             "tlvType": "25.9",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.3"
           },
           "type": "uint32"
         },
@@ -1932,7 +1933,7 @@
             "tlvType": "25.10",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.4"
           },
           "type": "uint32"
         },
@@ -1942,7 +1943,7 @@
             "tlvType": "25.11",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.5"
           },
           "type": "uint16"
         },
@@ -1952,7 +1953,7 @@
             "tlvType": "25.12",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.6"
           },
           "type": "uint16"
         },
@@ -1962,7 +1963,7 @@
             "tlvType": "25.13",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.13"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.7"
           },
           "type": "uint16"
         },
@@ -1972,7 +1973,7 @@
             "tlvType": "25.14",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.6.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.11.1"
           },
           "type": "uint32"
         },
@@ -1995,7 +1996,7 @@
             "description": "IP ToS/DSCP overwrite value",
             "tlvType": "25.23",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.23"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.9"
           },
           "type": "string"
         },
@@ -2005,7 +2006,7 @@
             "tlvType": "25.27",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.10"
           },
           "type": "uint32"
         },
@@ -2015,7 +2016,7 @@
             "tlvType": "25.31",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.31"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.6"
           },
           "type": "uint32"
         },
@@ -2025,7 +2026,7 @@
             "tlvType": "25.32",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.32"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.7"
           },
           "type": "uint32"
         },
@@ -2035,7 +2036,7 @@
             "tlvType": "25.33",
             "tlvLength": 4,
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.33"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.8"
           },
           "type": "uint32"
         },
@@ -2043,17 +2044,18 @@
           "metadata": {
             "description": "Application identifier for the service flow",
             "tlvType": "25.34",
-            "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.34"
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.9"
           },
-          "type": "string"
+          "type": "uint32"
         },
         "BufferControl": {
           "metadata": {
             "description": "Buffer control parameters for the service flow",
             "tlvType": "25.35",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.11"
           },
           "ref": "BufferControlEntry"
         },
@@ -2063,7 +2065,7 @@
             "tlvType": "25.36",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.10"
           },
           "type": "uint16"
         },
@@ -2073,16 +2075,16 @@
             "tlvType": "25.37",
             "tlvLength": 2,
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.12"
           },
           "type": "uint16"
         },
-        "ServingGroupName": {
+        "IatcProfileNameReference": {
           "metadata": {
-            "description": "Serving group name for the service flow",
-            "tlvType": "25.38",
+            "description": "IATC profile name reference for the service flow",
+            "tlvType": "25.39",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.38"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.14"
           },
           "type": "string"
         },
@@ -2091,7 +2093,7 @@
             "description": "Active Queue Management encodings",
             "tlvType": "25.40",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.15"
           },
           "ref": "AqmEncodingsEntry"
         },
@@ -2115,7 +2117,7 @@
           "metadata": {
             "description": "Vendor-specific QoS parameters",
             "tlvType": "25.43",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.43"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.8"
           },
           "ref": "VendorSpecificContainer"
         },
@@ -2565,7 +2567,7 @@
     "AsfServingGroupEntry": {
       "metadata": {
         "description": "ASF Serving Group encoding for aggregate service flows",
-        "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.9.13"
       },
       "optionalProperties": {
         "ServiceFlowToAsfMatchingByApplicationId": {
@@ -2573,7 +2575,7 @@
             "description": "Match service flows to ASF by application identifier",
             "tlvType": "x.38.1",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.13.1"
           },
           "type": "string"
         },
@@ -2582,7 +2584,7 @@
             "description": "Match service flows to ASF by service class name",
             "tlvType": "x.38.2",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.13.2"
           },
           "type": "string"
         },
@@ -2591,7 +2593,7 @@
             "description": "Match service flows to ASF by traffic priority range",
             "tlvType": "x.38.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.13.3"
           },
           "type": "string"
         }
@@ -2600,7 +2602,7 @@
     "LowLatencyEncodingsEntry": {
       "metadata": {
         "description": "Low Latency encodings for aggregate service flows",
-        "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+        "spec": "CM-SP-MULPIv4.0 C.2.2.9.17"
       },
       "optionalProperties": {
         "LowLatencyServiceFlowReference": {
@@ -2608,7 +2610,7 @@
             "description": "Low latency service flow reference",
             "tlvType": "x.42.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.1"
           },
           "type": "uint16"
         },
@@ -2617,7 +2619,7 @@
             "description": "Low latency service flow identifier",
             "tlvType": "x.42.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.2"
           },
           "type": "uint32"
         },
@@ -2626,7 +2628,7 @@
             "description": "Classic service flow service class name",
             "tlvType": "x.42.3",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.3"
           },
           "type": "string"
         },
@@ -2635,7 +2637,7 @@
             "description": "Low latency service flow service class name",
             "tlvType": "x.42.4",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.4"
           },
           "type": "string"
         },
@@ -2644,7 +2646,7 @@
             "description": "AQM coupling factor exponent",
             "tlvType": "x.42.5",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.5"
           },
           "type": "uint8"
         },
@@ -2653,7 +2655,7 @@
             "description": "Scheduling weight",
             "tlvType": "x.42.6",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.6"
           },
           "type": "uint8"
         },
@@ -2675,7 +2677,7 @@
             "description": "Queue protection latency threshold (CRITICALqL_us)",
             "tlvType": "x.42.8",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.8"
           },
           "type": "uint32"
         },
@@ -2684,7 +2686,7 @@
             "description": "Queue protection queuing score threshold (CRITICALqLSCORE_us)",
             "tlvType": "x.42.9",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.9"
           },
           "type": "uint32"
         },
@@ -2693,7 +2695,7 @@
             "description": "Queue protection drain rate exponent (LG_AGING)",
             "tlvType": "x.42.10",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17.10"
           },
           "type": "uint8"
         }
@@ -2711,7 +2713,7 @@
             "description": "ASF reference within config file",
             "tlvType": "70.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.1"
           },
           "type": "uint16"
         },
@@ -2720,7 +2722,7 @@
             "description": "CMTS-assigned ASF identifier",
             "tlvType": "70.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.2"
           },
           "type": "uint32"
         },
@@ -2729,7 +2731,7 @@
             "description": "Relative priority for the aggregate service flow (0-7)",
             "tlvType": "70.7",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.1"
           },
           "type": "uint8"
         },
@@ -2738,7 +2740,7 @@
             "description": "Maximum sustained traffic rate in bits per second",
             "tlvType": "70.8",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.2"
           },
           "type": "uint32"
         },
@@ -2747,7 +2749,7 @@
             "description": "Maximum traffic burst size in bytes",
             "tlvType": "70.9",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.3"
           },
           "type": "uint32"
         },
@@ -2756,7 +2758,7 @@
             "description": "Minimum reserved traffic rate in bits per second",
             "tlvType": "70.10",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.4"
           },
           "type": "uint32"
         },
@@ -2765,7 +2767,7 @@
             "description": "Assumed minimum reserved rate packet size in bytes",
             "tlvType": "70.11",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.5"
           },
           "type": "uint16"
         },
@@ -2774,7 +2776,7 @@
             "description": "Peak traffic rate in bits per second",
             "tlvType": "70.27",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.10"
           },
           "type": "uint32"
         },
@@ -2783,7 +2785,7 @@
             "description": "Reference to a parent aggregate service flow",
             "tlvType": "70.36",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.10"
           },
           "type": "uint16"
         },
@@ -2792,7 +2794,7 @@
             "description": "Reference to a Metro Ethernet Service Profile",
             "tlvType": "70.37",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.12"
           },
           "type": "uint16"
         },
@@ -2801,7 +2803,7 @@
             "description": "ASF serving group parameters",
             "tlvType": "70.38",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.13"
           },
           "ref": "AsfServingGroupEntry"
         },
@@ -2826,7 +2828,7 @@
             "description": "Low latency encodings for this ASF",
             "tlvType": "70.42",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17"
           },
           "ref": "LowLatencyEncodingsEntry"
         }
@@ -2844,7 +2846,7 @@
             "description": "ASF reference within config file",
             "tlvType": "71.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.1"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.1"
           },
           "type": "uint16"
         },
@@ -2853,7 +2855,7 @@
             "description": "CMTS-assigned ASF identifier",
             "tlvType": "71.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.2"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.2"
           },
           "type": "uint32"
         },
@@ -2862,7 +2864,7 @@
             "description": "Relative priority for the aggregate service flow (0-7)",
             "tlvType": "71.7",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.7"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.1"
           },
           "type": "uint8"
         },
@@ -2871,7 +2873,7 @@
             "description": "Maximum sustained traffic rate in bits per second",
             "tlvType": "71.8",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.2"
           },
           "type": "uint32"
         },
@@ -2880,7 +2882,7 @@
             "description": "Maximum traffic burst size in bytes",
             "tlvType": "71.9",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.3"
           },
           "type": "uint32"
         },
@@ -2889,7 +2891,7 @@
             "description": "Minimum reserved traffic rate in bits per second",
             "tlvType": "71.10",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.4"
           },
           "type": "uint32"
         },
@@ -2898,7 +2900,7 @@
             "description": "Assumed minimum reserved rate packet size in bytes",
             "tlvType": "71.11",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.5"
           },
           "type": "uint16"
         },
@@ -2907,7 +2909,7 @@
             "description": "Peak traffic rate in bits per second",
             "tlvType": "71.27",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.27"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.10"
           },
           "type": "uint32"
         },
@@ -2916,7 +2918,7 @@
             "description": "Reference to a parent aggregate service flow",
             "tlvType": "71.36",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.36"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.10"
           },
           "type": "uint16"
         },
@@ -2925,7 +2927,7 @@
             "description": "Reference to a Metro Ethernet Service Profile",
             "tlvType": "71.37",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.37"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.7.12"
           },
           "type": "uint16"
         },
@@ -2934,7 +2936,7 @@
             "description": "ASF serving group parameters",
             "tlvType": "71.38",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.13"
           },
           "ref": "AsfServingGroupEntry"
         },
@@ -2959,7 +2961,7 @@
             "description": "Low latency encodings for this ASF",
             "tlvType": "71.42",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.2.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.17"
           },
           "ref": "LowLatencyEncodingsEntry"
         }
