@@ -155,6 +155,68 @@ func (r *Resolver) ResolveNamed(spec string) (string, error) {
 	return node.Oid.String(), nil
 }
 
+// ResolveFullName takes a numeric dotted OID and returns the full named path
+// by resolving each OID prefix to its object name.
+// Example: "1.3.6.1.2.1.2.2.1.7" -> "iso.org.dod.internet.mgmt.mib-2.interfaces.ifTable.ifEntry.ifAdminStatus"
+// Components that can't be resolved fall back to their numeric value.
+func (r *Resolver) ResolveFullName(oid string) (string, error) {
+	if oid == "" {
+		return "", fmt.Errorf("empty OID")
+	}
+	oid = strings.TrimPrefix(oid, ".")
+
+	parts := strings.Split(oid, ".")
+	names := make([]string, len(parts))
+
+	for i := range parts {
+		prefix := strings.Join(parts[:i+1], ".")
+		parsedOID, err := types.OidFromString(prefix)
+		if err != nil {
+			names[i] = parts[i]
+			continue
+		}
+		node, err := gosmi.GetNodeByOID(parsedOID)
+		if err != nil || node.Name == "" {
+			names[i] = parts[i]
+			continue
+		}
+		names[i] = node.Name
+	}
+
+	return strings.Join(names, "."), nil
+}
+
+// ResolveToNumericOID takes a name and resolves it to a numeric dotted OID.
+// Accepts multiple formats:
+//   - "MODULE::objectName" (e.g., "IF-MIB::ifAdminStatus")
+//   - Plain object name (e.g., "ifAdminStatus")
+//   - Dotted named path — uses the last component (e.g., "iso.org...ifAdminStatus")
+//
+// Returns the numeric OID string or an error if the name cannot be resolved.
+func (r *Resolver) ResolveToNumericOID(name string) (string, error) {
+	if name == "" {
+		return "", fmt.Errorf("empty name")
+	}
+
+	// MODULE::objectName format — delegate to existing ResolveNamed.
+	if strings.Contains(name, "::") {
+		return r.ResolveNamed(name)
+	}
+
+	// Dotted named path — extract leaf name.
+	lookupName := name
+	if strings.Contains(name, ".") {
+		parts := strings.Split(name, ".")
+		lookupName = parts[len(parts)-1]
+	}
+
+	node, err := gosmi.GetNode(lookupName)
+	if err != nil {
+		return "", fmt.Errorf("resolving %q: %w", name, err)
+	}
+	return node.Oid.String(), nil
+}
+
 // Close cleans up gosmi state and temporary files.
 func (r *Resolver) Close() {
 	gosmi.Exit()

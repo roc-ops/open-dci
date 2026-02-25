@@ -281,6 +281,43 @@ func opendciQueryMIBTree(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciResolveName resolves a numeric dotted OID to a full named path.
+// JS signature: opendciResolveName(numericOid: string) -> {result: string} | {error: string}
+func opendciResolveName(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciResolveName requires 1 argument: numeric OID string")
+	}
+	if resolver == nil {
+		return jsError("no MIBs loaded: call opendciInitMIBs first")
+	}
+	result, err := resolver.ResolveFullName(args[0].String())
+	if err != nil {
+		return jsError("resolving name: " + err.Error())
+	}
+	obj := js.Global().Get("Object").New()
+	obj.Set("result", result)
+	return obj
+}
+
+// opendciResolveOID resolves a name to a numeric dotted OID.
+// Accepts "MODULE::objectName", plain object name, or dotted named path.
+// JS signature: opendciResolveOID(name: string) -> {result: string} | {error: string}
+func opendciResolveOID(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciResolveOID requires 1 argument: name string")
+	}
+	if resolver == nil {
+		return jsError("no MIBs loaded: call opendciInitMIBs first")
+	}
+	result, err := resolver.ResolveToNumericOID(args[0].String())
+	if err != nil {
+		return jsError("resolving OID: " + err.Error())
+	}
+	obj := js.Global().Get("Object").New()
+	obj.Set("result", result)
+	return obj
+}
+
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
 	js.Global().Set("opendciDecode", js.FuncOf(opendciDecode))
@@ -288,6 +325,8 @@ func main() {
 	js.Global().Set("opendciInitMIBs", js.FuncOf(opendciInitMIBs))
 	js.Global().Set("opendciLoadMIBs", js.FuncOf(opendciLoadMIBs))
 	js.Global().Set("opendciQueryMIBTree", js.FuncOf(opendciQueryMIBTree))
+	js.Global().Set("opendciResolveName", js.FuncOf(opendciResolveName))
+	js.Global().Set("opendciResolveOID", js.FuncOf(opendciResolveOID))
 
 	// Block forever to keep the Go runtime alive for JS callbacks.
 	select {}

@@ -397,6 +397,182 @@ func TestLoadAdditionalMIBs(t *testing.T) {
 	}
 }
 
+func TestResolveFullName_ifAdminStatus(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	got, err := r.ResolveFullName("1.3.6.1.2.1.2.2.1.7")
+	if err != nil {
+		t.Fatalf("ResolveFullName() error: %v", err)
+	}
+
+	// Should be a dotted named path ending in ifAdminStatus.
+	if !strings.HasSuffix(got, "ifAdminStatus") {
+		t.Errorf("ResolveFullName(1.3.6.1.2.1.2.2.1.7) = %q, want suffix 'ifAdminStatus'", got)
+	}
+
+	// Should contain known intermediate names.
+	for _, want := range []string{"iso", "org", "dod", "internet"} {
+		if !strings.Contains(got, want) {
+			t.Errorf("ResolveFullName result %q missing expected component %q", got, want)
+		}
+	}
+	t.Logf("ResolveFullName(1.3.6.1.2.1.2.2.1.7) = %q", got)
+}
+
+func TestResolveFullName_sysDescr(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	got, err := r.ResolveFullName("1.3.6.1.2.1.1.1")
+	if err != nil {
+		t.Fatalf("ResolveFullName() error: %v", err)
+	}
+
+	if !strings.HasSuffix(got, "sysDescr") {
+		t.Errorf("ResolveFullName(1.3.6.1.2.1.1.1) = %q, want suffix 'sysDescr'", got)
+	}
+	t.Logf("ResolveFullName(1.3.6.1.2.1.1.1) = %q", got)
+}
+
+func TestResolveFullName_leadingDot(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	got, err := r.ResolveFullName(".1.3.6.1.2.1.1.1")
+	if err != nil {
+		t.Fatalf("ResolveFullName() error: %v", err)
+	}
+
+	if !strings.HasSuffix(got, "sysDescr") {
+		t.Errorf("ResolveFullName with leading dot = %q, want suffix 'sysDescr'", got)
+	}
+}
+
+func TestResolveFullName_empty(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	_, err = r.ResolveFullName("")
+	if err == nil {
+		t.Error("ResolveFullName(\"\") expected error, got nil")
+	}
+}
+
+func TestResolveToNumericOID_plainName(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	got, err := r.ResolveToNumericOID("ifAdminStatus")
+	if err != nil {
+		t.Fatalf("ResolveToNumericOID() error: %v", err)
+	}
+	want := "1.3.6.1.2.1.2.2.1.7"
+	if got != want {
+		t.Errorf("ResolveToNumericOID(ifAdminStatus) = %q, want %q", got, want)
+	}
+}
+
+func TestResolveToNumericOID_qualified(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	got, err := r.ResolveToNumericOID("IF-MIB::ifAdminStatus")
+	if err != nil {
+		t.Fatalf("ResolveToNumericOID() error: %v", err)
+	}
+	want := "1.3.6.1.2.1.2.2.1.7"
+	if got != want {
+		t.Errorf("ResolveToNumericOID(IF-MIB::ifAdminStatus) = %q, want %q", got, want)
+	}
+}
+
+func TestResolveToNumericOID_dottedPath(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	// Dotted named path — uses leaf name for lookup.
+	got, err := r.ResolveToNumericOID("iso.org.dod.internet.mgmt.mib-2.interfaces.ifTable.ifEntry.ifAdminStatus")
+	if err != nil {
+		t.Fatalf("ResolveToNumericOID(dotted path) error: %v", err)
+	}
+	want := "1.3.6.1.2.1.2.2.1.7"
+	if got != want {
+		t.Errorf("ResolveToNumericOID(dotted path) = %q, want %q", got, want)
+	}
+}
+
+func TestResolveToNumericOID_unknown(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	_, err = r.ResolveToNumericOID("nonExistentObject12345")
+	if err == nil {
+		t.Error("ResolveToNumericOID(nonExistent) expected error, got nil")
+	}
+}
+
+func TestResolveToNumericOID_empty(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	_, err = r.ResolveToNumericOID("")
+	if err == nil {
+		t.Error("ResolveToNumericOID(\"\") expected error, got nil")
+	}
+}
+
+func TestResolveRoundTrip(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	// numeric → named → numeric round-trip
+	numericOID := "1.3.6.1.2.1.2.2.1.7"
+	namedPath, err := r.ResolveFullName(numericOID)
+	if err != nil {
+		t.Fatalf("ResolveFullName() error: %v", err)
+	}
+
+	gotOID, err := r.ResolveToNumericOID(namedPath)
+	if err != nil {
+		t.Fatalf("ResolveToNumericOID() error: %v", err)
+	}
+
+	if gotOID != numericOID {
+		t.Errorf("round-trip: %q → %q → %q, want %q", numericOID, namedPath, gotOID, numericOID)
+	}
+}
+
 func TestWithVersionOverrides(t *testing.T) {
 	// Test that the option function correctly parses overrides.
 	cfg := &config{versionOverrides: make(map[string]string)}
