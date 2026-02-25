@@ -135,7 +135,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 }
 
 // opendciEncode encodes a JSON/JSONC string to binary DOCSIS config (Uint8Array).
-// JS signature: opendciEncode(jsoncString: string) -> {result: Uint8Array} | {error: string}
+// JS signature: opendciEncode(jsoncString: string, secret?: string, pad?: boolean) -> {result: Uint8Array} | {error: string}
 func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	if len(args) < 1 {
 		return jsError("opendciEncode requires 1 argument: JSON/JSONC string")
@@ -174,6 +174,11 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 				return jsError("computing MICs: " + err.Error())
 			}
 		}
+	}
+
+	// Optionally pad to 4-byte alignment.
+	if len(args) >= 3 && args[2].Type() == js.TypeBoolean && args[2].Bool() {
+		encoded = PadToAlignment(encoded, 4)
 	}
 
 	// Copy the encoded bytes into a JS Uint8Array.
