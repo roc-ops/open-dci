@@ -14,6 +14,11 @@ type MICResult struct {
 	Computed []byte
 }
 
+// cmtsMicDigestOrder is the canonical TLV type ordering for CMTS MIC computation
+// per CM-SP-MULPIv4.0 Annex D. Only TLV types in this list are included in the
+// HMAC-MD5 digest, and they are concatenated in this order regardless of wire order.
+var cmtsMicDigestOrder = []int{1, 2, 3, 4, 17, 43, 6, 18, 19, 20, 22, 23, 24, 25, 28, 29, 26, 35, 36, 37, 40}
+
 // VerifyCmMic verifies the CM MIC (TLV 6) per MULPI Annex D.
 // The digest is a plain MD5 hash over all configuration setting TLV bytes in order,
 // excluding TLV 6 (CM MIC), TLV 7 (CMTS MIC), and TLV 255 (end-of-data marker).
@@ -31,12 +36,13 @@ func VerifyCmMic(configData []byte, cmMic []byte) *MICResult {
 }
 
 // VerifyCmtsMic verifies the CMTS MIC (TLV 7) using HMAC-MD5 with the shared secret.
-// The digest is computed over all configuration setting TLV bytes in order,
-// excluding TLV 7 (CMTS MIC) and TLV 255 (end-of-data marker).
+// Per MULPI Annex D, the digest is computed over TLV bytes reordered by the canonical
+// digest order, excluding TLV 7 (CMTS MIC) and TLV 255 (end-of-data marker).
 func VerifyCmtsMic(configData []byte, cmtsMic []byte, sharedSecret string) *MICResult {
 	filtered := filterTLVs(configData, 7, 255)
+	reordered := reorderForCmtsMic(filtered)
 	mac := hmac.New(md5.New, []byte(sharedSecret))
-	mac.Write(filtered)
+	mac.Write(reordered)
 	computed := mac.Sum(nil)
 
 	return &MICResult{
@@ -57,11 +63,75 @@ func ComputeCmMic(configTLVBytes []byte) []byte {
 
 // ComputeCmtsMic computes the CMTS MIC (TLV 7) for encoded config bytes.
 // The input should be the TLV stream WITHOUT TLV 7 and TLV 255 (but including
-// TLV 6 / CM MIC). Returns the 16-byte HMAC-MD5 digest.
+// TLV 6 / CM MIC). TLVs are reordered per the canonical CMTS MIC digest order
+// (MULPI Annex D) before HMAC computation. Returns the 16-byte HMAC-MD5 digest.
 func ComputeCmtsMic(configTLVBytes []byte, sharedSecret string) []byte {
+	reordered := reorderForCmtsMic(configTLVBytes)
 	mac := hmac.New(md5.New, []byte(sharedSecret))
-	mac.Write(configTLVBytes)
+	mac.Write(reordered)
 	return mac.Sum(nil)
+}
+
+// reorderForCmtsMic extracts TLV instances from the binary stream and
+// concatenates them in the canonical CMTS MIC digest order (MULPI Annex D).
+// Only TLV types listed in cmtsMicDigestOrder are included; all others are dropped.
+// Multiple instances of the same type are preserved in their original wire order.
+//
+// Note: This function assumes 1-byte TLV length fields. TLVs with 2-byte length
+// fields (e.g. 103, 104) are not in the digest order list and would be skipped,
+// but if encountered they may cause misparsing of subsequent TLVs.
+func reorderForCmtsMic(data []byte) []byte {
+	// Build the set of types we care about for fast lookup.
+	digestSet := make(map[int]bool, len(cmtsMicDigestOrder))
+	for _, t := range cmtsMicDigestOrder {
+		digestSet[t] = true
+	}
+
+	// Extract TLV instances grouped by type number.
+	tlvsByType := make(map[int][][]byte)
+	offset := 0
+	for offset < len(data) {
+		if offset+1 >= len(data) {
+			break
+		}
+
+		tlvType := int(data[offset])
+
+		// Pad byte (no length field).
+		if tlvType == 0 {
+			offset++
+			continue
+		}
+
+		// End-of-data marker.
+		if tlvType == 255 {
+			break
+		}
+
+		tlvLen := int(data[offset+1])
+		end := offset + 2 + tlvLen
+		if end > len(data) {
+			break
+		}
+
+		if digestSet[tlvType] {
+			tlvBytes := make([]byte, end-offset)
+			copy(tlvBytes, data[offset:end])
+			tlvsByType[tlvType] = append(tlvsByType[tlvType], tlvBytes)
+		}
+
+		offset = end
+	}
+
+	// Concatenate in the canonical digest order.
+	var result []byte
+	for _, t := range cmtsMicDigestOrder {
+		for _, tlvBytes := range tlvsByType[t] {
+			result = append(result, tlvBytes...)
+		}
+	}
+
+	return result
 }
 
 // filterTLVs returns a copy of the config data with the specified TLV types removed.

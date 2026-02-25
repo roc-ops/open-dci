@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"crypto/hmac"
 	"crypto/md5"
 	"os"
@@ -75,7 +76,8 @@ func TestVerifyCmtsMicValid(t *testing.T) {
 	cmMicValue := h.Sum(nil)
 	cmMicTLV := buildTLV(6, cmMicValue)
 
-	// Compute CMTS MIC: HMAC-MD5 over all TLVs except TLV 7 and TLV 255
+	// Compute CMTS MIC: HMAC-MD5 over TLVs in canonical digest order.
+	// Digest order: {1,2,3,4,17,43,6,...} — so type 3 before type 6.
 	mac2 := hmac.New(md5.New, []byte(secret))
 	mac2.Write(tlv3)
 	mac2.Write(cmMicTLV)
@@ -200,6 +202,162 @@ func TestExtractTLVValueNotFound(t *testing.T) {
 	_, err := ExtractTLVValue(data, 99)
 	if err == nil {
 		t.Fatal("expected error for missing TLV")
+	}
+}
+
+func TestReorderForCmtsMic(t *testing.T) {
+	tlv1 := buildTLV(1, []byte{0, 0, 1, 0})   // DownstreamFrequency
+	tlv3 := buildTLV(3, []byte{1})              // NetworkAccess
+	tlv18 := buildTLV(18, []byte{16})           // MaxCPE
+
+	// Wire order: 18, 3, 1 (reversed from digest order)
+	var data []byte
+	data = append(data, tlv18...)
+	data = append(data, tlv3...)
+	data = append(data, tlv1...)
+
+	reordered := reorderForCmtsMic(data)
+
+	// Digest order: {1, 2, 3, 4, 17, 43, 6, 18, ...} → type 1, then 3, then 18
+	var expected []byte
+	expected = append(expected, tlv1...)
+	expected = append(expected, tlv3...)
+	expected = append(expected, tlv18...)
+
+	if !bytes.Equal(reordered, expected) {
+		t.Errorf("reorder mismatch:\n  got:      %X\n  expected: %X", reordered, expected)
+	}
+}
+
+func TestReorderForCmtsMicExcludesNonDigestTypes(t *testing.T) {
+	tlv3 := buildTLV(3, []byte{1})
+	tlv99 := buildTLV(99, []byte{0xAA, 0xBB}) // Not in digest order list
+	tlv18 := buildTLV(18, []byte{16})
+
+	var data []byte
+	data = append(data, tlv3...)
+	data = append(data, tlv99...)
+	data = append(data, tlv18...)
+
+	reordered := reorderForCmtsMic(data)
+
+	// TLV 99 should be excluded entirely.
+	var expected []byte
+	expected = append(expected, tlv3...)
+	expected = append(expected, tlv18...)
+
+	if !bytes.Equal(reordered, expected) {
+		t.Errorf("non-digest TLV not excluded:\n  got:      %X\n  expected: %X", reordered, expected)
+	}
+}
+
+func TestReorderForCmtsMicMultipleInstances(t *testing.T) {
+	// Two TLV 24 (UpstreamServiceFlow) instances — repeatable TLV in digest order.
+	tlv24a := buildTLV(24, []byte{0x01, 0x02, 0x00, 0x01})
+	tlv24b := buildTLV(24, []byte{0x01, 0x02, 0x00, 0x02})
+	tlv3 := buildTLV(3, []byte{1})
+
+	// Wire order: 24(a), 3, 24(b)
+	var data []byte
+	data = append(data, tlv24a...)
+	data = append(data, tlv3...)
+	data = append(data, tlv24b...)
+
+	reordered := reorderForCmtsMic(data)
+
+	// Digest order: 3 before 24; both 24 instances preserved in wire order.
+	var expected []byte
+	expected = append(expected, tlv3...)
+	expected = append(expected, tlv24a...)
+	expected = append(expected, tlv24b...)
+
+	if !bytes.Equal(reordered, expected) {
+		t.Errorf("multiple instance reorder mismatch:\n  got:      %X\n  expected: %X", reordered, expected)
+	}
+}
+
+func TestCmtsMicDigestOrderWireOrderMismatch(t *testing.T) {
+	// Verify that CMTS MIC computation uses digest order, not wire order.
+	// Wire order: TLV 18, TLV 3, TLV 6 (CM MIC)
+	// Digest order: TLV 3, TLV 6, TLV 18
+	secret := "testsecret"
+
+	tlv3 := buildTLV(3, []byte{1})
+	tlv18 := buildTLV(18, []byte{16})
+
+	// Compute CM MIC (uses wire order, includes both TLVs).
+	h := md5.New()
+	h.Write(tlv18)
+	h.Write(tlv3)
+	cmMicValue := h.Sum(nil)
+	cmMicTLV := buildTLV(6, cmMicValue)
+
+	// Build input for ComputeCmtsMic: wire order is 18, 3, 6.
+	var inputBytes []byte
+	inputBytes = append(inputBytes, tlv18...)
+	inputBytes = append(inputBytes, tlv3...)
+	inputBytes = append(inputBytes, cmMicTLV...)
+
+	computed := ComputeCmtsMic(inputBytes, secret)
+
+	// Manually compute expected: digest order is 3, 6, 18.
+	mac := hmac.New(md5.New, []byte(secret))
+	mac.Write(tlv3)
+	mac.Write(cmMicTLV)
+	mac.Write(tlv18)
+	expected := mac.Sum(nil)
+
+	if !bytes.Equal(computed, expected) {
+		t.Errorf("CMTS MIC should use digest order, not wire order:\n  computed: %X\n  expected: %X", computed, expected)
+	}
+
+	// Also verify that wire order would give a DIFFERENT result (proving reorder matters).
+	macWire := hmac.New(md5.New, []byte(secret))
+	macWire.Write(tlv18)
+	macWire.Write(tlv3)
+	macWire.Write(cmMicTLV)
+	wireOrderResult := macWire.Sum(nil)
+
+	if bytes.Equal(computed, wireOrderResult) {
+		t.Error("digest-order and wire-order results should differ when wire order != digest order")
+	}
+}
+
+func TestVerifyCmtsMicWithReorderedWireData(t *testing.T) {
+	// Full end-to-end: build config with non-standard wire order,
+	// compute MIC with digest ordering, verify it.
+	secret := "e2etest"
+
+	tlv3 := buildTLV(3, []byte{1})
+	tlv18 := buildTLV(18, []byte{16})
+	tlv1 := buildTLV(1, []byte{0, 0, 1, 0})
+
+	// Wire order: 18, 1, 3 (not digest order)
+	var body []byte
+	body = append(body, tlv18...)
+	body = append(body, tlv1...)
+	body = append(body, tlv3...)
+
+	// Compute CM MIC in wire order (CM MIC is not reordered).
+	cmMic := ComputeCmMic(body)
+	cmMicTLV := buildTLV(6, cmMic)
+
+	// Compute CMTS MIC (should internally reorder to: 1, 3, 6, 18).
+	withCmMic := append(body, cmMicTLV...)
+	cmtsMic := ComputeCmtsMic(withCmMic, secret)
+	cmtsMicTLV := buildTLV(7, cmtsMic)
+
+	// Build full config: body + CM MIC + CMTS MIC + end-of-data
+	var fullConfig []byte
+	fullConfig = append(fullConfig, body...)
+	fullConfig = append(fullConfig, cmMicTLV...)
+	fullConfig = append(fullConfig, cmtsMicTLV...)
+	fullConfig = append(fullConfig, 0xFF, 0x00)
+
+	result := VerifyCmtsMic(fullConfig, cmtsMic, secret)
+	if !result.Valid {
+		t.Errorf("CMTS MIC should be valid with reordered wire data, computed=%X expected=%X",
+			result.Computed, result.Expected)
 	}
 }
 
