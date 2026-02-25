@@ -4392,6 +4392,60 @@
         }
       }
     },
+    "Tr369ControllerConfigurationEntry": {
+      "metadata": {
+        "description": "TR-369 Controller configuration sub-TLV",
+        "spec": "CM-SP-eRouter-I22 B.4.4"
+      },
+      "optionalProperties": {
+        "EndpointIdentifier": {
+          "metadata": {
+            "description": "USP Controller endpoint identifier (Device.LocalAgent.Controller.{i}.EndpointID)",
+            "tlvType": "202.5.1",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "string"
+        },
+        "Enable": {
+          "metadata": {
+            "description": "Enable this controller (Device.LocalAgent.Controller.{i}.Enable)",
+            "tlvType": "202.5.2",
+            "dataType": "uint8",
+            "validValues": {"0": "false", "1": "true"},
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "uint8"
+        },
+        "AssignedRole": {
+          "metadata": {
+            "description": "Controller assigned role path name (Device.LocalAgent.Controller.{i}.AssignedRole)",
+            "tlvType": "202.5.3",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "string"
+        },
+        "MtpNumberOfEntries": {
+          "metadata": {
+            "description": "Number of MTP entries for this controller (Device.LocalAgent.Controller.{i}.MTPNumberOfEntries)",
+            "tlvType": "202.5.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "uint8"
+        },
+        "Alias": {
+          "metadata": {
+            "description": "Controller alias unique key (Device.LocalAgent.Controller.{i}.Alias)",
+            "tlvType": "202.5.5",
+            "dataType": "string",
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "string"
+        }
+      }
+    },
     "ErouterSnmpv1v2cTransportAddressAccessEntry": {
       "metadata": {
         "description": "eRouter SNMPv1v2c Transport Address Access encoding",
@@ -4400,41 +4454,19 @@
       "optionalProperties": {
         "TransportAddress": {
           "metadata": {
-            "description": "SNMPv1v2c transport address",
+            "description": "SNMPv1v2c transport address (6 bytes for IPv4, 18 bytes for IPv6)",
             "tlvType": "202.53.2.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22 B.4.6"
+            "spec": "CM-SP-eRouter-I22 B.4.6.2.1"
           },
           "type": "string"
         },
         "TransportAddressMask": {
           "metadata": {
-            "description": "SNMPv1v2c transport address mask",
+            "description": "SNMPv1v2c transport address mask (6 bytes for IPv4, 18 bytes for IPv6)",
             "tlvType": "202.53.2.2",
             "dataType": "hexstring",
-            "spec": "CM-SP-eRouter-I22 B.4.6"
-          },
-          "type": "string"
-        },
-        "AccessViewType": {
-          "metadata": {
-            "description": "SNMPv1v2c access view type",
-            "tlvType": "202.53.2.3",
-            "dataType": "uint8",
-            "validValues": {
-              "1": "read-only",
-              "2": "read-write"
-            },
-            "spec": "CM-SP-eRouter-I22 B.4.6"
-          },
-          "type": "uint8"
-        },
-        "AccessViewName": {
-          "metadata": {
-            "description": "SNMPv1v2c access view name",
-            "tlvType": "202.53.2.4",
-            "dataType": "string",
-            "spec": "CM-SP-eRouter-I22 B.4.6"
+            "spec": "CM-SP-eRouter-I22 B.4.6.2.2"
           },
           "type": "string"
         }
@@ -4451,18 +4483,48 @@
             "description": "SNMPv1v2c community name string",
             "tlvType": "202.53.1",
             "dataType": "string",
+            "minLength": 1,
+            "maxLength": 32,
             "spec": "CM-SP-eRouter-I22 B.4.6"
           },
           "type": "string"
         },
         "TransportAddressAccess": {
           "metadata": {
-            "description": "Transport address access control",
+            "description": "Transport address and mask pair for SNMP access control; one or more instances allowed",
             "tlvType": "202.53.2",
             "dataType": "compound",
+            "repeatable": true,
             "spec": "CM-SP-eRouter-I22 B.4.6"
           },
-          "ref": "ErouterSnmpv1v2cTransportAddressAccessEntry"
+          "elements": {
+            "ref": "ErouterSnmpv1v2cTransportAddressAccessEntry"
+          }
+        },
+        "AccessViewType": {
+          "metadata": {
+            "description": "SNMPv1v2c access view type; if absent defaults to read-only",
+            "tlvType": "202.53.3",
+            "dataType": "uint8",
+            "default": 1,
+            "validValues": {
+              "1": "read-only",
+              "2": "read-write"
+            },
+            "spec": "CM-SP-eRouter-I22 B.4.6"
+          },
+          "type": "uint8"
+        },
+        "AccessViewName": {
+          "metadata": {
+            "description": "SNMPv1v2c access view name",
+            "tlvType": "202.53.4",
+            "dataType": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "spec": "CM-SP-eRouter-I22 B.4.6"
+          },
+          "type": "string"
         }
       }
     },
@@ -4477,33 +4539,38 @@
             "description": "SNMPv3 access view name",
             "tlvType": "202.54.1",
             "dataType": "string",
+            "minLength": 1,
+            "maxLength": 32,
             "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
         "AccessViewSubtree": {
           "metadata": {
-            "description": "SNMPv3 access view subtree OID",
+            "description": "SNMPv3 access view subtree OID (ASN.1 encoded; defaults to 1.3.6 if absent)",
             "tlvType": "202.54.2",
             "dataType": "oid",
+            "default": "1.3.6",
             "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
         "AccessViewMask": {
           "metadata": {
-            "description": "SNMPv3 access view mask",
+            "description": "SNMPv3 access view bit mask (0-16 bytes); if absent defaults to zero-length string",
             "tlvType": "202.54.3",
             "dataType": "hexstring",
+            "maxLength": 16,
             "spec": "CM-SP-eRouter-I22 B.4.7"
           },
           "type": "string"
         },
         "AccessViewType": {
           "metadata": {
-            "description": "SNMPv3 access view type",
+            "description": "SNMPv3 access view type; if absent defaults to included",
             "tlvType": "202.54.4",
             "dataType": "uint8",
+            "default": 1,
             "validValues": {
               "1": "included",
               "2": "excluded"
@@ -4526,6 +4593,7 @@
             "description": "eRouter initialization mode",
             "tlvType": "202.1",
             "dataType": "uint8",
+            "default": 3,
             "spec": "CM-SP-eRouter-I22 B.4.2",
             "validValues": {"0": "disabled", "1": "IPv4 only", "2": "IPv6 only", "3": "dual IP", "4": "non-prefix-delegation", "5": "invalid"}
           },
@@ -4545,16 +4613,41 @@
             "description": "eRouter initialization mode override",
             "tlvType": "202.3",
             "dataType": "uint8",
+            "default": 0,
             "spec": "CM-SP-eRouter-I22 B.4.5",
             "validValues": {"0": "follow initialization mode TLV", "1": "ignore initialization mode TLV and keep disabled"}
           },
           "type": "uint8"
         },
+        "Tr369NumberOfControllers": {
+          "metadata": {
+            "description": "Number of TR-369 (USP) controllers supported (Device.LocalAgent.ControllerNumberOfEntries)",
+            "tlvType": "202.4",
+            "dataType": "uint8",
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "type": "uint8"
+        },
+        "Tr369ControllerConfiguration": {
+          "metadata": {
+            "description": "TR-369 (USP) Controller configuration; one instance per controller",
+            "tlvType": "202.5",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-eRouter-I22 B.4.4"
+          },
+          "elements": {
+            "ref": "Tr369ControllerConfigurationEntry"
+          }
+        },
         "RaTransmissionInterval": {
           "metadata": {
-            "description": "Router Advertisement transmission interval",
+            "description": "Router Advertisement transmission interval in seconds",
             "tlvType": "202.10",
             "dataType": "uint16",
+            "minimum": 3,
+            "maximum": 1800,
+            "default": 30,
             "spec": "CM-SP-eRouter-I22 B.4.11"
           },
           "type": "uint16"
@@ -4573,9 +4666,9 @@
         },
         "IpMulticastConfigurationServer": {
           "metadata": {
-            "description": "IP Multicast Configuration Server address",
+            "description": "IP Multicast Configuration Server IP address or FQDN (ASCII encoded)",
             "tlvType": "202.12",
-            "dataType": "hexstring",
+            "dataType": "string",
             "spec": "CM-SP-eRouter-I22 B.4.12"
           },
           "type": "string"
@@ -4585,6 +4678,7 @@
             "description": "Link-ID control",
             "tlvType": "202.13",
             "dataType": "uint8",
+            "default": 0,
             "spec": "CM-SP-eRouter-I22 B.4.13",
             "validValues": {"0": "disabled", "1": "enabled"}
           },

@@ -1046,6 +1046,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 3,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.2",
           "x-docsis-tlvType": "202.1",
           "x-docsis-validValues": {
@@ -1063,6 +1064,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.5",
           "x-docsis-tlvType": "202.3",
           "x-docsis-validValues": {
@@ -1071,9 +1073,9 @@
           }
         },
         "IpMulticastConfigurationServer": {
-          "description": "IP Multicast Configuration Server address",
+          "description": "IP Multicast Configuration Server IP address or FQDN (ASCII encoded)",
           "type": "string",
-          "x-docsis-dataType": "hexstring",
+          "x-docsis-dataType": "string",
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.12",
           "x-docsis-tlvType": "202.12"
         },
@@ -1083,6 +1085,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.13",
           "x-docsis-tlvType": "202.13",
           "x-docsis-validValues": {
@@ -1091,11 +1094,14 @@
           }
         },
         "RaTransmissionInterval": {
-          "description": "Router Advertisement transmission interval",
+          "description": "Router Advertisement transmission interval in seconds",
           "maximum": 65535,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
+          "x-docsis-default": 30,
+          "x-docsis-maximum": 1800,
+          "x-docsis-minimum": 3,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.11",
           "x-docsis-tlvType": "202.10"
         },
@@ -1152,6 +1158,26 @@
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3",
           "x-docsis-tlvType": "202.2"
         },
+        "Tr369ControllerConfiguration": {
+          "description": "TR-369 (USP) Controller configuration; one instance per controller",
+          "items": {
+            "$ref": "#/$defs/Tr369ControllerConfigurationEntry"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5"
+        },
+        "Tr369NumberOfControllers": {
+          "description": "Number of TR-369 (USP) controllers supported (Device.LocalAgent.ControllerNumberOfEntries)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.4"
+        },
         "VendorSpecificInformation": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific information for eRouter",
@@ -1167,17 +1193,46 @@
       "additionalProperties": false,
       "description": "eRouter SNMPv1v2c Coexistence Configuration encoding",
       "properties": {
+        "AccessViewName": {
+          "description": "SNMPv1v2c access view name",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-maxLength": 32,
+          "x-docsis-minLength": 1,
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
+          "x-docsis-tlvType": "202.53.4"
+        },
+        "AccessViewType": {
+          "description": "SNMPv1v2c access view type; if absent defaults to read-only",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
+          "x-docsis-tlvType": "202.53.3",
+          "x-docsis-validValues": {
+            "1": "read-only",
+            "2": "read-write"
+          }
+        },
         "CommunityName": {
           "description": "SNMPv1v2c community name string",
           "type": "string",
           "x-docsis-dataType": "string",
+          "x-docsis-maxLength": 32,
+          "x-docsis-minLength": 1,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.1"
         },
         "TransportAddressAccess": {
-          "$ref": "#/$defs/ErouterSnmpv1v2cTransportAddressAccessEntry",
-          "description": "Transport address access control",
+          "description": "Transport address and mask pair for SNMP access control; one or more instances allowed",
+          "items": {
+            "$ref": "#/$defs/ErouterSnmpv1v2cTransportAddressAccessEntry"
+          },
+          "type": "array",
           "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
           "x-docsis-tlvType": "202.53.2"
         }
@@ -1189,38 +1244,18 @@
       "additionalProperties": false,
       "description": "eRouter SNMPv1v2c Transport Address Access encoding",
       "properties": {
-        "AccessViewName": {
-          "description": "SNMPv1v2c access view name",
-          "type": "string",
-          "x-docsis-dataType": "string",
-          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
-          "x-docsis-tlvType": "202.53.2.4"
-        },
-        "AccessViewType": {
-          "description": "SNMPv1v2c access view type",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
-          "x-docsis-tlvType": "202.53.2.3",
-          "x-docsis-validValues": {
-            "1": "read-only",
-            "2": "read-write"
-          }
-        },
         "TransportAddress": {
-          "description": "SNMPv1v2c transport address",
+          "description": "SNMPv1v2c transport address (6 bytes for IPv4, 18 bytes for IPv6)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6.2.1",
           "x-docsis-tlvType": "202.53.2.1"
         },
         "TransportAddressMask": {
-          "description": "SNMPv1v2c transport address mask",
+          "description": "SNMPv1v2c transport address mask (6 bytes for IPv4, 18 bytes for IPv6)",
           "type": "string",
           "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.6.2.2",
           "x-docsis-tlvType": "202.53.2.2"
         }
       },
@@ -1232,9 +1267,10 @@
       "description": "eRouter SNMPv3 Access View Configuration encoding",
       "properties": {
         "AccessViewMask": {
-          "description": "SNMPv3 access view mask",
+          "description": "SNMPv3 access view bit mask (0-16 bytes); if absent defaults to zero-length string",
           "type": "string",
           "x-docsis-dataType": "hexstring",
+          "x-docsis-maxLength": 16,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.3"
         },
@@ -1242,22 +1278,26 @@
           "description": "SNMPv3 access view name",
           "type": "string",
           "x-docsis-dataType": "string",
+          "x-docsis-maxLength": 32,
+          "x-docsis-minLength": 1,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.1"
         },
         "AccessViewSubtree": {
-          "description": "SNMPv3 access view subtree OID",
+          "description": "SNMPv3 access view subtree OID (ASN.1 encoded; defaults to 1.3.6 if absent)",
           "type": "string",
           "x-docsis-dataType": "oid",
+          "x-docsis-default": "1.3.6",
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.2"
         },
         "AccessViewType": {
-          "description": "SNMPv3 access view type",
+          "description": "SNMPv3 access view type; if absent defaults to included",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.7",
           "x-docsis-tlvType": "202.54.4",
           "x-docsis-validValues": {
@@ -4278,6 +4318,57 @@
       },
       "type": "object",
       "x-docsis-spec": "CM-SP-eRouter-I22 B.4.3"
+    },
+    "Tr369ControllerConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "TR-369 Controller configuration sub-TLV",
+      "properties": {
+        "Alias": {
+          "description": "Controller alias unique key (Device.LocalAgent.Controller.{i}.Alias)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5.5"
+        },
+        "AssignedRole": {
+          "description": "Controller assigned role path name (Device.LocalAgent.Controller.{i}.AssignedRole)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5.3"
+        },
+        "Enable": {
+          "description": "Enable this controller (Device.LocalAgent.Controller.{i}.Enable)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5.2",
+          "x-docsis-validValues": {
+            "0": "false",
+            "1": "true"
+          }
+        },
+        "EndpointIdentifier": {
+          "description": "USP Controller endpoint identifier (Device.LocalAgent.Controller.{i}.EndpointID)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5.1"
+        },
+        "MtpNumberOfEntries": {
+          "description": "Number of MTP entries for this controller (Device.LocalAgent.Controller.{i}.MTPNumberOfEntries)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4",
+          "x-docsis-tlvType": "202.5.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-eRouter-I22 B.4.4"
     },
     "UpstreamAggregateServiceFlowEntry": {
       "additionalProperties": false,
