@@ -740,3 +740,36 @@ func TestRoundTrip2ByteLenLargePayload(t *testing.T) {
 		t.Errorf("large payload 2-byte length round-trip failed:\n  got len=%d, want len=%d", len(encoded), len(original))
 	}
 }
+
+func TestPadToAlignment(t *testing.T) {
+	tests := []struct {
+		inputLen int
+		align    int
+		wantLen  int
+	}{
+		{0, 4, 0},   // empty stays empty
+		{1, 4, 4},   // 1 -> pad to 4
+		{2, 4, 4},   // 2 -> pad to 4
+		{3, 4, 4},   // 3 -> pad to 4
+		{4, 4, 4},   // 4 -> already aligned
+		{5, 4, 8},   // 5 -> pad to 8
+		{7, 4, 8},   // 7 -> pad to 8
+		{8, 4, 8},   // 8 -> already aligned
+		{10, 1, 10}, // alignment=1 is a no-op
+		{10, 0, 10}, // alignment=0 is a no-op
+	}
+	for _, tc := range tests {
+		data := make([]byte, tc.inputLen)
+		result := PadToAlignment(data, tc.align)
+		if len(result) != tc.wantLen {
+			t.Errorf("PadToAlignment(len=%d, align=%d): got len=%d, want %d",
+				tc.inputLen, tc.align, len(result), tc.wantLen)
+		}
+		// Verify pad bytes are zero.
+		for i := tc.inputLen; i < len(result); i++ {
+			if result[i] != 0 {
+				t.Errorf("PadToAlignment: pad byte at index %d is 0x%02X, want 0x00", i, result[i])
+			}
+		}
+	}
+}

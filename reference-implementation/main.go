@@ -24,6 +24,7 @@ func main() {
 		withMibs   string
 		noMibs     bool
 		encode     bool
+		padAlign   bool
 	)
 
 	flag.StringVar(&inputFile, "i", "", "Input file (default: stdin)")
@@ -36,6 +37,7 @@ func main() {
 	flag.StringVar(&withMibs, "with-mibs", "", "Comma-separated version-specific MIBs (e.g. DOCS-IF3-MIB@2024-07-05)")
 	flag.BoolVar(&noMibs, "no-mibs", false, "Disable MIB resolution")
 	flag.BoolVar(&encode, "encode", false, "Encode mode: convert JSON/JSONC to binary TLV format")
+	flag.BoolVar(&padAlign, "pad", false, "Pad encoded output to 4-byte boundary (encode mode only)")
 	flag.Parse()
 
 	// Resolve schema path default relative to the executable.
@@ -76,7 +78,7 @@ func main() {
 	}
 
 	if encode {
-		runEncode(inputData, reg, outputFile, cmtsSecret)
+		runEncode(inputData, reg, outputFile, cmtsSecret, padAlign)
 		return
 	}
 
@@ -84,7 +86,7 @@ func main() {
 }
 
 // runEncode handles encode mode: JSON/JSONC input -> binary TLV output.
-func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string) {
+func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string, padAlign bool) {
 	// Strip JSONC comments to produce valid JSON.
 	jsonStr := StripJSONCComments(string(inputData))
 
@@ -114,6 +116,11 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 			fmt.Fprintf(os.Stderr, "Error computing MICs: %v\n", err)
 			os.Exit(1)
 		}
+	}
+
+	// Optionally pad to 4-byte alignment.
+	if padAlign {
+		encoded = PadToAlignment(encoded, 4)
 	}
 
 	// Write output.

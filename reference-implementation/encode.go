@@ -110,6 +110,16 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 	return out, nil
 }
 
+// PadToAlignment pads the data with zero bytes to the next n-byte boundary.
+// If already aligned, no padding is added. Typically called with n=4 after Encode.
+func PadToAlignment(data []byte, n int) []byte {
+	if n <= 1 || len(data)%n == 0 {
+		return data
+	}
+	pad := n - (len(data) % n)
+	return append(data, make([]byte, pad)...)
+}
+
 // encodeSingleTLV encodes a single TLV (simple, compound, TLV 11, or TLV 43).
 func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error) {
 	ls := defLengthSize(def)
