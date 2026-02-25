@@ -135,7 +135,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 }
 
 // opendciEncode encodes a JSON/JSONC string to binary DOCSIS config (Uint8Array).
-// JS signature: opendciEncode(jsoncString: string, secret?: string, pad?: boolean) -> {result: Uint8Array} | {error: string}
+// JS signature: opendciEncode(jsoncString: string, secret?: string, pad?: boolean, packetCableHash?: string) -> {result: Uint8Array} | {error: string}
 func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	if len(args) < 1 {
 		return jsError("opendciEncode requires 1 argument: JSON/JSONC string")
@@ -172,6 +172,17 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 			encoded, err = insertMICs(encoded, secret)
 			if err != nil {
 				return jsError("computing MICs: " + err.Error())
+			}
+		}
+	}
+
+	// Optionally compute and insert PacketCable hash.
+	if len(args) >= 4 && args[3].Type() == js.TypeString {
+		hashVariant := args[3].String()
+		if hashVariant != "" {
+			encoded, err = insertPacketCableHash(encoded, hashVariant)
+			if err != nil {
+				return jsError("computing PacketCable hash: " + err.Error())
 			}
 		}
 	}

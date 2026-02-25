@@ -16,15 +16,16 @@ import (
 
 func main() {
 	var (
-		inputFile  string
-		outputFile string
-		cmtsSecret string
-		schemaPath string
-		mibsDir    string
-		withMibs   string
-		noMibs     bool
-		encode     bool
-		padAlign   bool
+		inputFile      string
+		outputFile     string
+		cmtsSecret     string
+		schemaPath     string
+		mibsDir        string
+		withMibs       string
+		noMibs         bool
+		encode         bool
+		padAlign       bool
+		packetCableHash string
 	)
 
 	flag.StringVar(&inputFile, "i", "", "Input file (default: stdin)")
@@ -38,6 +39,7 @@ func main() {
 	flag.BoolVar(&noMibs, "no-mibs", false, "Disable MIB resolution")
 	flag.BoolVar(&encode, "encode", false, "Encode mode: convert JSON/JSONC to binary TLV format")
 	flag.BoolVar(&padAlign, "pad", false, "Pad encoded output to 4-byte boundary (encode mode only)")
+	flag.StringVar(&packetCableHash, "packetcable-hash", "", "PacketCable MTA config hash variant: na, eu, or ietf")
 	flag.Parse()
 
 	// Resolve schema path default relative to the executable.
@@ -78,7 +80,7 @@ func main() {
 	}
 
 	if encode {
-		runEncode(inputData, reg, outputFile, cmtsSecret, padAlign)
+		runEncode(inputData, reg, outputFile, cmtsSecret, padAlign, packetCableHash)
 		return
 	}
 
@@ -86,7 +88,7 @@ func main() {
 }
 
 // runEncode handles encode mode: JSON/JSONC input -> binary TLV output.
-func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string, padAlign bool) {
+func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string, padAlign bool, packetCableHash string) {
 	// Strip JSONC comments to produce valid JSON.
 	jsonStr := StripJSONCComments(string(inputData))
 
@@ -114,6 +116,15 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 		encoded, err = insertMICs(encoded, cmtsSecret)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error computing MICs: %v\n", err)
+			os.Exit(1)
+		}
+	}
+
+	// Optionally compute and insert PacketCable hash.
+	if packetCableHash != "" {
+		encoded, err = insertPacketCableHash(encoded, packetCableHash)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error computing PacketCable hash: %v\n", err)
 			os.Exit(1)
 		}
 	}
