@@ -1793,15 +1793,17 @@
         },
         "DataRateUnitSetting": {
           "metadata": {
-            "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+            "description": "Data rate unit setting for traffic rate parameters",
             "tlvType": "24.41",
             "tlvLength": 1,
             "dataType": "uint8",
             "validValues": {
-              "0": "bits/sec",
-              "1": "kbits/sec"
+              "0": "bits per second (bps)",
+              "1": "kilo-bits per second (kbps)",
+              "2": "mega-bits per second (Mbps)",
+              "3": "giga-bits per second (Gbps)"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.16"
           },
           "type": "uint8"
         },
@@ -2095,15 +2097,17 @@
         },
         "DataRateUnitSetting": {
           "metadata": {
-            "description": "Data rate unit setting (0=bits/sec, 1=kbits/sec)",
+            "description": "Data rate unit setting for traffic rate parameters",
             "tlvType": "25.41",
             "tlvLength": 1,
             "dataType": "uint8",
             "validValues": {
-              "0": "bits/sec",
-              "1": "kbits/sec"
+              "0": "bits per second (bps)",
+              "1": "kilo-bits per second (kbps)",
+              "2": "mega-bits per second (Mbps)",
+              "3": "giga-bits per second (Gbps)"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.2.3.41"
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.16"
           },
           "type": "uint8"
         },
@@ -2801,6 +2805,22 @@
           },
           "ref": "AsfServingGroupEntry"
         },
+        "DataRateUnitSetting": {
+          "metadata": {
+            "description": "Data rate unit setting for traffic rate parameters",
+            "tlvType": "70.41",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "validValues": {
+              "0": "bits per second (bps)",
+              "1": "kilo-bits per second (kbps)",
+              "2": "mega-bits per second (Mbps)",
+              "3": "giga-bits per second (Gbps)"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.16"
+          },
+          "type": "uint8"
+        },
         "LowLatencyEncodings": {
           "metadata": {
             "description": "Low latency encodings for this ASF",
@@ -2917,6 +2937,22 @@
             "spec": "CM-SP-MULPIv4.0 C.2.2.3"
           },
           "ref": "AsfServingGroupEntry"
+        },
+        "DataRateUnitSetting": {
+          "metadata": {
+            "description": "Data rate unit setting for traffic rate parameters",
+            "tlvType": "71.41",
+            "tlvLength": 1,
+            "dataType": "uint8",
+            "validValues": {
+              "0": "bits per second (bps)",
+              "1": "kilo-bits per second (kbps)",
+              "2": "mega-bits per second (Mbps)",
+              "3": "giga-bits per second (Gbps)"
+            },
+            "spec": "CM-SP-MULPIv4.0 C.2.2.9.16"
+          },
+          "type": "uint8"
         },
         "LowLatencyEncodings": {
           "metadata": {
