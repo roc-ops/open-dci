@@ -1,0 +1,10 @@
+               RFC1213-MIB DEFINITIONS ::= BEGIN
+
+               IMPORTS
+                       experimental, OBJECT-TYPE, Counter
+                           FROM RFC1155-SMI;
+
+                       -- contact IANA for actual number
+               root    OBJECT IDENTIFIER ::= { experimental xx }
+
+               END

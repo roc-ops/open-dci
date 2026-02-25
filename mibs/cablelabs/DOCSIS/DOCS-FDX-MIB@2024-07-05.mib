@@ -1,0 +1,583 @@
+DOCS-FDX-MIB DEFINITIONS ::= BEGIN
+  IMPORTS
+    MODULE-IDENTITY,
+    OBJECT-TYPE,
+    Unsigned32
+             FROM SNMPv2-SMI         -- RFC 2578
+    TEXTUAL-CONVENTION,
+    TruthValue,
+    MacAddress
+             FROM SNMPv2-TC          -- RFC 2579
+    OBJECT-GROUP,
+    MODULE-COMPLIANCE
+             FROM SNMPv2-CONF        -- RFC 2580
+    ifIndex
+             FROM IF-MIB
+    clabProjDocsis
+             FROM CLAB-DEF-MIB
+    docsIf3CmtsCmRegStatusId
+             FROM DOCS-IF3-MIB
+    docsIf31CmtsCmUsOfdmaChannelStatusEntry,
+    docsIf31CmtsCmDsOfdmChannelStatusEntry,
+    docsIf31CmtsUsOfdmaChanEntry,
+    docsIf31CmtsDsOfdmChanEntry
+             FROM DOCS-IF31-MIB;
+docsFdxMib MODULE-IDENTITY
+     LAST-UPDATED    "202407050000Z" -- July 5, 2024
+     ORGANIZATION    "Cable Television Laboratories, Inc."
+     CONTACT-INFO
+         "
+         Postal: Cable Television Laboratories, Inc.
+         858 Coal Creek Circle
+         Louisville, Colorado 80027-9750
+         U.S.A.
+         Phone: +1 303-661-9100
+         Fax:   +1 303-661-9199
+         E-mail: mibs@cablelabs.com"
+     DESCRIPTION
+        "This MIB module contains the management objects for the
+        management of DOCSIS 4.0 Full-Duplex capabilities.
+        Copyright 2019-2024 Cable Television Laboratories, Inc.
+        All rights reserved."
+     REVISION "202407050000Z" -- July 5, 2024
+     DESCRIPTION
+        "Revised per ECN DOCS-FDX-MIB-N-24.2373-2"
+    REVISION "202311220000Z" -- November 22, 2023
+     DESCRIPTION
+        "Revised per ECN DOCS-FDX-MIB-N-23.2349-1"
+     REVISION "201910310000Z" -- October 31, 2019
+     DESCRIPTION
+        "Initial version, per ECN CCAP-OSSIv4.0-N-19.2056-1"
+     ::= { clabProjDocsis 35 }  
+
+-- Textual Conventions
+
+FdxEcTrainingStatus ::= TEXTUAL-CONVENTION
+     STATUS      current
+     DESCRIPTION
+         "This data type enumerates the possible Echo Cancellation Training
+          (ECT) status values for an FDX CM.
+          'converged' Echo Cancellation Training is converged.
+          'initialEctNotConverged' Initial Echo Cancellation Training has
+          not been completed on the RBA Sub-band Direction Set.
+          'lostConvergence' FDX CM has lost Echo Cancellation Training
+          convergence on the RBA Sub-band Direction Set.
+          'notRequired' No Echo Cancellation Training required for the
+          RBA Sub-band Direction Set."
+     SYNTAX  INTEGER {
+                         converged(0),
+                         initialEctNotConverged(1),
+                         lostConvergence(2),
+                         notRequired(3)
+                     }
+
+RbaSubbandDirectionSet ::= TEXTUAL-CONVENTION
+     DISPLAY-HINT "1x:"
+     STATUS      current
+     DESCRIPTION
+         "A HexBinary encoded OCTET STRING representing the RBA Sub-band
+          Direction Set encoding for an FDX CM."
+     SYNTAX  OCTET STRING (SIZE (0..3))
+
+-- Object Definitions
+docsFdxNotifications      OBJECT IDENTIFIER ::= { docsFdxMib 0 }
+docsFdxMibObjects         OBJECT IDENTIFIER ::= { docsFdxMib 1 }
+docsFdxCcapMibObjects     OBJECT IDENTIFIER ::= { docsFdxMibObjects 1 }
+docsFdxCmMibObjects       OBJECT IDENTIFIER ::= { docsFdxMibObjects 2 }
+docsFdxMibConformance     OBJECT IDENTIFIER ::= { docsFdxMib 2 }
+docsFdxMibCompliances     OBJECT IDENTIFIER ::= { docsFdxMibConformance 1 }
+docsFdxMibGroups          OBJECT IDENTIFIER ::= { docsFdxMibConformance 2 }
+
+--
+-- CMTS Objects
+--
+
+--
+-- Extensions to the DOCS-IF31-MIB docsIf31CmtsCmUsOfdmaChannelStatusTable
+--
+
+docsFdxCmtsCmUsOfdmaChannelStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsCmUsOfdmaChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This table defines current status information of the CM
+          on each OFDMA upstream channel, as reported by the CMTS. 
+          In particular, the Full-Duplex capabilities."
+     ::= { docsFdxCcapMibObjects 2 }
+
+docsFdxCmtsCmUsOfdmaChannelStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsCmUsOfdmaChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The conceptual row of docsFdxCmtsCmUsOfdmaChannelStatusTable.
+          A separate entry exists for every OFDMA channel of every CM
+          currently assigned to an OFDMA channel."
+     AUGMENTS {
+               docsIf31CmtsCmUsOfdmaChannelStatusEntry
+              }
+     ::= { docsFdxCmtsCmUsOfdmaChannelStatusTable 1 }
+
+DocsFdxCmtsCmUsOfdmaChannelStatusEntry ::= SEQUENCE 
+     {
+     docsFdxCmtsCmUsOfdmaChannelStatusFdxEnabled        TruthValue
+     }
+docsFdxCmtsCmUsOfdmaChannelStatusFdxEnabled OBJECT-TYPE
+     SYNTAX      TruthValue
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute has a value of  'true' to indicate
+         that the CM's upstream channel is contained within an FDX subband."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         CmtsCmUsOfdmaChannelStatus::FdxEnabled"
+     ::= { docsFdxCmtsCmUsOfdmaChannelStatusEntry 1 }
+
+--
+-- Extensions to the DOCS-IF31-MIB docsIf31CmtsCmDsOfdmChannelStatusTable
+--
+
+docsFdxCmtsCmDsOfdmChannelStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsCmDsOfdmChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "This object defines current status information of the CM
+         on each OFDM downstream channel, as reported by the CMTS.
+         A separate entry exists for every OFDM channel of every CM
+         currently assigned to an OFDM channel. This table in particular
+         defines Full-Duplex capabilities."
+     ::= { docsFdxCcapMibObjects 3 }
+
+docsFdxCmtsCmDsOfdmChannelStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsCmDsOfdmChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The conceptual row of docsFdxCmtsCmDsOfdmChannelStatusTable."
+     AUGMENTS {
+               docsIf31CmtsCmDsOfdmChannelStatusEntry
+              }
+     ::= { docsFdxCmtsCmDsOfdmChannelStatusTable 1 }
+
+DocsFdxCmtsCmDsOfdmChannelStatusEntry ::= SEQUENCE 
+     {
+     docsFdxCmtsCmDsOfdmChannelStatusFdxEnabled      TruthValue
+     }
+
+docsFdxCmtsCmDsOfdmChannelStatusFdxEnabled OBJECT-TYPE
+     SYNTAX      TruthValue
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute has a value of  'true' to indicate that the CM's
+         downstream channel is contained within an FDX subband."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         CmtsCmDsOfdmChannelStatus::FdxEnabled"
+     ::= { docsFdxCmtsCmDsOfdmChannelStatusEntry 1 }
+     
+--
+-- Replaces the DOCS-IF31-MIB docsIf31CmtsCmFdxStatusTable
+--
+     
+docsFdxCmtsCmFdxStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsCmFdxStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The CmtsCmFdxStatus table reports status information of
+          an FDX-capable CM, as reported by the CMTS. An entry is
+          created in this table when a CM registers and reports it
+          is FDX-capable via TLV 5.63 (Advanced Band Plan
+          Capability TLV)."
+     ::= { docsFdxCcapMibObjects 4 }
+
+docsFdxCmtsCmFdxStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsCmFdxStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The conceptual row of docsFdxCmtsCmFdxStatusTable."
+     INDEX { docsIf3CmtsCmRegStatusId }
+     ::= { docsFdxCmtsCmFdxStatusTable 1 }
+
+DocsFdxCmtsCmFdxStatusEntry ::= SEQUENCE {
+     docsFdxCmtsCmFdxStatusTransmissionGroupId      Unsigned32,
+     docsFdxCmtsCmFdxStatusRbaSubbandDirectionSet   RbaSubbandDirectionSet,
+     docsFdxCmtsCmFdxStatusEcTrainingStatus         FdxEcTrainingStatus
+     }
+
+docsFdxCmtsCmFdxStatusTransmissionGroupId OBJECT-TYPE
+     SYNTAX      Unsigned32 (0..255)
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+        "This attribute reports the Transmission Group (TG) ID associated with
+         the FDX-capable CM Transmission Group Assignment. A value of zero (0)
+         indicates no active Transmission Group is assigned to the FDX-capable
+         CM."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         CmtsCmFdxStatus::TransmissionGroupId
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503  Common TLV Encodings annex,
+         Transmission Group ID section"
+     ::= { docsFdxCmtsCmFdxStatusEntry 1 }
+
+docsFdxCmtsCmFdxStatusRbaSubbandDirectionSet OBJECT-TYPE
+     SYNTAX      RbaSubbandDirectionSet
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the current RBA Sub-band Direction Set
+          encoding for an FDX CM. The length of the OCTET STRING indicates
+          the number of sub-bands in the RBA message for which the FDX CM
+          has requested EC Training. The direction of the sub-band in the
+          RBA Sub-band Direction Set encoding is the same as in the RBA
+          message: 0 is downstream, 1 is upstream. A value of 2 is
+          undefined and not applicable to FDX CMs.
+          The FDX-L CM always reports a zero-length octet string."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         CmtsCmFdxStatus::RbaSubbandDirectionSet
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503  Common TLV Encodings annex,
+         RBA Sub-band Direction Set section"
+     ::= { docsFdxCmtsCmFdxStatusEntry 2 }
+
+docsFdxCmtsCmFdxStatusEcTrainingStatus OBJECT-TYPE
+     SYNTAX      FdxEcTrainingStatus
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+        "This attribute reports both the initial and periodic Echo
+         Cancellation Training (ECT) status for an FDX CM on the RBA
+         Sub-band Direction Set specified by the RbaSubbandDirectionSet
+         attribute. The FDX-L CM always reports 'notRequired'."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         CmtsCmFdxStatus::EcTrainingStatus
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503 EC Training Status section"
+     ::= { docsFdxCmtsCmFdxStatusEntry 3 }
+
+--
+-- Extensions to the DOCS-IF31-MIB docsIf31CmtsUsOfdmaChanTable
+--
+
+docsFdxCmtsUsOfdmaChannelStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsUsOfdmaChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This table provides channel-level visibility into Upstream
+          OFDMA channel configuration and status, in particular,
+          the Full-Duplex capabilities."
+     ::= { docsFdxCcapMibObjects 5 }
+
+docsFdxCmtsUsOfdmaChannelStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsUsOfdmaChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The conceptual row of docsFdxCmtsUsOfdmaChannelStatusTable."
+     AUGMENTS {
+               docsIf31CmtsUsOfdmaChanEntry
+              }
+     ::= { docsFdxCmtsUsOfdmaChannelStatusTable 1 }
+
+DocsFdxCmtsUsOfdmaChannelStatusEntry ::= SEQUENCE 
+     {
+       docsFdxCmtsUsOfdmaChannelStatusFdxEnabled      TruthValue
+     }
+docsFdxCmtsUsOfdmaChannelStatusFdxEnabled OBJECT-TYPE
+     SYNTAX      TruthValue
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports a value of 'true' to indicate that the
+          FDX-capable CM's upstream channel is a Full Duplex Upstream
+          Channel contained within a Full Duplex Sub-band.
+          A non-FDX-capable CM always reports a value of 'false'."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         UsOfdmaChannelStatus::FdxEnabled"
+     ::= { docsFdxCmtsUsOfdmaChannelStatusEntry 1 }
+     
+--
+-- Extensions to the DOCS-IF31-MIB docsIf31CmtsDsOfdmChanTable
+--
+
+docsFdxCmtsDsOfdmChannelStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsDsOfdmChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "This CMTS table reports the status of the downstream OFDM channels,
+         in particular full-duplex capabilities."
+     ::= { docsFdxCcapMibObjects 6 }
+
+docsFdxCmtsDsOfdmChannelStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsDsOfdmChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The conceptual row of docsFdxCmtsDsOfdmChannelStatusTable."
+     AUGMENTS {
+               docsIf31CmtsDsOfdmChanEntry
+              }
+     ::= { docsFdxCmtsDsOfdmChannelStatusTable 1 }
+
+DocsFdxCmtsDsOfdmChannelStatusEntry ::= SEQUENCE 
+     {
+     docsFdxCmtsDsOfdmChannelStatusFdxEnabled      TruthValue
+     }
+
+docsFdxCmtsDsOfdmChannelStatusFdxEnabled OBJECT-TYPE
+     SYNTAX      TruthValue
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports a value of 'true' to indicate that the
+          FDX-capable CM's downstream channel is a Full Duplex Downstream
+          Channel contained within a Full Duplex Sub-band.
+          A non-FDX-capable CM always reports a value of 'false'."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         DsOfdmChannelStatus::FdxEnabled"
+     ::= { docsFdxCmtsDsOfdmChannelStatusEntry 1 }
+
+
+--
+-- TransmissionGroupStatus Table
+--
+docsFdxCmtsTransmissionGroupStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmtsTransmissionGroupStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The TransmissionGroupStatus table includes Transmission Group
+          status information as reported by an FDX CCAP/CMTS. Each entry
+          in this table represents a a mac domain associated with a
+          transmission group."
+     ::= { docsFdxCcapMibObjects 7 }
+
+docsFdxCmtsTransmissionGroupStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmtsTransmissionGroupStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The conceptual row of docsFdxCmtsTransmissionGroupStatusTable."
+     INDEX { docsFdxCmtsTransmissionGroupStatusMacDomainName,
+             docsFdxCmtsTransmissionGroupStatusTransmissionGroupId,
+             docsFdxCmtsTransmissionGroupStatusCmMacIndex
+           }
+     ::= { docsFdxCmtsTransmissionGroupStatusTable 1 }
+
+DocsFdxCmtsTransmissionGroupStatusEntry ::= SEQUENCE 
+     {
+     docsFdxCmtsTransmissionGroupStatusMacDomainName                OCTET STRING,
+     docsFdxCmtsTransmissionGroupStatusTransmissionGroupId          Unsigned32,
+     docsFdxCmtsTransmissionGroupStatusCmMacIndex                   Unsigned32,
+     docsFdxCmtsTransmissionGroupStatusCmMacAddr                    MacAddress
+     }
+
+docsFdxCmtsTransmissionGroupStatusMacDomainName OBJECT-TYPE
+     SYNTAX      OCTET STRING (SIZE (0..63))
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This index represents the name of the MAC Domain."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         MacDomainStatus::Name"
+     ::= { docsFdxCmtsTransmissionGroupStatusEntry 1 }
+
+docsFdxCmtsTransmissionGroupStatusTransmissionGroupId OBJECT-TYPE
+     SYNTAX      Unsigned32 (0..255)
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This index is the Transmission Group (TG) ID associated with
+          the FDX-capable CM Transmission Group Assignments."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+     TransmissionGroupStatus::TransmissionGroupId"
+     ::= { docsFdxCmtsTransmissionGroupStatusEntry 2 }
+
+docsFdxCmtsTransmissionGroupStatusCmMacIndex OBJECT-TYPE
+     SYNTAX      Unsigned32
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This index uniquely identifies each of the CM MAC Addresses
+          assigned to the Transmission Group ID."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         MacDomainStatus::CmMacAddr"
+     ::= { docsFdxCmtsTransmissionGroupStatusEntry 3 }
+
+docsFdxCmtsTransmissionGroupStatusCmMacAddr OBJECT-TYPE
+     SYNTAX      MacAddress
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This attribute is a CM MAC Address assigned to the
+          Transmission Group ID"
+     REFERENCE
+        "Information Model Mapping: CM-SP-CCAP-OSSIv4.0
+         TransmissionGroupStatus::CmMacAddr"
+     ::= { docsFdxCmtsTransmissionGroupStatusEntry 4 }
+
+--
+-- CM Objects
+--
+
+--
+-- docsFdxCmFdxStatusTable
+--
+
+docsFdxCmFdxStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsFdxCmFdxStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The CmFdxStatus object reports FDX-capable CM status
+          information. The CmFdxStatus object is instantiated
+          by FDX CMs and FDX-L CMs, irrespective of whether
+          they are operating on Extended Channels. An instance
+          of this object is created when a CM registers and reports
+          it is FDX-capable via the AdvBandPlanCapability attribute
+          of the CmCapabilities object."
+     ::= { docsFdxCmMibObjects 1 }
+
+docsFdxCmFdxStatusEntry OBJECT-TYPE
+     SYNTAX      DocsFdxCmFdxStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "The conceptual row of docsFdxCmFdxStatusTable."
+     INDEX { ifIndex }
+     ::= { docsFdxCmFdxStatusTable 1 }
+
+DocsFdxCmFdxStatusEntry ::= SEQUENCE {
+     docsFdxCmFdxStatusTransmissionGroupId      Unsigned32,
+     docsFdxCmFdxStatusRbaSubbandDirectionSet   RbaSubbandDirectionSet,
+     docsFdxCmFdxStatusEcTrainingStatus         FdxEcTrainingStatus
+     }
+     
+docsFdxCmFdxStatusTransmissionGroupId OBJECT-TYPE
+     SYNTAX      Unsigned32 (0..255)
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+        "This attribute reports the Transmission Group (TG) ID associated with
+         the FDX-capable CM Transmission Group Assignment. A value of zero (0)
+         indicates no active Transmission Group is assigned to the FDX-capable
+         CM."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CM-OSSIv4.0
+         CmFdxStatus::TransmissionGroupId
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503  Common TLV Encodings annex,
+         Transmission Group ID section"
+     ::= { docsFdxCmFdxStatusEntry 1 }
+
+docsFdxCmFdxStatusRbaSubbandDirectionSet OBJECT-TYPE
+     SYNTAX      RbaSubbandDirectionSet
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the RBA Sub-band Direction Set encoding
+          for an FDX CM. The length of the OCTET STRING indicates the
+          number of sub-bands in the RBA message for which the FDX CM has
+          requested EC Training. The direction of the sub-band in the RBA
+          Sub-band Direction Set encoding is the same as in the RBA
+          message: 0 is downstream, 1 is upstream. A value of 2 is
+          undefined and not applicable to FDX CMs.
+          The FDX-L CM always reports a zero-length octet string."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CM-OSSIv4.0
+         CmFdxStatus::RbaSubbandDirectionSet
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503  Common TLV Encodings annex,
+         RBA Sub-band Direction Set section"
+     ::= { docsFdxCmFdxStatusEntry 2 }
+
+docsFdxCmFdxStatusEcTrainingStatus OBJECT-TYPE
+     SYNTAX      FdxEcTrainingStatus
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+        "This attribute reports both the initial and periodic Echo
+         Cancellation Training (ECT) status for an FDX CM on the RBA
+         Sub-band Direction Set specified by the RbaSubbandDirectionSet
+         attribute. The FDX-L CM always reports 'notRequired'."
+     REFERENCE
+        "Information Model Mapping: CM-SP-CM-OSSIv4.0
+         CmFdxStatus::EcTrainingStatus
+         MAC and Upper Layer Protocols Interface Specification,
+         CM-SP-MULPIv4.0-I07-230503 EC Training Status section"
+     ::= { docsFdxCmFdxStatusEntry 3 }
+
+     
+-- Conformance Definitions
+
+
+docsFdxCcapCompliance MODULE-COMPLIANCE
+    STATUS      current
+    DESCRIPTION
+        "The compliance statement for the CCAP."
+
+    MODULE -- this MODULE
+    MANDATORY-GROUPS {
+     docsFdxCcapGroup
+     }
+
+    ::= { docsFdxMibCompliances 1 }
+
+docsFdxCmCompliance MODULE-COMPLIANCE
+    STATUS      current
+    DESCRIPTION
+        "The compliance statement for the CCAP."
+
+    MODULE -- this MODULE
+    MANDATORY-GROUPS {
+     docsFdxCmGroup
+     }
+
+    ::= { docsFdxMibCompliances 2 }
+
+
+docsFdxCcapGroup OBJECT-GROUP
+    OBJECTS {
+     docsFdxCmtsCmUsOfdmaChannelStatusFdxEnabled,
+     docsFdxCmtsCmDsOfdmChannelStatusFdxEnabled,
+     docsFdxCmtsCmFdxStatusTransmissionGroupId,
+     docsFdxCmtsCmFdxStatusRbaSubbandDirectionSet,
+     docsFdxCmtsCmFdxStatusEcTrainingStatus,
+     docsFdxCmtsUsOfdmaChannelStatusFdxEnabled,
+     docsFdxCmtsDsOfdmChannelStatusFdxEnabled
+     }
+    STATUS      current
+    DESCRIPTION
+         "Group of objects implemented in a DOCSIS 4.0 CCAP for
+          Full-Duplex capabiities."
+    ::= { docsFdxMibGroups 1 }
+
+docsFdxCmGroup OBJECT-GROUP
+    OBJECTS {
+      docsFdxCmFdxStatusTransmissionGroupId,
+      docsFdxCmFdxStatusRbaSubbandDirectionSet,
+      docsFdxCmFdxStatusEcTrainingStatus
+      }
+    STATUS      current
+    DESCRIPTION
+         "Group of objects implemented in a DOCSIS 4.0 CM for
+          Full-Duplex capabiities."
+    ::= { docsFdxMibGroups 2 }
+
+END

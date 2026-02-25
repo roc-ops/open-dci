@@ -7,7 +7,3 @@ docs/external/
 # Compiled binaries
 reference-implementation/opendci-decode
 
-# Downloaded MIBs (large, downloadable via tools/mib-downloader)
-mibs/ietf/
-mibs/iana/
-mibs/cablelabs/

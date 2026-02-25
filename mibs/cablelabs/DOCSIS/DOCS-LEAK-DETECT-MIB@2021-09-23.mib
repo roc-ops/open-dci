@@ -1,0 +1,425 @@
+DOCS-LEAK-DETECT-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY,
+    OBJECT-TYPE,
+    Unsigned32
+             FROM SNMPv2-SMI         -- RFC 2578
+    TEXTUAL-CONVENTION,
+    TruthValue,
+    MacAddress,
+    DateAndTime
+             FROM SNMPv2-TC          -- RFC 2579
+    OBJECT-GROUP,
+    MODULE-COMPLIANCE
+             FROM SNMPv2-CONF        -- RFC 2580
+    SnmpAdminString
+             FROM SNMP-FRAMEWORK-MIB -- RFC 3411
+    clabProjDocsis
+             FROM CLAB-DEF-MIB;
+
+
+docsLeakDetectMib MODULE-IDENTITY
+    LAST-UPDATED    "202109230000Z" -- September 23, 2021
+    ORGANIZATION    "Cable Television Laboratories, Inc."
+    CONTACT-INFO
+       "Postal: Cable Television Laboratories, Inc.
+        858 Coal Creek Circle
+        Louisville, Colorado 80027-9750
+        U.S.A.
+        Phone: +1 303-661-9100
+        Fax:   +1 303-661-9199
+        E-mail: mibs@cablelabs.com"
+    DESCRIPTION
+       "This MIB module contains management objects for the
+        management of DOCSIS 3.1 Leakeage Detection.
+        Copyright 2021 Cable Television Laboratories, Inc.
+        All rights reserved."
+
+    REVISION    "202109230000Z" -- September 23, 2021
+    DESCRIPTION
+        "Initial version, per ECN CCAP-OSSIv3.1-N-21.2189-2"
+    ::= {  clabProjDocsis 37 }
+
+-- ---------------------------------------------------------------------
+-- Textual Conventions
+-- ---------------------------------------------------------------------
+
+-- Administrative assignments
+docsLeakDetNotifications   OBJECT IDENTIFIER ::= { docsLeakDetectMib 0 }
+docsLeakDetObjects         OBJECT IDENTIFIER ::= { docsLeakDetectMib 1 }
+docsLeakDetConformance     OBJECT IDENTIFIER ::= { docsLeakDetectMib 2 }
+
+docsLeakDetCompliances     OBJECT IDENTIFIER ::= { docsLeakDetConformance 1 }
+docsLeakDetGroups          OBJECT IDENTIFIER ::= { docsLeakDetConformance 2 }
+
+-- No Notifications are defined for this MIB
+
+docsLeakDetTestObjects     OBJECT IDENTIFIER ::= { docsLeakDetObjects  1 }
+
+-- ---------------------------------------------------------------------
+-- Leakage Detection Test Objects
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Leakage Detection Test Capabilities
+-- ---------------------------------------------------------------------
+
+docsLeakDetTestCapabilities  OBJECT IDENTIFIER ::= { docsLeakDetTestObjects  1 }
+
+docsLeakDetTestSupportsNumBurstsNotReceived OBJECT-TYPE
+     SYNTAX      TruthValue
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the CCAP capability to report a count
+          of Leakage Detection Testing Bursts it does not receive during
+         a Leakage Detection Test Session. The value 'true' for this 
+         attribute indicates the CCAP can report a valid value for the 
+         count of Leakage Detection Testing Bursts it did not receive 
+         during a Leakage Detection Test Session. The value 'false' for 
+         this attribute indicates the CCAP does not support reporting 
+         a count of Leakage Detection Testing Bursts not received."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestCapabilities::SupportsNumBurstsNotReceived"
+    ::= { docsLeakDetTestCapabilities 1 }
+    
+-- ---------------------------------------------------------------------
+-- Leakage Detection Test Session Status Table
+-- ---------------------------------------------------------------------
+
+docsLeakDetTestSessionStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsLeakDetTestSessionStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The LeakageDetectionTestSessionStatus table reports the
+        status of a specified Leakage Detection Test Session.
+        Rows in this tabled are created and maintained by the CCAP."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus"
+     ::= { docsLeakDetTestObjects 2}
+
+docsLeakDetTestSessionStatusEntry OBJECT-TYPE
+     SYNTAX      DocsLeakDetTestSessionStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The conceptual row of docsLeakDetTestSessionStatusTable."
+     INDEX { 
+             docsLeakDetTestSessionStatusSessionId
+           }
+     ::= { docsLeakDetTestSessionStatusTable 1 }
+
+DocsLeakDetTestSessionStatusEntry ::= SEQUENCE {
+     docsLeakDetTestSessionStatusSessionId      Unsigned32,
+     docsLeakDetTestSessionStatusSessionType    INTEGER,
+     docsLeakDetTestSessionStatusStatus         INTEGER,
+     docsLeakDetTestSessionStatusStartTime      DateAndTime,
+     docsLeakDetTestSessionStatusStopTime       DateAndTime     
+
+    }
+    
+docsLeakDetTestSessionStatusSessionId OBJECT-TYPE
+     SYNTAX      Unsigned32 (1..65535)
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This key attribute uniquely identifies the Leakage Detection
+            Test Session within the MAC domain."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus::SessionId"
+    ::= { docsLeakDetTestSessionStatusEntry 1 }    
+    
+docsLeakDetTestSessionStatusSessionType OBJECT-TYPE
+     SYNTAX      INTEGER {
+                        single(0),
+                        component(1),
+                        master(2)
+                      }
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports which type of Leakage Detection Test 
+          Session this instance was created as.
+          - single(0) indicates the Session is comprised only of Test Modems
+                      in a single upstream Service Group and is not one of 
+                      multiple Sessions created when the CCAP-selected 
+                      Test Modem list spans multiple upstream Service Groups.
+          - component(1) indicates the Session is one of multiple Sessions 
+                      created each for a different upstream Service Group 
+                      when the CCAP-selected Test Modem list spans multiple
+                      upstream Service Groups.
+          - master(2) is the 'parent' Session for multiple Sessions created 
+                      for multiple upstream Service Groups when the CCAP-selected
+                      Test Modem list spans multiple upstream Service Groups."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus::SessionType"
+      ::= { docsLeakDetTestSessionStatusEntry 2 }
+      
+docsLeakDetTestSessionStatusStatus OBJECT-TYPE
+     SYNTAX      INTEGER {
+                        pending(0),
+                        active(1),
+                        cancelled(2),
+                        completed(3)
+                      }
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the Leakage Detection Test Session Status 
+          identified by the corresponding Session Id.
+          - pending(0) indicates the Leakage Detection Test Session has been
+                       configured but has not started because the configured 
+                       StartTime has not occurred yet or the CCAP is in the 
+                       process of scheduling Leakage Detection Testing Bursts
+                       for the configured set of Test Cable Modems.
+          - active(1)  indicate the Leakage Detection Test Session has started,
+                       i.e., the CCAP is issuing grants to Test Modems, and the
+                       Session has not completed yet.
+          - cancelled(2) indicates the Leakage Detection Test Session had been
+                       initiated but was stopped by the Leakage Detection Test
+                       Interface Application.
+          - completed(3) indicates the Leakage Detection Test Session ran and 
+                       stopped at the configured StopTime."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus::Status"
+     ::= { docsLeakDetTestSessionStatusEntry 3 }
+      
+docsLeakDetTestSessionStatusStartTime OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "This attribute reports the date and time when the Session
+        was configured to start."
+    REFERENCE 
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus::StartTime"
+    ::= { docsLeakDetTestSessionStatusEntry 4 }
+    
+docsLeakDetTestSessionStatusStopTime OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "This attribute reports the date and time when the Session
+        was configured to end."
+    REFERENCE 
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStatus::StopTime"
+    ::= { docsLeakDetTestSessionStatusEntry 5 }
+    
+-- ---------------------------------------------------------------------
+-- Leakage Detection Test Session Stats Table
+-- ---------------------------------------------------------------------
+    
+docsLeakDetTestSessionStatsTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsLeakDetTestSessionStatsEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The LeakageDetectionTestSessionStats table reports Leakage 
+         Detection Testing Session statistics for a specified Test Modem
+         and Session. Rows in this table are created and maintained by the CCAP.
+         The CCAP is required to create a row in the LeakageDetectionTestSessionStatus
+         table when the session is started. 
+         The CCAP is required to reset a row in the LeakageDetectionTestSessionStatus 
+         when the session is terminated."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStats"
+     ::= { docsLeakDetTestObjects 3}
+
+docsLeakDetTestSessionStatsEntry OBJECT-TYPE
+     SYNTAX      DocsLeakDetTestSessionStatsEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The conceptual row of docsLeakDetTestSessionStatsTable."
+     INDEX { 
+             docsLeakDetTestSessionStatusSessionId,
+             docsLeakDetTestSessionStatsCmMacAddress
+           }
+     ::= { docsLeakDetTestSessionStatsTable 1 }
+
+DocsLeakDetTestSessionStatsEntry ::= SEQUENCE {
+     docsLeakDetTestSessionStatsCmMacAddress           MacAddress,
+     docsLeakDetTestSessionStatsNumBurstsGranted       Unsigned32,
+     docsLeakDetTestSessionStatsNumBurstsNotReceived   Unsigned32,
+     docsLeakDetTestSessionStatsNumTestBytesReceived   Unsigned32
+    }
+    
+docsLeakDetTestSessionStatsCmMacAddress OBJECT-TYPE
+     SYNTAX      MacAddress
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This key attribute identifies the Test Modem or list 
+          of Test Modems for which the Leakage Detection Test 
+          statistics are being requested."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStats::CmMacAddress"
+    ::= { docsLeakDetTestSessionStatsEntry 1 }
+
+docsLeakDetTestSessionStatsNumBurstsGranted OBJECT-TYPE
+     SYNTAX      Unsigned32
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute is the count of total Leakage Detection 
+          Testing Burst grants the CCAP provided to the specified
+          Test Modem during a specified Session."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStats::NumBurstsGranted"
+    ::= { docsLeakDetTestSessionStatsEntry 2 }
+
+docsLeakDetTestSessionStatsNumBurstsNotReceived OBJECT-TYPE
+     SYNTAX      Unsigned32
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute is the count of total expected Leakage 
+          Detection Testing Bursts the CCAP failed to receive 
+          from the specified Test Modem during a specified Session."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStats::NumBurstsNotReceived"
+    ::= { docsLeakDetTestSessionStatsEntry 3 }
+    
+docsLeakDetTestSessionStatsNumTestBytesReceived OBJECT-TYPE
+     SYNTAX      Unsigned32
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute is the count of total bytes the CCAP received 
+          from the specified Test Modem on the OUDP Testing SID during Leakage
+          Detection Testing Bursts, during a specified Session."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestSessionStats::NumTestBytesReceived"
+    ::= { docsLeakDetTestSessionStatsEntry 4 }
+
+-- ---------------------------------------------------------------------
+-- Leakage Detection Test Channel Status Table
+-- ---------------------------------------------------------------------
+    
+docsLeakDetTestChannelStatusTable OBJECT-TYPE
+     SYNTAX      SEQUENCE OF DocsLeakDetTestChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The LeakageDetectionTestChannelStatus table reports the 
+         configuration of a specified upstream OFDMA channel. 
+         Rows in this table are created and maintained by the CCAP."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestChannelStatus"
+     ::= { docsLeakDetTestObjects 4}
+
+docsLeakDetTestChannelStatusEntry OBJECT-TYPE
+     SYNTAX      DocsLeakDetTestChannelStatusEntry
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+        "The conceptual row of docsLeakDetTestChannelStatusTable."
+     INDEX { 
+             docsLeakDetTestSessionStatusSessionId,
+             docsLeakDetTestChannelStatusInterfaceName
+           }
+     ::= { docsLeakDetTestChannelStatusTable 1 }
+
+DocsLeakDetTestChannelStatusEntry ::= SEQUENCE {
+     docsLeakDetTestChannelStatusInterfaceName         SnmpAdminString,
+     docsLeakDetTestChannelStatusTestStartFreq         Unsigned32,
+     docsLeakDetTestChannelStatusTestEndFreq           Unsigned32
+    }
+
+docsLeakDetTestChannelStatusInterfaceName OBJECT-TYPE
+     SYNTAX      SnmpAdminString  (SIZE (0..100))
+     MAX-ACCESS  not-accessible
+     STATUS      current
+     DESCRIPTION
+         "This key attribute is the interface name 
+          specifying an upstream OFDMA channel."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestChannelStatus::InterfaceName"
+    ::= { docsLeakDetTestChannelStatusEntry 1 }
+
+docsLeakDetTestChannelStatusTestStartFreq OBJECT-TYPE
+     SYNTAX      Unsigned32
+     UNITS       "Hertz"
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the lower boundary of the upstream
+             OFDMA channel frequency spectrum over which Test Modems
+          will transmit Leakage Detection Testing Bursts."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestChannelStatus::TestStartFreq"
+    ::= { docsLeakDetTestChannelStatusEntry 2 }    
+    
+docsLeakDetTestChannelStatusTestEndFreq OBJECT-TYPE
+     SYNTAX      Unsigned32
+     UNITS       "Hertz"
+     MAX-ACCESS  read-only
+     STATUS      current
+     DESCRIPTION
+         "This attribute reports the upper boundary of the 
+          upstream OFDMA channel frequency spectrum over which
+          Test Modems will transmit Leakage Detection 
+          Testing Bursts."
+     REFERENCE      
+        "Information Model Mapping: CM-SP-CCAP-OSSI 
+         LeakageDetectionTestChannelStatus::TestEndFreq"
+    ::= { docsLeakDetTestChannelStatusEntry 3 }    
+    
+--
+-- Compliance Groups
+--
+
+docsLeakDetCompliance MODULE-COMPLIANCE
+STATUS      current
+DESCRIPTION
+        "The compliance statement of managed objects for Leakage Detection"
+
+    MODULE -- this MODULE
+    MANDATORY-GROUPS {
+     docsLeakDetTestGroup
+     }
+::= { docsLeakDetCompliances 1 }
+
+docsLeakDetTestGroup OBJECT-GROUP
+    OBJECTS {
+        docsLeakDetTestSupportsNumBurstsNotReceived,
+        
+        docsLeakDetTestSessionStatusSessionType,
+        docsLeakDetTestSessionStatusStatus,
+        docsLeakDetTestSessionStatusStartTime,
+        docsLeakDetTestSessionStatusStopTime,
+
+        docsLeakDetTestSessionStatsNumBurstsGranted,
+        docsLeakDetTestSessionStatsNumBurstsNotReceived,
+        docsLeakDetTestSessionStatsNumTestBytesReceived,
+
+        docsLeakDetTestChannelStatusTestStartFreq,
+        docsLeakDetTestChannelStatusTestEndFreq          
+     }
+    STATUS      current
+    DESCRIPTION
+         "Group of objects implemented for Leakage Detection Test"
+    ::= { docsLeakDetGroups   1 }
+
+END
+
+    
+

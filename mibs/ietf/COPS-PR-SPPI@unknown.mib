@@ -1,0 +1,50 @@
+COPS-PR-SPPI DEFINITIONS ::= BEGIN
+
+IMPORTS    ObjectName, SimpleSyntax, ExtUTCTime, mgmt
+                                                FROM SNMPv2-SMI;
+
+-- the root for PIB definitions
+
+      pib           OBJECT IDENTIFIER ::= { mgmt 2 }
+
+-- definitions for PIB modules
+
+MODULE-IDENTITY MACRO ::=
+BEGIN
+    TYPE NOTATION ::=
+                  SubjectPart                        -- new
+                  "LAST-UPDATED" value(Update ExtUTCTime)
+                  "ORGANIZATION" Text
+                  "CONTACT-INFO" Text
+                  "DESCRIPTION" Text
+                  RevisionPart
+
+    VALUE NOTATION ::=
+                  value(VALUE OBJECT IDENTIFIER)
+
+    SubjectPart ::=                                  -- new
+                  "SUBJECT-CATEGORIES" "{" Categories "}"
+                   -- see IANA Considerations section
+    Categories ::=                                   -- new
+                  CategoryIDs
+                | "all"
+    CategoryIDs ::=                                  -- new
+                  CategoryID
+                | CategoryIDs "," CategoryID
+    CategoryID ::=                                   -- new
+                 identifier "(" number ")"  -- number is positive
+
+    RevisionPart ::=
+                  Revisions
+                | empty
+    Revisions ::=
+                  Revision
+                | Revisions Revision
+    Revision ::=
+                  "REVISION" value(Update ExtUTCTime)
+                  "DESCRIPTION" Text
+
+
+    -- a character string as defined in [SMI]
+    Text ::= value(IA5String)
+END

@@ -1,0 +1,40 @@
+           RFC1155-SMI DEFINITIONS ::= BEGIN
+
+           EXPORTS -- EVERYTHING
+                   internet, directory, mgmt,
+                   experimental, private, enterprises,
+                   OBJECT-TYPE, ObjectName, ObjectSyntax, SimpleSyntax,
+                   ApplicationSyntax, NetworkAddress, IpAddress,
+                   Counter, Gauge, TimeTicks, Opaque;
+
+            -- the path to the root
+
+            internet      OBJECT IDENTIFIER ::= { iso org(3) dod(6) 1 }
+
+            directory     OBJECT IDENTIFIER ::= { internet 1 }
+
+            mgmt          OBJECT IDENTIFIER ::= { internet 2 }
+
+            experimental  OBJECT IDENTIFIER ::= { internet 3 }
+
+            private       OBJECT IDENTIFIER ::= { internet 4 }
+            enterprises   OBJECT IDENTIFIER ::= { private 1 }
+
+
+            -- definition of object types
+
+            OBJECT-TYPE MACRO ::=
+            BEGIN
+                TYPE NOTATION ::= "SYNTAX" type (TYPE ObjectSyntax)
+                                  "ACCESS" Access
+                                  "STATUS" Status
+                VALUE NOTATION ::= value (VALUE ObjectName)
+
+                Access ::= "read-only"
+                                | "read-write"
+                                | "write-only"
+                                | "not-accessible"
+                Status ::= "mandatory"
+                                | "optional"
+                                | "obsolete"
+            END

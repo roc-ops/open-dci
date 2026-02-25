@@ -1,0 +1,55 @@
+SNMPv2-TC DEFINITIONS ::= BEGIN
+
+IMPORTS
+    TimeTicks         FROM SNMPv2-SMI;
+
+
+-- definition of textual conventions
+
+TEXTUAL-CONVENTION MACRO ::=
+
+RFC 2579             Textual Conventions for SMIv2            April 1999
+
+
+BEGIN
+    TYPE NOTATION ::=
+                  DisplayPart
+                  "STATUS" Status
+                  "DESCRIPTION" Text
+                  ReferPart
+                  "SYNTAX" Syntax
+
+    VALUE NOTATION ::=
+                   value(VALUE Syntax)      -- adapted ASN.1
+
+    DisplayPart ::=
+                  "DISPLAY-HINT" Text
+                | empty
+
+    Status ::=
+                  "current"
+                | "deprecated"
+                | "obsolete"
+
+    ReferPart ::=
+                  "REFERENCE" Text
+                | empty
+
+    -- a character string as defined in [2]
+    Text ::= value(IA5String)
+
+    Syntax ::=   -- Must be one of the following:
+                       -- a base type (or its refinement), or
+                       -- a BITS pseudo-type
+                  type
+                | "BITS" "{" NamedBits "}"
+
+    NamedBits ::= NamedBit
+                | NamedBits "," NamedBit
+
+    NamedBit ::=  identifier "(" number ")" -- number is nonnegative
+
+END
+
+
+

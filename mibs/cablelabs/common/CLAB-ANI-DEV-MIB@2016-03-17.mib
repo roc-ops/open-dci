@@ -1,0 +1,102 @@
+﻿CLAB-ANI-DEV-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS 
+    MODULE-IDENTITY, 
+    OBJECT-TYPE, 
+    NOTIFICATION-TYPE,
+    Unsigned32,
+    Opaque,
+    Integer32,
+    Counter32,
+    Counter64,
+    TimeTicks
+                       FROM SNMPv2-SMI 
+    OBJECT-GROUP, 
+    MODULE-COMPLIANCE,
+    NOTIFICATION-GROUP 
+                       FROM SNMPv2-CONF 
+    SnmpAdminString 
+                       FROM SNMP-FRAMEWORK-MIB
+    MacAddress,
+    DateAndTime,
+    TruthValue,
+    RowStatus,
+    TEXTUAL-CONVENTION
+                       FROM SNMPv2-TC    
+    InetAddressType,
+    InetAddress,
+    InetPortNumber
+                       FROM INET-ADDRESS-MIB
+    InterfaceIndex 
+                       FROM IF-MIB
+                       
+    clabCommonMibs 
+                       FROM CLAB-DEF-MIB;
+
+    clabAniDevMib MODULE-IDENTITY
+
+    LAST-UPDATED  "201603170000Z" -- March 17, 2016  
+    ORGANIZATION "Cable Television Laboratories, Inc." 
+    CONTACT-INFO 
+            "Broadband Network Services
+             Cable Television Laboratories, Inc.
+             858 Coal Creek Circle,
+             Louisville, CO 80027, USA 
+             Phone: +1 303-661-9100
+             Email: mibs@cablelabs.com"
+     DESCRIPTION 
+            "This MIB module contains the management objects
+             for sRouter devices under the CableLabs
+             Access Network Independent (ANI) project.
+             
+             Copyright 1999-2016 Cable Television Laboratories, Inc.
+             All rights reserved." 
+  
+     REVISION "201603170000Z" -- March 17, 2016
+     DESCRIPTION
+             "Initial version, published as part of the CableLabs
+             Standalone Router Specification, CL-SP-sRouter-I01-160317.
+             Copyright 2016 Cable Television Laboratories, Inc.
+             All rights reserved."   
+             
+    ::= { clabCommonMibs 7 }
+  
+-- Object Definitions
+
+clabAniDevObjects OBJECT IDENTIFIER ::= { clabAniDevMib 1 }
+
+aniDevResetNow OBJECT-TYPE
+        SYNTAX      TruthValue
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "Setting this object to true(1) causes the device to reset.
+             Reading this object always returns false(2)."
+        ::= { clabAniDevObjects 1 }
+
+-- Conformance Definitions
+clabAniDevConformance OBJECT IDENTIFIER ::= { clabAniDevMib 2 }
+clabAniDevCompliances OBJECT IDENTIFIER ::= { clabAniDevConformance 1 }
+clabAniDevGroups      OBJECT IDENTIFIER ::= { clabAniDevConformance 2 }
+
+clabAniDevCompliance MODULE-COMPLIANCE
+    STATUS      current
+    DESCRIPTION
+         "The compliance statement for CableLabs ANI devices."
+    MODULE  --- clabAni
+    MANDATORY-GROUPS {
+            clabAniDevGroup
+            }
+    ::= { clabAniDevCompliances 1 }
+
+clabAniDevGroup OBJECT-GROUP
+    OBJECTS {
+              aniDevResetNow
+            }     
+    STATUS      current
+    DESCRIPTION
+             "Object(s) implemented for the management of ANI devices."
+    ::= { clabAniDevGroups 1 }
+
+END
+
