@@ -178,7 +178,7 @@
     "ClassifierErrorEntry": {
       "metadata": {
         "description": "Classifier Error Encoding reported when a classifier parameter is rejected",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.5"
       },
       "optionalProperties": {
         "ErroredParameter": {
@@ -186,7 +186,7 @@
             "description": "Type value of the TLV in error",
             "tlvType": "x.8.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5.1"
           },
           "type": "uint8"
         },
@@ -288,7 +288,7 @@
               "215": "reject-invalid-low-latency-config",
               "216": "reject-unknown-scn-or-aqp"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8, C.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5.2, C.4"
           },
           "type": "uint8"
         },
@@ -297,7 +297,7 @@
             "description": "Human-readable error message",
             "tlvType": "x.8.3",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5.3"
           },
           "type": "string"
         }
@@ -412,7 +412,7 @@
     "Ipv4ClassificationEntry": {
       "metadata": {
         "description": "IPv4/TCP/UDP Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.6"
       },
       "optionalProperties": {
         "Ipv4TypeOfServiceRangeAndMask": {
@@ -420,7 +420,7 @@
             "description": "IPv4 ToS range and mask (3 bytes)",
             "tlvType": "x.9.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.1"
           },
           "type": "string"
         },
@@ -429,7 +429,7 @@
             "description": "IP protocol number",
             "tlvType": "x.9.2",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.2"
           },
           "type": "uint16"
         },
@@ -438,7 +438,7 @@
             "description": "IPv4 source address",
             "tlvType": "x.9.3",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.3"
           },
           "type": "string"
         },
@@ -447,7 +447,7 @@
             "description": "IPv4 source address mask",
             "tlvType": "x.9.4",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.4"
           },
           "type": "string"
         },
@@ -456,7 +456,7 @@
             "description": "IPv4 destination address",
             "tlvType": "x.9.5",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.5"
           },
           "type": "string"
         },
@@ -465,7 +465,7 @@
             "description": "IPv4 destination address mask",
             "tlvType": "x.9.6",
             "dataType": "ipv4Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6.6"
           },
           "type": "string"
         },
@@ -474,7 +474,7 @@
             "description": "TCP/UDP source port range start",
             "tlvType": "x.9.7",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.7.1"
           },
           "type": "uint16"
         },
@@ -483,7 +483,7 @@
             "description": "TCP/UDP source port range end",
             "tlvType": "x.9.8",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.7.2"
           },
           "type": "uint16"
         },
@@ -492,7 +492,7 @@
             "description": "TCP/UDP destination port range start",
             "tlvType": "x.9.9",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.7.3"
           },
           "type": "uint16"
         },
@@ -501,7 +501,7 @@
             "description": "TCP/UDP destination port range end",
             "tlvType": "x.9.10",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.7.4"
           },
           "type": "uint16"
         }
@@ -510,7 +510,7 @@
     "EthernetLlcClassificationEntry": {
       "metadata": {
         "description": "Ethernet LLC Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.8"
       },
       "optionalProperties": {
         "DestinationMacAddress": {
@@ -518,7 +518,7 @@
             "description": "Destination MAC address and mask",
             "tlvType": "x.10.1",
             "dataType": "macAddress",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8.1"
           },
           "type": "string"
         },
@@ -527,7 +527,7 @@
             "description": "Source MAC address and mask",
             "tlvType": "x.10.2",
             "dataType": "macAddress",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8.2"
           },
           "type": "string"
         },
@@ -536,25 +536,16 @@
             "description": "Ethertype/DSAP/MAC type value",
             "tlvType": "x.10.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8.3"
           },
           "type": "string"
-        },
-        "SlowProtocolSubtype": {
-          "metadata": {
-            "description": "Slow protocol subtype",
-            "tlvType": "x.10.4",
-            "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
-          },
-          "type": "uint8"
         }
       }
     },
     "Ieee8021PqClassificationEntry": {
       "metadata": {
         "description": "IEEE 802.1P/Q Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.9"
       },
       "optionalProperties": {
         "UserPriority": {
@@ -562,7 +553,7 @@
             "description": "IEEE 802.1P user priority (0-7)",
             "tlvType": "x.11.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.9.1"
           },
           "type": "uint16"
         },
@@ -571,7 +562,7 @@
             "description": "IEEE 802.1Q VLAN ID",
             "tlvType": "x.11.2",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.9.2"
           },
           "type": "uint16"
         }
@@ -580,7 +571,7 @@
     "Ipv6ClassificationEntry": {
       "metadata": {
         "description": "IPv6 Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.10"
       },
       "optionalProperties": {
         "Ipv6TrafficClass": {
@@ -588,7 +579,7 @@
             "description": "IPv6 traffic class range and mask",
             "tlvType": "x.12.1",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.1"
           },
           "type": "string"
         },
@@ -597,7 +588,7 @@
             "description": "IPv6 flow label",
             "tlvType": "x.12.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.2"
           },
           "type": "uint32"
         },
@@ -606,7 +597,7 @@
             "description": "IPv6 next header type",
             "tlvType": "x.12.3",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.3"
           },
           "type": "uint16"
         },
@@ -615,7 +606,7 @@
             "description": "IPv6 source address",
             "tlvType": "x.12.4",
             "dataType": "ipv6Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.4"
           },
           "type": "string"
         },
@@ -624,7 +615,7 @@
             "description": "IPv6 source prefix length in bits",
             "tlvType": "x.12.5",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.5"
           },
           "type": "uint8"
         },
@@ -633,7 +624,7 @@
             "description": "IPv6 destination address",
             "tlvType": "x.12.6",
             "dataType": "ipv6Address",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.6"
           },
           "type": "string"
         },
@@ -642,7 +633,7 @@
             "description": "IPv6 destination prefix length in bits",
             "tlvType": "x.12.7",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10.7"
           },
           "type": "uint8"
         }
@@ -651,7 +642,7 @@
     "Ieee8021adClassificationEntry": {
       "metadata": {
         "description": "IEEE 802.1ad S-VLAN Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.13"
       },
       "optionalProperties": {
         "STpid": {
@@ -659,7 +650,7 @@
             "description": "S-TPID value",
             "tlvType": "x.14.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.1"
           },
           "type": "uint16"
         },
@@ -668,7 +659,7 @@
             "description": "S-VID value",
             "tlvType": "x.14.2",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.2"
           },
           "type": "uint16"
         },
@@ -677,7 +668,7 @@
             "description": "S-PCP value",
             "tlvType": "x.14.3",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.3"
           },
           "type": "uint8"
         },
@@ -686,7 +677,7 @@
             "description": "S-DEI value",
             "tlvType": "x.14.4",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.4"
           },
           "type": "uint8"
         },
@@ -695,7 +686,7 @@
             "description": "C-TPID value",
             "tlvType": "x.14.5",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.5"
           },
           "type": "uint16"
         },
@@ -704,7 +695,7 @@
             "description": "C-VID value",
             "tlvType": "x.14.6",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.6"
           },
           "type": "uint16"
         },
@@ -713,7 +704,7 @@
             "description": "C-PCP value",
             "tlvType": "x.14.7",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.7"
           },
           "type": "uint8"
         },
@@ -722,7 +713,7 @@
             "description": "C-CFI value",
             "tlvType": "x.14.8",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.8"
           },
           "type": "uint8"
         },
@@ -731,7 +722,7 @@
             "description": "S-TCI value",
             "tlvType": "x.14.9",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.9"
           },
           "type": "string"
         },
@@ -740,7 +731,7 @@
             "description": "C-TCI value",
             "tlvType": "x.14.10",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13.10"
           },
           "type": "string"
         }
@@ -749,7 +740,7 @@
     "Ieee8021ahClassificationEntry": {
       "metadata": {
         "description": "IEEE 802.1ah I-TAG Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.14"
       },
       "optionalProperties": {
         "ITpid": {
@@ -757,7 +748,7 @@
             "description": "I-TPID value",
             "tlvType": "x.15.1",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.1"
           },
           "type": "uint16"
         },
@@ -766,7 +757,7 @@
             "description": "I-SID value",
             "tlvType": "x.15.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.2"
           },
           "type": "uint32"
         },
@@ -775,7 +766,7 @@
             "description": "I-TCI value",
             "tlvType": "x.15.3",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.3"
           },
           "type": "string"
         },
@@ -784,7 +775,7 @@
             "description": "I-PCP value",
             "tlvType": "x.15.4",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.4"
           },
           "type": "uint8"
         },
@@ -793,7 +784,7 @@
             "description": "I-DEI value",
             "tlvType": "x.15.5",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.5"
           },
           "type": "uint8"
         },
@@ -802,7 +793,7 @@
             "description": "I-UCA value",
             "tlvType": "x.15.6",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.6"
           },
           "type": "uint8"
         },
@@ -811,7 +802,7 @@
             "description": "B-TPID value",
             "tlvType": "x.15.7",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.7"
           },
           "type": "uint16"
         },
@@ -820,7 +811,7 @@
             "description": "B-TCI value",
             "tlvType": "x.15.8",
             "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.8"
           },
           "type": "string"
         },
@@ -829,7 +820,7 @@
             "description": "B-PCP value",
             "tlvType": "x.15.9",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.9"
           },
           "type": "uint8"
         },
@@ -838,7 +829,7 @@
             "description": "B-DEI value",
             "tlvType": "x.15.10",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.10"
           },
           "type": "uint8"
         },
@@ -847,7 +838,7 @@
             "description": "B-VID value",
             "tlvType": "x.15.11",
             "dataType": "uint16",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.11"
           },
           "type": "uint16"
         },
@@ -856,7 +847,7 @@
             "description": "B-DA MAC address",
             "tlvType": "x.15.12",
             "dataType": "macAddress",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.12"
           },
           "type": "string"
         },
@@ -865,7 +856,7 @@
             "description": "B-SA MAC address",
             "tlvType": "x.15.13",
             "dataType": "macAddress",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14.13"
           },
           "type": "string"
         }
@@ -874,7 +865,7 @@
     "IcmpClassificationEntry": {
       "metadata": {
         "description": "ICMPv4/ICMPv6 Packet Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.12"
       },
       "optionalProperties": {
         "IcmpTypeStart": {
@@ -882,7 +873,7 @@
             "description": "ICMPv4/ICMPv6 type range start",
             "tlvType": "x.16.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.12.1"
           },
           "type": "uint8"
         },
@@ -891,7 +882,7 @@
             "description": "ICMPv4/ICMPv6 type range end",
             "tlvType": "x.16.2",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.12.2"
           },
           "type": "uint8"
         }
@@ -900,7 +891,7 @@
     "MplsClassificationEntry": {
       "metadata": {
         "description": "MPLS Classification Encodings",
-        "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+        "spec": "CM-SP-MULPIv4.0 C.2.1.15"
       },
       "optionalProperties": {
         "MplsTcBits": {
@@ -908,7 +899,7 @@
             "description": "MPLS TC bits value",
             "tlvType": "x.17.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.15.1"
           },
           "type": "uint8"
         },
@@ -917,7 +908,7 @@
             "description": "MPLS label value",
             "tlvType": "x.17.2",
             "dataType": "uint32",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.15.2"
           },
           "type": "uint32"
         }
@@ -1006,7 +997,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "22.8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
         },
@@ -1015,7 +1006,7 @@
             "description": "IPv4/TCP/UDP packet classification",
             "tlvType": "22.9",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6"
           },
           "ref": "Ipv4ClassificationEntry"
         },
@@ -1024,7 +1015,7 @@
             "description": "Ethernet LLC packet classification",
             "tlvType": "22.10",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8"
           },
           "ref": "EthernetLlcClassificationEntry"
         },
@@ -1033,7 +1024,7 @@
             "description": "IEEE 802.1P/Q packet classification",
             "tlvType": "22.11",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.9"
           },
           "ref": "Ieee8021PqClassificationEntry"
         },
@@ -1042,16 +1033,16 @@
             "description": "IPv6 packet classification",
             "tlvType": "22.12",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10"
           },
           "ref": "Ipv6ClassificationEntry"
         },
         "CmInterfaceMask": {
           "metadata": {
-            "description": "CM Interface Mask (CMIM) encoding",
+            "description": "CM Interface Mask (CMIM) encoding — upstream and upstream-drop only",
             "tlvType": "22.13",
             "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17 B.6"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
           },
           "type": "string"
         },
@@ -1060,7 +1051,7 @@
             "description": "IEEE 802.1ad S-VLAN packet classification",
             "tlvType": "22.14",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13"
           },
           "ref": "Ieee8021adClassificationEntry"
         },
@@ -1069,7 +1060,7 @@
             "description": "IEEE 802.1ah I-TAG packet classification",
             "tlvType": "22.15",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14"
           },
           "ref": "Ieee8021ahClassificationEntry"
         },
@@ -1078,7 +1069,7 @@
             "description": "ICMPv4/ICMPv6 packet classification",
             "tlvType": "22.16",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.12"
           },
           "ref": "IcmpClassificationEntry"
         },
@@ -1087,7 +1078,7 @@
             "description": "MPLS packet classification",
             "tlvType": "22.17",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.15"
           },
           "ref": "MplsClassificationEntry"
         },
@@ -1184,7 +1175,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "23.8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
         },
@@ -1193,7 +1184,7 @@
             "description": "IPv4/TCP/UDP packet classification",
             "tlvType": "23.9",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6"
           },
           "ref": "Ipv4ClassificationEntry"
         },
@@ -1202,7 +1193,7 @@
             "description": "Ethernet LLC packet classification",
             "tlvType": "23.10",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8"
           },
           "ref": "EthernetLlcClassificationEntry"
         },
@@ -1211,7 +1202,7 @@
             "description": "IEEE 802.1P/Q packet classification",
             "tlvType": "23.11",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.9"
           },
           "ref": "Ieee8021PqClassificationEntry"
         },
@@ -1220,25 +1211,16 @@
             "description": "IPv6 packet classification",
             "tlvType": "23.12",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10"
           },
           "ref": "Ipv6ClassificationEntry"
-        },
-        "CmInterfaceMask": {
-          "metadata": {
-            "description": "CM Interface Mask (CMIM) encoding",
-            "tlvType": "23.13",
-            "dataType": "hexstring",
-            "spec": "CM-SP-L2VPN-I17 B.6"
-          },
-          "type": "string"
         },
         "Ieee8021adClassification": {
           "metadata": {
             "description": "IEEE 802.1ad S-VLAN packet classification",
             "tlvType": "23.14",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13"
           },
           "ref": "Ieee8021adClassificationEntry"
         },
@@ -1247,7 +1229,7 @@
             "description": "IEEE 802.1ah I-TAG packet classification",
             "tlvType": "23.15",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14"
           },
           "ref": "Ieee8021ahClassificationEntry"
         },
@@ -1256,7 +1238,7 @@
             "description": "ICMPv4/ICMPv6 packet classification",
             "tlvType": "23.16",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.12"
           },
           "ref": "IcmpClassificationEntry"
         },
@@ -1265,7 +1247,7 @@
             "description": "MPLS packet classification",
             "tlvType": "23.17",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.15"
           },
           "ref": "MplsClassificationEntry"
         },
@@ -1331,7 +1313,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "60.8",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
         },
@@ -1340,7 +1322,7 @@
             "description": "IPv4/TCP/UDP packet classification",
             "tlvType": "60.9",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.9"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.6"
           },
           "ref": "Ipv4ClassificationEntry"
         },
@@ -1349,7 +1331,7 @@
             "description": "Ethernet LLC packet classification",
             "tlvType": "60.10",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.10"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.8"
           },
           "ref": "EthernetLlcClassificationEntry"
         },
@@ -1358,7 +1340,7 @@
             "description": "IEEE 802.1P/Q packet classification",
             "tlvType": "60.11",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.11"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.9"
           },
           "ref": "Ieee8021PqClassificationEntry"
         },
@@ -1367,16 +1349,25 @@
             "description": "IPv6 packet classification",
             "tlvType": "60.12",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.12"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.10"
           },
           "ref": "Ipv6ClassificationEntry"
+        },
+        "CmInterfaceMask": {
+          "metadata": {
+            "description": "CM Interface Mask (CMIM) encoding — upstream and upstream-drop only",
+            "tlvType": "60.13",
+            "dataType": "hexstring",
+            "spec": "CM-SP-MULPIv4.0 C.2.1.4.8"
+          },
+          "type": "string"
         },
         "Ieee8021adClassification": {
           "metadata": {
             "description": "IEEE 802.1ad S-VLAN packet classification",
             "tlvType": "60.14",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.14"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.13"
           },
           "ref": "Ieee8021adClassificationEntry"
         },
@@ -1385,7 +1376,7 @@
             "description": "IEEE 802.1ah I-TAG packet classification",
             "tlvType": "60.15",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.15"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.14"
           },
           "ref": "Ieee8021ahClassificationEntry"
         },
@@ -1394,7 +1385,7 @@
             "description": "ICMPv4/ICMPv6 packet classification",
             "tlvType": "60.16",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.16"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.12"
           },
           "ref": "IcmpClassificationEntry"
         },
@@ -1403,7 +1394,7 @@
             "description": "MPLS packet classification",
             "tlvType": "60.17",
             "dataType": "compound",
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.17"
+            "spec": "CM-SP-MULPIv4.0 C.2.1.15"
           },
           "ref": "MplsClassificationEntry"
         },
@@ -2135,8 +2126,8 @@
     },
     "PhsErrorEntry": {
       "metadata": {
-        "description": "Payload Header Suppression Error Encoding",
-        "spec": "CM-SP-MULPIv4.0 C.2.3"
+        "description": "Payload Header Suppression Error Encoding (deprecated as of DOCSIS 3.1)",
+        "spec": "CM-SP-MULPIv4.0 C.2.4"
       },
       "optionalProperties": {
         "ErroredParameter": {
@@ -2144,7 +2135,7 @@
             "description": "Type value of the TLV in error",
             "tlvType": "26.6.1",
             "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.4"
           },
           "type": "uint8"
         },
@@ -2246,7 +2237,7 @@
               "215": "reject-invalid-low-latency-config",
               "216": "reject-unknown-scn-or-aqp"
             },
-            "spec": "CM-SP-MULPIv4.0 C.2.3, C.4"
+            "spec": "CM-SP-MULPIv4.0 C.2.4, C.4"
           },
           "type": "uint8"
         },
@@ -2255,7 +2246,7 @@
             "description": "Human-readable error message",
             "tlvType": "26.6.3",
             "dataType": "string",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.4"
           },
           "type": "string"
         }
@@ -2304,89 +2295,13 @@
           },
           "type": "uint32"
         },
-        "DynamicServiceChangeAction": {
-          "metadata": {
-            "description": "Dynamic service change action",
-            "tlvType": "26.5",
-            "dataType": "uint8",
-            "validValues": {
-              "0": "DSC Add Classifier",
-              "1": "DSC Replace Classifier",
-              "2": "DSC Delete Classifier"
-            },
-            "spec": "CM-SP-MULPIv4.0 C.2.1.4.7"
-          },
-          "type": "uint8"
-        },
         "PhsErrorEncoding": {
           "metadata": {
-            "description": "PHS error encoding",
+            "description": "PHS error encoding (deprecated as of DOCSIS 3.1; listed in DOCSIS 1.1 table, C.2.4)",
             "tlvType": "26.6",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
+            "spec": "CM-SP-MULPIv4.0 C.2.4"
           },
           "ref": "PhsErrorEntry"
-        },
-        "PhsField": {
-          "metadata": {
-            "description": "Payload Header Suppression Field (PHSF) - the header bytes to suppress",
-            "tlvType": "26.7",
-            "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "string"
-        },
-        "PhsIndex": {
-          "metadata": {
-            "description": "Payload Header Suppression Index (PHSI)",
-            "tlvType": "26.8",
-            "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "uint8"
-        },
-        "PhsMask": {
-          "metadata": {
-            "description": "Payload Header Suppression Mask (PHSM)",
-            "tlvType": "26.9",
-            "dataType": "hexstring",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "string"
-        },
-        "PhsSize": {
-          "metadata": {
-            "description": "Payload Header Suppression Size (PHSS) in bytes",
-            "tlvType": "26.10",
-            "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "uint8"
-        },
-        "PhsVerification": {
-          "metadata": {
-            "description": "Payload Header Suppression Verification (PHSV) - deprecated as of DOCSIS 3.1",
-            "tlvType": "26.11",
-            "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "uint8"
-        },
-        "DynamicBondingChangeAction": {
-          "metadata": {
-            "description": "Dynamic bonding change action - deprecated as of DOCSIS 3.1",
-            "tlvType": "26.13",
-            "dataType": "uint8",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "type": "uint8"
-        },
-        "VendorSpecificPhsParameters": {
-          "metadata": {
-            "description": "Vendor-specific PHS parameters",
-            "tlvType": "26.43",
-            "spec": "CM-SP-MULPIv4.0 C.2.3"
-          },
-          "ref": "VendorSpecificContainer"
         }
       }
     },
