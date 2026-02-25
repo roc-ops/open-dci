@@ -54,6 +54,13 @@ func LoadRegistry(schemaPath string) (*Registry, error) {
 		return nil, fmt.Errorf("reading schema: %w", err)
 	}
 
+	return LoadRegistryFromBytes(data)
+}
+
+// LoadRegistryFromBytes parses a JTD schema from raw JSON bytes and builds the
+// TLV registry. This is the core parsing logic used by both file-based
+// LoadRegistry and in-memory callers such as the WASM entry point.
+func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 	var schema jtdSchema
 	if err := json.Unmarshal(data, &schema); err != nil {
 		return nil, fmt.Errorf("parsing schema: %w", err)
