@@ -14,6 +14,7 @@ type TLVDef struct {
 	Name        string            // JSON property name
 	DataType    DataType          // Wire data type
 	Repeatable  bool              // Whether this TLV can appear multiple times
+	Chunked     bool              // Whether this TLV uses 254-byte chunked encoding (e.g. CVC certificates)
 	SubTLVs     map[int]*TLVDef   // For compound types: sub-TLV definitions keyed by type number
 	RefName     string            // Name of the referenced definition (for compound types)
 	ValidValues map[string]string // Human-readable labels for enum-like integer values
@@ -105,12 +106,14 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 
 		dt := DataType(getStringMeta(meta, "dataType"))
 		repeatable := getBoolMeta(meta, "repeatable")
+		chunked := getBoolMeta(meta, "chunked")
 
 		def := &TLVDef{
 			TypeNum:    typeNum,
 			Name:       name,
 			DataType:   dt,
 			Repeatable: repeatable,
+			Chunked:    chunked,
 		}
 		def.ValidValues = getValidValuesMeta(meta)
 

@@ -90,6 +90,12 @@ func makeTestRegistry() *Registry {
 					8: {TypeNum: 8, Name: "MaxSustainedTrafficRate", DataType: DataTypeUint32},
 				},
 			},
+			32: {
+				TypeNum:  32,
+				Name:     "ManufacturerCvc",
+				DataType: DataTypeHexString,
+				Chunked:  true,
+			},
 			43: {
 				TypeNum:    43,
 				Name:       "DocsisExtensionField",

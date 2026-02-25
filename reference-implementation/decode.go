@@ -86,6 +86,34 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 		// Track top-level ordering (first occurrence only for repeatables).
 		result.appendTopOrder(def.Name)
 
+		// Chunked TLV (e.g. CVC certificates): concatenate consecutive same-type
+		// instances into a single value, then decode as one.
+		if def.Chunked {
+			var assembled []byte
+			assembled = append(assembled, value...)
+			scanOffset := valueEnd
+			for scanOffset+1 < len(data) {
+				nextType := int(data[scanOffset])
+				if nextType != tlvType {
+					break
+				}
+				nextLen := int(data[scanOffset+1])
+				nextEnd := scanOffset + 2 + nextLen
+				if nextEnd > len(data) {
+					break
+				}
+				assembled = append(assembled, data[scanOffset+2:nextEnd]...)
+				scanOffset = nextEnd
+			}
+			decoded, err := DecodeValue(assembled, def.DataType)
+			if err != nil {
+				return nil, fmt.Errorf("decoding chunked TLV %d at offset %d: %w", tlvType, offset, err)
+			}
+			result.Config[def.Name] = decoded
+			offset = scanOffset
+			continue
+		}
+
 		// Special case: TLV 11 (SNMP MIB Object) - BER-encoded varbind
 		if tlvType == 11 {
 			err := decodeTLV11(result.Config, def, value)

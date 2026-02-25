@@ -41,6 +41,24 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 			return nil, fmt.Errorf("unknown top-level property: %q", name)
 		}
 
+		// Handle chunked TLVs (e.g. CVC certificates): single value split into
+		// consecutive ≤254-byte TLV instances on the wire.
+		if def.Chunked {
+			valueBytes, err := EncodeValue(val, def.DataType)
+			if err != nil {
+				return nil, fmt.Errorf("encoding chunked %s: %w", name, err)
+			}
+			for len(valueBytes) > 0 {
+				chunkSize := len(valueBytes)
+				if chunkSize > 254 {
+					chunkSize = 254
+				}
+				out = append(out, makeTLV(def.TypeNum, valueBytes[:chunkSize])...)
+				valueBytes = valueBytes[chunkSize:]
+			}
+			continue
+		}
+
 		// Handle repeatable TLVs (always stored as []interface{}).
 		if def.Repeatable {
 			arr, ok := val.([]interface{})

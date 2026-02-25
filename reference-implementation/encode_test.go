@@ -2,6 +2,8 @@ package main
 
 import (
 	"bytes"
+	"encoding/hex"
+	"strings"
 	"testing"
 )
 
@@ -405,6 +407,111 @@ func TestStripTLVsForComparisonWithPads(t *testing.T) {
 	expected := buildConfig(buildTLV(3, []byte{1}))
 	if !bytes.Equal(stripped, expected) {
 		t.Errorf("strip mismatch:\n  got:  %X\n  want: %X", stripped, expected)
+	}
+}
+
+func TestEncodeChunkedTLV_SmallValue(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// A small value (< 254 bytes) should produce a single TLV.
+	smallHex := strings.Repeat("AB", 100) // 100 bytes
+	result := &DecodeResult{
+		Config:   map[string]interface{}{"ManufacturerCvc": smallHex},
+		TLVOrder: []string{"ManufacturerCvc"},
+	}
+
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	valBytes, _ := hex.DecodeString(smallHex)
+	expected := buildConfig(buildTLV(32, valBytes))
+	if !bytes.Equal(encoded, expected) {
+		t.Errorf("small chunked TLV mismatch:\n  got:  %X\n  want: %X", encoded, expected)
+	}
+}
+
+func TestEncodeChunkedTLV_LargeValue(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// A value of 400 bytes should produce 2 chunks: 254 + 146.
+	largeHex := strings.Repeat("CD", 400) // 400 bytes
+	result := &DecodeResult{
+		Config:   map[string]interface{}{"ManufacturerCvc": largeHex},
+		TLVOrder: []string{"ManufacturerCvc"},
+	}
+
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	valBytes, _ := hex.DecodeString(largeHex)
+	var expected []byte
+	expected = append(expected, buildTLV(32, valBytes[:254])...)
+	expected = append(expected, buildTLV(32, valBytes[254:])...)
+	expected = append(expected, 0xFF, 0x00) // end-of-data
+
+	if !bytes.Equal(encoded, expected) {
+		t.Errorf("chunked TLV mismatch:\n  got len=%d, want len=%d", len(encoded), len(expected))
+	}
+}
+
+func TestDecodeChunkedTLV_Reassembly(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// Build binary with 2 consecutive TLV 32 chunks.
+	chunk1 := bytes.Repeat([]byte{0xAA}, 254)
+	chunk2 := bytes.Repeat([]byte{0xBB}, 150)
+	data := buildConfig(
+		buildTLV(32, chunk1),
+		buildTLV(32, chunk2),
+	)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Should be reassembled into a single hex string.
+	hexVal, ok := result.Config["ManufacturerCvc"].(string)
+	if !ok {
+		t.Fatalf("expected string for ManufacturerCvc, got %T", result.Config["ManufacturerCvc"])
+	}
+
+	expectedHex := strings.ToUpper(hex.EncodeToString(append(chunk1, chunk2...)))
+	if hexVal != expectedHex {
+		t.Errorf("reassembled value length: got %d, want %d", len(hexVal), len(expectedHex))
+	}
+}
+
+func TestChunkedTLV_RoundTrip(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// Create a large certificate-like value (600 bytes → 3 chunks: 254 + 254 + 92).
+	certHex := strings.Repeat("EF", 600)
+	result := &DecodeResult{
+		Config:   map[string]interface{}{"ManufacturerCvc": certHex},
+		TLVOrder: []string{"ManufacturerCvc"},
+	}
+
+	// Encode.
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Decode.
+	decoded, err := Decode(encoded, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Round-trip: decoded value must match original.
+	got := decoded.Config["ManufacturerCvc"].(string)
+	if got != certHex {
+		t.Errorf("round-trip mismatch: got len %d, want len %d", len(got), len(certHex))
 	}
 }
 

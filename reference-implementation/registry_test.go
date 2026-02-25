@@ -201,6 +201,28 @@ func TestLoadRegistryTLV43(t *testing.T) {
 	t.Logf("TLV 43 has %d sub-TLVs", len(def.SubTLVs))
 }
 
+func TestLoadRegistryTLV32Chunked(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	def, ok := reg.TopLevel[32]
+	if !ok {
+		t.Fatal("TLV 32 (ManufacturerCvc) not found")
+	}
+
+	if def.Name != "ManufacturerCvc" {
+		t.Errorf("expected name 'ManufacturerCvc', got %q", def.Name)
+	}
+	if !def.Chunked {
+		t.Error("TLV 32 should be chunked")
+	}
+	if def.Repeatable {
+		t.Error("TLV 32 should not be repeatable (chunked instead)")
+	}
+}
+
 func TestLoadRegistryIPv4(t *testing.T) {
 	reg, err := LoadRegistry(schemaPath(t))
 	if err != nil {
