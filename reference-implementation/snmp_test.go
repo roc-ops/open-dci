@@ -222,6 +222,56 @@ func TestDecodeSnmpVarbindBadTag(t *testing.T) {
 	}
 }
 
+// TLV 10 (SNMP Write Access Control) decode tests.
+
+func TestDecodeSnmpWriteAccess(t *testing.T) {
+	// OID 1.3.6.1 with access=1
+	// BER OID: 06 03 2B 06 01   (tag=0x06, len=3, value=1.3.6.1)
+	// Access flag: 01
+	data := []byte{0x06, 0x03, 0x2B, 0x06, 0x01, 0x01}
+	entry, err := DecodeSnmpWriteAccess(data)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if entry["oid"] != "1.3.6.1" {
+		t.Errorf("expected OID '1.3.6.1', got %q", entry["oid"])
+	}
+	if entry["access"] != 1 {
+		t.Errorf("expected access 1, got %v", entry["access"])
+	}
+}
+
+func TestDecodeSnmpWriteAccessDeny(t *testing.T) {
+	// OID 1.3.6.1.2.1 with access=0 (deny)
+	// BER OID: 06 05 2B 06 01 02 01
+	data := []byte{0x06, 0x05, 0x2B, 0x06, 0x01, 0x02, 0x01, 0x00}
+	entry, err := DecodeSnmpWriteAccess(data)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if entry["oid"] != "1.3.6.1.2.1" {
+		t.Errorf("expected OID '1.3.6.1.2.1', got %q", entry["oid"])
+	}
+	if entry["access"] != 0 {
+		t.Errorf("expected access 0, got %v", entry["access"])
+	}
+}
+
+func TestDecodeSnmpWriteAccessTooShort(t *testing.T) {
+	_, err := DecodeSnmpWriteAccess([]byte{0x06, 0x01})
+	if err == nil {
+		t.Fatal("expected error for too-short data")
+	}
+}
+
+func TestDecodeSnmpWriteAccessBadTag(t *testing.T) {
+	// Wrong tag (0x30 instead of 0x06)
+	_, err := DecodeSnmpWriteAccess([]byte{0x30, 0x03, 0x2B, 0x06, 0x01, 0x01})
+	if err == nil {
+		t.Fatal("expected error for wrong OID tag")
+	}
+}
+
 func TestBerLengthShort(t *testing.T) {
 	l, consumed, err := berLength([]byte{0x05})
 	if err != nil {

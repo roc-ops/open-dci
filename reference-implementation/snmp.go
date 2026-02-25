@@ -208,6 +208,41 @@ func isPrintable(data []byte) bool {
 	return len(data) > 0
 }
 
+// DecodeSnmpWriteAccess parses a TLV 10 (SNMP Write Access Control) value.
+// The payload is a BER-encoded OID (tag 0x06 + length + value) followed by a
+// single byte for the access flag (0 = deny, 1 = allow).
+func DecodeSnmpWriteAccess(data []byte) (map[string]interface{}, error) {
+	if len(data) < 4 { // minimum: 0x06, 0x01, <1 OID byte>, <access byte>
+		return nil, fmt.Errorf("TLV 10 too short: %d bytes", len(data))
+	}
+
+	// The OID is everything except the last byte.
+	oidData := data[:len(data)-1]
+	accessFlag := int(data[len(data)-1])
+
+	// Parse the BER OID: expect tag 0x06.
+	if oidData[0] != tagOID {
+		return nil, fmt.Errorf("expected OID tag 0x06, got 0x%02X", oidData[0])
+	}
+
+	oidLen, oidHdrLen, err := berLength(oidData[1:])
+	if err != nil {
+		return nil, fmt.Errorf("parsing OID length: %w", err)
+	}
+
+	if 1+oidHdrLen+oidLen != len(oidData) {
+		return nil, fmt.Errorf("OID length mismatch: header says %d bytes, have %d", 1+oidHdrLen+oidLen, len(oidData))
+	}
+
+	oidBytes := oidData[1+oidHdrLen : 1+oidHdrLen+oidLen]
+	oid := decodeOIDBytes(oidBytes)
+
+	return map[string]interface{}{
+		"oid":    oid,
+		"access": accessFlag,
+	}, nil
+}
+
 // formatOIDFromDotted formats an OID string (no conversion needed, used for consistency).
 func formatOIDFromDotted(parts []int) string {
 	strs := make([]string, len(parts))

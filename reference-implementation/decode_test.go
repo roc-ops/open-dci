@@ -57,6 +57,12 @@ func makeTestRegistry() *Registry {
 				Name:     "SwUpgradeFilename",
 				DataType: DataTypeString,
 			},
+			10: {
+				TypeNum:    10,
+				Name:       "SnmpWriteAccessControl",
+				DataType:   DataTypeCompound,
+				Repeatable: true,
+			},
 			11: {
 				TypeNum:    11,
 				Name:       "SnmpMibObject",
@@ -287,6 +293,70 @@ func TestDecodeUnknownTLV(t *testing.T) {
 	}
 	if unk["value"] != "ABCD" {
 		t.Errorf("expected value 'ABCD', got %v", unk["value"])
+	}
+}
+
+func TestDecodeTLV10SnmpWriteAccess(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// Build TLV 10 payload: BER OID (06 03 2B 06 01 = 1.3.6.1) + access byte (01)
+	tlv10Value := []byte{0x06, 0x03, 0x2B, 0x06, 0x01, 0x01}
+
+	data := buildConfig(
+		buildTLV(10, tlv10Value),
+	)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	arr, ok := result.Config["SnmpWriteAccessControl"].([]interface{})
+	if !ok {
+		t.Fatalf("expected []interface{}, got %T", result.Config["SnmpWriteAccessControl"])
+	}
+	if len(arr) != 1 {
+		t.Fatalf("expected 1 entry, got %d", len(arr))
+	}
+
+	entry := arr[0].(map[string]interface{})
+	if entry["oid"] != "1.3.6.1" {
+		t.Errorf("expected oid '1.3.6.1', got %v", entry["oid"])
+	}
+	if entry["access"] != 1 {
+		t.Errorf("expected access 1, got %v", entry["access"])
+	}
+}
+
+func TestDecodeTLV10Multiple(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// Two TLV 10 entries: allow 1.3.6.1, deny 1.3.6.1.2.1
+	tlv10a := buildTLV(10, []byte{0x06, 0x03, 0x2B, 0x06, 0x01, 0x01})
+	tlv10b := buildTLV(10, []byte{0x06, 0x05, 0x2B, 0x06, 0x01, 0x02, 0x01, 0x00})
+
+	data := buildConfig(tlv10a, tlv10b)
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	arr, ok := result.Config["SnmpWriteAccessControl"].([]interface{})
+	if !ok {
+		t.Fatalf("expected []interface{}, got %T", result.Config["SnmpWriteAccessControl"])
+	}
+	if len(arr) != 2 {
+		t.Fatalf("expected 2 entries, got %d", len(arr))
+	}
+
+	e0 := arr[0].(map[string]interface{})
+	if e0["access"] != 1 {
+		t.Errorf("first entry: expected access 1, got %v", e0["access"])
+	}
+	e1 := arr[1].(map[string]interface{})
+	if e1["access"] != 0 {
+		t.Errorf("second entry: expected access 0, got %v", e1["access"])
 	}
 }
 

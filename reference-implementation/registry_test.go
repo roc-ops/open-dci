@@ -76,6 +76,28 @@ func TestLoadRegistryTLV3(t *testing.T) {
 	}
 }
 
+func TestLoadRegistryTLV10(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	def, ok := reg.TopLevel[10]
+	if !ok {
+		t.Fatal("TLV 10 (SnmpWriteAccessControl) not found")
+	}
+
+	if def.Name != "SnmpWriteAccessControl" {
+		t.Errorf("expected name 'SnmpWriteAccessControl', got %q", def.Name)
+	}
+	if def.DataType != DataTypeCompound {
+		t.Errorf("expected data type compound, got %q", def.DataType)
+	}
+	if !def.Repeatable {
+		t.Error("TLV 10 should be repeatable")
+	}
+}
+
 func TestLoadRegistryTLV11(t *testing.T) {
 	reg, err := LoadRegistry(schemaPath(t))
 	if err != nil {

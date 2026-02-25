@@ -114,6 +114,19 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error) {
 	ls := defLengthSize(def)
 
+	// Special case: TLV 10 (SNMP Write Access Control)
+	if def.TypeNum == 10 {
+		m, ok := val.(map[string]interface{})
+		if !ok {
+			return nil, fmt.Errorf("TLV 10: expected map, got %T", val)
+		}
+		payload, err := EncodeSnmpWriteAccess(m)
+		if err != nil {
+			return nil, err
+		}
+		return makeTLVn(def.TypeNum, payload, ls), nil
+	}
+
 	// Special case: TLV 11 (SNMP MIB Object)
 	if def.TypeNum == 11 {
 		m, ok := val.(map[string]interface{})

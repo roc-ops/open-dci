@@ -130,6 +130,16 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			continue
 		}
 
+		// Special case: TLV 10 (SNMP Write Access Control) - BER OID + access flag
+		if tlvType == 10 {
+			err := decodeTLV10(result.Config, def, value)
+			if err != nil {
+				return nil, fmt.Errorf("decoding TLV 10 at offset %d: %w", offset, err)
+			}
+			offset = valueEnd
+			continue
+		}
+
 		// Special case: TLV 11 (SNMP MIB Object) - BER-encoded varbind
 		if tlvType == 11 {
 			err := decodeTLV11(result.Config, def, value)
@@ -274,6 +284,18 @@ func decodeTLV11(config map[string]interface{}, def *TLVDef, data []byte) error 
 		"oid":   varbind.OID,
 		"type":  varbind.Type,
 		"value": varbind.Value,
+	}
+
+	addToResult(config, def, entry)
+	return nil
+}
+
+// decodeTLV10 handles TLV 10 (SNMP Write Access Control) which contains a
+// BER-encoded OID followed by a 1-byte access flag.
+func decodeTLV10(config map[string]interface{}, def *TLVDef, data []byte) error {
+	entry, err := DecodeSnmpWriteAccess(data)
+	if err != nil {
+		return err
 	}
 
 	addToResult(config, def, entry)

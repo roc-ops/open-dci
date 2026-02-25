@@ -180,6 +180,42 @@ func TestEncodeRepeatableTLV(t *testing.T) {
 	}
 }
 
+func TestEncodeTLV10SnmpWriteAccess(t *testing.T) {
+	reg := makeTestRegistry()
+
+	result := &DecodeResult{
+		Config: map[string]interface{}{
+			"SnmpWriteAccessControl": []interface{}{
+				map[string]interface{}{
+					"oid":    "1.3.6.1",
+					"access": 1,
+				},
+			},
+		},
+		TLVOrder: []string{"SnmpWriteAccessControl"},
+	}
+
+	encoded, err := Encode(result, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Decode the encoded result to verify round-trip.
+	decoded, err := Decode(encoded, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	arr := decoded.Config["SnmpWriteAccessControl"].([]interface{})
+	entry := arr[0].(map[string]interface{})
+	if entry["oid"] != "1.3.6.1" {
+		t.Errorf("expected oid '1.3.6.1', got %v", entry["oid"])
+	}
+	if entry["access"] != 1 {
+		t.Errorf("expected access 1, got %v", entry["access"])
+	}
+}
+
 func TestEncodeTLV11Snmp(t *testing.T) {
 	reg := makeTestRegistry()
 

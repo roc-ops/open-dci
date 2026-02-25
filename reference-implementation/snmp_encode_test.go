@@ -399,6 +399,71 @@ func TestEncodeSnmpVarbindMissingType(t *testing.T) {
 	}
 }
 
+// TLV 10 (SNMP Write Access Control) encode tests.
+
+func TestEncodeSnmpWriteAccess(t *testing.T) {
+	entry := map[string]interface{}{
+		"oid":    "1.3.6.1",
+		"access": 1,
+	}
+	data, err := EncodeSnmpWriteAccess(entry)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Expected: BER OID (06 03 2B 06 01) + access byte (01)
+	expected := []byte{0x06, 0x03, 0x2B, 0x06, 0x01, 0x01}
+	if !bytes.Equal(data, expected) {
+		t.Errorf("expected %X, got %X", expected, data)
+	}
+}
+
+func TestEncodeSnmpWriteAccessDeny(t *testing.T) {
+	entry := map[string]interface{}{
+		"oid":    "1.3.6.1.2.1",
+		"access": 0,
+	}
+	data, err := EncodeSnmpWriteAccess(entry)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Expected: BER OID (06 05 2B 06 01 02 01) + access byte (00)
+	expected := []byte{0x06, 0x05, 0x2B, 0x06, 0x01, 0x02, 0x01, 0x00}
+	if !bytes.Equal(data, expected) {
+		t.Errorf("expected %X, got %X", expected, data)
+	}
+}
+
+func TestSnmpWriteAccessRoundTrip(t *testing.T) {
+	entry := map[string]interface{}{
+		"oid":    "1.3.6.1.2.1.69.1.2",
+		"access": 1,
+	}
+	encoded, err := EncodeSnmpWriteAccess(entry)
+	if err != nil {
+		t.Fatal(err)
+	}
+	decoded, err := DecodeSnmpWriteAccess(encoded)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if decoded["oid"] != entry["oid"] {
+		t.Errorf("OID mismatch: expected %q, got %q", entry["oid"], decoded["oid"])
+	}
+	if decoded["access"] != entry["access"] {
+		t.Errorf("access mismatch: expected %v, got %v", entry["access"], decoded["access"])
+	}
+}
+
+func TestEncodeSnmpWriteAccessMissingOID(t *testing.T) {
+	entry := map[string]interface{}{
+		"access": 1,
+	}
+	_, err := EncodeSnmpWriteAccess(entry)
+	if err == nil {
+		t.Fatal("expected error for missing OID")
+	}
+}
+
 func TestEncodeBERLength(t *testing.T) {
 	tests := []struct {
 		length   int

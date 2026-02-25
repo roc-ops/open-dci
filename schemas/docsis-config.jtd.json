@@ -47,6 +47,30 @@
         }
       }
     },
+    "SnmpWriteAccessEntry": {
+      "metadata": {
+        "description": "A single SNMP write-access control entry: an OID subtree with an access flag. Corresponds to TLV 10 which carries a BER-encoded OID followed by a 1-byte access flag in the binary config file.",
+        "spec": "CM-SP-MULPIv4.0 C.1.2.4"
+      },
+      "properties": {
+        "oid": {
+          "metadata": {
+            "description": "SNMP object identifier subtree in dotted-decimal notation",
+            "dataType": "oid",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.4"
+          },
+          "type": "string"
+        },
+        "access": {
+          "metadata": {
+            "description": "Write access flag: 0 = deny, 1 = allow",
+            "spec": "CM-SP-MULPIv4.0 C.1.2.4"
+          },
+          "type": "uint8",
+          "enum": [0, 1]
+        }
+      }
+    },
     "ServiceFlowErrorEntry": {
       "metadata": {
         "description": "Service Flow Error Encoding reported when a service flow parameter is rejected",
@@ -5984,12 +6008,15 @@
     },
     "SnmpWriteAccessControl": {
       "metadata": {
-        "description": "SNMP write access control encoding",
+        "description": "SNMP write access control: grants or denies SNMP SET access to OID subtrees. Each entry is a BER-encoded OID followed by a 1-byte access flag in the binary config file.",
         "tlvType": 10,
-        "dataType": "hexstring",
+        "dataType": "compound",
+        "repeatable": true,
         "spec": "CM-SP-MULPIv4.0 C.1.2.4"
       },
-      "type": "string"
+      "elements": {
+        "ref": "SnmpWriteAccessEntry"
+      }
     },
     "SnmpMibObject": {
       "metadata": {

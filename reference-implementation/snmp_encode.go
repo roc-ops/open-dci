@@ -181,6 +181,30 @@ func encodeUnsignedIntegerBER(s string) ([]byte, error) {
 	return b, nil
 }
 
+// EncodeSnmpWriteAccess encodes a TLV 10 (SNMP Write Access Control) entry.
+// The entry map must have "oid" (string) and "access" (int) keys.
+// Returns the BER-encoded OID followed by a single access flag byte.
+func EncodeSnmpWriteAccess(entry map[string]interface{}) ([]byte, error) {
+	oidStr, ok := entry["oid"].(string)
+	if !ok {
+		return nil, fmt.Errorf("write-access entry missing 'oid' string")
+	}
+	accessVal, err := toInt(entry["access"])
+	if err != nil {
+		return nil, fmt.Errorf("write-access entry missing 'access' integer: %w", err)
+	}
+
+	oidBytes, err := encodeOIDBytes(oidStr)
+	if err != nil {
+		return nil, fmt.Errorf("encoding OID: %w", err)
+	}
+	oidTLV := encodeBERTLV(tagOID, oidBytes)
+
+	// Concatenate BER-encoded OID + single access byte (no SEQUENCE wrapper).
+	result := append(oidTLV, byte(accessVal))
+	return result, nil
+}
+
 // encodeBERLength encodes a length value in BER format.
 func encodeBERLength(length int) []byte {
 	if length < 0x80 {
