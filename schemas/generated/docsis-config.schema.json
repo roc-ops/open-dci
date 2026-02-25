@@ -1314,36 +1314,42 @@
       "description": "CESoPSN Configuration Table encoding",
       "properties": {
         "AppSigIdle": {
-          "description": "Application signal idle pattern",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.13.10"
-        },
-        "AppSigInterval": {
-          "description": "Application signal interval",
-          "maximum": 65535,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.13.11"
-        },
-        "AppSigMaxInterval": {
-          "description": "Application signal maximum interval",
-          "maximum": 65535,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.13.12"
-        },
-        "AppSigTos": {
-          "description": "Application signal TOS",
+          "description": "Application signal idle pattern — CAS signaling idle byte sent on TDM interface failure (default 0x0F)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 15,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.13.10"
+        },
+        "AppSigInterval": {
+          "description": "Application signal interval — CAS signaling send interval in milliseconds (default 5 ms)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 5,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.13.11"
+        },
+        "AppSigMaxInterval": {
+          "description": "Application signal maximum interval — CAS signaling refresh interval in seconds when no change (default 5 s)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 5,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.13.12"
+        },
+        "AppSigTos": {
+          "description": "Application signal TOS — IP TOS for separate CAS signaling packet stream (default 0)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.7"
         },
@@ -1357,32 +1363,37 @@
           "x-docsis-tlvType": "219.13.1"
         },
         "DefaultIdlePattern": {
-          "description": "Default idle pattern",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
+          "description": "Default idle pattern — single byte played on TDM interface on defect conditions (default 0xFF)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 255,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.2"
         },
         "LFlagPolicy": {
-          "description": "L flag policy",
+          "description": "L flag policy — action on TDM when packets received with L flag set",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.3",
           "x-docsis-validValues": {
             "0": "idle",
-            "1": "trunkAIS",
+            "1": "TrunkAIS",
             "2": "idle_code"
           }
         },
         "LopsPolicy": {
-          "description": "LOPS policy",
+          "description": "LOPS policy — pattern played on TDM while in LOPS state",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.6",
           "x-docsis-validValues": {
@@ -1392,44 +1403,47 @@
           }
         },
         "RFlagPolicy": {
-          "description": "R flag policy",
+          "description": "R flag policy — action on TDM when packets received with R flag set",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.4",
           "x-docsis-validValues": {
             "0": "nothing",
-            "1": "rai",
+            "1": "RAI",
             "2": "idle_code"
           }
         },
         "RemoteDefectPolicy": {
-          "description": "Remote defect policy",
+          "description": "Remote defect policy — action on TDM when L=0, M=01 indicating Remote Defect received",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.5",
           "x-docsis-validValues": {
             "0": "nothing",
-            "1": "rai",
+            "1": "RAI",
             "2": "channelIdle"
           }
         },
         "RtpCasPeerPt": {
-          "description": "RTP CAS peer payload type",
+          "description": "RTP CAS peer signaling payload type — expected PT in peer's RTP signaling frames; non-zero validates incoming",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.13.9"
         },
         "RtpCasPt": {
-          "description": "RTP CAS payload type",
+          "description": "RTP CAS signaling payload type — PT in RTP header of signaling frames",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -1459,9 +1473,13 @@
           }
         },
         "Dsx1CircuitId": {
-          "description": "dsx1 circuit ID",
+          "description": "dsx1 circuit ID — vendor circuit identifier for troubleshooting; should include physical port ID (1-255 bytes)",
           "type": "string",
           "x-docsis-dataType": "string",
+          "x-docsis-range": {
+            "maxLength": 255,
+            "minLength": 1
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.4"
         },
@@ -1596,11 +1614,12 @@
           "x-docsis-tlvType": "219.14.1"
         },
         "Dsx1SignalMode": {
-          "description": "dsx1 signal mode",
+          "description": "dsx1 signal mode — signaling mode for DS0s of this physical port",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.14.6",
           "x-docsis-validValues": {
@@ -1612,19 +1631,68 @@
           }
         },
         "Dsx1TransmitClockSource": {
-          "description": "dsx1 transmit clock source",
+          "$ref": "#/$defs/EteaDsx1TransmitClockSourceEntry",
+          "description": "dsx1 transmit clock source — compound TLV containing clock mode (14.7.1, required) and optional source reference sub-TLVs (14.7.2, 14.7.3, 14.7.4)",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.14.7"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1"
+    },
+    "EteaDsx1TransmitClockSourceEntry": {
+      "additionalProperties": false,
+      "description": "eTEA dsx1 Transmit Clock Source configuration — compound sub-TLV specifying clock mode and optional source reference",
+      "properties": {
+        "ClockMode": {
+          "description": "dsx1 transmit clock source mode — must always be present",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.14.7",
+          "x-docsis-tlvType": "219.14.7.1",
           "x-docsis-validValues": {
             "1": "loopTiming",
             "2": "localTiming",
             "3": "throughTiming",
             "4": "adaptive"
           }
+        },
+        "InterfaceType": {
+          "description": "dsx1 transmit clock source interface type (0=CM port, 1=Ethernet port, 2=E1/T1 port; default 0)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.14.7.2",
+          "x-docsis-validValues": {
+            "0": "cableModemPort",
+            "1": "ethernetPort",
+            "2": "e1t1Port"
+          }
+        },
+        "PortNumber": {
+          "description": "dsx1 transmit clock source port number (default 1)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.14.7.3"
+        },
+        "PwIndex": {
+          "description": "dsx1 transmit clock source PW index — adaptive timing source PW index",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.14.7.4"
         }
       },
       "type": "object",
@@ -1657,13 +1725,19 @@
           "x-docsis-tlvType": "219.14"
         },
         "EndOfText": {
-          "description": "eTEA end of text marker",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "description": "eTEA end of data marker — has no Length or value fields; presence indicates end of config file",
+          "type": "boolean",
+          "x-docsis-dataType": "marker",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.255"
+        },
+        "EteaMic": {
+          "description": "eTEA Message Integrity Check (eTEA MIC) — 128-bit MD5 digest over config file bytes; MUST appear immediately before EndOfText",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvLength": 16,
+          "x-docsis-tlvType": "219.6"
         },
         "IwfCfgEncoding": {
           "description": "eTEA IWF configuration encoding",
@@ -1698,6 +1772,28 @@
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.11"
         },
+        "SnmpV1V2cCoexistenceCfg": {
+          "description": "eTEA SNMPv1v2c Coexistence Configuration — SNMP access control per DOCSIS MULPIv3.0 Annex C; eTEA uses '@eTEA' key instead of '@CM'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.53"
+        },
+        "SnmpV3AccessViewCfg": {
+          "description": "eTEA SNMPv3 Access View Configuration — SNMP v3 access view per DOCSIS MULPIv3.0 Annex C",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-docsis-dataType": "compound",
+          "x-docsis-repeatable": true,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.54"
+        },
         "SnmpWriteAccessControl": {
           "description": "eTEA SNMP write-access control",
           "type": "string",
@@ -1728,11 +1824,12 @@
       "description": "eTEA IWF Configuration encoding",
       "properties": {
         "EmulationType": {
-          "description": "Emulation type",
+          "description": "Emulation type — PW emulation mode from PW-TDM-MIB type enumeration; spec text says default t1Satop(17) but table shows e1Satop(17)/t1Satop(18); table values are authoritative",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 18,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.2",
           "x-docsis-validValues": {
@@ -1744,10 +1841,10 @@
         },
         "PwAdminStatus": {
           "description": "PW administrative status",
-          "maximum": 255,
+          "maximum": 65535,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "x-docsis-dataType": "uint16",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.9",
           "x-docsis-validValues": {
@@ -1767,18 +1864,26 @@
           "x-docsis-tlvType": "219.9.13"
         },
         "PwDescription": {
-          "description": "PW description",
+          "description": "PW description — textual description of PW; optional, 1-31 bytes; zero-length string if absent",
           "type": "string",
           "x-docsis-dataType": "string",
+          "x-docsis-range": {
+            "maxLength": 31,
+            "minLength": 1
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.8"
         },
         "PwDestinationPort": {
-          "description": "PW destination port",
+          "description": "PW destination port — UDP port for this PW; must be a dynamic port (49152-65535); unique per PW within an IWF",
           "maximum": 65535,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
+          "x-docsis-range": {
+            "max": 65535,
+            "min": 49152
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.5"
         },
@@ -1792,9 +1897,13 @@
           "x-docsis-tlvType": "219.9.1"
         },
         "PwName": {
-          "description": "PW name",
+          "description": "PW name — canonical name assigned to this PW (1-31 bytes)",
           "type": "string",
           "x-docsis-dataType": "string",
+          "x-docsis-range": {
+            "maxLength": 31,
+            "minLength": 1
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.7"
         },
@@ -1813,20 +1922,25 @@
           "x-docsis-tlvType": "219.9.4"
         },
         "PwPeerDestinationPort": {
-          "description": "PW peer destination port",
+          "description": "PW peer destination port — UDP port used by peer PW; must be a dynamic port (49152-65535); may also be used as source port",
           "maximum": 65535,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
+          "x-docsis-range": {
+            "max": 65535,
+            "min": 49152
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.6"
         },
         "PwPeerSsrc": {
-          "description": "PW peer SSRC",
+          "description": "PW peer SSRC — expected SSRC in incoming RTP header; non-zero validates incoming frames",
           "maximum": 4294967295,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint32",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.15"
         },
@@ -1886,6 +2000,7 @@
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.10",
           "x-docsis-validValues": {
@@ -1902,11 +2017,16 @@
       "description": "eTEA PW TDM Circulation Map encoding",
       "properties": {
         "PwTdmPortNumber": {
-          "description": "PW TDM port number",
+          "description": "PW TDM port number — physical E1/T1 port number (default 1; single-port devices may omit)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
+          "x-docsis-range": {
+            "max": 255,
+            "min": 1
+          },
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.9.16.1"
         },
@@ -1944,27 +2064,31 @@
           "x-docsis-tlvType": "219.10.5"
         },
         "PwDefaultFillPattern": {
-          "description": "PW default fill pattern",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.10.17"
-        },
-        "PwExcessiveLossThreshold": {
-          "description": "PW excessive loss threshold",
-          "maximum": 65535,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.10.12"
-        },
-        "PwLFlagPayloadPolicy": {
-          "description": "PW L flag payload policy",
+          "description": "PW default fill pattern — single fill byte played out when a packet is lost (default 0x00)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.10.17"
+        },
+        "PwExcessiveLossThreshold": {
+          "description": "PW excessive loss threshold — percentage threshold considered excessive packet loss",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.10.12"
+        },
+        "PwLFlagPayloadPolicy": {
+          "description": "PW L flag payload policy — whether to use or ignore payload in packets received with L bit set",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.18",
           "x-docsis-validValues": {
@@ -1973,20 +2097,21 @@
           }
         },
         "PwLopsEntranceCriteria": {
-          "description": "PW LOPS entrance criteria",
-          "maximum": 255,
+          "description": "PW LOPS entrance criteria — number of consecutive late/missing packets to enter LOPS state",
+          "maximum": 65535,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.8"
         },
         "PwLopsExitCriteria": {
-          "description": "PW LOPS exit criteria",
-          "maximum": 255,
+          "description": "PW LOPS exit criteria — number of consecutive in-sequence packets required to exit LOPS state",
+          "maximum": 65535,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "x-docsis-dataType": "uint16",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.7"
         },
@@ -2000,25 +2125,27 @@
           "x-docsis-tlvType": "219.10.11"
         },
         "PwPacketReplacePolicy": {
-          "description": "PW packet replace policy",
+          "description": "PW packet replace policy — what to play out on TDM when a packet is lost (not in LOPS state)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.10",
           "x-docsis-validValues": {
             "0": "filler",
-            "1": "ais",
+            "1": "AIS",
             "2": "other"
           }
         },
         "PwPayloadSuppression": {
-          "description": "PW payload suppression",
+          "description": "PW payload suppression — suppress payload bytes when L bit is set indicating TDM interface problem",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 2,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.6",
           "x-docsis-validValues": {
@@ -2040,7 +2167,7 @@
           }
         },
         "PwRtpPayloadType": {
-          "description": "PW RTP payload type",
+          "description": "PW RTP payload type — payload type in RTP header of data frames",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -2049,29 +2176,31 @@
           "x-docsis-tlvType": "219.10.20"
         },
         "PwRtpPeerPayloadType": {
-          "description": "PW RTP peer payload type",
+          "description": "PW RTP peer payload type — expected PT in peer's RTP data frames; non-zero validates incoming frames",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.21"
         },
         "PwRtpPeerTimestampReference": {
-          "description": "PW RTP peer timestamp reference",
-          "maximum": 4294967295,
+          "description": "PW RTP peer timestamp reference — number of clock cycles per 125 usec period used by peer",
+          "maximum": 65535,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint32",
+          "x-docsis-dataType": "uint16",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.23"
         },
         "PwRtpTimestampMode": {
-          "description": "PW RTP timestamp mode",
+          "description": "PW RTP timestamp mode — timestamp generation mode",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.16",
           "x-docsis-validValues": {
@@ -2082,20 +2211,20 @@
           }
         },
         "PwRtpTimestampReference": {
-          "description": "PW RTP timestamp reference",
-          "maximum": 4294967295,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint32",
-          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
-          "x-docsis-tlvType": "219.10.22"
-        },
-        "PwSevereLossThreshold": {
-          "description": "PW severe loss threshold",
+          "description": "PW RTP timestamp reference — number of clock cycles per 125 usec period (e.g. 193 for T1 1.544MHz, 256 for E1 2.048MHz)",
           "maximum": 65535,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
+          "x-docsis-tlvType": "219.10.22"
+        },
+        "PwSevereLossThreshold": {
+          "description": "PW severe loss threshold — percentage threshold considered severe packet loss",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.15"
         },
@@ -2122,11 +2251,12 @@
           "x-docsis-tlvType": "219.10.2"
         },
         "PwTos": {
-          "description": "PW Type of Service",
+          "description": "PW Type of Service — IP TOS value for packets sent on this PW (default 184 = EF class, 0xB8)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
+          "x-docsis-default": 184,
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.10.19"
         }

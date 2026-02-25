@@ -4736,10 +4736,12 @@
       "optionalProperties": {
         "PwTdmPortNumber": {
           "metadata": {
-            "description": "PW TDM port number",
+            "description": "PW TDM port number — physical E1/T1 port number (default 1; single-port devices may omit)",
             "tlvType": "219.9.16.1",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"min": 1, "max": 255},
+            "default": 1
           },
           "type": "uint8"
         },
@@ -4771,11 +4773,12 @@
         },
         "EmulationType": {
           "metadata": {
-            "description": "Emulation type",
+            "description": "Emulation type — PW emulation mode from PW-TDM-MIB type enumeration; spec text says default t1Satop(17) but table shows e1Satop(17)/t1Satop(18); table values are authoritative",
             "tlvType": "219.9.2",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"17": "e1Satop", "18": "t1Satop", "21": "basicCesPsn", "23": "tdmCasCesPsn"}
+            "validValues": {"17": "e1Satop", "18": "t1Satop", "21": "basicCesPsn", "23": "tdmCasCesPsn"},
+            "default": 18
           },
           "type": "uint8"
         },
@@ -4799,37 +4802,41 @@
         },
         "PwDestinationPort": {
           "metadata": {
-            "description": "PW destination port",
+            "description": "PW destination port — UDP port for this PW; must be a dynamic port (49152-65535); unique per PW within an IWF",
             "tlvType": "219.9.5",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"min": 49152, "max": 65535}
           },
           "type": "uint16"
         },
         "PwPeerDestinationPort": {
           "metadata": {
-            "description": "PW peer destination port",
+            "description": "PW peer destination port — UDP port used by peer PW; must be a dynamic port (49152-65535); may also be used as source port",
             "tlvType": "219.9.6",
             "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"min": 49152, "max": 65535}
           },
           "type": "uint16"
         },
         "PwName": {
           "metadata": {
-            "description": "PW name",
+            "description": "PW name — canonical name assigned to this PW (1-31 bytes)",
             "tlvType": "219.9.7",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"minLength": 1, "maxLength": 31}
           },
           "type": "string"
         },
         "PwDescription": {
           "metadata": {
-            "description": "PW description",
+            "description": "PW description — textual description of PW; optional, 1-31 bytes; zero-length string if absent",
             "tlvType": "219.9.8",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"minLength": 1, "maxLength": 31}
           },
           "type": "string"
         },
@@ -4837,11 +4844,11 @@
           "metadata": {
             "description": "PW administrative status",
             "tlvType": "219.9.9",
-            "dataType": "uint8",
+            "dataType": "uint16",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
             "validValues": {"1": "up", "2": "down", "3": "testing", "4": "app_loopback"}
           },
-          "type": "uint8"
+          "type": "uint16"
         },
         "StatusChangeNotificationEnable": {
           "metadata": {
@@ -4849,7 +4856,8 @@
             "tlvType": "219.9.10",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "disable", "1": "enable"}
+            "validValues": {"0": "disable", "1": "enable"},
+            "default": 0
           },
           "type": "uint8"
         },
@@ -4892,10 +4900,11 @@
         },
         "PwPeerSsrc": {
           "metadata": {
-            "description": "PW peer SSRC",
+            "description": "PW peer SSRC — expected SSRC in incoming RTP header; non-zero validates incoming frames",
             "tlvType": "219.9.15",
             "dataType": "uint32",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
           "type": "uint32"
         },
@@ -4958,39 +4967,42 @@
         },
         "PwPayloadSuppression": {
           "metadata": {
-            "description": "PW payload suppression",
+            "description": "PW payload suppression — suppress payload bytes when L bit is set indicating TDM interface problem",
             "tlvType": "219.10.6",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"1": "enable", "2": "disable"}
+            "validValues": {"1": "enable", "2": "disable"},
+            "default": 2
           },
           "type": "uint8"
         },
         "PwLopsExitCriteria": {
           "metadata": {
-            "description": "PW LOPS exit criteria",
+            "description": "PW LOPS exit criteria — number of consecutive in-sequence packets required to exit LOPS state",
             "tlvType": "219.10.7",
-            "dataType": "uint8",
+            "dataType": "uint16",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint8"
+          "type": "uint16"
         },
         "PwLopsEntranceCriteria": {
           "metadata": {
-            "description": "PW LOPS entrance criteria",
+            "description": "PW LOPS entrance criteria — number of consecutive late/missing packets to enter LOPS state",
             "tlvType": "219.10.8",
-            "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "dataType": "uint16",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
-          "type": "uint8"
+          "type": "uint16"
         },
         "PwPacketReplacePolicy": {
           "metadata": {
-            "description": "PW packet replace policy",
+            "description": "PW packet replace policy — what to play out on TDM when a packet is lost (not in LOPS state)",
             "tlvType": "219.10.10",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "filler", "1": "ais", "2": "other"}
+            "validValues": {"0": "filler", "1": "AIS", "2": "other"},
+            "default": 0
           },
           "type": "uint8"
         },
@@ -5005,63 +5017,67 @@
         },
         "PwExcessiveLossThreshold": {
           "metadata": {
-            "description": "PW excessive loss threshold",
+            "description": "PW excessive loss threshold — percentage threshold considered excessive packet loss",
             "tlvType": "219.10.12",
-            "dataType": "uint16",
+            "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint16"
+          "type": "uint8"
         },
         "PwSevereLossThreshold": {
           "metadata": {
-            "description": "PW severe loss threshold",
+            "description": "PW severe loss threshold — percentage threshold considered severe packet loss",
             "tlvType": "219.10.15",
-            "dataType": "uint16",
+            "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint16"
+          "type": "uint8"
         },
         "PwRtpTimestampMode": {
           "metadata": {
-            "description": "PW RTP timestamp mode",
+            "description": "PW RTP timestamp mode — timestamp generation mode",
             "tlvType": "219.10.16",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"1": "absolute", "2": "differential", "3": "prime", "4": "other"}
+            "validValues": {"1": "absolute", "2": "differential", "3": "prime", "4": "other"},
+            "default": 1
           },
           "type": "uint8"
         },
         "PwDefaultFillPattern": {
           "metadata": {
-            "description": "PW default fill pattern",
+            "description": "PW default fill pattern — single fill byte played out when a packet is lost (default 0x00)",
             "tlvType": "219.10.17",
-            "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
-          "type": "string"
+          "type": "uint8"
         },
         "PwLFlagPayloadPolicy": {
           "metadata": {
-            "description": "PW L flag payload policy",
+            "description": "PW L flag payload policy — whether to use or ignore payload in packets received with L bit set",
             "tlvType": "219.10.18",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "ignore", "1": "use"}
+            "validValues": {"0": "ignore", "1": "use"},
+            "default": 0
           },
           "type": "uint8"
         },
         "PwTos": {
           "metadata": {
-            "description": "PW Type of Service",
+            "description": "PW Type of Service — IP TOS value for packets sent on this PW (default 184 = EF class, 0xB8)",
             "tlvType": "219.10.19",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 184
           },
           "type": "uint8"
         },
         "PwRtpPayloadType": {
           "metadata": {
-            "description": "PW RTP payload type",
+            "description": "PW RTP payload type — payload type in RTP header of data frames",
             "tlvType": "219.10.20",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
@@ -5070,30 +5086,31 @@
         },
         "PwRtpPeerPayloadType": {
           "metadata": {
-            "description": "PW RTP peer payload type",
+            "description": "PW RTP peer payload type — expected PT in peer's RTP data frames; non-zero validates incoming frames",
             "tlvType": "219.10.21",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
           "type": "uint8"
         },
         "PwRtpTimestampReference": {
           "metadata": {
-            "description": "PW RTP timestamp reference",
+            "description": "PW RTP timestamp reference — number of clock cycles per 125 usec period (e.g. 193 for T1 1.544MHz, 256 for E1 2.048MHz)",
             "tlvType": "219.10.22",
-            "dataType": "uint32",
+            "dataType": "uint16",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint32"
+          "type": "uint16"
         },
         "PwRtpPeerTimestampReference": {
           "metadata": {
-            "description": "PW RTP peer timestamp reference",
+            "description": "PW RTP peer timestamp reference — number of clock cycles per 125 usec period used by peer",
             "tlvType": "219.10.23",
-            "dataType": "uint32",
+            "dataType": "uint16",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint32"
+          "type": "uint16"
         },
         "PwSrtpEnable": {
           "metadata": {
@@ -5124,65 +5141,71 @@
         },
         "DefaultIdlePattern": {
           "metadata": {
-            "description": "Default idle pattern",
+            "description": "Default idle pattern — single byte played on TDM interface on defect conditions (default 0xFF)",
             "tlvType": "219.13.2",
-            "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 255
           },
-          "type": "string"
+          "type": "uint8"
         },
         "LFlagPolicy": {
           "metadata": {
-            "description": "L flag policy",
+            "description": "L flag policy — action on TDM when packets received with L flag set",
             "tlvType": "219.13.3",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "idle", "1": "trunkAIS", "2": "idle_code"}
+            "validValues": {"0": "idle", "1": "TrunkAIS", "2": "idle_code"},
+            "default": 0
           },
           "type": "uint8"
         },
         "RFlagPolicy": {
           "metadata": {
-            "description": "R flag policy",
+            "description": "R flag policy — action on TDM when packets received with R flag set",
             "tlvType": "219.13.4",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "nothing", "1": "rai", "2": "idle_code"}
+            "validValues": {"0": "nothing", "1": "RAI", "2": "idle_code"},
+            "default": 0
           },
           "type": "uint8"
         },
         "RemoteDefectPolicy": {
           "metadata": {
-            "description": "Remote defect policy",
+            "description": "Remote defect policy — action on TDM when L=0, M=01 indicating Remote Defect received",
             "tlvType": "219.13.5",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"0": "nothing", "1": "rai", "2": "channelIdle"}
+            "validValues": {"0": "nothing", "1": "RAI", "2": "channelIdle"},
+            "default": 0
           },
           "type": "uint8"
         },
         "LopsPolicy": {
           "metadata": {
-            "description": "LOPS policy",
+            "description": "LOPS policy — pattern played on TDM while in LOPS state",
             "tlvType": "219.13.6",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"1": "idle", "2": "trunkAIS", "3": "channelIdle"}
+            "validValues": {"1": "idle", "2": "trunkAIS", "3": "channelIdle"},
+            "default": 1
           },
           "type": "uint8"
         },
         "AppSigTos": {
           "metadata": {
-            "description": "Application signal TOS",
+            "description": "Application signal TOS — IP TOS for separate CAS signaling packet stream (default 0)",
             "tlvType": "219.13.7",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
           "type": "uint8"
         },
         "RtpCasPt": {
           "metadata": {
-            "description": "RTP CAS payload type",
+            "description": "RTP CAS signaling payload type — PT in RTP header of signaling frames",
             "tlvType": "219.13.8",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
@@ -5191,35 +5214,87 @@
         },
         "RtpCasPeerPt": {
           "metadata": {
-            "description": "RTP CAS peer payload type",
+            "description": "RTP CAS peer signaling payload type — expected PT in peer's RTP signaling frames; non-zero validates incoming",
             "tlvType": "219.13.9",
             "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 0
           },
           "type": "uint8"
         },
         "AppSigIdle": {
           "metadata": {
-            "description": "Application signal idle pattern",
+            "description": "Application signal idle pattern — CAS signaling idle byte sent on TDM interface failure (default 0x0F)",
             "tlvType": "219.13.10",
-            "dataType": "hexstring",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 15
           },
-          "type": "string"
+          "type": "uint8"
         },
         "AppSigInterval": {
           "metadata": {
-            "description": "Application signal interval",
+            "description": "Application signal interval — CAS signaling send interval in milliseconds (default 5 ms)",
             "tlvType": "219.13.11",
-            "dataType": "uint16",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 5
           },
-          "type": "uint16"
+          "type": "uint8"
         },
         "AppSigMaxInterval": {
           "metadata": {
-            "description": "Application signal maximum interval",
+            "description": "Application signal maximum interval — CAS signaling refresh interval in seconds when no change (default 5 s)",
             "tlvType": "219.13.12",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 5
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "EteaDsx1TransmitClockSourceEntry": {
+      "metadata": {
+        "description": "eTEA dsx1 Transmit Clock Source configuration — compound sub-TLV specifying clock mode and optional source reference",
+        "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+      },
+      "optionalProperties": {
+        "ClockMode": {
+          "metadata": {
+            "description": "dsx1 transmit clock source mode — must always be present",
+            "tlvType": "219.14.7.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"1": "loopTiming", "2": "localTiming", "3": "throughTiming", "4": "adaptive"}
+          },
+          "type": "uint8"
+        },
+        "InterfaceType": {
+          "metadata": {
+            "description": "dsx1 transmit clock source interface type (0=CM port, 1=Ethernet port, 2=E1/T1 port; default 0)",
+            "tlvType": "219.14.7.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "validValues": {"0": "cableModemPort", "1": "ethernetPort", "2": "e1t1Port"},
+            "default": 0
+          },
+          "type": "uint8"
+        },
+        "PortNumber": {
+          "metadata": {
+            "description": "dsx1 transmit clock source port number (default 1)",
+            "tlvType": "219.14.7.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "default": 1
+          },
+          "type": "uint8"
+        },
+        "PwIndex": {
+          "metadata": {
+            "description": "dsx1 transmit clock source PW index — adaptive timing source PW index",
+            "tlvType": "219.14.7.4",
             "dataType": "uint16",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
@@ -5264,10 +5339,11 @@
         },
         "Dsx1CircuitId": {
           "metadata": {
-            "description": "dsx1 circuit ID",
+            "description": "dsx1 circuit ID — vendor circuit identifier for troubleshooting; should include physical port ID (1-255 bytes)",
             "tlvType": "219.14.4",
             "dataType": "string",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
+            "range": {"minLength": 1, "maxLength": 255}
           },
           "type": "string"
         },
@@ -5283,23 +5359,23 @@
         },
         "Dsx1SignalMode": {
           "metadata": {
-            "description": "dsx1 signal mode",
+            "description": "dsx1 signal mode — signaling mode for DS0s of this physical port",
             "tlvType": "219.14.6",
             "dataType": "uint8",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"1": "none", "2": "robbedBit", "3": "bitOriented", "4": "messageOriented", "5": "other"}
+            "validValues": {"1": "none", "2": "robbedBit", "3": "bitOriented", "4": "messageOriented", "5": "other"},
+            "default": 1
           },
           "type": "uint8"
         },
         "Dsx1TransmitClockSource": {
           "metadata": {
-            "description": "dsx1 transmit clock source",
+            "description": "dsx1 transmit clock source — compound TLV containing clock mode (14.7.1, required) and optional source reference sub-TLVs (14.7.2, 14.7.3, 14.7.4)",
             "tlvType": "219.14.7",
-            "dataType": "uint8",
-            "spec": "CM-SP-TEI-I06 6.7.1.10.1",
-            "validValues": {"1": "loopTiming", "2": "localTiming", "3": "throughTiming", "4": "adaptive"}
+            "dataType": "compound",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint8"
+          "ref": "EteaDsx1TransmitClockSourceEntry"
         },
         "Dsx1Fdl": {
           "metadata": {
@@ -5369,6 +5445,16 @@
         "spec": "CM-SP-TEI-I06 6.7.1.10.1"
       },
       "optionalProperties": {
+        "EteaMic": {
+          "metadata": {
+            "description": "eTEA Message Integrity Check (eTEA MIC) — 128-bit MD5 digest over config file bytes; MUST appear immediately before EndOfText",
+            "tlvType": "219.6",
+            "tlvLength": 16,
+            "dataType": "hexstring",
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+          },
+          "type": "string"
+        },
         "SymbolClock": {
           "metadata": {
             "description": "eTEA symbol clock configuration",
@@ -5447,6 +5533,30 @@
             "ref": "EteaDsx1ConfigurationTableEntry"
           }
         },
+        "SnmpV1V2cCoexistenceCfg": {
+          "metadata": {
+            "description": "eTEA SNMPv1v2c Coexistence Configuration — SNMP access control per DOCSIS MULPIv3.0 Annex C; eTEA uses '@eTEA' key instead of '@CM'",
+            "tlvType": "219.53",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+          },
+          "elements": {
+            "type": "string"
+          }
+        },
+        "SnmpV3AccessViewCfg": {
+          "metadata": {
+            "description": "eTEA SNMPv3 Access View Configuration — SNMP v3 access view per DOCSIS MULPIv3.0 Annex C",
+            "tlvType": "219.54",
+            "dataType": "compound",
+            "repeatable": true,
+            "spec": "CM-SP-TEI-I06 6.7.1.10.1"
+          },
+          "elements": {
+            "type": "string"
+          }
+        },
         "VendorSpecificExtensions": {
           "metadata": {
             "description": "eTEA vendor-specific extensions",
@@ -5457,12 +5567,12 @@
         },
         "EndOfText": {
           "metadata": {
-            "description": "eTEA end of text marker",
+            "description": "eTEA end of data marker — has no Length or value fields; presence indicates end of config file",
             "tlvType": "219.255",
-            "dataType": "uint8",
+            "dataType": "marker",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
-          "type": "uint8"
+          "type": "boolean"
         }
       }
     }
