@@ -98,6 +98,113 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.13"
     },
+    "BaselinePrivacyEntry": {
+      "additionalProperties": false,
+      "description": "Baseline Privacy (BPI+) Configuration Settings sub-TLVs",
+      "properties": {
+        "AuthorizationGraceTime": {
+          "description": "Grace period for reauthorization (seconds)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 600,
+          "x-docsis-range": "1-6047999",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.3",
+          "x-docsis-tlvType": "17.3"
+        },
+        "AuthorizeRejectWaitTimeout": {
+          "description": "Time (seconds) CM waits in Authorize Reject Wait state after receiving Authorization Reject",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 60,
+          "x-docsis-range": "1-600",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.7",
+          "x-docsis-tlvType": "17.7"
+        },
+        "AuthorizeWaitTimeout": {
+          "description": "Retransmission interval (seconds) for Authorization Request messages in Authorize Wait state",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 10,
+          "x-docsis-range": "1-30",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.1",
+          "x-docsis-tlvType": "17.1"
+        },
+        "OperationalWaitTimeout": {
+          "description": "Retransmission interval (seconds) for Key Requests in Operational Wait state",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 10,
+          "x-docsis-range": "1-10",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.4",
+          "x-docsis-tlvType": "17.4"
+        },
+        "ReauthorizeWaitTimeout": {
+          "description": "Retransmission interval (seconds) for Authorization Request messages in Reauthorize Wait state",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 10,
+          "x-docsis-range": "1-30",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.2",
+          "x-docsis-tlvType": "17.2"
+        },
+        "RekeyWaitTimeout": {
+          "description": "Retransmission interval (seconds) for Key Requests in Rekey Wait state",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 10,
+          "x-docsis-range": "1-10",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.5",
+          "x-docsis-tlvType": "17.5"
+        },
+        "SaMapMaxRetries": {
+          "description": "Maximum number of Map Request retries",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 4,
+          "x-docsis-range": "0-10",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.9",
+          "x-docsis-tlvType": "17.9"
+        },
+        "SaMapWaitTimeout": {
+          "description": "Retransmission interval (seconds) for SA Map Requests in Map Wait state",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 1,
+          "x-docsis-range": "1-10",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.8",
+          "x-docsis-tlvType": "17.8"
+        },
+        "TekGraceTime": {
+          "description": "Grace period (seconds) for re-keying the TEK",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 3600,
+          "x-docsis-range": "1-302399",
+          "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1.6",
+          "x-docsis-tlvType": "17.6"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1"
+    },
     "BgpAttributeEntry": {
       "additionalProperties": false,
       "description": "BGP Attribute encoding",
@@ -306,6 +413,104 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.5"
     },
+    "CmSoftwareDownloadConfigEntry": {
+      "additionalProperties": false,
+      "description": "Cable Modem Software Download Configuration Settings sub-TLVs",
+      "properties": {
+        "CodeFileAuthenticationHeader": {
+          "description": "Firmware Authentication Header (FWAH) - PKCS#7 data structure (DER-encoded ASN.1)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3.1.2",
+          "x-docsis-tlvLengthSize": 2,
+          "x-docsis-tlvType": "104.1.2"
+        },
+        "OcspCvcResponses": {
+          "description": "Concatenated OCSP responses for CVC certificate validation (DER-encoded)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3.1.1",
+          "x-docsis-tlvLengthSize": 2,
+          "x-docsis-tlvType": "104.1.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3.1"
+    },
+    "CmSshServerConfigurationSettingsEntry": {
+      "additionalProperties": false,
+      "description": "CM SSH Server Configuration Settings sub-TLVs",
+      "properties": {
+        "CommonSshConfiguration": {
+          "$ref": "#/$defs/SshCommonConfigEntry",
+          "description": "Common SSH Configuration File Settings",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1",
+          "x-docsis-tlvType": "103.1"
+        },
+        "SnmpBasedAuthConfiguration": {
+          "$ref": "#/$defs/SshSnmpAuthConfigEntry",
+          "description": "SNMP-based Authentication Configuration Options",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.3",
+          "x-docsis-tlvType": "103.3"
+        },
+        "TlsBasedAuthConfiguration": {
+          "$ref": "#/$defs/SshTlsAuthConfigEntry",
+          "description": "TLS-Based Authentication Configuration Options",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.2",
+          "x-docsis-tlvType": "103.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2"
+    },
+    "DemarcAutoConfigurationEntry": {
+      "additionalProperties": false,
+      "description": "DEMARC Auto-Configuration (DAC) Encoding sub-TLVs",
+      "properties": {
+        "CmInterfaceMask": {
+          "description": "CM Interface Mask (CMIM) bitmask for DAC-enabled interfaces",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.2",
+          "x-docsis-tlvType": "43.12.2"
+        },
+        "DacDisableEnable": {
+          "description": "DAC administrative configuration (0=Disable, 1=Enable)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
+          "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.1",
+          "x-docsis-tlvType": "43.12.1",
+          "x-docsis-validValues": {
+            "0": "Disable DAC",
+            "1": "Enable DAC"
+          }
+        },
+        "DownstreamServiceClassName": {
+          "description": "Downstream Service Class Name for DAC-Path service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.4",
+          "x-docsis-tlvLength": "2-16",
+          "x-docsis-tlvType": "43.12.4"
+        },
+        "UpstreamServiceClassName": {
+          "description": "Upstream Service Class Name for DAC-Path service flow",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.3",
+          "x-docsis-tlvLength": "2-16",
+          "x-docsis-tlvType": "43.12.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.1"
+    },
     "DocsisExtensionFieldEntry": {
       "additionalProperties": false,
       "description": "DOCSIS Extension Field (TLV 43) container. When VendorId is FFFFFF (General Extension), the defined sub-TLVs apply. When VendorId is any other OUI, use VendorSubTlvs for vendor-specific sub-TLVs.",
@@ -363,11 +568,11 @@
           "x-docsis-tlvType": "43.4"
         },
         "DemarcAutoConfiguration": {
+          "$ref": "#/$defs/DemarcAutoConfigurationEntry",
           "description": "DEMARC Auto-Configuration (DAC) encoding (General Extension, OUI=FFFFFF)",
-          "type": "string",
           "x-docsis-context": "General Extension (OUI=FFFFFF)",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.1.18.1.11",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "DPoE-SP-DEMARCv1.0 B.1",
           "x-docsis-tlvType": "43.12"
         },
         "ExtendedCmtsMicConfigurationSetting": {
@@ -3981,6 +4186,21 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
     },
+    "SecurityConfigurationSettingsEntry": {
+      "additionalProperties": false,
+      "description": "Security Configuration Settings sub-TLVs",
+      "properties": {
+        "CmSoftwareDownloadConfiguration": {
+          "$ref": "#/$defs/CmSoftwareDownloadConfigEntry",
+          "description": "Cable Modem Software Download Configuration Settings (D4.0 CM only)",
+          "x-docsis-dataType": "compound",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3.1",
+          "x-docsis-tlvType": "104.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3"
+    },
     "ServiceDelimiterEntry": {
       "additionalProperties": false,
       "description": "Service Delimiter encoding",
@@ -4299,6 +4519,101 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.14",
       "x-docsis-tlvType": 54
+    },
+    "SshCommonConfigEntry": {
+      "additionalProperties": false,
+      "description": "Common SSH Configuration File Settings sub-TLVs",
+      "properties": {
+        "SshEnabledInterfaces": {
+          "description": "SSH enabled interfaces bitmask (bit 0: network-facing private interfaces)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 1,
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1.3",
+          "x-docsis-tlvType": "103.1.3"
+        },
+        "SshInactivityTimeout": {
+          "description": "SSH inactivity timeout in seconds (0=disabled)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 1800,
+          "x-docsis-range": "0-86400",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1.2",
+          "x-docsis-tlvType": "103.1.2"
+        },
+        "SshNewConnectionTimeout": {
+          "description": "SSH new connection timeout in seconds (0=SSH disabled)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-default": 0,
+          "x-docsis-range": "0-28800",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1.1",
+          "x-docsis-tlvType": "103.1.1"
+        },
+        "SshSccaCertRevocationCheckDisable": {
+          "description": "Disable certificate revocation checks for SCCA TLS connection (0=do not proceed without rev info, non-zero=proceed)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-default": 0,
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1.5",
+          "x-docsis-tlvType": "103.1.5"
+        },
+        "SshSourceAddressRestrictions": {
+          "description": "Network/address specifier in CIDR notation limiting SSH connection sources",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1.4",
+          "x-docsis-tlvType": "103.1.4"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.1"
+    },
+    "SshSnmpAuthConfigEntry": {
+      "additionalProperties": false,
+      "description": "SNMP-based Authentication Configuration Options sub-TLVs",
+      "properties": {
+        "SshCmCds": {
+          "description": "Credential Data Structure (CDS) with SSH credentials (username/password or public key entries)",
+          "type": "string",
+          "x-docsis-dataType": "hexstring",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.3.1",
+          "x-docsis-tlvLengthSize": 2,
+          "x-docsis-tlvType": "103.3.1"
+        },
+        "SshCmCdsDownloadUrl": {
+          "description": "URL where the CDS can be downloaded from",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.3.2",
+          "x-docsis-tlvType": "103.3.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.3"
+    },
+    "SshTlsAuthConfigEntry": {
+      "additionalProperties": false,
+      "description": "TLS-Based Authentication Configuration Options sub-TLVs",
+      "properties": {
+        "SshSccaRestApiUrl": {
+          "description": "URL where the SCCA REST API is implemented",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.2.1",
+          "x-docsis-tlvType": "103.2.1"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2.2"
     },
     "TpidTranslationEntry": {
       "additionalProperties": false,
@@ -5450,10 +5765,10 @@
       "x-docsis-tlvType": 96
     },
     "BaselinePrivacy": {
-      "description": "Baseline Privacy (BPI+) encoding",
-      "type": "string",
-      "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.1",
+      "$ref": "#/$defs/BaselinePrivacyEntry",
+      "description": "Baseline Privacy (BPI+) configuration settings",
+      "x-docsis-dataType": "compound",
+      "x-docsis-spec": "CM-SP-SECv4.0 A.1.1.1",
       "x-docsis-tlvType": 17
     },
     "ChannelAssignmentConfigurationSettings": {
@@ -5472,10 +5787,11 @@
       "x-docsis-tlvType": 6
     },
     "CmSshServerConfigurationSettings": {
-      "description": "CM SSH Server Configuration Settings encoding",
-      "type": "string",
-      "x-docsis-dataType": "hexstring",
+      "$ref": "#/$defs/CmSshServerConfigurationSettingsEntry",
+      "description": "CM SSH Server Configuration Settings",
+      "x-docsis-dataType": "compound",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.2",
+      "x-docsis-tlvLengthSize": 2,
       "x-docsis-tlvType": 103
     },
     "CmUpstreamAqmDisable": {
@@ -5925,10 +6241,11 @@
       "x-docsis-tlvType": 88
     },
     "SecurityConfigurationSettings": {
-      "description": "Security Configuration Settings encoding",
-      "type": "string",
-      "x-docsis-dataType": "hexstring",
+      "$ref": "#/$defs/SecurityConfigurationSettingsEntry",
+      "description": "Security Configuration Settings",
+      "x-docsis-dataType": "compound",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.3.1.3",
+      "x-docsis-tlvLengthSize": 2,
       "x-docsis-tlvType": 104
     },
     "SnmpCpeAccessControl": {

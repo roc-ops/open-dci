@@ -4302,11 +4302,11 @@
           "metadata": {
             "description": "DEMARC Auto-Configuration (DAC) encoding (General Extension, OUI=FFFFFF)",
             "tlvType": "43.12",
-            "dataType": "hexstring",
+            "dataType": "compound",
             "context": "General Extension (OUI=FFFFFF)",
-            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.11"
+            "spec": "DPoE-SP-DEMARCv1.0 B.1"
           },
-          "type": "string"
+          "ref": "DemarcAutoConfigurationEntry"
         },
         "VendorSubTlvs": {
           "metadata": {
@@ -5575,6 +5575,347 @@
           "type": "boolean"
         }
       }
+    },
+    "BaselinePrivacyEntry": {
+      "metadata": {
+        "description": "Baseline Privacy (BPI+) Configuration Settings sub-TLVs",
+        "spec": "CM-SP-SECv4.0 A.1.1.1"
+      },
+      "optionalProperties": {
+        "AuthorizeWaitTimeout": {
+          "metadata": {
+            "description": "Retransmission interval (seconds) for Authorization Request messages in Authorize Wait state",
+            "tlvType": "17.1",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.1",
+            "default": 10,
+            "range": "1-30"
+          },
+          "type": "uint32"
+        },
+        "ReauthorizeWaitTimeout": {
+          "metadata": {
+            "description": "Retransmission interval (seconds) for Authorization Request messages in Reauthorize Wait state",
+            "tlvType": "17.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.2",
+            "default": 10,
+            "range": "1-30"
+          },
+          "type": "uint32"
+        },
+        "AuthorizationGraceTime": {
+          "metadata": {
+            "description": "Grace period for reauthorization (seconds)",
+            "tlvType": "17.3",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.3",
+            "default": 600,
+            "range": "1-6047999"
+          },
+          "type": "uint32"
+        },
+        "OperationalWaitTimeout": {
+          "metadata": {
+            "description": "Retransmission interval (seconds) for Key Requests in Operational Wait state",
+            "tlvType": "17.4",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.4",
+            "default": 10,
+            "range": "1-10"
+          },
+          "type": "uint32"
+        },
+        "RekeyWaitTimeout": {
+          "metadata": {
+            "description": "Retransmission interval (seconds) for Key Requests in Rekey Wait state",
+            "tlvType": "17.5",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.5",
+            "default": 10,
+            "range": "1-10"
+          },
+          "type": "uint32"
+        },
+        "TekGraceTime": {
+          "metadata": {
+            "description": "Grace period (seconds) for re-keying the TEK",
+            "tlvType": "17.6",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.6",
+            "default": 3600,
+            "range": "1-302399"
+          },
+          "type": "uint32"
+        },
+        "AuthorizeRejectWaitTimeout": {
+          "metadata": {
+            "description": "Time (seconds) CM waits in Authorize Reject Wait state after receiving Authorization Reject",
+            "tlvType": "17.7",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.7",
+            "default": 60,
+            "range": "1-600"
+          },
+          "type": "uint32"
+        },
+        "SaMapWaitTimeout": {
+          "metadata": {
+            "description": "Retransmission interval (seconds) for SA Map Requests in Map Wait state",
+            "tlvType": "17.8",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.8",
+            "default": 1,
+            "range": "1-10"
+          },
+          "type": "uint32"
+        },
+        "SaMapMaxRetries": {
+          "metadata": {
+            "description": "Maximum number of Map Request retries",
+            "tlvType": "17.9",
+            "dataType": "uint32",
+            "spec": "CM-SP-SECv4.0 A.1.1.1.9",
+            "default": 4,
+            "range": "0-10"
+          },
+          "type": "uint32"
+        }
+      }
+    },
+    "DemarcAutoConfigurationEntry": {
+      "metadata": {
+        "description": "DEMARC Auto-Configuration (DAC) Encoding sub-TLVs",
+        "spec": "DPoE-SP-DEMARCv1.0 B.1"
+      },
+      "optionalProperties": {
+        "DacDisableEnable": {
+          "metadata": {
+            "description": "DAC administrative configuration (0=Disable, 1=Enable)",
+            "tlvType": "43.12.1",
+            "dataType": "uint8",
+            "spec": "DPoE-SP-DEMARCv1.0 B.1",
+            "default": 0,
+            "validValues": {
+              "0": "Disable DAC",
+              "1": "Enable DAC"
+            }
+          },
+          "type": "uint8"
+        },
+        "CmInterfaceMask": {
+          "metadata": {
+            "description": "CM Interface Mask (CMIM) bitmask for DAC-enabled interfaces",
+            "tlvType": "43.12.2",
+            "dataType": "hexstring",
+            "spec": "DPoE-SP-DEMARCv1.0 B.2"
+          },
+          "type": "string"
+        },
+        "UpstreamServiceClassName": {
+          "metadata": {
+            "description": "Upstream Service Class Name for DAC-Path service flow",
+            "tlvType": "43.12.3",
+            "dataType": "string",
+            "tlvLength": "2-16",
+            "spec": "DPoE-SP-DEMARCv1.0 B.3"
+          },
+          "type": "string"
+        },
+        "DownstreamServiceClassName": {
+          "metadata": {
+            "description": "Downstream Service Class Name for DAC-Path service flow",
+            "tlvType": "43.12.4",
+            "dataType": "string",
+            "tlvLength": "2-16",
+            "spec": "DPoE-SP-DEMARCv1.0 B.4"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "CmSshServerConfigurationSettingsEntry": {
+      "metadata": {
+        "description": "CM SSH Server Configuration Settings sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.2"
+      },
+      "optionalProperties": {
+        "CommonSshConfiguration": {
+          "metadata": {
+            "description": "Common SSH Configuration File Settings",
+            "tlvType": "103.1",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1"
+          },
+          "ref": "SshCommonConfigEntry"
+        },
+        "TlsBasedAuthConfiguration": {
+          "metadata": {
+            "description": "TLS-Based Authentication Configuration Options",
+            "tlvType": "103.2",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.2"
+          },
+          "ref": "SshTlsAuthConfigEntry"
+        },
+        "SnmpBasedAuthConfiguration": {
+          "metadata": {
+            "description": "SNMP-based Authentication Configuration Options",
+            "tlvType": "103.3",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.3"
+          },
+          "ref": "SshSnmpAuthConfigEntry"
+        }
+      }
+    },
+    "SshCommonConfigEntry": {
+      "metadata": {
+        "description": "Common SSH Configuration File Settings sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.2.1"
+      },
+      "optionalProperties": {
+        "SshNewConnectionTimeout": {
+          "metadata": {
+            "description": "SSH new connection timeout in seconds (0=SSH disabled)",
+            "tlvType": "103.1.1",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1.1",
+            "default": 0,
+            "range": "0-28800"
+          },
+          "type": "uint32"
+        },
+        "SshInactivityTimeout": {
+          "metadata": {
+            "description": "SSH inactivity timeout in seconds (0=disabled)",
+            "tlvType": "103.1.2",
+            "dataType": "uint32",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1.2",
+            "default": 1800,
+            "range": "0-86400"
+          },
+          "type": "uint32"
+        },
+        "SshEnabledInterfaces": {
+          "metadata": {
+            "description": "SSH enabled interfaces bitmask (bit 0: network-facing private interfaces)",
+            "tlvType": "103.1.3",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1.3",
+            "default": 1
+          },
+          "type": "uint8"
+        },
+        "SshSourceAddressRestrictions": {
+          "metadata": {
+            "description": "Network/address specifier in CIDR notation limiting SSH connection sources",
+            "tlvType": "103.1.4",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1.4"
+          },
+          "type": "string"
+        },
+        "SshSccaCertRevocationCheckDisable": {
+          "metadata": {
+            "description": "Disable certificate revocation checks for SCCA TLS connection (0=do not proceed without rev info, non-zero=proceed)",
+            "tlvType": "103.1.5",
+            "dataType": "uint8",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.1.5",
+            "default": 0
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "SshTlsAuthConfigEntry": {
+      "metadata": {
+        "description": "TLS-Based Authentication Configuration Options sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.2.2"
+      },
+      "optionalProperties": {
+        "SshSccaRestApiUrl": {
+          "metadata": {
+            "description": "URL where the SCCA REST API is implemented",
+            "tlvType": "103.2.1",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.2.1"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "SshSnmpAuthConfigEntry": {
+      "metadata": {
+        "description": "SNMP-based Authentication Configuration Options sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.2.3"
+      },
+      "optionalProperties": {
+        "SshCmCds": {
+          "metadata": {
+            "description": "Credential Data Structure (CDS) with SSH credentials (username/password or public key entries)",
+            "tlvType": "103.3.1",
+            "dataType": "hexstring",
+            "tlvLengthSize": 2,
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.3.1"
+          },
+          "type": "string"
+        },
+        "SshCmCdsDownloadUrl": {
+          "metadata": {
+            "description": "URL where the CDS can be downloaded from",
+            "tlvType": "103.3.2",
+            "dataType": "string",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.2.3.2"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "SecurityConfigurationSettingsEntry": {
+      "metadata": {
+        "description": "Security Configuration Settings sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.3"
+      },
+      "optionalProperties": {
+        "CmSoftwareDownloadConfiguration": {
+          "metadata": {
+            "description": "Cable Modem Software Download Configuration Settings (D4.0 CM only)",
+            "tlvType": "104.1",
+            "dataType": "compound",
+            "spec": "CM-SP-MULPIv4.0 C.3.1.3.1"
+          },
+          "ref": "CmSoftwareDownloadConfigEntry"
+        }
+      }
+    },
+    "CmSoftwareDownloadConfigEntry": {
+      "metadata": {
+        "description": "Cable Modem Software Download Configuration Settings sub-TLVs",
+        "spec": "CM-SP-MULPIv4.0 C.3.1.3.1"
+      },
+      "optionalProperties": {
+        "OcspCvcResponses": {
+          "metadata": {
+            "description": "Concatenated OCSP responses for CVC certificate validation (DER-encoded)",
+            "tlvType": "104.1.1",
+            "dataType": "hexstring",
+            "tlvLengthSize": 2,
+            "spec": "CM-SP-MULPIv4.0 C.3.1.3.1.1"
+          },
+          "type": "string"
+        },
+        "CodeFileAuthenticationHeader": {
+          "metadata": {
+            "description": "Firmware Authentication Header (FWAH) - PKCS#7 data structure (DER-encoded ASN.1)",
+            "tlvType": "104.1.2",
+            "dataType": "hexstring",
+            "tlvLengthSize": 2,
+            "spec": "CM-SP-MULPIv4.0 C.3.1.3.1.2"
+          },
+          "type": "string"
+        }
+      }
     }
   },
   "optionalProperties": {
@@ -5674,12 +6015,12 @@
     },
     "BaselinePrivacy": {
       "metadata": {
-        "description": "Baseline Privacy (BPI+) encoding",
+        "description": "Baseline Privacy (BPI+) configuration settings",
         "tlvType": 17,
-        "dataType": "hexstring",
-        "spec": "CM-SP-MULPIv4.0 C.3.1.1"
+        "dataType": "compound",
+        "spec": "CM-SP-SECv4.0 A.1.1.1"
       },
-      "type": "string"
+      "ref": "BaselinePrivacyEntry"
     },
     "MaxNumCpes": {
       "metadata": {
@@ -6332,21 +6673,23 @@
     },
     "CmSshServerConfigurationSettings": {
       "metadata": {
-        "description": "CM SSH Server Configuration Settings encoding",
+        "description": "CM SSH Server Configuration Settings",
         "tlvType": 103,
-        "dataType": "hexstring",
+        "dataType": "compound",
+        "tlvLengthSize": 2,
         "spec": "CM-SP-MULPIv4.0 C.3.1.2"
       },
-      "type": "string"
+      "ref": "CmSshServerConfigurationSettingsEntry"
     },
     "SecurityConfigurationSettings": {
       "metadata": {
-        "description": "Security Configuration Settings encoding",
+        "description": "Security Configuration Settings",
         "tlvType": 104,
-        "dataType": "hexstring",
+        "dataType": "compound",
+        "tlvLengthSize": 2,
         "spec": "CM-SP-MULPIv4.0 C.3.1.3"
       },
-      "type": "string"
+      "ref": "SecurityConfigurationSettingsEntry"
     },
     "FdxDownstreamUpperBandEdge": {
       "metadata": {
