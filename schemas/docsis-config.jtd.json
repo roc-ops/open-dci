@@ -3461,12 +3461,12 @@
       "optionalProperties": {
         "VplsClass": {
           "metadata": {
-            "description": "VPLS class",
+            "description": "VPLS class name (STRING, 1-32 bytes; DPoE only)",
             "tlvType": "43.5.20.1",
-            "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17 B.3.20"
           },
-          "type": "uint8"
+          "type": "string"
         },
         "ETreeRole": {
           "metadata": {
@@ -3506,12 +3506,12 @@
       "optionalProperties": {
         "BgpVpnid": {
           "metadata": {
-            "description": "BGP VPN ID",
+            "description": "BGP VPN ID (4-byte integer identifying the L2VPN)",
             "tlvType": "43.5.21.1",
-            "dataType": "hexstring",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "dataType": "uint32",
+            "spec": "CM-SP-L2VPN-I17 B.3.21"
           },
-          "type": "string"
+          "type": "uint32"
         },
         "RouteDistinguisher": {
           "metadata": {
@@ -3657,7 +3657,7 @@
         },
         "EnableLoopbackReplyMessages": {
           "metadata": {
-            "description": "Enable Loopback Reply Messages",
+            "description": "Loopback Function enable (receive LBM and reply with LBR)",
             "tlvType": "43.5.24.3.2",
             "dataType": "uint8",
             "spec": "CM-SP-L2VPN-I17 B.3.24.3.2",
@@ -3667,11 +3667,75 @@
         },
         "EnableLinktraceMessages": {
           "metadata": {
-            "description": "Enable Linktrace Messages",
+            "description": "Linktrace Function enable (receive LTM and reply with LTR)",
             "tlvType": "43.5.24.3.3",
             "dataType": "uint8",
             "spec": "CM-SP-L2VPN-I17 B.3.24.3.3",
             "validValues": {"0": "disabled", "1": "linktrace responder enabled"}
+          },
+          "type": "uint8"
+        }
+      }
+    },
+    "FrameDelayMeasurementEntry": {
+      "metadata": {
+        "description": "Frame Delay Measurement configuration sub-TLVs (43.5.24.4.1)",
+        "spec": "CM-SP-L2VPN-I17 B.3.24.4.1"
+      },
+      "optionalProperties": {
+        "FrameDelayMeasurementEnable": {
+          "metadata": {
+            "description": "Frame Delay Measurement enable (receive DMM and reply with DMR)",
+            "tlvType": "43.5.24.4.1.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1.1",
+            "validValues": {"0": "disabled", "1": "frame delay responder enabled"}
+          },
+          "type": "uint8"
+        },
+        "FrameDelayMeasurementOneWayTwoWay": {
+          "metadata": {
+            "description": "Frame Delay Measurement one-way or two-way mode",
+            "tlvType": "43.5.24.4.1.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1.2",
+            "validValues": {"0": "one-way", "1": "two-way"}
+          },
+          "type": "uint8"
+        },
+        "FrameDelayMeasurementTransmissionPeriodicity": {
+          "metadata": {
+            "description": "Frame Delay Measurement transmission periodicity in milliseconds (0=run once)",
+            "tlvType": "43.5.24.4.1.3",
+            "dataType": "uint16",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1.3"
+          },
+          "type": "uint16"
+        }
+      }
+    },
+    "FrameLossMeasurementEntry": {
+      "metadata": {
+        "description": "Frame Loss Measurement configuration sub-TLVs (43.5.24.4.2)",
+        "spec": "CM-SP-L2VPN-I17 B.3.24.4.2"
+      },
+      "optionalProperties": {
+        "FrameLossMeasurementEnable": {
+          "metadata": {
+            "description": "Frame Loss Measurement enable (receive SLM and reply with SLR)",
+            "tlvType": "43.5.24.4.2.1",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2.1",
+            "validValues": {"0": "disabled", "1": "frame loss responder enabled"}
+          },
+          "type": "uint8"
+        },
+        "FrameLossMeasurementTransmissionPeriodicity": {
+          "metadata": {
+            "description": "Frame Loss Measurement transmission periodicity in milliseconds (0=run once)",
+            "tlvType": "43.5.24.4.2.2",
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2.2"
           },
           "type": "uint8"
         }
@@ -3685,23 +3749,21 @@
       "optionalProperties": {
         "FrameDelayMeasurement": {
           "metadata": {
-            "description": "Frame Delay Measurement enable/configuration",
+            "description": "Frame Delay Measurement compound sub-TLV container",
             "tlvType": "43.5.24.4.1",
-            "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1",
-            "validValues": {"0": "disabled", "1": "frame delay responder enabled"}
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.1"
           },
-          "type": "uint8"
+          "ref": "FrameDelayMeasurementEntry"
         },
         "FrameLossMeasurement": {
           "metadata": {
-            "description": "Frame Loss Measurement enable/configuration",
+            "description": "Frame Loss Measurement compound sub-TLV container",
             "tlvType": "43.5.24.4.2",
-            "dataType": "uint8",
-            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2",
-            "validValues": {"0": "disabled", "1": "frame loss responder enabled"}
+            "dataType": "compound",
+            "spec": "CM-SP-L2VPN-I17 B.3.24.4.2"
           },
-          "type": "uint8"
+          "ref": "FrameLossMeasurementEntry"
         }
       }
     },
@@ -3882,19 +3944,19 @@
         },
         "PseudowireType": {
           "metadata": {
-            "description": "Pseudowire type",
+            "description": "Pseudowire type (1 byte; e.g., 4=Ethernet tagged mode, 5=Ethernet raw mode)",
             "tlvType": "43.5.12",
-            "dataType": "uint16",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "dataType": "uint8",
+            "spec": "CM-SP-L2VPN-I17 B.3.13"
           },
-          "type": "uint16"
+          "type": "uint8"
         },
         "L2vpnMode": {
           "metadata": {
-            "description": "L2VPN mode",
+            "description": "L2VPN mode (DPoE only; 0=encapsulation mode (default), 1=transport mode)",
             "tlvType": "43.5.13",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
+            "spec": "CM-SP-L2VPN-I17 B.3.14",
             "validValues": {"0": "L2VPN encapsulation mode", "1": "L2VPN transport mode"}
           },
           "type": "uint8"
@@ -3917,14 +3979,24 @@
           },
           "ref": "L2cpProcessingEntry"
         },
-        "PseudowireClass": {
+        "DacConfiguration": {
           "metadata": {
-            "description": "Pseudowire class",
-            "tlvType": "43.5.18",
+            "description": "DAC Disable/Enable Configuration (Demarc Auto-Configuration; DPoE only)",
+            "tlvType": "43.5.16",
             "dataType": "uint8",
-            "spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
+            "spec": "CM-SP-L2VPN-I17 B.3.17",
+            "validValues": {"0": "DAC disabled (default)", "1": "DAC enabled"}
           },
           "type": "uint8"
+        },
+        "PseudowireClass": {
+          "metadata": {
+            "description": "Pseudowire class name (STRING, 1-32 bytes; DPoE only)",
+            "tlvType": "43.5.18",
+            "dataType": "string",
+            "spec": "CM-SP-L2VPN-I17 B.3.18"
+          },
+          "type": "string"
         },
         "ServiceDelimiter": {
           "metadata": {
@@ -3983,12 +4055,12 @@
         },
         "NetworkTimingProfileReference": {
           "metadata": {
-            "description": "Network Timing Profile reference",
+            "description": "Network Timing Profile reference (2 bytes; DPoE only)",
             "tlvType": "43.5.25",
-            "dataType": "uint8",
+            "dataType": "uint16",
             "spec": "CM-SP-L2VPN-I17 B.3.25"
           },
-          "type": "uint8"
+          "type": "uint16"
         },
         "L2vpnDsid": {
           "metadata": {

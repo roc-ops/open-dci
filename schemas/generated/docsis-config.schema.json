@@ -103,10 +103,12 @@
       "description": "BGP Attribute encoding",
       "properties": {
         "BgpVpnid": {
-          "description": "BGP VPN ID",
-          "type": "string",
-          "x-docsis-dataType": "hexstring",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+          "description": "BGP VPN ID (4-byte integer identifying the L2VPN)",
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint32",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.21",
           "x-docsis-tlvType": "43.5.21.1"
         },
         "CeIdOrVeId": {
@@ -2140,7 +2142,7 @@
           }
         },
         "EnableLinktraceMessages": {
-          "description": "Enable Linktrace Messages",
+          "description": "Linktrace Function enable (receive LTM and reply with LTR)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -2153,7 +2155,7 @@
           }
         },
         "EnableLoopbackReplyMessages": {
-          "description": "Enable Loopback Reply Messages",
+          "description": "Loopback Function enable (receive LBM and reply with LBR)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
@@ -2168,6 +2170,79 @@
       },
       "type": "object",
       "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24"
+    },
+    "FrameDelayMeasurementEntry": {
+      "additionalProperties": false,
+      "description": "Frame Delay Measurement configuration sub-TLVs (43.5.24.4.1)",
+      "properties": {
+        "FrameDelayMeasurementEnable": {
+          "description": "Frame Delay Measurement enable (receive DMM and reply with DMR)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1.1",
+          "x-docsis-tlvType": "43.5.24.4.1.1",
+          "x-docsis-validValues": {
+            "0": "disabled",
+            "1": "frame delay responder enabled"
+          }
+        },
+        "FrameDelayMeasurementOneWayTwoWay": {
+          "description": "Frame Delay Measurement one-way or two-way mode",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1.2",
+          "x-docsis-tlvType": "43.5.24.4.1.2",
+          "x-docsis-validValues": {
+            "0": "one-way",
+            "1": "two-way"
+          }
+        },
+        "FrameDelayMeasurementTransmissionPeriodicity": {
+          "description": "Frame Delay Measurement transmission periodicity in milliseconds (0=run once)",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1.3",
+          "x-docsis-tlvType": "43.5.24.4.1.3"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1"
+    },
+    "FrameLossMeasurementEntry": {
+      "additionalProperties": false,
+      "description": "Frame Loss Measurement configuration sub-TLVs (43.5.24.4.2)",
+      "properties": {
+        "FrameLossMeasurementEnable": {
+          "description": "Frame Loss Measurement enable (receive SLM and reply with SLR)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.2.1",
+          "x-docsis-tlvType": "43.5.24.4.2.1",
+          "x-docsis-validValues": {
+            "0": "disabled",
+            "1": "frame loss responder enabled"
+          }
+        },
+        "FrameLossMeasurementTransmissionPeriodicity": {
+          "description": "Frame Loss Measurement transmission periodicity in milliseconds (0=run once)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.2.2",
+          "x-docsis-tlvType": "43.5.24.4.2.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.2"
     },
     "IcmpClassificationEntry": {
       "additionalProperties": false,
@@ -2764,6 +2839,19 @@
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.4",
           "x-docsis-tlvType": "43.5.4"
         },
+        "DacConfiguration": {
+          "description": "DAC Disable/Enable Configuration (Demarc Auto-Configuration; DPoE only)",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.17",
+          "x-docsis-tlvType": "43.5.16",
+          "x-docsis-validValues": {
+            "0": "DAC disabled (default)",
+            "1": "DAC enabled"
+          }
+        },
         "DownstreamUserPriorityRange": {
           "description": "Downstream user priority range",
           "type": "string",
@@ -2799,12 +2887,12 @@
           "x-docsis-tlvType": "43.5.254"
         },
         "L2vpnMode": {
-          "description": "L2VPN mode",
+          "description": "L2VPN mode (DPoE only; 0=encapsulation mode (default), 1=transport mode)",
           "maximum": 255,
           "minimum": 0,
           "type": "integer",
           "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv1.0-C01 C.10",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.14",
           "x-docsis-tlvType": "43.5.13",
           "x-docsis-validValues": {
             "0": "L2VPN encapsulation mode",
@@ -2839,11 +2927,11 @@
           }
         },
         "NetworkTimingProfileReference": {
-          "description": "Network Timing Profile reference",
-          "maximum": 255,
+          "description": "Network Timing Profile reference (2 bytes; DPoE only)",
+          "maximum": 65535,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "x-docsis-dataType": "uint16",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.25",
           "x-docsis-tlvType": "43.5.25"
         },
@@ -2855,12 +2943,10 @@
           "x-docsis-tlvType": "43.5.2"
         },
         "PseudowireClass": {
-          "description": "Pseudowire class",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+          "description": "Pseudowire class name (STRING, 1-32 bytes; DPoE only)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.18",
           "x-docsis-tlvType": "43.5.18"
         },
         "PseudowireSignaling": {
@@ -2878,12 +2964,12 @@
           }
         },
         "PseudowireType": {
-          "description": "Pseudowire type",
-          "maximum": 65535,
+          "description": "Pseudowire type (1 byte; e.g., 4=Ethernet tagged mode, 5=Ethernet raw mode)",
+          "maximum": 255,
           "minimum": 0,
           "type": "integer",
-          "x-docsis-dataType": "uint16",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+          "x-docsis-dataType": "uint8",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.13",
           "x-docsis-tlvType": "43.5.12"
         },
         "ServiceDelimiter": {
@@ -3542,30 +3628,18 @@
       "description": "Performance Management Configuration encoding for L2VPN SOAM",
       "properties": {
         "FrameDelayMeasurement": {
-          "description": "Frame Delay Measurement enable/configuration",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "$ref": "#/$defs/FrameDelayMeasurementEntry",
+          "description": "Frame Delay Measurement compound sub-TLV container",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.1",
-          "x-docsis-tlvType": "43.5.24.4.1",
-          "x-docsis-validValues": {
-            "0": "disabled",
-            "1": "frame delay responder enabled"
-          }
+          "x-docsis-tlvType": "43.5.24.4.1"
         },
         "FrameLossMeasurement": {
-          "description": "Frame Loss Measurement enable/configuration",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
+          "$ref": "#/$defs/FrameLossMeasurementEntry",
+          "description": "Frame Loss Measurement compound sub-TLV container",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.24.4.2",
-          "x-docsis-tlvType": "43.5.24.4.2",
-          "x-docsis-validValues": {
-            "0": "disabled",
-            "1": "frame loss responder enabled"
-          }
+          "x-docsis-tlvType": "43.5.24.4.2"
         }
       },
       "type": "object",
@@ -5118,12 +5192,10 @@
           "x-docsis-tlvType": "43.5.20.3"
         },
         "VplsClass": {
-          "description": "VPLS class",
-          "maximum": 255,
-          "minimum": 0,
-          "type": "integer",
-          "x-docsis-dataType": "uint8",
-          "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17",
+          "description": "VPLS class name (STRING, 1-32 bytes; DPoE only)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.20",
           "x-docsis-tlvType": "43.5.20.1"
         }
       },
