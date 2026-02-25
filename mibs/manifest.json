@@ -1,0 +1,3848 @@
+{
+  "generated_at": "2026-02-25T16:21:19Z",
+  "sources": {
+    "cablelabs": {
+      "count": 246,
+      "source": "https://mibs.cablelabs.com/MIBs/"
+    },
+    "iana": {
+      "count": 16,
+      "source": "https://www.iana.org/assignments/"
+    },
+    "ietf": {
+      "count": 285,
+      "source": "https://www.rfc-editor.org/rfc/"
+    }
+  },
+  "mibs": [
+    {
+      "name": "RFC1155-SMI",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/RFC1155-SMI@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "RFC1213-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/RFC1213-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "SMUX",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SMUX@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "SMUX-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SMUX-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "RFC1381-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/RFC1381-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "RFC1382-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/RFC1382-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "RFC1414-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/RFC1414-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "MIOX25-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/MIOX25-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "PPP-LCP-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/PPP-LCP-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "PPP-SEC-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/PPP-SEC-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "PPP-IP-NCP-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/PPP-IP-NCP-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "PPP-BRIDGE-NCP-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/PPP-BRIDGE-NCP-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "BRIDGE-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/BRIDGE-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "FDDI-SMT73-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/FDDI-SMT73-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "TOKEN-RING-RMON-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/TOKEN-RING-RMON-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "SOURCE-ROUTING-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SOURCE-ROUTING-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "DECNET-PHIV-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/DECNET-PHIV-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "DSA-MIB",
+      "revision": "1993-11-25",
+      "source": "ietf",
+      "path": "ietf/DSA-MIB@1993-11-25.mib",
+      "latest": true
+    },
+    {
+      "name": "IANAifType-MIB",
+      "revision": "1993-11-08",
+      "source": "ietf",
+      "path": "ietf/IANAifType-MIB@1993-11-08.mib",
+      "latest": true
+    },
+    {
+      "name": "IF-MIB",
+      "revision": "1993-11-08",
+      "source": "ietf",
+      "path": "ietf/IF-MIB@1993-11-08.mib",
+      "latest": false
+    },
+    {
+      "name": "DPI20-MIB",
+      "revision": "1994-01-21",
+      "source": "ietf",
+      "path": "ietf/DPI20-MIB@1994-01-21.mib",
+      "latest": true
+    },
+    {
+      "name": "IBM-6611-APPN-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/IBM-6611-APPN-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "DNS-SERVER-MIB",
+      "revision": "1994-01-28",
+      "source": "ietf",
+      "path": "ietf/DNS-SERVER-MIB@1994-01-28.mib",
+      "latest": true
+    },
+    {
+      "name": "DNS-RESOLVER-MIB",
+      "revision": "1994-01-28",
+      "source": "ietf",
+      "path": "ietf/DNS-RESOLVER-MIB@1994-01-28.mib",
+      "latest": true
+    },
+    {
+      "name": "UPS-MIB",
+      "revision": "1994-02-23",
+      "source": "ietf",
+      "path": "ietf/UPS-MIB@1994-02-23.mib",
+      "latest": true
+    },
+    {
+      "name": "BGP4-MIB",
+      "revision": "1994-05-05",
+      "source": "ietf",
+      "path": "ietf/BGP4-MIB@1994-05-05.mib",
+      "latest": true
+    },
+    {
+      "name": "CHARACTER-MIB",
+      "revision": "1994-05-26",
+      "source": "ietf",
+      "path": "ietf/CHARACTER-MIB@1994-05-26.mib",
+      "latest": true
+    },
+    {
+      "name": "RS-232-MIB",
+      "revision": "1994-05-26",
+      "source": "ietf",
+      "path": "ietf/RS-232-MIB@1994-05-26.mib",
+      "latest": true
+    },
+    {
+      "name": "PARALLEL-MIB",
+      "revision": "1994-05-26",
+      "source": "ietf",
+      "path": "ietf/PARALLEL-MIB@1994-05-26.mib",
+      "latest": true
+    },
+    {
+      "name": "SNA-NAU-MIB",
+      "revision": "1994-05-12",
+      "source": "ietf",
+      "path": "ietf/SNA-NAU-MIB@1994-05-12.mib",
+      "latest": true
+    },
+    {
+      "name": "SIP-MIB",
+      "revision": "1994-03-31",
+      "source": "ietf",
+      "path": "ietf/SIP-MIB@1994-03-31.mib",
+      "latest": true
+    },
+    {
+      "name": "Modem-MIB",
+      "revision": "1994-06-12",
+      "source": "ietf",
+      "path": "ietf/Modem-MIB@1994-06-12.mib",
+      "latest": true
+    },
+    {
+      "name": "RDBMS-MIB",
+      "revision": "1994-06-15",
+      "source": "ietf",
+      "path": "ietf/RDBMS-MIB@1994-06-15.mib",
+      "latest": true
+    },
+    {
+      "name": "RIPv2-MIB",
+      "revision": "1994-07-27",
+      "source": "ietf",
+      "path": "ietf/RIPv2-MIB@1994-07-27.mib",
+      "latest": true
+    },
+    {
+      "name": "APPLETALK-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/APPLETALK-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "SNA-SDLC-MIB",
+      "revision": "1994-11-15",
+      "source": "ietf",
+      "path": "ietf/SNA-SDLC-MIB@1994-11-15.mib",
+      "latest": true
+    },
+    {
+      "name": "TOKENRING-MIB",
+      "revision": "1994-10-23",
+      "source": "ietf",
+      "path": "ietf/TOKENRING-MIB@1994-10-23.mib",
+      "latest": true
+    },
+    {
+      "name": "TOKENRING-STATION-SR-MIB",
+      "revision": "1994-12-16",
+      "source": "ietf",
+      "path": "ietf/TOKENRING-STATION-SR-MIB@1994-12-16.mib",
+      "latest": true
+    },
+    {
+      "name": "TCPIPX-MIB",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/TCPIPX-MIB@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "MIP-MIB",
+      "revision": "1996-06-04",
+      "source": "ietf",
+      "path": "ietf/MIP-MIB@1996-06-04.mib",
+      "latest": true
+    },
+    {
+      "name": "IP-MIB",
+      "revision": "1994-11-01",
+      "source": "ietf",
+      "path": "ietf/IP-MIB@1994-11-01.mib",
+      "latest": false
+    },
+    {
+      "name": "TCP-MIB",
+      "revision": "1994-11-01",
+      "source": "ietf",
+      "path": "ietf/TCP-MIB@1994-11-01.mib",
+      "latest": false
+    },
+    {
+      "name": "UDP-MIB",
+      "revision": "1994-11-01",
+      "source": "ietf",
+      "path": "ietf/UDP-MIB@1994-11-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOT12-IF-MIB",
+      "revision": "1996-02-22",
+      "source": "ietf",
+      "path": "ietf/DOT12-IF-MIB@1996-02-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DLSW-MIB",
+      "revision": "1996-06-04",
+      "source": "ietf",
+      "path": "ietf/DLSW-MIB@1996-06-04.mib",
+      "latest": true
+    },
+    {
+      "name": "APPC-MIB",
+      "revision": "1995-12-15",
+      "source": "ietf",
+      "path": "ietf/APPC-MIB@1995-12-15.mib",
+      "latest": true
+    },
+    {
+      "name": "IP-FORWARD-MIB",
+      "revision": "1996-09-19",
+      "source": "ietf",
+      "path": "ietf/IP-FORWARD-MIB@1996-09-19.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-REPEATER-MIB",
+      "revision": "1996-09-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-REPEATER-MIB@1996-09-14.mib",
+      "latest": true
+    },
+    {
+      "name": "FRAME-RELAY-DTE-MIB",
+      "revision": "1997-05-01",
+      "source": "ietf",
+      "path": "ietf/FRAME-RELAY-DTE-MIB@1997-05-01.mib",
+      "latest": true
+    },
+    {
+      "name": "ISDN-MIB",
+      "revision": "1996-09-23",
+      "source": "ietf",
+      "path": "ietf/ISDN-MIB@1996-09-23.mib",
+      "latest": true
+    },
+    {
+      "name": "DIAL-CONTROL-MIB",
+      "revision": "1996-09-23",
+      "source": "ietf",
+      "path": "ietf/DIAL-CONTROL-MIB@1996-09-23.mib",
+      "latest": true
+    },
+    {
+      "name": "RSVP-MIB",
+      "revision": "1995-11-03",
+      "source": "ietf",
+      "path": "ietf/RSVP-MIB@1995-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "INTEGRATED-SERVICES-MIB",
+      "revision": "1995-11-03",
+      "source": "ietf",
+      "path": "ietf/INTEGRATED-SERVICES-MIB@1995-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "INTEGRATED-SERVICES-GUARANTEED-MIB",
+      "revision": "1995-11-03",
+      "source": "ietf",
+      "path": "ietf/INTEGRATED-SERVICES-GUARANTEED-MIB@1995-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "APPN-DLUR-MIB",
+      "revision": "1997-05-10",
+      "source": "ietf",
+      "path": "ietf/APPN-DLUR-MIB@1997-05-10.mib",
+      "latest": true
+    },
+    {
+      "name": "IF-MIB",
+      "revision": "1996-11-03",
+      "source": "ietf",
+      "path": "ietf/IF-MIB@1996-11-03.mib",
+      "latest": false
+    },
+    {
+      "name": "HPR-MIB",
+      "revision": "9705-14-00",
+      "source": "ietf",
+      "path": "ietf/HPR-MIB@9705-14-00.mib",
+      "latest": true
+    },
+    {
+      "name": "DOT12-RPTR-MIB",
+      "revision": "1997-05-19",
+      "source": "ietf",
+      "path": "ietf/DOT12-RPTR-MIB@1997-05-19.mib",
+      "latest": true
+    },
+    {
+      "name": "SYSAPPL-MIB",
+      "revision": "1997-10-20",
+      "source": "ietf",
+      "path": "ietf/SYSAPPL-MIB@1997-10-20.mib",
+      "latest": true
+    },
+    {
+      "name": "IPOA-MIB",
+      "revision": "1998-02-09",
+      "source": "ietf",
+      "path": "ietf/IPOA-MIB@1998-02-09.mib",
+      "latest": true
+    },
+    {
+      "name": "IPATM-IPMC-MIB",
+      "revision": "1998-09-01",
+      "source": "ietf",
+      "path": "ietf/IPATM-IPMC-MIB@1998-09-01.mib",
+      "latest": true
+    },
+    {
+      "name": "IPV6-TCP-MIB",
+      "revision": "1998-01-29",
+      "source": "ietf",
+      "path": "ietf/IPV6-TCP-MIB@1998-01-29.mib",
+      "latest": true
+    },
+    {
+      "name": "IPV6-UDP-MIB",
+      "revision": "1998-01-29",
+      "source": "ietf",
+      "path": "ietf/IPV6-UDP-MIB@1998-01-29.mib",
+      "latest": true
+    },
+    {
+      "name": "APPN-MIB",
+      "revision": "1998-07-15",
+      "source": "ietf",
+      "path": "ietf/APPN-MIB@1998-07-15.mib",
+      "latest": true
+    },
+    {
+      "name": "APPN-TRAP-MIB",
+      "revision": "1998-08-31",
+      "source": "ietf",
+      "path": "ietf/APPN-TRAP-MIB@1998-08-31.mib",
+      "latest": true
+    },
+    {
+      "name": "EBN-MIB",
+      "revision": "1998-04-28",
+      "source": "ietf",
+      "path": "ietf/EBN-MIB@1998-04-28.mib",
+      "latest": true
+    },
+    {
+      "name": "DS0-MIB",
+      "revision": "1998-07-16",
+      "source": "ietf",
+      "path": "ietf/DS0-MIB@1998-07-16.mib",
+      "latest": true
+    },
+    {
+      "name": "DS0BUNDLE-MIB",
+      "revision": "1998-07-16",
+      "source": "ietf",
+      "path": "ietf/DS0BUNDLE-MIB@1998-07-16.mib",
+      "latest": true
+    },
+    {
+      "name": "ATM-ACCOUNTING-INFORMATION-MIB",
+      "revision": "1996-11-05",
+      "source": "ietf",
+      "path": "ietf/ATM-ACCOUNTING-INFORMATION-MIB@1996-11-05.mib",
+      "latest": true
+    },
+    {
+      "name": "ACCOUNTING-CONTROL-MIB",
+      "revision": "1998-09-28",
+      "source": "ietf",
+      "path": "ietf/ACCOUNTING-CONTROL-MIB@1998-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "ATM-TC-MIB",
+      "revision": "1998-10-19",
+      "source": "ietf",
+      "path": "ietf/ATM-TC-MIB@1998-10-19.mib",
+      "latest": true
+    },
+    {
+      "name": "ATM-MIB",
+      "revision": "1998-10-19",
+      "source": "ietf",
+      "path": "ietf/ATM-MIB@1998-10-19.mib",
+      "latest": true
+    },
+    {
+      "name": "TN3270E-MIB",
+      "revision": "1998-07-27",
+      "source": "ietf",
+      "path": "ietf/TN3270E-MIB@1998-07-27.mib",
+      "latest": true
+    },
+    {
+      "name": "TN3270E-RT-MIB",
+      "revision": "1998-07-27",
+      "source": "ietf",
+      "path": "ietf/TN3270E-RT-MIB@1998-07-27.mib",
+      "latest": true
+    },
+    {
+      "name": "APPLICATION-MIB",
+      "revision": "1998-11-17",
+      "source": "ietf",
+      "path": "ietf/APPLICATION-MIB@1998-11-17.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-FRAMEWORK-MIB",
+      "revision": "1999-01-19",
+      "source": "ietf",
+      "path": "ietf/SNMP-FRAMEWORK-MIB@1999-01-19.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-MPD-MIB",
+      "revision": "1999-05-04",
+      "source": "ietf",
+      "path": "ietf/SNMP-MPD-MIB@1999-05-04.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-TARGET-MIB",
+      "revision": "1998-08-04",
+      "source": "ietf",
+      "path": "ietf/SNMP-TARGET-MIB@1998-08-04.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-NOTIFICATION-MIB",
+      "revision": "1998-08-04",
+      "source": "ietf",
+      "path": "ietf/SNMP-NOTIFICATION-MIB@1998-08-04.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-PROXY-MIB",
+      "revision": "1998-08-04",
+      "source": "ietf",
+      "path": "ietf/SNMP-PROXY-MIB@1998-08-04.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-USER-BASED-SM-MIB",
+      "revision": "1999-01-20",
+      "source": "ietf",
+      "path": "ietf/SNMP-USER-BASED-SM-MIB@1999-01-20.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-VIEW-BASED-ACM-MIB",
+      "revision": "1999-01-20",
+      "source": "ietf",
+      "path": "ietf/SNMP-VIEW-BASED-ACM-MIB@1999-01-20.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMP-COMMUNITY-MIB",
+      "revision": "2000-03-06",
+      "source": "ietf",
+      "path": "ietf/SNMP-COMMUNITY-MIB@2000-03-06.mib",
+      "latest": false
+    },
+    {
+      "name": "SNMPv2-SMI",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SNMPv2-SMI@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "FIZBIN-MIB",
+      "revision": "1995-05-24",
+      "source": "ietf",
+      "path": "ietf/FIZBIN-MIB@1995-05-24.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMPv2-TC",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SNMPv2-TC@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMPv2-CONF",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/SNMPv2-CONF@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "HPR-IP-MIB",
+      "revision": "1998-09-24",
+      "source": "ietf",
+      "path": "ietf/HPR-IP-MIB@1998-09-24.mib",
+      "latest": true
+    },
+    {
+      "name": "WWW-MIB",
+      "revision": "1999-02-25",
+      "source": "ietf",
+      "path": "ietf/WWW-MIB@1999-02-25.mib",
+      "latest": true
+    },
+    {
+      "name": "DIRECTORY-SERVER-MIB",
+      "revision": "1999-06-07",
+      "source": "ietf",
+      "path": "ietf/DIRECTORY-SERVER-MIB@1999-06-07.mib",
+      "latest": true
+    },
+    {
+      "name": "SMON-MIB",
+      "revision": "1998-12-16",
+      "source": "ietf",
+      "path": "ietf/SMON-MIB@1998-12-16.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-AUTH-CLIENT-MIB",
+      "revision": "1999-06-11",
+      "source": "ietf",
+      "path": "ietf/RADIUS-AUTH-CLIENT-MIB@1999-06-11.mib",
+      "latest": false
+    },
+    {
+      "name": "RADIUS-AUTH-SERVER-MIB",
+      "revision": "1999-06-11",
+      "source": "ietf",
+      "path": "ietf/RADIUS-AUTH-SERVER-MIB@1999-06-11.mib",
+      "latest": false
+    },
+    {
+      "name": "RADIUS-ACC-CLIENT-MIB",
+      "revision": "1999-06-11",
+      "source": "ietf",
+      "path": "ietf/RADIUS-ACC-CLIENT-MIB@1999-06-11.mib",
+      "latest": false
+    },
+    {
+      "name": "RADIUS-ACC-SERVER-MIB",
+      "revision": "1999-06-11",
+      "source": "ietf",
+      "path": "ietf/RADIUS-ACC-SERVER-MIB@1999-06-11.mib",
+      "latest": false
+    },
+    {
+      "name": "ADSL-TC-MIB",
+      "revision": "1999-08-19",
+      "source": "ietf",
+      "path": "ietf/ADSL-TC-MIB@1999-08-19.mib",
+      "latest": true
+    },
+    {
+      "name": "ADSL-LINE-MIB",
+      "revision": "1999-08-19",
+      "source": "ietf",
+      "path": "ietf/ADSL-LINE-MIB@1999-08-19.mib",
+      "latest": true
+    },
+    {
+      "name": "EtherLike-MIB",
+      "revision": "1999-08-24",
+      "source": "ietf",
+      "path": "ietf/EtherLike-MIB@1999-08-24.mib",
+      "latest": false
+    },
+    {
+      "name": "ETHER-CHIPSET-MIB",
+      "revision": "1999-08-24",
+      "source": "ietf",
+      "path": "ietf/ETHER-CHIPSET-MIB@1999-08-24.mib",
+      "latest": true
+    },
+    {
+      "name": "TUNNEL-MIB",
+      "revision": "1999-08-24",
+      "source": "ietf",
+      "path": "ietf/TUNNEL-MIB@1999-08-24.mib",
+      "latest": false
+    },
+    {
+      "name": "MAU-MIB",
+      "revision": "1999-08-24",
+      "source": "ietf",
+      "path": "ietf/MAU-MIB@1999-08-24.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-CABLE-DEVICE-MIB",
+      "revision": "1999-08-19",
+      "source": "ietf",
+      "path": "ietf/DOCS-CABLE-DEVICE-MIB@1999-08-19.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IF-MIB",
+      "revision": "1999-08-19",
+      "source": "ietf",
+      "path": "ietf/DOCS-IF-MIB@1999-08-19.mib",
+      "latest": false
+    },
+    {
+      "name": "P-BRIDGE-MIB",
+      "revision": "1999-08-25",
+      "source": "ietf",
+      "path": "ietf/P-BRIDGE-MIB@1999-08-25.mib",
+      "latest": false
+    },
+    {
+      "name": "Q-BRIDGE-MIB",
+      "revision": "1999-08-25",
+      "source": "ietf",
+      "path": "ietf/Q-BRIDGE-MIB@1999-08-25.mib",
+      "latest": false
+    },
+    {
+      "name": "NHRP-MIB",
+      "revision": "1999-08-26",
+      "source": "ietf",
+      "path": "ietf/NHRP-MIB@1999-08-26.mib",
+      "latest": true
+    },
+    {
+      "name": "Job-Monitoring-MIB",
+      "revision": "1999-02-19",
+      "source": "ietf",
+      "path": "ietf/Job-Monitoring-MIB@1999-02-19.mib",
+      "latest": true
+    },
+    {
+      "name": "FLOW-METER-MIB",
+      "revision": "1999-10-25",
+      "source": "ietf",
+      "path": "ietf/FLOW-METER-MIB@1999-10-25.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-MIB",
+      "revision": "1999-12-07",
+      "source": "ietf",
+      "path": "ietf/ENTITY-MIB@1999-12-07.mib",
+      "latest": false
+    },
+    {
+      "name": "AGENTX-MIB",
+      "revision": "2000-01-10",
+      "source": "ietf",
+      "path": "ietf/AGENTX-MIB@2000-01-10.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-USM-DH-OBJECTS-MIB",
+      "revision": "2000-03-06",
+      "source": "ietf",
+      "path": "ietf/SNMP-USM-DH-OBJECTS-MIB@2000-03-06.mib",
+      "latest": true
+    },
+    {
+      "name": "VRRP-MIB",
+      "revision": "2000-03-03",
+      "source": "ietf",
+      "path": "ietf/VRRP-MIB@2000-03-03.mib",
+      "latest": true
+    },
+    {
+      "name": "NETWORK-SERVICES-MIB",
+      "revision": "2000-03-03",
+      "source": "ietf",
+      "path": "ietf/NETWORK-SERVICES-MIB@2000-03-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MTA-MIB",
+      "revision": "2000-03-03",
+      "source": "ietf",
+      "path": "ietf/MTA-MIB@2000-03-03.mib",
+      "latest": true
+    },
+    {
+      "name": "HOST-RESOURCES-MIB",
+      "revision": "2000-03-06",
+      "source": "ietf",
+      "path": "ietf/HOST-RESOURCES-MIB@2000-03-06.mib",
+      "latest": true
+    },
+    {
+      "name": "HOST-RESOURCES-TYPES",
+      "revision": "2000-03-06",
+      "source": "ietf",
+      "path": "ietf/HOST-RESOURCES-TYPES@2000-03-06.mib",
+      "latest": true
+    },
+    {
+      "name": "RMON-MIB",
+      "revision": "2000-05-11",
+      "source": "ietf",
+      "path": "ietf/RMON-MIB@2000-05-11.mib",
+      "latest": true
+    },
+    {
+      "name": "FIBRE-CHANNEL-FE-MIB",
+      "revision": "2000-05-18",
+      "source": "ietf",
+      "path": "ietf/FIBRE-CHANNEL-FE-MIB@2000-05-18.mib",
+      "latest": true
+    },
+    {
+      "name": "HCNUM-TC",
+      "revision": "2000-06-08",
+      "source": "ietf",
+      "path": "ietf/HCNUM-TC@2000-06-08.mib",
+      "latest": true
+    },
+    {
+      "name": "IF-MIB",
+      "revision": "2000-06-14",
+      "source": "ietf",
+      "path": "ietf/IF-MIB@2000-06-14.mib",
+      "latest": true
+    },
+    {
+      "name": "IF-INVERTED-STACK-MIB",
+      "revision": "2000-06-14",
+      "source": "ietf",
+      "path": "ietf/IF-INVERTED-STACK-MIB@2000-06-14.mib",
+      "latest": true
+    },
+    {
+      "name": "PTOPO-MIB",
+      "revision": "2000-09-21",
+      "source": "ietf",
+      "path": "ietf/PTOPO-MIB@2000-09-21.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-PING-MIB",
+      "revision": "2000-09-21",
+      "source": "ietf",
+      "path": "ietf/DISMAN-PING-MIB@2000-09-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DISMAN-TRACEROUTE-MIB",
+      "revision": "2000-09-21",
+      "source": "ietf",
+      "path": "ietf/DISMAN-TRACEROUTE-MIB@2000-09-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DISMAN-NSLOOKUP-MIB",
+      "revision": "2000-09-21",
+      "source": "ietf",
+      "path": "ietf/DISMAN-NSLOOKUP-MIB@2000-09-21.mib",
+      "latest": false
+    },
+    {
+      "name": "IPMROUTE-STD-MIB",
+      "revision": "2000-09-22",
+      "source": "ietf",
+      "path": "ietf/IPMROUTE-STD-MIB@2000-09-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IGMP-STD-MIB",
+      "revision": "2000-09-28",
+      "source": "ietf",
+      "path": "ietf/IGMP-STD-MIB@2000-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "PIM-MIB",
+      "revision": "2000-09-28",
+      "source": "ietf",
+      "path": "ietf/PIM-MIB@2000-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "COPS-CLIENT-MIB",
+      "revision": "2000-09-28",
+      "source": "ietf",
+      "path": "ietf/COPS-CLIENT-MIB@2000-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "FRNETSERV-MIB",
+      "revision": "2000-09-28",
+      "source": "ietf",
+      "path": "ietf/FRNETSERV-MIB@2000-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "FR-ATM-PVC-SERVICE-IWF-MIB",
+      "revision": "2000-09-28",
+      "source": "ietf",
+      "path": "ietf/FR-ATM-PVC-SERVICE-IWF-MIB@2000-09-28.mib",
+      "latest": true
+    },
+    {
+      "name": "RTP-MIB",
+      "revision": "2000-10-02",
+      "source": "ietf",
+      "path": "ietf/RTP-MIB@2000-10-02.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-EVENT-MIB",
+      "revision": "2000-10-16",
+      "source": "ietf",
+      "path": "ietf/DISMAN-EVENT-MIB@2000-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-EXPRESSION-MIB",
+      "revision": "2000-10-16",
+      "source": "ietf",
+      "path": "ietf/DISMAN-EXPRESSION-MIB@2000-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "NOTIFICATION-LOG-MIB",
+      "revision": "2000-11-27",
+      "source": "ietf",
+      "path": "ietf/NOTIFICATION-LOG-MIB@2000-11-27.mib",
+      "latest": true
+    },
+    {
+      "name": "IPV6-MLD-MIB",
+      "revision": "2001-01-25",
+      "source": "ietf",
+      "path": "ietf/IPV6-MLD-MIB@2001-01-25.mib",
+      "latest": true
+    },
+    {
+      "name": "FR-MFR-MIB",
+      "revision": "2000-11-30",
+      "source": "ietf",
+      "path": "ietf/FR-MFR-MIB@2000-11-30.mib",
+      "latest": true
+    },
+    {
+      "name": "COPS-PR-SPPI",
+      "revision": "unknown",
+      "source": "ietf",
+      "path": "ietf/COPS-PR-SPPI@unknown.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-SCRIPT-MIB",
+      "revision": "2001-08-21",
+      "source": "ietf",
+      "path": "ietf/DISMAN-SCRIPT-MIB@2001-08-21.mib",
+      "latest": true
+    },
+    {
+      "name": "CIRCUIT-IF-MIB",
+      "revision": "2002-01-03",
+      "source": "ietf",
+      "path": "ietf/CIRCUIT-IF-MIB@2002-01-03.mib",
+      "latest": true
+    },
+    {
+      "name": "FRSLD-MIB",
+      "revision": "2002-01-03",
+      "source": "ietf",
+      "path": "ietf/FRSLD-MIB@2002-01-03.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-SCHEDULE-MIB",
+      "revision": "2002-01-07",
+      "source": "ietf",
+      "path": "ietf/DISMAN-SCHEDULE-MIB@2002-01-07.mib",
+      "latest": true
+    },
+    {
+      "name": "HC-RMON-MIB",
+      "revision": "2002-05-08",
+      "source": "ietf",
+      "path": "ietf/HC-RMON-MIB@2002-05-08.mib",
+      "latest": true
+    },
+    {
+      "name": "HDSL2-SHDSL-LINE-MIB",
+      "revision": "2002-05-09",
+      "source": "ietf",
+      "path": "ietf/HDSL2-SHDSL-LINE-MIB@2002-05-09.mib",
+      "latest": false
+    },
+    {
+      "name": "DIFFSERV-DSCP-TC",
+      "revision": "2002-05-09",
+      "source": "ietf",
+      "path": "ietf/DIFFSERV-DSCP-TC@2002-05-09.mib",
+      "latest": true
+    },
+    {
+      "name": "DIFFSERV-MIB",
+      "revision": "2002-02-07",
+      "source": "ietf",
+      "path": "ietf/DIFFSERV-MIB@2002-02-07.mib",
+      "latest": true
+    },
+    {
+      "name": "INET-ADDRESS-MIB",
+      "revision": "2002-05-09",
+      "source": "ietf",
+      "path": "ietf/INET-ADDRESS-MIB@2002-05-09.mib",
+      "latest": true
+    },
+    {
+      "name": "L2TP-MIB",
+      "revision": "2002-08-23",
+      "source": "ietf",
+      "path": "ietf/L2TP-MIB@2002-08-23.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-FRAMEWORK-MIB",
+      "revision": "2002-10-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-FRAMEWORK-MIB@2002-10-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-MPD-MIB",
+      "revision": "2002-10-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-MPD-MIB@2002-10-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-TARGET-MIB",
+      "revision": "2002-10-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-TARGET-MIB@2002-10-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-NOTIFICATION-MIB",
+      "revision": "2002-10-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-NOTIFICATION-MIB@2002-10-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-PROXY-MIB",
+      "revision": "2002-10-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-PROXY-MIB@2002-10-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-USER-BASED-SM-MIB",
+      "revision": "2002-10-16",
+      "source": "ietf",
+      "path": "ietf/SNMP-USER-BASED-SM-MIB@2002-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-VIEW-BASED-ACM-MIB",
+      "revision": "2002-10-16",
+      "source": "ietf",
+      "path": "ietf/SNMP-VIEW-BASED-ACM-MIB@2002-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMPv2-TM",
+      "revision": "2002-10-16",
+      "source": "ietf",
+      "path": "ietf/SNMPv2-TM@2002-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMPv2-MIB",
+      "revision": "2002-10-16",
+      "source": "ietf",
+      "path": "ietf/SNMPv2-MIB@2002-10-16.mib",
+      "latest": true
+    },
+    {
+      "name": "TRANSPORT-ADDRESS-MIB",
+      "revision": "2002-11-01",
+      "source": "ietf",
+      "path": "ietf/TRANSPORT-ADDRESS-MIB@2002-11-01.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-SENSOR-MIB",
+      "revision": "2002-12-16",
+      "source": "ietf",
+      "path": "ietf/ENTITY-SENSOR-MIB@2002-12-16.mib",
+      "latest": true
+    },
+    {
+      "name": "APS-MIB",
+      "revision": "2003-02-28",
+      "source": "ietf",
+      "path": "ietf/APS-MIB@2003-02-28.mib",
+      "latest": true
+    },
+    {
+      "name": "BLDG-HVAC-MIB",
+      "revision": "2003-03-27",
+      "source": "ietf",
+      "path": "ietf/BLDG-HVAC-MIB@2003-03-27.mib",
+      "latest": true
+    },
+    {
+      "name": "MALLOC-MIB",
+      "revision": "2003-06-09",
+      "source": "ietf",
+      "path": "ietf/MALLOC-MIB@2003-06-09.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-COMMUNITY-MIB",
+      "revision": "2003-08-06",
+      "source": "ietf",
+      "path": "ietf/SNMP-COMMUNITY-MIB@2003-08-06.mib",
+      "latest": true
+    },
+    {
+      "name": "OPT-IF-MIB",
+      "revision": "2003-08-13",
+      "source": "ietf",
+      "path": "ietf/OPT-IF-MIB@2003-08-13.mib",
+      "latest": true
+    },
+    {
+      "name": "SONET-MIB",
+      "revision": "2003-08-11",
+      "source": "ietf",
+      "path": "ietf/SONET-MIB@2003-08-11.mib",
+      "latest": true
+    },
+    {
+      "name": "PerfHist-TC-MIB",
+      "revision": "2003-08-13",
+      "source": "ietf",
+      "path": "ietf/PerfHist-TC-MIB@2003-08-13.mib",
+      "latest": true
+    },
+    {
+      "name": "ATM2-MIB",
+      "revision": "2003-09-23",
+      "source": "ietf",
+      "path": "ietf/ATM2-MIB@2003-09-23.mib",
+      "latest": true
+    },
+    {
+      "name": "POWER-ETHERNET-MIB",
+      "revision": "2003-11-24",
+      "source": "ietf",
+      "path": "ietf/POWER-ETHERNET-MIB@2003-11-24.mib",
+      "latest": true
+    },
+    {
+      "name": "EtherLike-MIB",
+      "revision": "2003-09-19",
+      "source": "ietf",
+      "path": "ietf/EtherLike-MIB@2003-09-19.mib",
+      "latest": true
+    },
+    {
+      "name": "ETHER-WIS",
+      "revision": "2003-09-19",
+      "source": "ietf",
+      "path": "ietf/ETHER-WIS@2003-09-19.mib",
+      "latest": true
+    },
+    {
+      "name": "VDSL-LINE-MIB",
+      "revision": "2004-02-19",
+      "source": "ietf",
+      "path": "ietf/VDSL-LINE-MIB@2004-02-19.mib",
+      "latest": true
+    },
+    {
+      "name": "APM-MIB",
+      "revision": "2004-02-19",
+      "source": "ietf",
+      "path": "ietf/APM-MIB@2004-02-19.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-PRINTER-MIB",
+      "revision": "2004-06-02",
+      "source": "ietf",
+      "path": "ietf/IANA-PRINTER-MIB@2004-06-02.mib",
+      "latest": true
+    },
+    {
+      "name": "Printer-MIB",
+      "revision": "2004-06-02",
+      "source": "ietf",
+      "path": "ietf/Printer-MIB@2004-06-02.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-FINISHER-MIB",
+      "revision": "2004-06-02",
+      "source": "ietf",
+      "path": "ietf/IANA-FINISHER-MIB@2004-06-02.mib",
+      "latest": true
+    },
+    {
+      "name": "Finisher-MIB",
+      "revision": "2004-06-02",
+      "source": "ietf",
+      "path": "ietf/Finisher-MIB@2004-06-02.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LSR-STD-MIB",
+      "revision": "2004-06-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-LSR-STD-MIB@2004-06-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LDP-STD-MIB",
+      "revision": "2004-06-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-LDP-STD-MIB@2004-06-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LDP-ATM-STD-MIB",
+      "revision": "2004-06-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-LDP-ATM-STD-MIB@2004-06-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LDP-FRAME-RELAY-STD-MIB",
+      "revision": "2004-06-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-LDP-FRAME-RELAY-STD-MIB@2004-06-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LDP-GENERIC-STD-MIB",
+      "revision": "2004-06-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-LDP-GENERIC-STD-MIB@2004-06-03.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-USM-AES-MIB",
+      "revision": "2004-06-14",
+      "source": "ietf",
+      "path": "ietf/SNMP-USM-AES-MIB@2004-06-14.mib",
+      "latest": true
+    },
+    {
+      "name": "SCTP-MIB",
+      "revision": "2004-09-02",
+      "source": "ietf",
+      "path": "ietf/SCTP-MIB@2004-09-02.mib",
+      "latest": true
+    },
+    {
+      "name": "ALARM-MIB",
+      "revision": "2004-09-09",
+      "source": "ietf",
+      "path": "ietf/ALARM-MIB@2004-09-09.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ITU-ALARM-TC-MIB",
+      "revision": "2004-09-09",
+      "source": "ietf",
+      "path": "ietf/IANA-ITU-ALARM-TC-MIB@2004-09-09.mib",
+      "latest": true
+    },
+    {
+      "name": "ITU-ALARM-TC-MIB",
+      "revision": "2004-09-09",
+      "source": "ietf",
+      "path": "ietf/ITU-ALARM-TC-MIB@2004-09-09.mib",
+      "latest": true
+    },
+    {
+      "name": "ITU-ALARM-MIB",
+      "revision": "2004-09-09",
+      "source": "ietf",
+      "path": "ietf/ITU-ALARM-MIB@2004-09-09.mib",
+      "latest": true
+    },
+    {
+      "name": "DS1-MIB",
+      "revision": "2004-09-09",
+      "source": "ietf",
+      "path": "ietf/DS1-MIB@2004-09-09.mib",
+      "latest": true
+    },
+    {
+      "name": "DS3-MIB",
+      "revision": "2004-09-08",
+      "source": "ietf",
+      "path": "ietf/DS3-MIB@2004-09-08.mib",
+      "latest": true
+    },
+    {
+      "name": "TCP-MIB",
+      "revision": "2005-02-18",
+      "source": "ietf",
+      "path": "ietf/TCP-MIB@2005-02-18.mib",
+      "latest": true
+    },
+    {
+      "name": "FC-MGMT-MIB",
+      "revision": "2005-04-26",
+      "source": "ietf",
+      "path": "ietf/FC-MGMT-MIB@2005-04-26.mib",
+      "latest": true
+    },
+    {
+      "name": "TUNNEL-MIB",
+      "revision": "2005-05-16",
+      "source": "ietf",
+      "path": "ietf/TUNNEL-MIB@2005-05-16.mib",
+      "latest": true
+    },
+    {
+      "name": "UDP-MIB",
+      "revision": "2005-05-20",
+      "source": "ietf",
+      "path": "ietf/UDP-MIB@2005-05-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IETF-BPI2-MIB",
+      "revision": "2005-07-20",
+      "source": "ietf",
+      "path": "ietf/DOCS-IETF-BPI2-MIB@2005-07-20.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-MIB",
+      "revision": "2005-08-10",
+      "source": "ietf",
+      "path": "ietf/ENTITY-MIB@2005-08-10.mib",
+      "latest": false
+    },
+    {
+      "name": "BRIDGE-MIB",
+      "revision": "2005-09-19",
+      "source": "ietf",
+      "path": "ietf/BRIDGE-MIB@2005-09-19.mib",
+      "latest": false
+    },
+    {
+      "name": "TE-LINK-STD-MIB",
+      "revision": "2005-10-11",
+      "source": "ietf",
+      "path": "ietf/TE-LINK-STD-MIB@2005-10-11.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-STATE-TC-MIB",
+      "revision": "2005-11-22",
+      "source": "ietf",
+      "path": "ietf/ENTITY-STATE-TC-MIB@2005-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-STATE-MIB",
+      "revision": "2005-11-22",
+      "source": "ietf",
+      "path": "ietf/ENTITY-STATE-MIB@2005-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IP-FORWARD-MIB",
+      "revision": "2006-02-01",
+      "source": "ietf",
+      "path": "ietf/IP-FORWARD-MIB@2006-02-01.mib",
+      "latest": true
+    },
+    {
+      "name": "IP-MIB",
+      "revision": "2006-02-02",
+      "source": "ietf",
+      "path": "ietf/IP-MIB@2006-02-02.mib",
+      "latest": true
+    },
+    {
+      "name": "RSTP-MIB",
+      "revision": "2005-12-07",
+      "source": "ietf",
+      "path": "ietf/RSTP-MIB@2005-12-07.mib",
+      "latest": true
+    },
+    {
+      "name": "HDSL2-SHDSL-LINE-MIB",
+      "revision": "2005-12-07",
+      "source": "ietf",
+      "path": "ietf/HDSL2-SHDSL-LINE-MIB@2005-12-07.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IETF-QOS-MIB",
+      "revision": "2006-01-23",
+      "source": "ietf",
+      "path": "ietf/DOCS-IETF-QOS-MIB@2006-01-23.mib",
+      "latest": true
+    },
+    {
+      "name": "P-BRIDGE-MIB",
+      "revision": "2006-01-09",
+      "source": "ietf",
+      "path": "ietf/P-BRIDGE-MIB@2006-01-09.mib",
+      "latest": true
+    },
+    {
+      "name": "Q-BRIDGE-MIB",
+      "revision": "2006-01-09",
+      "source": "ietf",
+      "path": "ietf/Q-BRIDGE-MIB@2006-01-09.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LC-ATM-STD-MIB",
+      "revision": "2006-01-12",
+      "source": "ietf",
+      "path": "ietf/MPLS-LC-ATM-STD-MIB@2006-01-12.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-LC-FR-STD-MIB",
+      "revision": "2006-01-12",
+      "source": "ietf",
+      "path": "ietf/MPLS-LC-FR-STD-MIB@2006-01-12.mib",
+      "latest": true
+    },
+    {
+      "name": "IFCP-MGMT-MIB",
+      "revision": "2006-01-17",
+      "source": "ietf",
+      "path": "ietf/IFCP-MGMT-MIB@2006-01-17.mib",
+      "latest": true
+    },
+    {
+      "name": "RMON2-MIB",
+      "revision": "2006-05-02",
+      "source": "ietf",
+      "path": "ietf/RMON2-MIB@2006-05-02.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IF-MIB",
+      "revision": "2006-05-24",
+      "source": "ietf",
+      "path": "ietf/DOCS-IF-MIB@2006-05-24.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-PING-MIB",
+      "revision": "2006-06-13",
+      "source": "ietf",
+      "path": "ietf/DISMAN-PING-MIB@2006-06-13.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-TRACEROUTE-MIB",
+      "revision": "2006-06-13",
+      "source": "ietf",
+      "path": "ietf/DISMAN-TRACEROUTE-MIB@2006-06-13.mib",
+      "latest": true
+    },
+    {
+      "name": "DISMAN-NSLOOKUP-MIB",
+      "revision": "2006-06-13",
+      "source": "ietf",
+      "path": "ietf/DISMAN-NSLOOKUP-MIB@2006-06-13.mib",
+      "latest": true
+    },
+    {
+      "name": "LMP-MIB",
+      "revision": "2006-08-14",
+      "source": "ietf",
+      "path": "ietf/LMP-MIB@2006-08-14.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-AUTH-CLIENT-MIB",
+      "revision": "2006-08-21",
+      "source": "ietf",
+      "path": "ietf/RADIUS-AUTH-CLIENT-MIB@2006-08-21.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-AUTH-SERVER-MIB",
+      "revision": "2006-08-21",
+      "source": "ietf",
+      "path": "ietf/RADIUS-AUTH-SERVER-MIB@2006-08-21.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-ACC-CLIENT-MIB",
+      "revision": "2006-08-21",
+      "source": "ietf",
+      "path": "ietf/RADIUS-ACC-CLIENT-MIB@2006-08-21.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-ACC-SERVER-MIB",
+      "revision": "2006-08-21",
+      "source": "ietf",
+      "path": "ietf/RADIUS-ACC-SERVER-MIB@2006-08-21.mib",
+      "latest": true
+    },
+    {
+      "name": "RADIUS-DYNAUTH-CLIENT-MIB",
+      "revision": "2006-08-29",
+      "source": "ietf",
+      "path": "ietf/RADIUS-DYNAUTH-CLIENT-MIB@2006-08-29.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-VIRTUAL-FABRIC-MIB",
+      "revision": "2006-11-10",
+      "source": "ietf",
+      "path": "ietf/T11-FC-VIRTUAL-FABRIC-MIB@2006-11-10.mib",
+      "latest": true
+    },
+    {
+      "name": "GMPLS-TC-STD-MIB",
+      "revision": "2007-02-28",
+      "source": "ietf",
+      "path": "ietf/GMPLS-TC-STD-MIB@2007-02-28.mib",
+      "latest": true
+    },
+    {
+      "name": "GMPLS-TE-STD-MIB",
+      "revision": "2007-02-27",
+      "source": "ietf",
+      "path": "ietf/GMPLS-TE-STD-MIB@2007-02-27.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-GMPLS-TC-MIB",
+      "revision": "2007-02-27",
+      "source": "ietf",
+      "path": "ietf/IANA-GMPLS-TC-MIB@2007-02-27.mib",
+      "latest": true
+    },
+    {
+      "name": "GMPLS-LSR-STD-MIB",
+      "revision": "2007-02-27",
+      "source": "ietf",
+      "path": "ietf/GMPLS-LSR-STD-MIB@2007-02-27.mib",
+      "latest": true
+    },
+    {
+      "name": "GMPLS-LABEL-STD-MIB",
+      "revision": "2007-02-27",
+      "source": "ietf",
+      "path": "ietf/GMPLS-LABEL-STD-MIB@2007-02-27.mib",
+      "latest": true
+    },
+    {
+      "name": "DOT3-EPON-MIB",
+      "revision": "2007-03-29",
+      "source": "ietf",
+      "path": "ietf/DOT3-EPON-MIB@2007-03-29.mib",
+      "latest": true
+    },
+    {
+      "name": "DOT3-OAM-MIB",
+      "revision": "2007-06-14",
+      "source": "ietf",
+      "path": "ietf/DOT3-OAM-MIB@2007-06-14.mib",
+      "latest": true
+    },
+    {
+      "name": "TCP-ESTATS-MIB",
+      "revision": "2007-05-18",
+      "source": "ietf",
+      "path": "ietf/TCP-ESTATS-MIB@2007-05-18.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-FABRIC-CONFIG-SERVER-MIB",
+      "revision": "2007-06-27",
+      "source": "ietf",
+      "path": "ietf/T11-FC-FABRIC-CONFIG-SERVER-MIB@2007-06-27.mib",
+      "latest": true
+    },
+    {
+      "name": "URI-TC-MIB",
+      "revision": "2007-09-10",
+      "source": "ietf",
+      "path": "ietf/URI-TC-MIB@2007-09-10.mib",
+      "latest": true
+    },
+    {
+      "name": "PIM-STD-MIB",
+      "revision": "2007-11-02",
+      "source": "ietf",
+      "path": "ietf/PIM-STD-MIB@2007-11-02.mib",
+      "latest": true
+    },
+    {
+      "name": "IF-CAP-STACK-MIB",
+      "revision": "2007-11-07",
+      "source": "ietf",
+      "path": "ietf/IF-CAP-STACK-MIB@2007-11-07.mib",
+      "latest": true
+    },
+    {
+      "name": "EFM-CU-MIB",
+      "revision": "2007-11-14",
+      "source": "ietf",
+      "path": "ietf/EFM-CU-MIB@2007-11-14.mib",
+      "latest": true
+    },
+    {
+      "name": "UDPLITE-MIB",
+      "revision": "2007-12-18",
+      "source": "ietf",
+      "path": "ietf/UDPLITE-MIB@2007-12-18.mib",
+      "latest": true
+    },
+    {
+      "name": "LANGTAG-TC-MIB",
+      "revision": "2007-11-09",
+      "source": "ietf",
+      "path": "ietf/LANGTAG-TC-MIB@2007-11-09.mib",
+      "latest": true
+    },
+    {
+      "name": "IPMCAST-MIB",
+      "revision": "2007-11-09",
+      "source": "ietf",
+      "path": "ietf/IPMCAST-MIB@2007-11-09.mib",
+      "latest": true
+    },
+    {
+      "name": "MIDCOM-MIB",
+      "revision": "2007-08-09",
+      "source": "ietf",
+      "path": "ietf/MIDCOM-MIB@2007-08-09.mib",
+      "latest": true
+    },
+    {
+      "name": "PIM-BSR-MIB",
+      "revision": "2008-05-28",
+      "source": "ietf",
+      "path": "ietf/PIM-BSR-MIB@2008-05-28.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-SP-TC-MIB",
+      "revision": "2008-08-20",
+      "source": "ietf",
+      "path": "ietf/T11-FC-SP-TC-MIB@2008-08-20.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-SP-AUTHENTICATION-MIB",
+      "revision": "2008-08-20",
+      "source": "ietf",
+      "path": "ietf/T11-FC-SP-AUTHENTICATION-MIB@2008-08-20.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-SP-ZONING-MIB",
+      "revision": "2008-08-20",
+      "source": "ietf",
+      "path": "ietf/T11-FC-SP-ZONING-MIB@2008-08-20.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-SP-POLICY-MIB",
+      "revision": "2008-08-20",
+      "source": "ietf",
+      "path": "ietf/T11-FC-SP-POLICY-MIB@2008-08-20.mib",
+      "latest": true
+    },
+    {
+      "name": "T11-FC-SP-SA-MIB",
+      "revision": "2008-08-20",
+      "source": "ietf",
+      "path": "ietf/T11-FC-SP-SA-MIB@2008-08-20.mib",
+      "latest": true
+    },
+    {
+      "name": "SYSLOG-TC-MIB",
+      "revision": "2009-03-30",
+      "source": "ietf",
+      "path": "ietf/SYSLOG-TC-MIB@2009-03-30.mib",
+      "latest": true
+    },
+    {
+      "name": "PKTC-IETF-EVENT-MIB",
+      "revision": "2009-03-30",
+      "source": "ietf",
+      "path": "ietf/PKTC-IETF-EVENT-MIB@2009-03-30.mib",
+      "latest": true
+    },
+    {
+      "name": "MGMD-STD-MIB",
+      "revision": "2009-03-30",
+      "source": "ietf",
+      "path": "ietf/MGMD-STD-MIB@2009-03-30.mib",
+      "latest": true
+    },
+    {
+      "name": "RSERPOOL-MIB",
+      "revision": "2009-04-07",
+      "source": "ietf",
+      "path": "ietf/RSERPOOL-MIB@2009-04-07.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-PWE3-MIB",
+      "revision": "2009-06-11",
+      "source": "ietf",
+      "path": "ietf/IANA-PWE3-MIB@2009-06-11.mib",
+      "latest": true
+    },
+    {
+      "name": "PW-STD-MIB",
+      "revision": "2009-06-11",
+      "source": "ietf",
+      "path": "ietf/PW-STD-MIB@2009-06-11.mib",
+      "latest": true
+    },
+    {
+      "name": "PW-MPLS-STD-MIB",
+      "revision": "2009-06-12",
+      "source": "ietf",
+      "path": "ietf/PW-MPLS-STD-MIB@2009-06-12.mib",
+      "latest": true
+    },
+    {
+      "name": "PW-ENET-STD-MIB",
+      "revision": "2009-06-15",
+      "source": "ietf",
+      "path": "ietf/PW-ENET-STD-MIB@2009-06-15.mib",
+      "latest": true
+    },
+    {
+      "name": "PW-TDM-MIB",
+      "revision": "2009-06-15",
+      "source": "ietf",
+      "path": "ietf/PW-TDM-MIB@2009-06-15.mib",
+      "latest": true
+    },
+    {
+      "name": "PW-ATM-MIB",
+      "revision": "2009-06-16",
+      "source": "ietf",
+      "path": "ietf/PW-ATM-MIB@2009-06-16.mib",
+      "latest": true
+    },
+    {
+      "name": "SYSLOG-MSG-MIB",
+      "revision": "2009-08-13",
+      "source": "ietf",
+      "path": "ietf/SYSLOG-MSG-MIB@2009-08-13.mib",
+      "latest": true
+    },
+    {
+      "name": "FORCES-MIB",
+      "revision": "2010-03-10",
+      "source": "ietf",
+      "path": "ietf/FORCES-MIB@2010-03-10.mib",
+      "latest": true
+    },
+    {
+      "name": "IPFIX-MIB",
+      "revision": "2010-04-19",
+      "source": "ietf",
+      "path": "ietf/IPFIX-MIB@2010-04-19.mib",
+      "latest": true
+    },
+    {
+      "name": "IPFIX-SELECTOR-MIB",
+      "revision": "2010-03-15",
+      "source": "ietf",
+      "path": "ietf/IPFIX-SELECTOR-MIB@2010-03-15.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-VACM-AAA-MIB",
+      "revision": "2010-12-09",
+      "source": "ietf",
+      "path": "ietf/SNMP-VACM-AAA-MIB@2010-12-09.mib",
+      "latest": true
+    },
+    {
+      "name": "FLOAT-TC-MIB",
+      "revision": "2011-07-27",
+      "source": "ietf",
+      "path": "ietf/FLOAT-TC-MIB@2011-07-27.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-TLS-TM-MIB",
+      "revision": "2011-07-19",
+      "source": "ietf",
+      "path": "ietf/SNMP-TLS-TM-MIB@2011-07-19.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-FRR-GENERAL-STD-MIB",
+      "revision": "2011-11-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-FRR-GENERAL-STD-MIB@2011-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-FRR-ONE2ONE-STD-MIB",
+      "revision": "2011-11-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-FRR-ONE2ONE-STD-MIB@2011-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "MPLS-FRR-FACILITY-STD-MIB",
+      "revision": "2011-11-03",
+      "source": "ietf",
+      "path": "ietf/MPLS-FRR-FACILITY-STD-MIB@2011-11-03.mib",
+      "latest": true
+    },
+    {
+      "name": "PSAMP-MIB",
+      "revision": "2012-09-05",
+      "source": "ietf",
+      "path": "ietf/PSAMP-MIB@2012-09-05.mib",
+      "latest": true
+    },
+    {
+      "name": "G9981-MIB",
+      "revision": "2013-02-20",
+      "source": "ietf",
+      "path": "ietf/G9981-MIB@2013-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "RBRIDGE-MIB",
+      "revision": "2013-01-07",
+      "source": "ietf",
+      "path": "ietf/RBRIDGE-MIB@2013-01-07.mib",
+      "latest": true
+    },
+    {
+      "name": "ENTITY-MIB",
+      "revision": "2013-04-05",
+      "source": "ietf",
+      "path": "ietf/ENTITY-MIB@2013-04-05.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ENTITY-MIB",
+      "revision": "2013-04-05",
+      "source": "ietf",
+      "path": "ietf/IANA-ENTITY-MIB@2013-04-05.mib",
+      "latest": true
+    },
+    {
+      "name": "UUID-TC-MIB",
+      "revision": "2013-04-05",
+      "source": "ietf",
+      "path": "ietf/UUID-TC-MIB@2013-04-05.mib",
+      "latest": true
+    },
+    {
+      "name": "VPLS-GENERIC-MIB",
+      "revision": "2014-05-19",
+      "source": "ietf",
+      "path": "ietf/VPLS-GENERIC-MIB@2014-05-19.mib",
+      "latest": true
+    },
+    {
+      "name": "VPLS-LDP-MIB",
+      "revision": "2014-05-19",
+      "source": "ietf",
+      "path": "ietf/VPLS-LDP-MIB@2014-05-19.mib",
+      "latest": true
+    },
+    {
+      "name": "VPLS-BGP-MIB",
+      "revision": "2014-05-19",
+      "source": "ietf",
+      "path": "ietf/VPLS-BGP-MIB@2014-05-19.mib",
+      "latest": true
+    },
+    {
+      "name": "BFD-TC-STD-MIB",
+      "revision": "2014-08-12",
+      "source": "ietf",
+      "path": "ietf/BFD-TC-STD-MIB@2014-08-12.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-BFD-TC-STD-MIB",
+      "revision": "2014-08-12",
+      "source": "ietf",
+      "path": "ietf/IANA-BFD-TC-STD-MIB@2014-08-12.mib",
+      "latest": true
+    },
+    {
+      "name": "PCE-PCEP-MIB",
+      "revision": "2014-12-17",
+      "source": "ietf",
+      "path": "ietf/PCE-PCEP-MIB@2014-12-17.mib",
+      "latest": true
+    },
+    {
+      "name": "ENERGY-OBJECT-CONTEXT-MIB",
+      "revision": "2015-02-09",
+      "source": "ietf",
+      "path": "ietf/ENERGY-OBJECT-CONTEXT-MIB@2015-02-09.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ENERGY-RELATION-MIB",
+      "revision": "2015-02-09",
+      "source": "ietf",
+      "path": "ietf/IANA-ENERGY-RELATION-MIB@2015-02-09.mib",
+      "latest": true
+    },
+    {
+      "name": "BATTERY-MIB",
+      "revision": "2015-06-15",
+      "source": "ietf",
+      "path": "ietf/BATTERY-MIB@2015-06-15.mib",
+      "latest": true
+    },
+    {
+      "name": "SNMP-USM-HMAC-SHA2-MIB",
+      "revision": "2015-08-13",
+      "source": "ietf",
+      "path": "ietf/SNMP-USM-HMAC-SHA2-MIB@2015-08-13.mib",
+      "latest": true
+    },
+    {
+      "name": "VM-MIB",
+      "revision": "2015-10-12",
+      "source": "ietf",
+      "path": "ietf/VM-MIB@2015-10-12.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-STORAGE-MEDIA-TYPE-MIB",
+      "revision": "2015-10-12",
+      "source": "ietf",
+      "path": "ietf/IANA-STORAGE-MEDIA-TYPE-MIB@2015-10-12.mib",
+      "latest": true
+    },
+    {
+      "name": "L2L3-VPN-MULTICAST-TC-MIB",
+      "revision": "2018-12-14",
+      "source": "ietf",
+      "path": "ietf/L2L3-VPN-MULTICAST-TC-MIB@2018-12-14.mib",
+      "latest": true
+    },
+    {
+      "name": "L2L3-VPN-MULTICAST-MIB",
+      "revision": "2018-12-14",
+      "source": "ietf",
+      "path": "ietf/L2L3-VPN-MULTICAST-MIB@2018-12-14.mib",
+      "latest": true
+    },
+    {
+      "name": "BGP-MPLS-LAYER3-VPN-MULTICAST-MIB",
+      "revision": "2018-12-14",
+      "source": "ietf",
+      "path": "ietf/BGP-MPLS-LAYER3-VPN-MULTICAST-MIB@2018-12-14.mib",
+      "latest": true
+    },
+    {
+      "name": "IANAifType-MIB",
+      "revision": "2026-02-24",
+      "source": "iana",
+      "path": "iana/IANAifType-MIB@2026-02-24.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-LANGUAGE-MIB",
+      "revision": "2014-05-22",
+      "source": "iana",
+      "path": "iana/IANA-LANGUAGE-MIB@2014-05-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ADDRESS-FAMILY-NUMBERS-MIB",
+      "revision": "2021-10-19",
+      "source": "iana",
+      "path": "iana/IANA-ADDRESS-FAMILY-NUMBERS-MIB@2021-10-19.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-RTPROTO-MIB",
+      "revision": "2016-04-25",
+      "source": "iana",
+      "path": "iana/IANA-RTPROTO-MIB@2016-04-25.mib",
+      "latest": true
+    },
+    {
+      "name": "IANATn3270eTC-MIB",
+      "revision": "2014-05-22",
+      "source": "iana",
+      "path": "iana/IANATn3270eTC-MIB@2014-05-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-MALLOC-MIB",
+      "revision": "2014-05-22",
+      "source": "iana",
+      "path": "iana/IANA-MALLOC-MIB@2014-05-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-CHARSET-MIB",
+      "revision": "2021-01-04",
+      "source": "iana",
+      "path": "iana/IANA-CHARSET-MIB@2021-01-04.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-PRINTER-MIB",
+      "revision": "2024-02-06",
+      "source": "iana",
+      "path": "iana/IANA-PRINTER-MIB@2024-02-06.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-FINISHER-MIB",
+      "revision": "2014-05-22",
+      "source": "iana",
+      "path": "iana/IANA-FINISHER-MIB@2014-05-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ITU-ALARM-TC-MIB",
+      "revision": "2014-05-22",
+      "source": "iana",
+      "path": "iana/IANA-ITU-ALARM-TC-MIB@2014-05-22.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-GMPLS-TC-MIB",
+      "revision": "2015-11-04",
+      "source": "iana",
+      "path": "iana/IANA-GMPLS-TC-MIB@2015-11-04.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-IPPM-METRICS-REGISTRY-MIB",
+      "revision": "2015-08-14",
+      "source": "iana",
+      "path": "iana/IANA-IPPM-METRICS-REGISTRY-MIB@2015-08-14.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-MAU-MIB",
+      "revision": "2024-04-02",
+      "source": "iana",
+      "path": "iana/IANA-MAU-MIB@2024-04-02.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-ENTITY-MIB",
+      "revision": "2015-07-16",
+      "source": "iana",
+      "path": "iana/IANA-ENTITY-MIB@2015-07-16.mib",
+      "latest": true
+    },
+    {
+      "name": "IANAPowerStateSet-MIB",
+      "revision": "2015-02-09",
+      "source": "iana",
+      "path": "iana/IANAPowerStateSet-MIB@2015-02-09.mib",
+      "latest": true
+    },
+    {
+      "name": "IANA-STORAGE-MEDIA-TYPE-MIB",
+      "revision": "2016-06-17",
+      "source": "iana",
+      "path": "iana/IANA-STORAGE-MEDIA-TYPE-MIB@2016-06-17.mib",
+      "latest": true
+    },
+    {
+      "name": "CCAP-MIB",
+      "revision": "2013-04-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/CCAP-MIB@2013-04-04.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-BPI2EXT-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-BPI2EXT-MIB@2024-07-05.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-DIAG-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-DIAG-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-DRF-MIB",
+      "revision": "2008-12-09",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-DRF-MIB@2008-12-09.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-FDD-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FDD-MIB@2025-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-FDX-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FDX-MIB@2025-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-FMA-LI-MIB",
+      "revision": "2022-02-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FMA-LI-MIB@2022-02-10.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2025-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2025-04-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2025-04-24.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IF40-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF40-MIB@2025-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-IFEXT2-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IFEXT2-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-L2VPN-MIB",
+      "revision": "2025-10-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-L2VPN-MIB@2025-10-02.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-LEAK-DETECT-MIB",
+      "revision": "2022-09-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LEAK-DETECT-MIB@2022-09-15.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-LOADBAL3-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LOADBAL3-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-MCAST-AUTH-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-AUTH-MIB@2024-07-05.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-MCAST-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-MIB@2024-07-05.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2024-07-05.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2024-07-05.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2023-09-14",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2023-09-14.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2026-02-19",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2026-02-19.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2025-01-23",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2025-01-23.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-RPHY-SEC-MIB",
+      "revision": "2024-01-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-SEC-MIB@2024-01-18.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2024-01-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2024-01-18.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2025-02-20.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-SUBMGT3-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SUBMGT3-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DSG-IF-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DSG-IF-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "DSG-IF-STD-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DSG-IF-STD-MIB@2023-11-22.mib",
+      "latest": true
+    },
+    {
+      "name": "ESAFE-MIB",
+      "revision": "2024-05-09",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/ESAFE-MIB@2024-05-09.mib",
+      "latest": true
+    },
+    {
+      "name": "DOCS-BPI2EXT-MIB",
+      "revision": "2016-01-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-BPI2EXT-MIB@2016-01-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-BPI2EXT-MIB",
+      "revision": "2016-05-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-BPI2EXT-MIB@2016-05-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-BPI2EXT-MIB",
+      "revision": "2016-10-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-BPI2EXT-MIB@2016-10-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-BPI2EXT-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-BPI2EXT-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-DIAG-MIB",
+      "revision": "2007-12-06",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-DIAG-MIB@2007-12-06.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-FDX-MIB",
+      "revision": "2019-10-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FDX-MIB@2019-10-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-FDX-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FDX-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-FDX-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-FDX-MIB@2024-07-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2015-04-08",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2015-04-08.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2015-05-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2015-05-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2016-03-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2016-03-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2016-05-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2016-05-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2016-08-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2016-08-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2017-06-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2017-06-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2017-07-27",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2017-07-27.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2017-11-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2017-11-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2019-05-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2019-05-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2019-09-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2019-09-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2020-06-25",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2020-06-25.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2020-11-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2020-11-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2021-02-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2021-02-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2021-06-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2021-06-24.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2021-12-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2021-12-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2023-10-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2023-10-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF3-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF3-MIB@2024-07-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2015-04-08",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2015-04-08.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2015-05-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2015-05-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2015-07-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2015-07-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2015-11-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2015-11-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2016-03-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2016-03-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2016-05-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2016-05-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2016-08-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2016-08-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2016-12-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2016-12-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2017-05-25",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2017-05-25.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2017-07-27",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2017-07-27.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2017-09-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2017-09-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2017-11-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2017-11-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2018-04-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2018-04-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2018-07-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2018-07-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2018-08-30",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2018-08-30.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2018-11-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2018-11-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2019-05-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2019-05-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2019-09-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2019-09-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2019-12-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2019-12-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2020-11-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2020-11-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2021-02-11",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2021-02-11.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2021-06-17",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2021-06-17.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2021-09-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2021-09-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2021-12-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2021-12-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2022-05-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2022-05-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2022-09-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2022-09-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2022-12-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2022-12-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2023-02-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2023-02-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2023-10-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2023-10-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2024-07-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF31-MIB",
+      "revision": "2025-02-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF31-MIB@2025-02-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IF40-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IF40-MIB@2024-07-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IFEXT2-MIB",
+      "revision": "2011-06-23",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IFEXT2-MIB@2011-06-23.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IFEXT2-MIB",
+      "revision": "2020-11-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IFEXT2-MIB@2020-11-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IFEXT2-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IFEXT2-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-IFEXT2-MIB",
+      "revision": "2023-10-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-IFEXT2-MIB@2023-10-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LEAK-DETECT-MIB",
+      "revision": "2021-09-23",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LEAK-DETECT-MIB@2021-09-23.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LEAK-DETECT-MIB",
+      "revision": "2021-12-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LEAK-DETECT-MIB@2021-12-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LEAK-DETECT-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LEAK-DETECT-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LEAK-DETECT-MIB",
+      "revision": "2022-05-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LEAK-DETECT-MIB@2022-05-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LOADBAL3-MIB",
+      "revision": "2015-07-29",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LOADBAL3-MIB@2015-07-29.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-LOADBAL3-MIB",
+      "revision": "2016-03-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-LOADBAL3-MIB@2016-03-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-AUTH-MIB",
+      "revision": "2007-12-06",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-AUTH-MIB@2007-12-06.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-AUTH-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-AUTH-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-AUTH-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-AUTH-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-MIB",
+      "revision": "2015-04-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-MIB@2015-04-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-MCAST-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-MCAST-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2015-04-08",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2015-04-08.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2015-05-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2015-05-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2015-11-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2015-11-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2016-05-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2016-05-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2016-09-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2016-09-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2016-12-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2016-12-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2017-08-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2017-08-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2018-03-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2018-03-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2018-08-30",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2018-08-30.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2018-11-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2018-11-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2019-02-07",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2019-02-07.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2019-05-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2019-05-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2019-09-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2019-09-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2019-12-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2019-12-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2020-11-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2020-11-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2021-02-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2021-02-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2021-06-17",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2021-06-17.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2021-12-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2021-12-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2022-09-29",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2022-09-29.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2022-11-17",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2022-11-17.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2023-01-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2023-01-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2023-02-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2023-02-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2023-10-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2023-10-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-PNM-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-PNM-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2015-04-08",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2015-04-08.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2016-03-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2016-03-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2016-05-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2016-05-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2016-08-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2016-08-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2019-02-07",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2019-02-07.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2019-05-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2019-05-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2019-09-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2019-09-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2020-01-23",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2020-01-23.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2020-03-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2020-03-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2020-11-19",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2020-11-19.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2021-01-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2021-01-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2021-06-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2021-06-24.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2021-08-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2021-08-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2021-12-09",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2021-12-09.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2023-10-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2023-10-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-QOS3-MIB",
+      "revision": "2023-11-22",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-QOS3-MIB@2023-11-22.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2017-08-03",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2017-08-03.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2018-04-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2018-04-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2018-10-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2018-10-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2019-01-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2019-01-24.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2019-06-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2019-06-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2020-05-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2020-05-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2021-10-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2021-10-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-CTRL-MIB",
+      "revision": "2022-06-30",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-CTRL-MIB@2022-06-30.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2016-04-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2016-04-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2016-09-29",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2016-09-29.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2016-12-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2016-12-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2017-08-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2017-08-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2017-11-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2017-11-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2018-04-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2018-04-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2018-07-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2018-07-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2018-10-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2018-10-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2019-01-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2019-01-24.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2019-06-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2019-06-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2019-09-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2019-09-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2020-01-09",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2020-01-09.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2020-05-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2020-05-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2020-10-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2020-10-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2021-03-11",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2021-03-11.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2021-10-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2021-10-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2022-01-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2022-01-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2022-06-30",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2022-06-30.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2022-12-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2022-12-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2023-10-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2023-10-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2024-01-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2024-01-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-MIB",
+      "revision": "2025-01-23",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-MIB@2025-01-23.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2017-08-10",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2017-08-10.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2018-04-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2018-04-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2019-01-24",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2019-01-24.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2019-06-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2019-06-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2020-05-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2020-05-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2021-03-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2021-03-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2021-10-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2021-10-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2022-01-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2022-01-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-PTP-MIB",
+      "revision": "2022-06-30",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-PTP-MIB@2022-06-30.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-SEC-MIB",
+      "revision": "2018-10-18",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-SEC-MIB@2018-10-18.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-SEC-MIB",
+      "revision": "2019-06-20",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-SEC-MIB@2019-06-20.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-SEC-MIB",
+      "revision": "2020-05-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-SEC-MIB@2020-05-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2017-11-16",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2017-11-16.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2018-04-12",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2018-04-12.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2018-07-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2018-07-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2019-06-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2019-06-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2019-09-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2019-09-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2020-05-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2020-05-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2021-03-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2021-03-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-RPHY-STATS-MIB",
+      "revision": "2021-10-21",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-RPHY-STATS-MIB@2021-10-21.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2015-03-26",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2015-03-26.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2016-01-13",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2016-01-13.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2020-03-19",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2020-03-19.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2021-02-04",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2021-02-04.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2021-06-17",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2021-06-17.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2021-12-02",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2021-12-02.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2022-03-31",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2022-03-31.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SEC-MIB",
+      "revision": "2024-07-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SEC-MIB@2024-07-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SUBMGT3-MIB",
+      "revision": "2015-06-03",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SUBMGT3-MIB@2015-06-03.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SUBMGT3-MIB",
+      "revision": "2020-11-05",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SUBMGT3-MIB@2020-11-05.mib",
+      "latest": false
+    },
+    {
+      "name": "DOCS-SUBMGT3-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DOCS-SUBMGT3-MIB@2023-06-01.mib",
+      "latest": false
+    },
+    {
+      "name": "DSG-IF-MIB",
+      "revision": "2017-06-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DSG-IF-MIB@2017-06-15.mib",
+      "latest": false
+    },
+    {
+      "name": "DSG-IF-STD-MIB",
+      "revision": "2017-06-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/DSG-IF-STD-MIB@2017-06-15.mib",
+      "latest": false
+    },
+    {
+      "name": "ESAFE-MIB",
+      "revision": "2017-06-15",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/ESAFE-MIB@2017-06-15.mib",
+      "latest": false
+    },
+    {
+      "name": "ESAFE-MIB",
+      "revision": "2017-09-07",
+      "source": "cablelabs",
+      "path": "cablelabs/DOCSIS/ESAFE-MIB@2017-09-07.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-ANI-DEV-MIB",
+      "revision": "2017-04-27",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-ANI-DEV-MIB@2017-04-27.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-ANI-NID-MIB",
+      "revision": "2016-11-29",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-ANI-NID-MIB@2016-11-29.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-DEF-MIB",
+      "revision": "2023-06-01",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-DEF-MIB@2023-06-01.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-GRE-MIB",
+      "revision": "2017-10-19",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-GRE-MIB@2017-10-19.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-GW-MIB",
+      "revision": "2016-08-04",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-GW-MIB@2016-08-04.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-TOPO-MIB",
+      "revision": "2018-11-08",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-TOPO-MIB@2018-11-08.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-UPS-MIB",
+      "revision": "2018-01-18",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-UPS-MIB@2018-01-18.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-ANI-DEV-MIB",
+      "revision": "2016-03-17",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-ANI-DEV-MIB@2016-03-17.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-ANI-DEV-MIB",
+      "revision": "2016-05-19",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-ANI-DEV-MIB@2016-05-19.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-ANI-DEV-MIB",
+      "revision": "2017-02-21",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-ANI-DEV-MIB@2017-02-21.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-DEF-MIB",
+      "revision": "2016-03-16",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-DEF-MIB@2016-03-16.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-DEF-MIB",
+      "revision": "2016-07-28",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-DEF-MIB@2016-07-28.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-DEF-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-DEF-MIB@2017-04-13.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-DEF-MIB",
+      "revision": "2019-08-15",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-DEF-MIB@2019-08-15.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-GRE-MIB",
+      "revision": "2015-02-24",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-GRE-MIB@2015-02-24.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-GW-MIB",
+      "revision": "2016-02-24",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-GW-MIB@2016-02-24.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-TOPO-MIB",
+      "revision": "2009-01-21",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-TOPO-MIB@2009-01-21.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-TOPO-MIB",
+      "revision": "2017-06-15",
+      "source": "cablelabs",
+      "path": "cablelabs/common/CLAB-TOPO-MIB@2017-06-15.mib",
+      "latest": false
+    },
+    {
+      "name": "OC-STB-HOST-MIB",
+      "revision": "2025-10-23",
+      "source": "cablelabs",
+      "path": "cablelabs/OpenCable/OC-STB-HOST-MIB@2025-10-23.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-WIFI-MIB",
+      "revision": "2017-09-07",
+      "source": "cablelabs",
+      "path": "cablelabs/wireless/CLAB-WIFI-MIB@2017-09-07.mib",
+      "latest": true
+    },
+    {
+      "name": "CLAB-WIFI-MIB",
+      "revision": "2015-12-02",
+      "source": "cablelabs",
+      "path": "cablelabs/wireless/CLAB-WIFI-MIB@2015-12-02.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-WIFI-MIB",
+      "revision": "2016-03-30",
+      "source": "cablelabs",
+      "path": "cablelabs/wireless/CLAB-WIFI-MIB@2016-03-30.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-WIFI-MIB",
+      "revision": "2016-08-03",
+      "source": "cablelabs",
+      "path": "cablelabs/wireless/CLAB-WIFI-MIB@2016-08-03.mib",
+      "latest": false
+    },
+    {
+      "name": "CLAB-WIFI-MIB",
+      "revision": "2017-04-13",
+      "source": "cablelabs",
+      "path": "cablelabs/wireless/CLAB-WIFI-MIB@2017-04-13.mib",
+      "latest": false
+    }
+  ]
+}

@@ -6,3 +6,8 @@ docs/external/
 
 # Example decoder (in development, not yet committed)
 example-decoder/
+
+# Downloaded MIBs (large, downloadable via tools/mib-downloader)
+mibs/ietf/
+mibs/iana/
+mibs/cablelabs/
