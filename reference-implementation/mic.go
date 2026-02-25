@@ -126,6 +126,36 @@ func filterTLVs(data []byte, excludeTypes ...int) []byte {
 	return result
 }
 
+// insertMICs computes CM MIC and CMTS MIC and inserts them before the end-of-data
+// marker in the encoded binary. The input must end with 0xFF 0x00.
+func insertMICs(encoded []byte, cmtsSecret string) ([]byte, error) {
+	// Remove end-of-data marker.
+	if len(encoded) < 2 || encoded[len(encoded)-2] != 0xFF || encoded[len(encoded)-1] != 0x00 {
+		return nil, fmt.Errorf("encoded data does not end with end-of-data marker")
+	}
+	body := encoded[:len(encoded)-2]
+
+	// Compute CM MIC (TLV 6): MD5 of all TLV bytes excluding TLV 6, 7, 255.
+	cmMic := ComputeCmMic(body)
+	cmMicTLV := makeTLV(6, cmMic)
+
+	// Build data with CM MIC for CMTS MIC computation.
+	withCmMic := append(body, cmMicTLV...)
+
+	// Compute CMTS MIC (TLV 7): HMAC-MD5 of all TLV bytes excluding TLV 7, 255.
+	cmtsMic := ComputeCmtsMic(withCmMic, cmtsSecret)
+	cmtsMicTLV := makeTLV(7, cmtsMic)
+
+	// Reassemble: body + CM MIC + CMTS MIC + end-of-data.
+	var result []byte
+	result = append(result, body...)
+	result = append(result, cmMicTLV...)
+	result = append(result, cmtsMicTLV...)
+	result = append(result, 0xFF, 0x00)
+
+	return result, nil
+}
+
 // ExtractTLVValue finds the first TLV of the given type and returns its value bytes.
 func ExtractTLVValue(data []byte, tlvType int) ([]byte, error) {
 	offset := 0
