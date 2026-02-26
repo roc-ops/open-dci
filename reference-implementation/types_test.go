@@ -177,8 +177,25 @@ func TestDecodeValueCompound(t *testing.T) {
 }
 
 func TestDecodeValueUnknownType(t *testing.T) {
-	_, err := DecodeValue([]byte{1}, DataType("foobar"))
-	if err == nil {
-		t.Fatal("expected error for unknown type")
+	// Unknown data types should gracefully fall back to hex encoding.
+	val, err := DecodeValue([]byte{0xDE, 0xAD, 0xBE, 0xEF}, DataType("foobar"))
+	if err != nil {
+		t.Fatalf("unexpected error for unknown type: %v", err)
+	}
+	expected := "DEADBEEF"
+	if val != expected {
+		t.Errorf("expected %q, got %v", expected, val)
+	}
+}
+
+func TestDecodeValueEmptyType(t *testing.T) {
+	// Empty data type (from missing schema metadata) should fall back to hex.
+	val, err := DecodeValue([]byte{0x03, 0x0A, 0xFF}, DataType(""))
+	if err != nil {
+		t.Fatalf("unexpected error for empty type: %v", err)
+	}
+	expected := "030AFF"
+	if val != expected {
+		t.Errorf("expected %q, got %v", expected, val)
 	}
 }

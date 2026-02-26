@@ -80,7 +80,10 @@ func DecodeValue(data []byte, dt DataType) (interface{}, error) {
 		return nil, nil
 
 	default:
-		return nil, fmt.Errorf("unknown data type: %s", dt)
+		// Graceful fallback: encode as uppercase hex string instead of erroring.
+		// This handles unknown or empty data types from schema gaps, allowing
+		// partially-supported config files to still decode.
+		return strings.ToUpper(fmt.Sprintf("%x", data)), nil
 	}
 }
 
