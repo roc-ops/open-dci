@@ -329,6 +329,39 @@ func opendciResolveOID(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciExtractCVC extracts CVC certificates from a PKCS#7-signed CM firmware binary.
+// JS signature: opendciExtractCVC(firmwareBinary: Uint8Array) -> {result: {ManufacturerCvc, CoSignerCvc, ManufacturerCvcChain, CoSignerCvcChain}} | {error: string}
+func opendciExtractCVC(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciExtractCVC requires 1 argument: Uint8Array")
+	}
+
+	// Copy binary data from JS Uint8Array to Go slice.
+	jsArray := args[0]
+	length := jsArray.Get("length").Int()
+	data := make([]byte, length)
+	js.CopyBytesToGo(data, jsArray)
+
+	certs, err := ExtractCVCFromFirmware(data)
+	if err != nil {
+		return jsError("extracting CVCs: " + err.Error())
+	}
+
+	// Build the result JS object with null for absent certs.
+	resultObj := js.Global().Get("Object").New()
+	for _, key := range []string{"ManufacturerCvc", "CoSignerCvc", "ManufacturerCvcChain", "CoSignerCvcChain"} {
+		if v, ok := certs[key]; ok && v != nil {
+			resultObj.Set(key, v.(string))
+		} else {
+			resultObj.Set(key, js.Null())
+		}
+	}
+
+	obj := js.Global().Get("Object").New()
+	obj.Set("result", resultObj)
+	return obj
+}
+
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
 	js.Global().Set("opendciDecode", js.FuncOf(opendciDecode))
@@ -338,6 +371,7 @@ func main() {
 	js.Global().Set("opendciQueryMIBTree", js.FuncOf(opendciQueryMIBTree))
 	js.Global().Set("opendciResolveName", js.FuncOf(opendciResolveName))
 	js.Global().Set("opendciResolveOID", js.FuncOf(opendciResolveOID))
+	js.Global().Set("opendciExtractCVC", js.FuncOf(opendciExtractCVC))
 
 	// Block forever to keep the Go runtime alive for JS callbacks.
 	select {}
