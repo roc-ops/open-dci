@@ -5663,7 +5663,7 @@
       "x-docsis-tlvType": 24
     },
     "VendorSpecificContainer": {
-      "additionalProperties": false,
+      "additionalProperties": true,
       "description": "Container for vendor-specific sub-TLVs at OUI-gated extension points",
       "properties": {
         "SubTlvs": {

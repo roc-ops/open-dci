@@ -4186,6 +4186,7 @@
         "description": "Container for vendor-specific sub-TLVs at OUI-gated extension points",
         "spec": "CM-SP-MULPIv4.0 C.1.1.18.2"
       },
+      "additionalProperties": true,
       "properties": {
         "VendorId": {
           "metadata": {
