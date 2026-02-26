@@ -44,6 +44,28 @@ func opendciLoadSchema(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciLoadVendorSchema loads a vendor-specific JTD schema into the registry.
+// Must be called after opendciLoadSchema. Can be called multiple times for different vendors.
+// JS signature: opendciLoadVendorSchema(schemaJSON: string) -> {ok: true} | {error: string}
+func opendciLoadVendorSchema(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciLoadVendorSchema requires 1 argument: vendor schema JSON string")
+	}
+
+	if registry == nil {
+		return jsError("no schema loaded: call opendciLoadSchema first")
+	}
+
+	schemaJSON := args[0].String()
+	if err := registry.LoadVendorSchemaBytes([]byte(schemaJSON)); err != nil {
+		return jsError("loading vendor schema: " + err.Error())
+	}
+
+	obj := js.Global().Get("Object").New()
+	obj.Set("ok", true)
+	return obj
+}
+
 // opendciDecode decodes a binary DOCSIS config (Uint8Array) to a JSON string.
 // JS signature: opendciDecode(binaryData: Uint8Array) -> {result: string} | {error: string}
 func opendciDecode(_ js.Value, args []js.Value) interface{} {
@@ -364,6 +386,7 @@ func opendciExtractCVC(_ js.Value, args []js.Value) interface{} {
 
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
+	js.Global().Set("opendciLoadVendorSchema", js.FuncOf(opendciLoadVendorSchema))
 	js.Global().Set("opendciDecode", js.FuncOf(opendciDecode))
 	js.Global().Set("opendciEncode", js.FuncOf(opendciEncode))
 	js.Global().Set("opendciInitMIBs", js.FuncOf(opendciInitMIBs))
