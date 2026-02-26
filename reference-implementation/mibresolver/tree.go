@@ -16,6 +16,15 @@ type EnumValue struct {
 	Label string `json:"label"`
 }
 
+// IndexObject represents an index column from a SNMP table's INDEX clause.
+type IndexObject struct {
+	Name        string `json:"name"`
+	OID         string `json:"oid"`
+	Module      string `json:"module"`
+	Syntax      string `json:"syntax,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
 // MIBTreeNode represents a single node in the MIB object tree.
 type MIBTreeNode struct {
 	OID         string         `json:"oid"`
@@ -25,6 +34,7 @@ type MIBTreeNode struct {
 	Syntax      string         `json:"syntax,omitempty"`
 	Access      string         `json:"access,omitempty"`
 	NodeType    string         `json:"nodeType"`
+	Indexes     []IndexObject  `json:"indexes,omitempty"`
 	Enums       []EnumValue    `json:"enums,omitempty"`
 	Children    []*MIBTreeNode `json:"children,omitempty"`
 }
@@ -171,6 +181,29 @@ func smiNodeToTreeNode(sn gosmi.SmiNode) *MIBTreeNode {
 	accessStr := accessToString(sn.Access)
 	if accessStr != "" {
 		tn.Access = accessStr
+	}
+
+	// Populate indexes for table row (entry) nodes.
+	if sn.Kind == types.NodeRow {
+		indexNodes := sn.GetIndex()
+		if len(indexNodes) > 0 {
+			indexes := make([]IndexObject, 0, len(indexNodes))
+			for _, idx := range indexNodes {
+				io := IndexObject{
+					Name:   idx.Name,
+					OID:    idx.RenderNumeric(),
+					Module: idx.GetModule().Name,
+				}
+				if idx.Type != nil {
+					io.Syntax = idx.Type.Name
+				}
+				if idx.Description != "" {
+					io.Description = idx.Description
+				}
+				indexes = append(indexes, io)
+			}
+			tn.Indexes = indexes
+		}
 	}
 
 	return tn

@@ -278,6 +278,104 @@ func TestMIBTreeNodeEnums(t *testing.T) {
 	}
 }
 
+// TestMIBTreeNodeIndexes_ifEntry verifies that ifEntry (single index: ifIndex)
+// has its INDEX clause populated.
+func TestMIBTreeNodeIndexes_ifEntry(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	tree, err := r.QueryTree()
+	if err != nil {
+		t.Fatalf("QueryTree() error: %v", err)
+	}
+
+	// ifEntry (1.3.6.1.2.1.2.2.1) is a row node with INDEX { ifIndex }.
+	ifEntry := findNodeByOID(tree, "1.3.6.1.2.1.2.2.1")
+	if ifEntry == nil {
+		t.Fatal("ifEntry (1.3.6.1.2.1.2.2.1) not found in tree")
+	}
+
+	if ifEntry.NodeType != "row" {
+		t.Errorf("ifEntry.NodeType = %q, want %q", ifEntry.NodeType, "row")
+	}
+
+	if len(ifEntry.Indexes) != 1 {
+		t.Fatalf("ifEntry.Indexes length = %d, want 1", len(ifEntry.Indexes))
+	}
+
+	idx := ifEntry.Indexes[0]
+	if idx.Name != "ifIndex" {
+		t.Errorf("ifEntry.Indexes[0].Name = %q, want %q", idx.Name, "ifIndex")
+	}
+	if idx.OID == "" {
+		t.Error("ifEntry.Indexes[0].OID is empty")
+	}
+	if idx.Module == "" {
+		t.Error("ifEntry.Indexes[0].Module is empty")
+	}
+
+	// Verify a non-row node has no indexes.
+	sysDescr := findNodeByOID(tree, "1.3.6.1.2.1.1.1")
+	if sysDescr == nil {
+		t.Fatal("sysDescr not found")
+	}
+	if len(sysDescr.Indexes) != 0 {
+		t.Errorf("sysDescr.Indexes = %v, want empty for non-row node", sysDescr.Indexes)
+	}
+}
+
+// TestMIBTreeNodeIndexes_tcpConnEntry verifies that tcpConnEntry has 4 indexes:
+// tcpConnLocalAddress, tcpConnLocalPort, tcpConnRemAddress, tcpConnRemPort.
+func TestMIBTreeNodeIndexes_tcpConnEntry(t *testing.T) {
+	r, err := New(mibsDir(t))
+	if err != nil {
+		t.Fatalf("New() error: %v", err)
+	}
+	defer r.Close()
+
+	tree, err := r.QueryTree()
+	if err != nil {
+		t.Fatalf("QueryTree() error: %v", err)
+	}
+
+	// tcpConnEntry (1.3.6.1.2.1.6.13.1) has 4 indexes.
+	tcpConnEntry := findNodeByOID(tree, "1.3.6.1.2.1.6.13.1")
+	if tcpConnEntry == nil {
+		t.Fatal("tcpConnEntry (1.3.6.1.2.1.6.13.1) not found in tree")
+	}
+
+	if tcpConnEntry.NodeType != "row" {
+		t.Errorf("tcpConnEntry.NodeType = %q, want %q", tcpConnEntry.NodeType, "row")
+	}
+
+	expectedNames := []string{
+		"tcpConnLocalAddress",
+		"tcpConnLocalPort",
+		"tcpConnRemAddress",
+		"tcpConnRemPort",
+	}
+
+	if len(tcpConnEntry.Indexes) != len(expectedNames) {
+		t.Fatalf("tcpConnEntry.Indexes length = %d, want %d", len(tcpConnEntry.Indexes), len(expectedNames))
+	}
+
+	for i, name := range expectedNames {
+		idx := tcpConnEntry.Indexes[i]
+		if idx.Name != name {
+			t.Errorf("tcpConnEntry.Indexes[%d].Name = %q, want %q", i, idx.Name, name)
+		}
+		if idx.OID == "" {
+			t.Errorf("tcpConnEntry.Indexes[%d].OID is empty", i)
+		}
+		if idx.Module == "" {
+			t.Errorf("tcpConnEntry.Indexes[%d].Module is empty", i)
+		}
+	}
+}
+
 // TestCamelToHyphen verifies the camelCase to hyphen-separated conversion.
 func TestCamelToHyphen(t *testing.T) {
 	tests := []struct {
