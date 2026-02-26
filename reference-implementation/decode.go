@@ -152,7 +152,7 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 
 		// Special case: TLV 43 (DOCSIS Extension Field) - vendor-gated compound
 		if tlvType == 43 {
-			err := decodeTLV43(result.Config, def, value)
+			err := decodeTLV43(result.Config, def, value, reg)
 			if err != nil {
 				return nil, fmt.Errorf("decoding TLV 43 at offset %d: %w", offset, err)
 			}
@@ -162,7 +162,7 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 
 		// Compound TLV - recurse into sub-TLVs.
 		if def.DataType == DataTypeCompound {
-			subResult, err := decodeCompound(value, def)
+			subResult, err := decodeCompound(value, def, reg)
 			if err != nil {
 				return nil, fmt.Errorf("decoding compound TLV %d at offset %d: %w", tlvType, offset, err)
 			}
@@ -189,7 +189,12 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 }
 
 // decodeCompound parses a compound TLV's value as a sequence of sub-TLVs.
-func decodeCompound(data []byte, parent *TLVDef) (map[string]interface{}, error) {
+func decodeCompound(data []byte, parent *TLVDef, reg *Registry) (map[string]interface{}, error) {
+	// VendorSpecificContainer: handle vendor-gated sub-TLVs like TLV 43.
+	if parent.RefName == "VendorSpecificContainer" && reg != nil {
+		return decodeVendorSpecificContainer(data, reg)
+	}
+
 	result := make(map[string]interface{})
 	var unknowns []interface{}
 	offset := 0
@@ -247,7 +252,7 @@ func decodeCompound(data []byte, parent *TLVDef) (map[string]interface{}, error)
 
 		// Nested compound sub-TLV
 		if subDef.DataType == DataTypeCompound {
-			subResult, err := decodeCompound(value, subDef)
+			subResult, err := decodeCompound(value, subDef, reg)
 			if err != nil {
 				return nil, fmt.Errorf("decoding nested compound sub-TLV %d: %w", subType, err)
 			}
@@ -303,7 +308,7 @@ func decodeTLV10(config map[string]interface{}, def *TLVDef, data []byte) error 
 }
 
 // decodeTLV43 handles TLV 43 (DOCSIS Extension Field) with vendor-gated sub-TLVs.
-func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte) error {
+func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte, reg *Registry) error {
 	// First, extract VendorId (sub-TLV 8, 3 bytes).
 	vendorId, vendorSubTLVs, err := extractVendorId(data)
 	if err != nil {
@@ -348,7 +353,7 @@ func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte) error 
 			appendOrder(result, subDef.Name)
 
 			if subDef.DataType == DataTypeCompound {
-				subResult, err := decodeCompound(value, subDef)
+				subResult, err := decodeCompound(value, subDef, reg)
 				if err != nil {
 					return fmt.Errorf("decoding TLV 43 compound sub-TLV %d: %w", subType, err)
 				}
@@ -445,6 +450,115 @@ func extractVendorId(data []byte) (string, []byte, error) {
 	}
 
 	return vendorId, remaining, nil
+}
+
+// decodeVendorSpecificContainer handles VendorSpecificContainer compounds by
+// extracting VendorId first, then using the appropriate sub-TLV definitions.
+// For FFFFFF (general extension), it uses TLV 43's sub-TLV definitions.
+// For other vendor IDs, sub-TLVs are collected as generic VendorSubTlvs.
+func decodeVendorSpecificContainer(data []byte, reg *Registry) (map[string]interface{}, error) {
+	vendorId, vendorSubTLVs, err := extractVendorId(data)
+	if err != nil {
+		return nil, err
+	}
+
+	result := make(map[string]interface{})
+	result["VendorId"] = vendorId
+
+	if vendorId == "FFFFFF" {
+		// General Extension: use TLV 43's sub-TLV definitions.
+		extDef := reg.TopLevel[43]
+
+		offset := 0
+		for offset < len(vendorSubTLVs) {
+			if offset+1 >= len(vendorSubTLVs) {
+				break
+			}
+
+			subType := int(vendorSubTLVs[offset])
+			if subType == 0 {
+				offset++
+				continue
+			}
+
+			subLen := int(vendorSubTLVs[offset+1])
+			valueStart := offset + 2
+			valueEnd := valueStart + subLen
+			if valueEnd > len(vendorSubTLVs) {
+				return nil, fmt.Errorf("vendor-specific sub-TLV %d: length exceeds data", subType)
+			}
+
+			value := vendorSubTLVs[valueStart:valueEnd]
+
+			// Look up in TLV 43 definitions when available.
+			var subDef *TLVDef
+			if extDef != nil {
+				subDef = extDef.SubTLVs[subType]
+			}
+
+			if subDef == nil {
+				hexVal, _ := DecodeValue(value, DataTypeHexString)
+				addUnknownSubTLV(result, subType, hexVal.(string))
+				offset = valueEnd
+				continue
+			}
+
+			appendOrder(result, subDef.Name)
+
+			if subDef.DataType == DataTypeCompound {
+				subResult, err := decodeCompound(value, subDef, reg)
+				if err != nil {
+					return nil, fmt.Errorf("decoding vendor-specific compound sub-TLV %d: %w", subType, err)
+				}
+				addToResult(result, subDef, subResult)
+			} else {
+				decoded, err := DecodeValue(value, subDef.DataType)
+				if err != nil {
+					return nil, fmt.Errorf("decoding vendor-specific sub-TLV %d: %w", subType, err)
+				}
+				addToResult(result, subDef, decoded)
+			}
+
+			offset = valueEnd
+		}
+	} else {
+		// Vendor-specific: collect as VendorSubTlvs array.
+		var vendorTlvEntries []interface{}
+		offset := 0
+		for offset < len(vendorSubTLVs) {
+			if offset+1 >= len(vendorSubTLVs) {
+				break
+			}
+
+			subType := int(vendorSubTLVs[offset])
+			if subType == 0 {
+				offset++
+				continue
+			}
+
+			subLen := int(vendorSubTLVs[offset+1])
+			valueStart := offset + 2
+			valueEnd := valueStart + subLen
+			if valueEnd > len(vendorSubTLVs) {
+				return nil, fmt.Errorf("vendor sub-TLV %d: length exceeds data", subType)
+			}
+
+			value := vendorSubTLVs[valueStart:valueEnd]
+			hexVal, _ := DecodeValue(value, DataTypeHexString)
+
+			vendorTlvEntries = append(vendorTlvEntries, map[string]interface{}{
+				"type":  subType,
+				"value": hexVal,
+			})
+
+			offset = valueEnd
+		}
+		if len(vendorTlvEntries) > 0 {
+			result["VendorSubTlvs"] = vendorTlvEntries
+		}
+	}
+
+	return result, nil
 }
 
 // addToResult adds a decoded value to the result map, handling repeatable TLVs as arrays.
