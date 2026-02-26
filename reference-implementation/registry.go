@@ -129,7 +129,8 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 			if refName != "" {
 				def.RefName = refName
 				if defProp, ok := defs[refName]; ok {
-					populateSubTLVs(def, defProp, defs)
+					visited := map[string]bool{refName: true}
+					populateSubTLVs(def, defProp, defs, visited)
 				}
 			}
 		}
@@ -172,19 +173,22 @@ func resolveRefName(prop *jtdProperty) string {
 }
 
 // populateSubTLVs fills the SubTLVs map of a compound TLVDef from a definition.
-func populateSubTLVs(parent *TLVDef, defProp *jtdProperty, defs map[string]*jtdProperty) {
+// The visited set tracks definition names already being processed to prevent
+// infinite recursion from circular references (e.g., VendorSpecificContainer
+// -> L2vpnEncodingEntry -> VendorSpecificContainer).
+func populateSubTLVs(parent *TLVDef, defProp *jtdProperty, defs map[string]*jtdProperty, visited map[string]bool) {
 	// Process required properties.
 	for name, raw := range defProp.Properties {
-		processSubTLVProperty(parent, name, raw, defs)
+		processSubTLVProperty(parent, name, raw, defs, visited)
 	}
 	// Process optional properties.
 	for name, raw := range defProp.OptionalProperties {
-		processSubTLVProperty(parent, name, raw, defs)
+		processSubTLVProperty(parent, name, raw, defs, visited)
 	}
 }
 
 // processSubTLVProperty processes a single sub-TLV property and adds it to the parent.
-func processSubTLVProperty(parent *TLVDef, name string, raw json.RawMessage, defs map[string]*jtdProperty) {
+func processSubTLVProperty(parent *TLVDef, name string, raw json.RawMessage, defs map[string]*jtdProperty, visited map[string]bool) {
 	var prop jtdProperty
 	if err := json.Unmarshal(raw, &prop); err != nil {
 		return
@@ -219,14 +223,18 @@ func processSubTLVProperty(parent *TLVDef, name string, raw json.RawMessage, def
 	}
 	subDef.ValidValues = getValidValuesMeta(meta)
 
-	// Recursively resolve compound sub-TLVs.
+	// Recursively resolve compound sub-TLVs, with cycle detection.
 	if dt == DataTypeCompound {
 		subDef.SubTLVs = make(map[int]*TLVDef)
 		refName := resolveRefName(&prop)
 		if refName != "" {
 			subDef.RefName = refName
-			if defProp, ok := defs[refName]; ok {
-				populateSubTLVs(subDef, defProp, defs)
+			if !visited[refName] {
+				if defProp, ok := defs[refName]; ok {
+					visited[refName] = true
+					populateSubTLVs(subDef, defProp, defs, visited)
+					delete(visited, refName)
+				}
 			}
 		}
 	}

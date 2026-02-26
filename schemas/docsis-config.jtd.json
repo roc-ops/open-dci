@@ -4186,7 +4186,6 @@
         "description": "Container for vendor-specific sub-TLVs at OUI-gated extension points",
         "spec": "CM-SP-MULPIv4.0 C.1.1.18.2"
       },
-      "additionalProperties": true,
       "properties": {
         "VendorId": {
           "metadata": {
@@ -4200,7 +4199,124 @@
         }
       },
       "optionalProperties": {
-        "SubTlvs": {
+        "CmLoadBalancingPolicyId": {
+          "metadata": {
+            "description": "Load balancing policy ID assigned to the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.1",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.1"
+          },
+          "type": "uint32"
+        },
+        "CmLoadBalancingPriority": {
+          "metadata": {
+            "description": "Load balancing priority for the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.2",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.2"
+          },
+          "type": "uint32"
+        },
+        "CmLoadBalancingGroupId": {
+          "metadata": {
+            "description": "Load balancing group ID for the CM (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.3",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.3"
+          },
+          "type": "uint32"
+        },
+        "CmRangingClassIdExtension": {
+          "metadata": {
+            "description": "CM Ranging Class ID Extension (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.4",
+            "tlvLength": 4,
+            "dataType": "uint32",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.4"
+          },
+          "type": "uint32"
+        },
+        "L2vpnEncoding": {
+          "metadata": {
+            "description": "L2VPN Encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.5",
+            "dataType": "compound",
+            "repeatable": true,
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-L2VPN-I17 B.3"
+          },
+          "elements": {
+            "ref": "L2vpnEncodingEntry"
+          }
+        },
+        "ExtendedCmtsMicConfigurationSetting": {
+          "metadata": {
+            "description": "Extended CMTS MIC Configuration Setting (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.6",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.6"
+          },
+          "type": "string"
+        },
+        "SourceAddressVerification": {
+          "metadata": {
+            "description": "Source Address Verification (SAV) encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.7",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.7"
+          },
+          "type": "string"
+        },
+        "CableModemAttributeMasks": {
+          "metadata": {
+            "description": "Cable Modem Attribute Masks (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.8",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.8"
+          },
+          "type": "string"
+        },
+        "IpMulticastJoinAuthorization": {
+          "metadata": {
+            "description": "IP Multicast Join Authorization (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.9",
+            "dataType": "hexstring",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.9"
+          },
+          "type": "string"
+        },
+        "ServiceTypeIdentifier": {
+          "metadata": {
+            "description": "Service type identifier string (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.10",
+            "dataType": "string",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "CM-SP-MULPIv4.0 C.1.1.18.1.10"
+          },
+          "type": "string"
+        },
+        "DemarcAutoConfiguration": {
+          "metadata": {
+            "description": "DEMARC Auto-Configuration (DAC) encoding (General Extension, OUI=FFFFFF)",
+            "tlvType": "43.12",
+            "dataType": "compound",
+            "context": "General Extension (OUI=FFFFFF)",
+            "spec": "DPoE-SP-DEMARCv1.0 B.1"
+          },
+          "ref": "DemarcAutoConfigurationEntry"
+        },
+        "VendorSubTlvs": {
           "metadata": {
             "description": "Array of vendor-specific sub-TLVs in generic type/value form",
             "spec": "CM-SP-MULPIv4.0 C.1.1.18.2"
