@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -23,8 +24,9 @@ type TLVDef struct {
 
 // Registry holds the complete TLV definition hierarchy.
 type Registry struct {
-	TopLevel   map[int]*TLVDef
-	NameLookup map[string]*TLVDef // Reverse lookup: name → definition
+	TopLevel      map[int]*TLVDef
+	NameLookup    map[string]*TLVDef            // Reverse lookup: name → definition
+	VendorSchemas map[string]map[int]*TLVDef    // OUI → sub-TLV type → definition
 }
 
 // jtdSchema represents the top-level JTD schema structure.
@@ -329,4 +331,104 @@ func collectValidValues(def *TLVDef, result map[string]map[string]string) {
 	for _, sub := range def.SubTLVs {
 		collectValidValues(sub, result)
 	}
+}
+
+// vendorSchema represents a parsed vendor-specific JTD schema file.
+type vendorSchema struct {
+	Metadata struct {
+		OUI        string   `json:"oui"`
+		VendorName string   `json:"vendorName"`
+		ExtPoints  []string `json:"extensionPoints"`
+	} `json:"metadata"`
+	Definitions map[string]json.RawMessage        `json:"definitions"`
+	Mapping     map[string]map[string]vendorEntry `json:"mapping"`
+}
+
+type vendorEntry struct {
+	Name string `json:"name"`
+	Ref  string `json:"ref"`
+}
+
+// LoadVendorSchemas scans a directory for <OUI>.jtd.json files and loads them
+// into the registry's VendorSchemas map. Each vendor's sub-TLV definitions are
+// keyed by OUI (uppercase hex) and sub-TLV type number.
+func (r *Registry) LoadVendorSchemas(vendorDir string) error {
+	entries, err := os.ReadDir(vendorDir)
+	if err != nil {
+		return nil // Vendor schemas are optional; missing dir is not an error.
+	}
+
+	if r.VendorSchemas == nil {
+		r.VendorSchemas = make(map[string]map[int]*TLVDef)
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".jtd.json") {
+			continue
+		}
+
+		data, err := os.ReadFile(filepath.Join(vendorDir, entry.Name()))
+		if err != nil {
+			continue
+		}
+
+		if err := r.loadVendorSchema(data); err != nil {
+			continue // Skip malformed vendor schemas.
+		}
+	}
+
+	return nil
+}
+
+// LoadVendorSchemaBytes loads a single vendor schema from raw JSON bytes.
+func (r *Registry) LoadVendorSchemaBytes(data []byte) error {
+	if r.VendorSchemas == nil {
+		r.VendorSchemas = make(map[string]map[int]*TLVDef)
+	}
+	return r.loadVendorSchema(data)
+}
+
+// loadVendorSchema parses a vendor schema and adds its definitions to VendorSchemas.
+func (r *Registry) loadVendorSchema(data []byte) error {
+	var vs vendorSchema
+	if err := json.Unmarshal(data, &vs); err != nil {
+		return err
+	}
+
+	oui := strings.ToUpper(vs.Metadata.OUI)
+	if oui == "" {
+		return fmt.Errorf("vendor schema missing oui metadata")
+	}
+
+	// Parse definitions to extract dataType metadata.
+	defTypes := make(map[string]DataType)
+	for name, raw := range vs.Definitions {
+		var prop jtdProperty
+		if err := json.Unmarshal(raw, &prop); err != nil {
+			continue
+		}
+		if prop.Metadata != nil {
+			defTypes[name] = DataType(getStringMeta(prop.Metadata, "dataType"))
+		}
+	}
+
+	// Build sub-TLV map from all extension points' mappings.
+	subTLVs := make(map[int]*TLVDef)
+	for _, mapping := range vs.Mapping {
+		for typeStr, entry := range mapping {
+			typeNum, err := strconv.Atoi(typeStr)
+			if err != nil {
+				continue
+			}
+			dt := defTypes[entry.Ref]
+			subTLVs[typeNum] = &TLVDef{
+				TypeNum:  typeNum,
+				Name:     entry.Name,
+				DataType: dt,
+			}
+		}
+	}
+
+	r.VendorSchemas[oui] = subTLVs
+	return nil
 }

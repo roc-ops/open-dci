@@ -15,6 +15,15 @@ func schemaPath(t *testing.T) string {
 	return filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
 }
 
+func vendorDir(t *testing.T) string {
+	t.Helper()
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		t.Fatal("unable to get caller info")
+	}
+	return filepath.Join(filepath.Dir(filename), "..", "schemas", "vendors")
+}
+
 func TestLoadRegistrySuccess(t *testing.T) {
 	reg, err := LoadRegistry(schemaPath(t))
 	if err != nil {
@@ -451,5 +460,57 @@ func TestLoadRegistrySubTLVLengthSize(t *testing.T) {
 	}
 	if sshCmCdsUrl.LengthSize != 1 {
 		t.Errorf("expected LengthSize=1 for TLV 103.3.2, got %d", sshCmCdsUrl.LengthSize)
+	}
+}
+
+func TestLoadVendorSchemas(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	err = reg.LoadVendorSchemas(vendorDir(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Check that Broadcom (001018) vendor schema was loaded.
+	defs, ok := reg.VendorSchemas["001018"]
+	if !ok {
+		t.Fatal("vendor schema for OUI 001018 (Broadcom) not loaded")
+	}
+
+	// Sub-TLV 1 = PowerSavingMode (uint8)
+	def1, ok := defs[1]
+	if !ok {
+		t.Fatal("vendor sub-TLV 1 (PowerSavingMode) not found")
+	}
+	if def1.Name != "PowerSavingMode" {
+		t.Errorf("expected name 'PowerSavingMode', got %q", def1.Name)
+	}
+	if def1.DataType != DataTypeUint8 {
+		t.Errorf("expected dataType uint8, got %q", def1.DataType)
+	}
+
+	// Sub-TLV 10 = ChannelBondingPreference (uint8)
+	def10, ok := defs[10]
+	if !ok {
+		t.Fatal("vendor sub-TLV 10 (ChannelBondingPreference) not found")
+	}
+	if def10.Name != "ChannelBondingPreference" {
+		t.Errorf("expected name 'ChannelBondingPreference', got %q", def10.Name)
+	}
+}
+
+func TestLoadVendorSchemasNonexistentDir(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Should not error on missing directory.
+	err = reg.LoadVendorSchemas("/nonexistent/path")
+	if err != nil {
+		t.Fatalf("expected nil error for missing dir, got: %v", err)
 	}
 }

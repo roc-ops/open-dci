@@ -79,6 +79,10 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Load vendor-specific schemas (optional, non-fatal).
+	vendorDir := filepath.Join(filepath.Dir(schemaPath), "vendors")
+	reg.LoadVendorSchemas(vendorDir)
+
 	if encode {
 		runEncode(inputData, reg, outputFile, cmtsSecret, padAlign, packetCableHash)
 		return
