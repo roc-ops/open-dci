@@ -10,6 +10,12 @@ import (
 	"github.com/sleepinggenius2/gosmi/types"
 )
 
+// EnumValue represents a named integer value in a MIB object's SYNTAX clause.
+type EnumValue struct {
+	Value int64  `json:"value"`
+	Label string `json:"label"`
+}
+
 // MIBTreeNode represents a single node in the MIB object tree.
 type MIBTreeNode struct {
 	OID         string         `json:"oid"`
@@ -19,6 +25,7 @@ type MIBTreeNode struct {
 	Syntax      string         `json:"syntax,omitempty"`
 	Access      string         `json:"access,omitempty"`
 	NodeType    string         `json:"nodeType"`
+	Enums       []EnumValue    `json:"enums,omitempty"`
 	Children    []*MIBTreeNode `json:"children,omitempty"`
 }
 
@@ -148,6 +155,16 @@ func smiNodeToTreeNode(sn gosmi.SmiNode) *MIBTreeNode {
 			if s != "" && s != "Unknown" {
 				tn.Syntax = s
 			}
+		}
+		if sn.Type.Enum != nil && len(sn.Type.Enum.Values) > 0 {
+			enums := make([]EnumValue, 0, len(sn.Type.Enum.Values))
+			for _, v := range sn.Type.Enum.Values {
+				enums = append(enums, EnumValue{Value: v.Value, Label: v.Name})
+			}
+			sort.Slice(enums, func(i, j int) bool {
+				return enums[i].Value < enums[j].Value
+			})
+			tn.Enums = enums
 		}
 	}
 
