@@ -1021,6 +1021,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "22.8",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
@@ -1110,6 +1111,7 @@
           "metadata": {
             "description": "Vendor-specific classifier parameters",
             "tlvType": "22.43",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.4"
           },
           "ref": "VendorSpecificContainer"
@@ -1199,6 +1201,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "23.8",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
@@ -1279,6 +1282,7 @@
           "metadata": {
             "description": "Vendor-specific classifier parameters",
             "tlvType": "23.43",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.4"
           },
           "ref": "VendorSpecificContainer"
@@ -1337,6 +1341,7 @@
           "metadata": {
             "description": "Classifier error encoding",
             "tlvType": "60.8",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.5"
           },
           "ref": "ClassifierErrorEntry"
@@ -1426,6 +1431,7 @@
           "metadata": {
             "description": "Vendor-specific classifier parameters",
             "tlvType": "60.43",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.1.4"
           },
           "ref": "VendorSpecificContainer"
@@ -1483,6 +1489,7 @@
           "metadata": {
             "description": "Error encoding for this service flow",
             "tlvType": "24.5",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.2.8"
           },
           "ref": "ServiceFlowErrorEntry"
@@ -1827,6 +1834,7 @@
           "metadata": {
             "description": "Vendor-specific QoS parameters",
             "tlvType": "24.43",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.2.9.8"
           },
           "ref": "VendorSpecificContainer"
@@ -1894,6 +1902,7 @@
           "metadata": {
             "description": "Error encoding for this service flow",
             "tlvType": "25.5",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.2.8"
           },
           "ref": "ServiceFlowErrorEntry"
@@ -2132,6 +2141,7 @@
           "metadata": {
             "description": "Vendor-specific QoS parameters",
             "tlvType": "25.43",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.2.9.8"
           },
           "ref": "VendorSpecificContainer"
@@ -2323,6 +2333,7 @@
           "metadata": {
             "description": "PHS error encoding (deprecated as of DOCSIS 3.1; listed in DOCSIS 1.1 table, C.2.4)",
             "tlvType": "26.6",
+            "dataType": "compound",
             "spec": "CM-SP-MULPIv4.0 C.2.4"
           },
           "ref": "PhsErrorEntry"
@@ -4109,6 +4120,7 @@
           "metadata": {
             "description": "Vendor-specific L2VPN subtype",
             "tlvType": "43.5.43",
+            "dataType": "compound",
             "spec": "CM-SP-L2VPN-I17 B.3.11"
           },
           "ref": "VendorSpecificContainer"
@@ -4117,6 +4129,7 @@
           "metadata": {
             "description": "L2VPN error encoding",
             "tlvType": "43.5.254",
+            "dataType": "compound",
             "spec": "CM-SP-L2VPN-I17 B.5"
           },
           "ref": "L2vpnErrorEntry"
@@ -4722,6 +4735,7 @@
           "metadata": {
             "description": "Vendor-specific information for eRouter",
             "tlvType": "202.43",
+            "dataType": "compound",
             "spec": "CM-SP-eRouter-I22 B.4.8"
           },
           "ref": "VendorSpecificContainer"
@@ -5585,6 +5599,7 @@
           "metadata": {
             "description": "eTEA vendor-specific extensions",
             "tlvType": "219.43",
+            "dataType": "compound",
             "spec": "CM-SP-TEI-I06 6.7.1.10.1"
           },
           "ref": "VendorSpecificContainer"

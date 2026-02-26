@@ -821,6 +821,7 @@
         "ClassifierErrorEncoding": {
           "$ref": "#/$defs/ClassifierErrorEntry",
           "description": "Classifier error encoding",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.5",
           "x-docsis-tlvType": "23.8"
         },
@@ -942,6 +943,7 @@
         "VendorSpecificClassifierParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific classifier parameters",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
           "x-docsis-tlvType": "23.43"
         }
@@ -1147,6 +1149,7 @@
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
           "x-docsis-tlvType": "25.5"
         },
@@ -1233,6 +1236,7 @@
         "VendorSpecificQosParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific QoS parameters",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.8",
           "x-docsis-tlvType": "25.43"
         }
@@ -1386,6 +1390,7 @@
         "VendorSpecificInformation": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific information for eRouter",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-eRouter-I22 B.4.8",
           "x-docsis-tlvType": "202.43"
         }
@@ -2016,6 +2021,7 @@
         "VendorSpecificExtensions": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "eTEA vendor-specific extensions",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-TEI-I06 6.7.1.10.1",
           "x-docsis-tlvType": "219.43"
         }
@@ -3258,6 +3264,7 @@
         "L2vpnErrorEncoding": {
           "$ref": "#/$defs/L2vpnErrorEntry",
           "description": "L2VPN error encoding",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.5",
           "x-docsis-tlvType": "43.5.254"
         },
@@ -3385,6 +3392,7 @@
         "VendorSpecificL2vpn": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific L2VPN subtype",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.11",
           "x-docsis-tlvType": "43.5.43"
         },
@@ -3972,6 +3980,7 @@
         "PhsErrorEncoding": {
           "$ref": "#/$defs/PhsErrorEntry",
           "description": "PHS error encoding (deprecated as of DOCSIS 3.1; listed in DOCSIS 1.1 table, C.2.4)",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.4",
           "x-docsis-tlvType": "26.6"
         },
@@ -4411,6 +4420,31 @@
       ],
       "type": "object",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.5"
+    },
+    "SnmpWriteAccessEntry": {
+      "additionalProperties": false,
+      "description": "A single SNMP write-access control entry: an OID subtree with an access flag. Corresponds to TLV 10 which carries a BER-encoded OID followed by a 1-byte access flag in the binary config file.",
+      "properties": {
+        "access": {
+          "description": "Write access flag: 0 = deny, 1 = allow",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.4"
+        },
+        "oid": {
+          "description": "SNMP object identifier subtree in dotted-decimal notation",
+          "type": "string",
+          "x-docsis-dataType": "oid",
+          "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.4"
+        }
+      },
+      "required": [
+        "access",
+        "oid"
+      ],
+      "type": "object",
+      "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.4"
     },
     "Snmpv1v2cCoexistenceEntry": {
       "additionalProperties": false,
@@ -4951,6 +4985,7 @@
         "ClassifierErrorEncoding": {
           "$ref": "#/$defs/ClassifierErrorEntry",
           "description": "Classifier error encoding",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.5",
           "x-docsis-tlvType": "60.8"
         },
@@ -5061,6 +5096,7 @@
         "VendorSpecificClassifierParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific classifier parameters",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
           "x-docsis-tlvType": "60.43"
         }
@@ -5089,6 +5125,7 @@
         "ClassifierErrorEncoding": {
           "$ref": "#/$defs/ClassifierErrorEntry",
           "description": "Classifier error encoding",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.5",
           "x-docsis-tlvType": "22.8"
         },
@@ -5217,6 +5254,7 @@
         "VendorSpecificClassifierParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific classifier parameters",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.1.4",
           "x-docsis-tlvType": "22.43"
         }
@@ -5488,6 +5526,7 @@
         "ServiceFlowErrorEncoding": {
           "$ref": "#/$defs/ServiceFlowErrorEntry",
           "description": "Error encoding for this service flow",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.8",
           "x-docsis-tlvType": "24.5"
         },
@@ -5614,6 +5653,7 @@
         "VendorSpecificQosParameters": {
           "$ref": "#/$defs/VendorSpecificContainer",
           "description": "Vendor-specific QoS parameters",
+          "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-MULPIv4.0 C.2.2.9.8",
           "x-docsis-tlvType": "24.43"
         }
@@ -5826,6 +5866,7 @@
     "CoSignerCvc": {
       "description": "Co-Signer Code Verification Certificate",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.11",
       "x-docsis-tlvType": 33
@@ -5833,6 +5874,7 @@
     "CoSignerCvcChain": {
       "description": "Co-signer CVC Chain",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.22",
       "x-docsis-tlvType": 82
@@ -5981,6 +6023,7 @@
     "Edva": {
       "description": "eDVA (Embedded Digital Voice Adapter) configuration - opaque eSAFE encoding",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1, PKT-SP-RST-E-DVA-C01",
       "x-docsis-tlvType": 220
@@ -5988,6 +6031,7 @@
     "Emta": {
       "description": "eMTA (Embedded Multimedia Terminal Adapter) configuration - opaque eSAFE encoding",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "PKT-SP-PROV1.5-C01 9.1",
       "x-docsis-tlvType": 216
@@ -6039,6 +6083,7 @@
     "Eps": {
       "description": "ePS (eSAFE Power Supply) configuration - opaque eSAFE encoding",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1",
       "x-docsis-tlvType": 201
@@ -6057,6 +6102,7 @@
     "Esg": {
       "description": "eSG (Embedded Service Gateway) configuration - opaque eSAFE encoding",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1",
       "x-docsis-tlvType": 221
@@ -6064,6 +6110,7 @@
     "Estb": {
       "description": "eSTB (Embedded Set-Top Box) configuration - opaque eSAFE encoding",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-eDOCSIS-I31 5.2.8.1, CM-SP-DSG-I25",
       "x-docsis-tlvType": 217
@@ -6138,6 +6185,7 @@
     "ManufacturerCvc": {
       "description": "Manufacturer Code Verification Certificate",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.10",
       "x-docsis-tlvType": 32
@@ -6145,6 +6193,7 @@
     "ManufacturerCvcChain": {
       "description": "Manufacturer CVC Chain",
       "type": "string",
+      "x-docsis-chunked": true,
       "x-docsis-dataType": "hexstring",
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.21",
       "x-docsis-tlvType": 81
@@ -6274,9 +6323,13 @@
       "x-docsis-tlvType": 11
     },
     "SnmpWriteAccessControl": {
-      "description": "SNMP write access control encoding",
-      "type": "string",
-      "x-docsis-dataType": "hexstring",
+      "description": "SNMP write access control: grants or denies SNMP SET access to OID subtrees. Each entry is a BER-encoded OID followed by a 1-byte access flag in the binary config file.",
+      "items": {
+        "$ref": "#/$defs/SnmpWriteAccessEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
       "x-docsis-spec": "CM-SP-MULPIv4.0 C.1.2.4",
       "x-docsis-tlvType": 10
     },
