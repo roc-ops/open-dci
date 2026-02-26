@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"path/filepath"
 	"runtime"
 	"testing"
@@ -15,13 +16,13 @@ func schemaPath(t *testing.T) string {
 	return filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
 }
 
-func vendorDir(t *testing.T) string {
+func vendorExampleDir(t *testing.T) string {
 	t.Helper()
 	_, filename, _, ok := runtime.Caller(0)
 	if !ok {
 		t.Fatal("unable to get caller info")
 	}
-	return filepath.Join(filepath.Dir(filename), "..", "schemas", "vendors")
+	return filepath.Join(filepath.Dir(filename), "..", "docs", "examples")
 }
 
 func TestLoadRegistrySuccess(t *testing.T) {
@@ -469,7 +470,12 @@ func TestLoadVendorSchemas(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	err = reg.LoadVendorSchemas(vendorDir(t))
+	// Load the illustrative Broadcom schema from docs/examples.
+	data, err := os.ReadFile(filepath.Join(vendorExampleDir(t), "001018-broadcom-illustrative.jtd.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = reg.LoadVendorSchemaBytes(data)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -123,9 +123,10 @@ func TestMergeVendorSchemasEmptyDir(t *testing.T) {
 }
 
 func TestMergeVendorSchemasWithRealSchema(t *testing.T) {
-	// Load the actual DOCSIS schema and convert, then merge with real vendor schemas.
+	// Load the actual DOCSIS schema and convert, then merge with the illustrative
+	// Broadcom vendor schema (now in docs/examples/).
 	schemaPath := "../../schemas/docsis-config.jtd.json"
-	vendorsDir := "../../schemas/vendors"
+	vendorsDir := "../../docs/examples"
 
 	data, err := os.ReadFile(schemaPath)
 	if err != nil {

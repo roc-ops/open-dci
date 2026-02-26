@@ -252,31 +252,6 @@
       "type": "object",
       "x-docsis-spec": "CM-SP-DPoE-MULPIv2.0-I14 C.17"
     },
-    "Broadcom_ChannelBondingPreference": {
-      "description": "Illustrative: Preferred channel bonding group size",
-      "maximum": 255,
-      "minimum": 0,
-      "type": "integer",
-      "x-docsis-dataType": "uint8",
-      "x-docsis-spec": "vendor-defined",
-      "x-docsis-subTlvType": 10
-    },
-    "Broadcom_PowerSavingMode": {
-      "description": "Illustrative: Power saving mode configuration",
-      "maximum": 255,
-      "minimum": 0,
-      "type": "integer",
-      "x-docsis-dataType": "uint8",
-      "x-docsis-spec": "vendor-defined",
-      "x-docsis-subTlvType": 1
-    },
-    "Broadcom_SpectrumManagementControl": {
-      "description": "Illustrative: Advanced spectrum management control flags",
-      "type": "string",
-      "x-docsis-dataType": "hexstring",
-      "x-docsis-spec": "vendor-defined",
-      "x-docsis-subTlvType": 2
-    },
     "BufferControlEntry": {
       "additionalProperties": false,
       "description": "Buffer Control encoding for service flow buffer management",
@@ -5691,24 +5666,6 @@
       "additionalProperties": false,
       "description": "Container for vendor-specific sub-TLVs at OUI-gated extension points",
       "properties": {
-        "Broadcom_ChannelBondingPreference": {
-          "$ref": "#/$defs/Broadcom_ChannelBondingPreference",
-          "description": "Vendor-specific: Broadcom (OUI 001018) sub-TLV 10",
-          "x-docsis-vendorName": "Broadcom",
-          "x-docsis-vendorOUI": "001018"
-        },
-        "Broadcom_PowerSavingMode": {
-          "$ref": "#/$defs/Broadcom_PowerSavingMode",
-          "description": "Vendor-specific: Broadcom (OUI 001018) sub-TLV 1",
-          "x-docsis-vendorName": "Broadcom",
-          "x-docsis-vendorOUI": "001018"
-        },
-        "Broadcom_SpectrumManagementControl": {
-          "$ref": "#/$defs/Broadcom_SpectrumManagementControl",
-          "description": "Vendor-specific: Broadcom (OUI 001018) sub-TLV 2",
-          "x-docsis-vendorName": "Broadcom",
-          "x-docsis-vendorOUI": "001018"
-        },
         "CableModemAttributeMasks": {
           "description": "Cable Modem Attribute Masks (General Extension, OUI=FFFFFF)",
           "type": "string",
