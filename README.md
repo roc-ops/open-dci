@@ -87,6 +87,10 @@ OpenDCI covers TLV encodings from across the DOCSIS specification family -- MULP
 
 See [`docs/SPECS.md`](docs/SPECS.md) for the full list of specifications, versions, and download instructions. The complete TLV catalog with spec section references is in [`docs/TLVs.md`](docs/TLVs.md).
 
+## Web Editor
+
+[open-dci-web](https://github.com/roc-ops/open-dci-web) is a downstream project that provides a browser-based DOCSIS config editor built on OpenDCI. A live editor is available at **https://roc-ops.github.io/open-dci-web/**.
+
 ## License
 
 [MIT](LICENSE)
