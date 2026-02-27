@@ -62,6 +62,9 @@ func main() {
 		}
 	}
 
+	// Break any circular $ref chains that would crash browser JSON validators.
+	BreakCircularRefs(jsonSchema)
+
 	output, err := json.MarshalIndent(jsonSchema, "", "  ")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error marshaling JSON Schema: %v\n", err)

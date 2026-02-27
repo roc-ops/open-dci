@@ -3390,8 +3390,9 @@
           "x-docsis-tlvType": "43.5.8"
         },
         "VendorSpecificL2vpn": {
-          "$ref": "#/$defs/VendorSpecificContainer",
+          "additionalProperties": true,
           "description": "Vendor-specific L2VPN subtype",
+          "type": "object",
           "x-docsis-dataType": "compound",
           "x-docsis-spec": "CM-SP-L2VPN-I17 B.3.11",
           "x-docsis-tlvType": "43.5.43"

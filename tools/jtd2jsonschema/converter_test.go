@@ -743,6 +743,189 @@ func TestConvertDiscriminator(t *testing.T) {
 	}
 }
 
+// --- Circular $ref Detection Tests ---
+
+func TestBreakCircularRefs(t *testing.T) {
+	// Create a JSON Schema with a circular $ref: A → B → A.
+	schema := map[string]interface{}{
+		"$defs": map[string]interface{}{
+			"A": map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"child": map[string]interface{}{
+						"$ref": "#/$defs/B",
+					},
+				},
+			},
+			"B": map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"parent": map[string]interface{}{
+						"$ref":        "#/$defs/A",
+						"description": "back-reference to A",
+					},
+				},
+			},
+		},
+	}
+
+	BreakCircularRefs(schema)
+
+	defs := schema["$defs"].(map[string]interface{})
+
+	// One of the two refs should be broken. The other should remain.
+	aProps := defs["A"].(map[string]interface{})["properties"].(map[string]interface{})
+	bProps := defs["B"].(map[string]interface{})["properties"].(map[string]interface{})
+
+	aChild := aProps["child"].(map[string]interface{})
+	bParent := bProps["parent"].(map[string]interface{})
+
+	aHasRef := aChild["$ref"] != nil
+	bHasRef := bParent["$ref"] != nil
+
+	// Exactly one ref should remain, the other should be replaced.
+	if aHasRef == bHasRef {
+		t.Errorf("expected exactly one circular ref to be broken; A.$ref=%v, B.$ref=%v", aChild["$ref"], bParent["$ref"])
+	}
+
+	// The broken ref should have type=object and additionalProperties=true.
+	var broken map[string]interface{}
+	if !aHasRef {
+		broken = aChild
+	} else {
+		broken = bParent
+	}
+	if broken["type"] != "object" {
+		t.Errorf("expected broken ref to have type=object, got %v", broken["type"])
+	}
+	if broken["additionalProperties"] != true {
+		t.Errorf("expected broken ref to have additionalProperties=true, got %v", broken["additionalProperties"])
+	}
+}
+
+func TestBreakCircularRefsPreservesMetadata(t *testing.T) {
+	// When a circular $ref is replaced, existing metadata should be preserved.
+	schema := map[string]interface{}{
+		"$defs": map[string]interface{}{
+			"Parent": map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"child": map[string]interface{}{
+						"type": "array",
+						"items": map[string]interface{}{
+							"$ref": "#/$defs/Child",
+						},
+					},
+				},
+			},
+			"Child": map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"backRef": map[string]interface{}{
+						"$ref":              "#/$defs/Parent",
+						"description":       "back to parent",
+						"x-docsis-tlvType":  "43.5.43",
+						"x-docsis-dataType": "compound",
+					},
+				},
+			},
+		},
+	}
+
+	BreakCircularRefs(schema)
+
+	defs := schema["$defs"].(map[string]interface{})
+	childProps := defs["Child"].(map[string]interface{})["properties"].(map[string]interface{})
+	backRef := childProps["backRef"].(map[string]interface{})
+
+	// The $ref should be replaced.
+	if backRef["$ref"] != nil {
+		t.Error("expected $ref to be removed from backRef")
+	}
+	if backRef["type"] != "object" {
+		t.Errorf("expected type=object, got %v", backRef["type"])
+	}
+	// Metadata should be preserved.
+	if backRef["description"] != "back to parent" {
+		t.Errorf("expected description preserved, got %v", backRef["description"])
+	}
+	if backRef["x-docsis-tlvType"] != "43.5.43" {
+		t.Errorf("expected x-docsis-tlvType preserved, got %v", backRef["x-docsis-tlvType"])
+	}
+}
+
+func TestBreakCircularRefsNoCycle(t *testing.T) {
+	// Non-circular refs should not be modified.
+	schema := map[string]interface{}{
+		"$defs": map[string]interface{}{
+			"X": map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"y": map[string]interface{}{
+						"$ref": "#/$defs/Y",
+					},
+				},
+			},
+			"Y": map[string]interface{}{
+				"type": "string",
+			},
+		},
+	}
+
+	BreakCircularRefs(schema)
+
+	defs := schema["$defs"].(map[string]interface{})
+	xProps := defs["X"].(map[string]interface{})["properties"].(map[string]interface{})
+	yRef := xProps["y"].(map[string]interface{})
+
+	if yRef["$ref"] != "#/$defs/Y" {
+		t.Errorf("non-circular ref should be preserved, got %v", yRef["$ref"])
+	}
+}
+
+func TestBreakCircularRefsDocsisSchema(t *testing.T) {
+	// Test with the real DOCSIS schema — verify VendorSpecificContainer ↔ L2vpnEncodingEntry
+	// cycle is broken.
+	schemaPath := "../../schemas/docsis-config.jtd.json"
+	data, err := os.ReadFile(schemaPath)
+	if err != nil {
+		t.Skipf("skipping: cannot read schema file: %v", err)
+	}
+
+	var jtd map[string]interface{}
+	if err := json.Unmarshal(data, &jtd); err != nil {
+		t.Fatalf("failed to parse JTD schema: %v", err)
+	}
+
+	jsonSchema := ConvertJTDToJSONSchema(jtd)
+	BreakCircularRefs(jsonSchema)
+
+	defs := jsonSchema["$defs"].(map[string]interface{})
+
+	// VendorSpecificContainer should still reference L2vpnEncodingEntry.
+	vsc := defs["VendorSpecificContainer"].(map[string]interface{})
+	vscProps := vsc["properties"].(map[string]interface{})
+	l2vpnEncoding := vscProps["L2vpnEncoding"].(map[string]interface{})
+	items := l2vpnEncoding["items"].(map[string]interface{})
+	if items["$ref"] != "#/$defs/L2vpnEncodingEntry" {
+		t.Errorf("VendorSpecificContainer.L2vpnEncoding.items.$ref should be preserved, got %v", items["$ref"])
+	}
+
+	// L2vpnEncodingEntry.VendorSpecificL2vpn should NOT have $ref to VendorSpecificContainer (cycle broken).
+	l2vpnEntry := defs["L2vpnEncodingEntry"].(map[string]interface{})
+	entryProps := l2vpnEntry["properties"].(map[string]interface{})
+	vsL2vpn := entryProps["VendorSpecificL2vpn"].(map[string]interface{})
+	if vsL2vpn["$ref"] != nil {
+		t.Errorf("VendorSpecificL2vpn.$ref should be broken (circular), but got %v", vsL2vpn["$ref"])
+	}
+	if vsL2vpn["type"] != "object" {
+		t.Errorf("VendorSpecificL2vpn should have type=object after cycle break, got %v", vsL2vpn["type"])
+	}
+	if vsL2vpn["additionalProperties"] != true {
+		t.Errorf("VendorSpecificL2vpn should have additionalProperties=true after cycle break, got %v", vsL2vpn["additionalProperties"])
+	}
+}
+
 // --- Serialization Determinism Test ---
 
 func TestSerializationDeterminism(t *testing.T) {
