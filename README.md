@@ -62,6 +62,48 @@ check-jsonschema --schemafile schemas/generated/docsis-config.schema.json config
 go run ./tools/jtd2jsonschema schemas/docsis-config.jtd.json > schemas/generated/docsis-config.schema.json
 ```
 
+## Reference Implementation
+
+The `reference-implementation/` directory contains a Go library and CLI tool that can decode DOCSIS binary config files to OpenDCI JSON and encode them back. It is schema-driven — all TLV parsing uses the JTD schema as its source of truth.
+
+### Features
+
+- **Decode** binary `.cm`/`.bin` config files to human-readable JSONC
+- **Encode** OpenDCI JSON/JSONC back to binary TLV format
+- **MIC verification** — validates CM and CMTS Message Integrity Check digests
+- **MIB resolution** — resolves SNMP OIDs to human-readable names using bundled MIB files
+- **Vendor-specific TLVs** — loads vendor extension schemas for OUI-gated sub-TLV decoding
+- **JSONC output** with inline comments for enum labels, MIC status, and unknown TLVs
+- **WebAssembly build** — the full decoder/encoder compiles to WASM for browser use (powers [open-dci-web](https://github.com/roc-ops/open-dci-web))
+
+### CLI Usage
+
+```bash
+# Build
+cd reference-implementation && go build -o opendci .
+
+# Decode binary to JSONC
+./opendci -i config.bin -o config.jsonc
+
+# Encode JSONC back to binary
+./opendci -encode -i config.jsonc -o config.bin
+
+# Decode with CMTS MIC verification
+./opendci -i config.bin -cmts-secret "my_shared_secret"
+
+# Decode with specific MIB versions
+./opendci -i config.bin -with-mibs "DOCS-IF3-MIB@2024-07-05"
+```
+
+### WASM Build
+
+```bash
+cd reference-implementation
+GOOS=js GOARCH=wasm go build -o dci.wasm .
+```
+
+The WASM module exposes functions for schema loading, decode/encode, MIB resolution, and CVC extraction. See the [open-dci-web](https://github.com/roc-ops/open-dci-web) project for a working browser integration.
+
 ## Repository Layout
 
 ```
@@ -70,10 +112,17 @@ schemas/
   generated/
     docsis-config.schema.json         # Generated JSON Schema 2020-12
   vendors/                            # Optional vendor-specific extension schemas
-    001018.jtd.json                   # Example: Broadcom (OUI 00:10:18)
   examples/
     basic-config.jsonc                # Basic CM provisioning example
     vendor-specific-config.jsonc      # Vendor extension example
+reference-implementation/             # Go library + CLI for decode/encode
+  main.go                            # CLI entry point (decode & encode modes)
+  wasm.go                            # WebAssembly build (browser API)
+  decode.go / encode.go              # TLV binary ↔ JSON conversion
+  registry.go                        # Schema-driven TLV registry
+  mic.go                             # CM/CMTS MIC computation & verification
+  snmp.go                            # SNMP MIB OID encoding/decoding
+  mibresolver/                       # MIB file parser & OID name resolver
 docs/
   TLVs.md                            # Complete TLV reference (all CANN-registered TLVs)
   SPECS.md                           # Specification download guide
