@@ -369,7 +369,12 @@ func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte, reg *R
 			offset = valueEnd
 		}
 	} else {
-		// Vendor-specific: collect as VendorSubTlvs array.
+		// Vendor-specific: check for vendor schema, otherwise collect as VendorSubTlvs.
+		var vendorDefs map[int]*TLVDef
+		if reg.VendorSchemas != nil {
+			vendorDefs = reg.VendorSchemas[vendorId]
+		}
+
 		var vendorTlvEntries []interface{}
 		offset := 0
 		for offset < len(vendorSubTLVs) {
@@ -391,12 +396,31 @@ func decodeTLV43(config map[string]interface{}, def *TLVDef, data []byte, reg *R
 			}
 
 			value := vendorSubTLVs[valueStart:valueEnd]
-			hexVal, _ := DecodeValue(value, DataTypeHexString)
 
-			vendorTlvEntries = append(vendorTlvEntries, map[string]interface{}{
-				"type":  subType,
-				"value": hexVal,
-			})
+			// Try vendor schema definitions first.
+			if vDef := vendorDefs[subType]; vDef != nil {
+				appendOrder(result, vDef.Name)
+				if vDef.DataType == DataTypeCompound {
+					subResult, err := decodeCompound(value, vDef, reg)
+					if err != nil {
+						return fmt.Errorf("decoding vendor sub-TLV %d: %w", subType, err)
+					}
+					addToResult(result, vDef, subResult)
+				} else {
+					decoded, err := DecodeValue(value, vDef.DataType)
+					if err != nil {
+						return fmt.Errorf("decoding vendor sub-TLV %d: %w", subType, err)
+					}
+					addToResult(result, vDef, decoded)
+				}
+			} else {
+				// No vendor schema definition — collect as generic entry.
+				hexVal, _ := DecodeValue(value, DataTypeHexString)
+				vendorTlvEntries = append(vendorTlvEntries, map[string]interface{}{
+					"type":  subType,
+					"value": hexVal,
+				})
+			}
 
 			offset = valueEnd
 		}
