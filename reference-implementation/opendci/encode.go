@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"encoding/hex"

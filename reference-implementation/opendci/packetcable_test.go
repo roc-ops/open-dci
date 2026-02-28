@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"bytes"
@@ -93,9 +93,9 @@ func TestInsertPacketCableHash(t *testing.T) {
 		0xFF, 0x00, // end-of-data marker
 	}
 
-	result, err := insertPacketCableHash(minimalConfig, PacketCableNA)
+	result, err := InsertPacketCableHash(minimalConfig, PacketCableNA)
 	if err != nil {
-		t.Fatalf("insertPacketCableHash error: %v", err)
+		t.Fatalf("InsertPacketCableHash error: %v", err)
 	}
 
 	// Result should be longer than input (has the TLV 11 varbind inserted).
@@ -150,9 +150,9 @@ func TestInsertPacketCableHash_CircularVerification(t *testing.T) {
 				0xFF, 0x00, // end-of-data marker
 			}
 
-			result, err := insertPacketCableHash(config, variant)
+			result, err := InsertPacketCableHash(config, variant)
 			if err != nil {
-				t.Fatalf("insertPacketCableHash error: %v", err)
+				t.Fatalf("InsertPacketCableHash error: %v", err)
 			}
 
 			// Find the hash value offset in the result.
@@ -187,7 +187,7 @@ func TestInsertPacketCableHash_CircularVerification(t *testing.T) {
 
 func TestInsertPacketCableHash_InvalidVariant(t *testing.T) {
 	config := []byte{0x01, 0x01, 0x01, 0xFF, 0x00}
-	_, err := insertPacketCableHash(config, "invalid")
+	_, err := InsertPacketCableHash(config, "invalid")
 	if err == nil {
 		t.Fatal("expected error for invalid variant, got nil")
 	}
@@ -196,7 +196,7 @@ func TestInsertPacketCableHash_InvalidVariant(t *testing.T) {
 func TestInsertPacketCableHash_NoEndMarker(t *testing.T) {
 	// Config without end-of-data marker.
 	config := []byte{0x01, 0x01, 0x01}
-	_, err := insertPacketCableHash(config, PacketCableNA)
+	_, err := InsertPacketCableHash(config, PacketCableNA)
 	if err == nil {
 		t.Fatal("expected error for missing end-of-data marker, got nil")
 	}

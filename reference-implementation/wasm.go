@@ -9,10 +9,11 @@ import (
 	"syscall/js"
 
 	"github.com/roc-ops/open-dci/reference-implementation/mibresolver"
+	"github.com/roc-ops/open-dci/reference-implementation/opendci"
 )
 
 // registry holds the loaded TLV registry for use across WASM function calls.
-var registry *Registry
+var registry *opendci.Registry
 
 // resolver holds the MIB resolver for OID annotation in decode output.
 var resolver *mibresolver.Resolver
@@ -32,7 +33,7 @@ func opendciLoadSchema(_ js.Value, args []js.Value) interface{} {
 	}
 
 	schemaJSON := args[0].String()
-	reg, err := LoadRegistryFromBytes([]byte(schemaJSON))
+	reg, err := opendci.LoadRegistryFromBytes([]byte(schemaJSON))
 	if err != nil {
 		return jsError("loading schema: " + err.Error())
 	}
@@ -84,13 +85,13 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 	js.CopyBytesToGo(data, jsArray)
 
 	// Decode the binary config.
-	result, err := Decode(data, registry)
+	result, err := opendci.Decode(data, registry)
 	if err != nil {
 		return jsError("decoding: " + err.Error())
 	}
 
 	// Strip internal ordering metadata before JSON output.
-	StripTLVOrder(result.Config)
+	opendci.StripTLVOrder(result.Config)
 
 	// Collect JSONC comment lines for MIC verification (mirrors CLI behavior).
 	var comments []string
@@ -102,7 +103,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 	}
 
 	if result.CmMic != nil {
-		micResult := VerifyCmMic(data, result.CmMic)
+		micResult := opendci.VerifyCmMic(data, result.CmMic)
 		if micResult.Valid {
 			comments = append(comments, "// CM MIC: VALID")
 		} else {
@@ -117,7 +118,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 		if cmtsSecret == "" {
 			comments = append(comments, "// CMTS MIC: SKIPPED (no --cmts-secret provided)")
 		} else {
-			micResult := VerifyCmtsMic(data, result.CmtsMic, cmtsSecret)
+			micResult := opendci.VerifyCmtsMic(data, result.CmtsMic, cmtsSecret)
 			if micResult.Valid {
 				comments = append(comments, "// CMTS MIC: VALID")
 			} else {
@@ -146,7 +147,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 
 	// Format as JSONC with MIB resolver if available.
 	validValues := registry.ValidValuesMap()
-	jsoncData, err := FormatJSONC(result.Config, comments, validValues, resolver)
+	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver)
 	if err != nil {
 		return jsError("formatting output: " + err.Error())
 	}
@@ -168,7 +169,7 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	}
 
 	// Strip JSONC comments to produce valid JSON.
-	jsonStr := StripJSONCComments(args[0].String())
+	jsonStr := opendci.StripJSONCComments(args[0].String())
 
 	// Parse JSON into config map.
 	var config map[string]interface{}
@@ -177,12 +178,12 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	}
 
 	// Build a DecodeResult for the encoder.
-	result := &DecodeResult{
+	result := &opendci.DecodeResult{
 		Config: config,
 	}
 
 	// Encode to binary.
-	encoded, err := Encode(result, registry)
+	encoded, err := opendci.Encode(result, registry)
 	if err != nil {
 		return jsError("encoding: " + err.Error())
 	}
@@ -191,7 +192,7 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	if len(args) >= 2 {
 		secret := args[1].String()
 		if secret != "" {
-			encoded, err = insertMICs(encoded, secret)
+			encoded, err = opendci.InsertMICs(encoded, secret)
 			if err != nil {
 				return jsError("computing MICs: " + err.Error())
 			}
@@ -202,7 +203,7 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	if len(args) >= 4 && args[3].Type() == js.TypeString {
 		hashVariant := args[3].String()
 		if hashVariant != "" {
-			encoded, err = insertPacketCableHash(encoded, hashVariant)
+			encoded, err = opendci.InsertPacketCableHash(encoded, hashVariant)
 			if err != nil {
 				return jsError("computing PacketCable hash: " + err.Error())
 			}
@@ -211,7 +212,7 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 
 	// Optionally pad to 4-byte alignment.
 	if len(args) >= 3 && args[2].Type() == js.TypeBoolean && args[2].Bool() {
-		encoded = PadToAlignment(encoded, 4)
+		encoded = opendci.PadToAlignment(encoded, 4)
 	}
 
 	// Copy the encoded bytes into a JS Uint8Array.
@@ -364,7 +365,7 @@ func opendciExtractCVC(_ js.Value, args []js.Value) interface{} {
 	data := make([]byte, length)
 	js.CopyBytesToGo(data, jsArray)
 
-	certs, err := ExtractCVCFromFirmware(data)
+	certs, err := opendci.ExtractCVCFromFirmware(data)
 	if err != nil {
 		return jsError("extracting CVCs: " + err.Error())
 	}

@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"bytes"
@@ -26,7 +26,7 @@ func TestRoundTripLabTr069(t *testing.T) {
 	if !ok {
 		t.Fatal("unable to get caller info")
 	}
-	schemaFile := filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
+	schemaFile := filepath.Join(filepath.Dir(filename), "..", "..", "schemas", "docsis-config.jtd.json")
 	reg, err := LoadRegistry(schemaFile)
 	if err != nil {
 		t.Fatalf("loading registry: %v", err)
@@ -106,7 +106,7 @@ func TestRoundTrip100D100U(t *testing.T) {
 	if !ok {
 		t.Fatal("unable to get caller info")
 	}
-	schemaFile := filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
+	schemaFile := filepath.Join(filepath.Dir(filename), "..", "..", "schemas", "docsis-config.jtd.json")
 	reg, err := LoadRegistry(schemaFile)
 	if err != nil {
 		t.Fatalf("loading registry: %v", err)
