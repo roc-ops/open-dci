@@ -478,6 +478,72 @@ func TestDecodeTLV43VendorSpecific(t *testing.T) {
 	}
 }
 
+func TestDecodeTLV43VendorSchema(t *testing.T) {
+	reg := makeTestRegistry()
+
+	// Add vendor schema for OUI "001122" with sub-TLV definitions
+	reg.VendorSchemas = map[string]map[int]*TLVDef{
+		"001122": {
+			1: {TypeNum: 1, Name: "DeviceName", DataType: DataTypeString},
+			2: {TypeNum: 2, Name: "PortCount", DataType: DataTypeUint8},
+			3: {TypeNum: 3, Name: "MgmtVlan", DataType: DataTypeUint16},
+		},
+	}
+
+	// Build TLV 43 with vendor OUI 001122 and schema-defined sub-TLVs
+	vendorId := buildTLV(8, []byte{0x00, 0x11, 0x22})
+	subName := buildTLV(1, append([]byte("test-device"), 0x00)) // string with null
+	subPort := buildTLV(2, []byte{4})                            // uint8 = 4
+	subVlan := buildTLV(3, []byte{0x00, 0x64})                   // uint16 = 100
+	subUnk := buildTLV(99, []byte{0xDE, 0xAD})                   // unknown sub-TLV
+
+	tlv43Value := append(vendorId, subName...)
+	tlv43Value = append(tlv43Value, subPort...)
+	tlv43Value = append(tlv43Value, subVlan...)
+	tlv43Value = append(tlv43Value, subUnk...)
+
+	data := buildConfig(buildTLV(43, tlv43Value))
+
+	result, err := Decode(data, reg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defs, ok := result.Config["DocsisExtensionField"].([]interface{})
+	if !ok {
+		t.Fatalf("expected []interface{}, got %T", result.Config["DocsisExtensionField"])
+	}
+
+	entry := defs[0].(map[string]interface{})
+	if entry["VendorId"] != "001122" {
+		t.Errorf("expected VendorId '001122', got %v", entry["VendorId"])
+	}
+
+	// Vendor schema-resolved fields
+	if entry["DeviceName"] != "test-device" {
+		t.Errorf("expected DeviceName='test-device', got %v", entry["DeviceName"])
+	}
+	if entry["PortCount"] != 4 {
+		t.Errorf("expected PortCount=4, got %v", entry["PortCount"])
+	}
+	if entry["MgmtVlan"] != 100 {
+		t.Errorf("expected MgmtVlan=100, got %v", entry["MgmtVlan"])
+	}
+
+	// Unknown sub-TLV should still be in VendorSubTlvs
+	vendorSubTlvs, ok := entry["VendorSubTlvs"].([]interface{})
+	if !ok {
+		t.Fatal("expected VendorSubTlvs for unknown sub-TLV")
+	}
+	if len(vendorSubTlvs) != 1 {
+		t.Fatalf("expected 1 unknown vendor sub-TLV, got %d", len(vendorSubTlvs))
+	}
+	unk := vendorSubTlvs[0].(map[string]interface{})
+	if unk["type"] != 99 {
+		t.Errorf("expected unknown type 99, got %v", unk["type"])
+	}
+}
+
 func TestDecodeMICExtraction(t *testing.T) {
 	reg := makeTestRegistry()
 
