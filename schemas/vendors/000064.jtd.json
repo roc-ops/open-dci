@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "oui": "000064",
+    "vendorName": "Tibit/DPA",
+    "extensionPoints": ["43"],
+    "description": "DPA (DOCSIS Provisioning over Anything) vendor-specific sub-TLVs for Tibit XGS-PON MicroPlug OLTs via MCMS. Used within TLV 43 to carry ONU provisioning parameters."
+  },
+  "definitions": {
+    "Tibit_OnuId": {
+      "metadata": {
+        "description": "ONU identifier string",
+        "subTlvType": 1,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_ServiceConfig": {
+      "metadata": {
+        "description": "MCMS SRV-CFG profile name to apply to the ONU",
+        "subTlvType": 2,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_SlaProfile": {
+      "metadata": {
+        "description": "MCMS SLA profile name for bandwidth shaping",
+        "subTlvType": 3,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_AllocId": {
+      "metadata": {
+        "description": "GPON/XGSPON allocation ID (ALLOC-ID / OMCC)",
+        "subTlvType": 4,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    },
+    "Tibit_NetconfName": {
+      "metadata": {
+        "description": "MCMS NETCONF.Name — unique device identifier in MCMS",
+        "subTlvType": 5,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_PonPort": {
+      "metadata": {
+        "description": "PON port number on the OLT",
+        "subTlvType": 6,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint8"
+    },
+    "Tibit_NniVlan": {
+      "metadata": {
+        "description": "NNI VLAN configuration: SVLAN(2 bytes) + CVLAN(2 bytes) + Type(1 byte). Type: 0=untagged, 1=access, 2=trunk, 3=hybrid",
+        "subTlvType": 7,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_PonVlan": {
+      "metadata": {
+        "description": "PON VLAN configuration: SVLAN(2 bytes) + CVLAN(2 bytes) + Type(1 byte). Type: 0=untagged, 1=access, 2=trunk, 3=hybrid",
+        "subTlvType": 8,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_GemPort": {
+      "metadata": {
+        "description": "GEM port ID for GPON/XGSPON traffic",
+        "subTlvType": 9,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    },
+    "Tibit_TcontId": {
+      "metadata": {
+        "description": "T-CONT ID for upstream bandwidth allocation",
+        "subTlvType": 10,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    },
+    "Tibit_MibResetOnReg": {
+      "metadata": {
+        "description": "Reset ONU MIB on registration",
+        "subTlvType": 11,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        }
+      },
+      "type": "uint8"
+    },
+    "Tibit_ServiceConfigOnce": {
+      "metadata": {
+        "description": "Apply service configuration only once (skip if already configured)",
+        "subTlvType": 12,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        }
+      },
+      "type": "uint8"
+    },
+    "Tibit_SkipOmciStats": {
+      "metadata": {
+        "description": "Skip OMCI statistics collection",
+        "subTlvType": 13,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        }
+      },
+      "type": "uint8"
+    },
+    "Tibit_SkipOmciTables": {
+      "metadata": {
+        "description": "Skip OMCI table retrieval",
+        "subTlvType": 14,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        }
+      },
+      "type": "uint8"
+    },
+    "Tibit_SrvcfgOmciStats": {
+      "metadata": {
+        "description": "Enable OMCI statistics in SRV-CFG profile",
+        "subTlvType": 15,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "disabled",
+          "1": "enabled"
+        }
+      },
+      "type": "uint8"
+    },
+    "Tibit_SrvcfgValues": {
+      "metadata": {
+        "description": "SRV-CFG template variable substitution values — compound of key-value sub-TLVs for MCMS SRV-CFG variable resolution",
+        "subTlvType": 16,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_ServiceSlotEnable": {
+      "metadata": {
+        "description": "Service slot enable bitmap — each bit enables an OLT-Service slot (0-7)",
+        "subTlvType": 17,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint8"
+    },
+    "Tibit_UniPortConfig": {
+      "metadata": {
+        "description": "UNI port configuration — array of uint16 port IDs",
+        "subTlvType": 18,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_OltServiceConfig": {
+      "metadata": {
+        "description": "OLT-Service container — compound sub-TLV carrying per-service-slot configuration",
+        "subTlvType": 19,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_ProtocolFilters": {
+      "metadata": {
+        "description": "Protocol filter rules — compound sub-TLV. Each child sub-TLV: type=protocol (1=dhcp,2=arp,3=igmp,4=icmp,5=pppoe,6=ipv6), value byte 0=action (0=deny,1=allow), byte 1=priority",
+        "subTlvType": 20,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_DhcpConfig": {
+      "metadata": {
+        "description": "DHCP relay configuration — compound sub-TLV with: 1=enabled(uint8), 2=server_ip(ipv4), 3=circuit_id(string), 4=remote_id(string), 5=trust_mode(uint8: 0=untrusted,1=trusted)",
+        "subTlvType": 21,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_PppoeConfig": {
+      "metadata": {
+        "description": "PPPoE configuration per service slot",
+        "subTlvType": 22,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_RadiusConfig": {
+      "metadata": {
+        "description": "RADIUS configuration per service slot",
+        "subTlvType": 23,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_MacLearningConfig": {
+      "metadata": {
+        "description": "MAC learning configuration — compound sub-TLV with: 1=enabled(uint8), 2=mode(uint8: 0=disabled,1=dynamic,2=static,3=secure), 3=mac_limit(uint16), 4=aging_time(uint32), 5=port_security(uint8)",
+        "subTlvType": 24,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Tibit_CosConfig": {
+      "metadata": {
+        "description": "Class of Service configuration per service slot",
+        "subTlvType": 25,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    }
+  },
+  "mapping": {
+    "43": {
+      "1": { "name": "OnuId", "ref": "Tibit_OnuId" },
+      "2": { "name": "ServiceConfig", "ref": "Tibit_ServiceConfig" },
+      "3": { "name": "SlaProfile", "ref": "Tibit_SlaProfile" },
+      "4": { "name": "AllocId", "ref": "Tibit_AllocId" },
+      "5": { "name": "NetconfName", "ref": "Tibit_NetconfName" },
+      "6": { "name": "PonPort", "ref": "Tibit_PonPort" },
+      "7": { "name": "NniVlan", "ref": "Tibit_NniVlan" },
+      "8": { "name": "PonVlan", "ref": "Tibit_PonVlan" },
+      "9": { "name": "GemPort", "ref": "Tibit_GemPort" },
+      "10": { "name": "TcontId", "ref": "Tibit_TcontId" },
+      "11": { "name": "MibResetOnReg", "ref": "Tibit_MibResetOnReg" },
+      "12": { "name": "ServiceConfigOnce", "ref": "Tibit_ServiceConfigOnce" },
+      "13": { "name": "SkipOmciStats", "ref": "Tibit_SkipOmciStats" },
+      "14": { "name": "SkipOmciTables", "ref": "Tibit_SkipOmciTables" },
+      "15": { "name": "SrvcfgOmciStats", "ref": "Tibit_SrvcfgOmciStats" },
+      "16": { "name": "SrvcfgValues", "ref": "Tibit_SrvcfgValues" },
+      "17": { "name": "ServiceSlotEnable", "ref": "Tibit_ServiceSlotEnable" },
+      "18": { "name": "UniPortConfig", "ref": "Tibit_UniPortConfig" },
+      "19": { "name": "OltServiceConfig", "ref": "Tibit_OltServiceConfig" },
+      "20": { "name": "ProtocolFilters", "ref": "Tibit_ProtocolFilters" },
+      "21": { "name": "DhcpConfig", "ref": "Tibit_DhcpConfig" },
+      "22": { "name": "PppoeConfig", "ref": "Tibit_PppoeConfig" },
+      "23": { "name": "RadiusConfig", "ref": "Tibit_RadiusConfig" },
+      "24": { "name": "MacLearningConfig", "ref": "Tibit_MacLearningConfig" },
+      "25": { "name": "CosConfig", "ref": "Tibit_CosConfig" }
+    }
+  }
+}

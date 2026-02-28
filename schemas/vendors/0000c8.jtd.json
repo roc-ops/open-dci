@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "oui": "0000c8",
+    "vendorName": "Readylinks/DPA",
+    "extensionPoints": ["43"],
+    "description": "DPA (DOCSIS Provisioning over Anything) vendor-specific sub-TLVs for Readylinks managed access points, switches, and routers. Used within TLV 43 to carry device provisioning parameters."
+  },
+  "definitions": {
+    "Readylinks_PortId": {
+      "metadata": {
+        "description": "Port identifier string",
+        "subTlvType": 1,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Readylinks_TemplateId": {
+      "metadata": {
+        "description": "Configuration template identifier to apply to the device",
+        "subTlvType": 2,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Readylinks_RateLimit": {
+      "metadata": {
+        "description": "Rate limit tier for the device",
+        "subTlvType": 3,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "0": "low",
+          "1": "medium",
+          "2": "high",
+          "3": "max"
+        }
+      },
+      "type": "uint8"
+    },
+    "Readylinks_IpcConfig": {
+      "metadata": {
+        "description": "IPC device configuration — compound sub-TLV with: 1=mac(macAddress), 2=type(string), 3=mode(uint8: 0=disabled,1=bridge,2=router)",
+        "subTlvType": 4,
+        "dataType": "hexstring",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Readylinks_DeviceType": {
+      "metadata": {
+        "description": "Device type classification",
+        "subTlvType": 5,
+        "dataType": "uint8",
+        "spec": "DPA-proprietary",
+        "validValues": {
+          "1": "ap",
+          "2": "switch",
+          "3": "router"
+        }
+      },
+      "type": "uint8"
+    },
+    "Readylinks_Ssid": {
+      "metadata": {
+        "description": "WiFi SSID for access point devices",
+        "subTlvType": 6,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Readylinks_WpaKey": {
+      "metadata": {
+        "description": "WiFi WPA pre-shared key for access point devices",
+        "subTlvType": 7,
+        "dataType": "string",
+        "spec": "DPA-proprietary"
+      },
+      "type": "string"
+    },
+    "Readylinks_MgmtVlan": {
+      "metadata": {
+        "description": "Management VLAN ID",
+        "subTlvType": 8,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    },
+    "Readylinks_DataVlan": {
+      "metadata": {
+        "description": "Data VLAN ID",
+        "subTlvType": 9,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    },
+    "Readylinks_VoiceVlan": {
+      "metadata": {
+        "description": "Voice VLAN ID",
+        "subTlvType": 10,
+        "dataType": "uint16",
+        "spec": "DPA-proprietary"
+      },
+      "type": "uint16"
+    }
+  },
+  "mapping": {
+    "43": {
+      "1": { "name": "PortId", "ref": "Readylinks_PortId" },
+      "2": { "name": "TemplateId", "ref": "Readylinks_TemplateId" },
+      "3": { "name": "RateLimit", "ref": "Readylinks_RateLimit" },
+      "4": { "name": "IpcConfig", "ref": "Readylinks_IpcConfig" },
+      "5": { "name": "DeviceType", "ref": "Readylinks_DeviceType" },
+      "6": { "name": "Ssid", "ref": "Readylinks_Ssid" },
+      "7": { "name": "WpaKey", "ref": "Readylinks_WpaKey" },
+      "8": { "name": "MgmtVlan", "ref": "Readylinks_MgmtVlan" },
+      "9": { "name": "DataVlan", "ref": "Readylinks_DataVlan" },
+      "10": { "name": "VoiceVlan", "ref": "Readylinks_VoiceVlan" }
+    }
+  }
+}
