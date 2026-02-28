@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"bytes"
@@ -196,9 +196,9 @@ func filterTLVs(data []byte, excludeTypes ...int) []byte {
 	return result
 }
 
-// insertMICs computes CM MIC and CMTS MIC and inserts them before the end-of-data
+// InsertMICs computes CM MIC and CMTS MIC and inserts them before the end-of-data
 // marker in the encoded binary. The input must end with 0xFF 0x00.
-func insertMICs(encoded []byte, cmtsSecret string) ([]byte, error) {
+func InsertMICs(encoded []byte, cmtsSecret string) ([]byte, error) {
 	// Remove end-of-data marker.
 	if len(encoded) < 2 || encoded[len(encoded)-2] != 0xFF || encoded[len(encoded)-1] != 0x00 {
 		return nil, fmt.Errorf("encoded data does not end with end-of-data marker")

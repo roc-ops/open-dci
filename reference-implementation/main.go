@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/roc-ops/open-dci/reference-implementation/mibresolver"
+	"github.com/roc-ops/open-dci/reference-implementation/opendci"
 )
 
 func main() {
@@ -73,7 +74,7 @@ func main() {
 	}
 
 	// Load registry from schema.
-	reg, err := LoadRegistry(schemaPath)
+	reg, err := opendci.LoadRegistry(schemaPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading schema: %v\n", err)
 		os.Exit(1)
@@ -92,9 +93,9 @@ func main() {
 }
 
 // runEncode handles encode mode: JSON/JSONC input -> binary TLV output.
-func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string, padAlign bool, packetCableHash string) {
+func runEncode(inputData []byte, reg *opendci.Registry, outputFile string, cmtsSecret string, padAlign bool, packetCableHash string) {
 	// Strip JSONC comments to produce valid JSON.
-	jsonStr := StripJSONCComments(string(inputData))
+	jsonStr := opendci.StripJSONCComments(string(inputData))
 
 	// Parse JSON into config map.
 	var config map[string]interface{}
@@ -104,12 +105,12 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 	}
 
 	// Build a DecodeResult for the encoder.
-	result := &DecodeResult{
+	result := &opendci.DecodeResult{
 		Config: config,
 	}
 
 	// Encode to binary.
-	encoded, err := Encode(result, reg)
+	encoded, err := opendci.Encode(result, reg)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error encoding config: %v\n", err)
 		os.Exit(1)
@@ -117,7 +118,7 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 
 	// Optionally compute and insert MICs.
 	if cmtsSecret != "" {
-		encoded, err = insertMICs(encoded, cmtsSecret)
+		encoded, err = opendci.InsertMICs(encoded, cmtsSecret)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error computing MICs: %v\n", err)
 			os.Exit(1)
@@ -126,7 +127,7 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 
 	// Optionally compute and insert PacketCable hash.
 	if packetCableHash != "" {
-		encoded, err = insertPacketCableHash(encoded, packetCableHash)
+		encoded, err = opendci.InsertPacketCableHash(encoded, packetCableHash)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error computing PacketCable hash: %v\n", err)
 			os.Exit(1)
@@ -135,7 +136,7 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 
 	// Optionally pad to 4-byte alignment.
 	if padAlign {
-		encoded = PadToAlignment(encoded, 4)
+		encoded = opendci.PadToAlignment(encoded, 4)
 	}
 
 	// Write output.
@@ -151,7 +152,7 @@ func runEncode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 }
 
 // runDecode handles decode mode: binary TLV input -> JSONC output.
-func runDecode(inputData []byte, reg *Registry, outputFile string, cmtsSecret string, mibsDir string, withMibs string, noMibs bool) {
+func runDecode(inputData []byte, reg *opendci.Registry, outputFile string, cmtsSecret string, mibsDir string, withMibs string, noMibs bool) {
 	validValues := reg.ValidValuesMap()
 
 	// Initialize MIB resolver (graceful degradation: nil resolver if unavailable).
@@ -188,7 +189,7 @@ func runDecode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 	}
 
 	// Decode the config.
-	result, err := Decode(inputData, reg)
+	result, err := opendci.Decode(inputData, reg)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error decoding config: %v\n", err)
 		os.Exit(1)
@@ -199,7 +200,7 @@ func runDecode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 
 	// Verify MICs and report to stderr (kept as-is) and collect as JSONC comments.
 	if result.CmMic != nil {
-		micResult := VerifyCmMic(inputData, result.CmMic)
+		micResult := opendci.VerifyCmMic(inputData, result.CmMic)
 		if micResult.Valid {
 			fmt.Fprintf(os.Stderr, "CM MIC: VALID\n")
 			comments = append(comments, "// CM MIC: VALID")
@@ -221,7 +222,7 @@ func runDecode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 			fmt.Fprintf(os.Stderr, "CMTS MIC: SKIPPED (no --cmts-secret provided)\n")
 			comments = append(comments, "// CMTS MIC: SKIPPED (no --cmts-secret provided)")
 		} else {
-			micResult := VerifyCmtsMic(inputData, result.CmtsMic, cmtsSecret)
+			micResult := opendci.VerifyCmtsMic(inputData, result.CmtsMic, cmtsSecret)
 			if micResult.Valid {
 				fmt.Fprintf(os.Stderr, "CMTS MIC: VALID\n")
 				comments = append(comments, "// CMTS MIC: VALID")
@@ -255,10 +256,10 @@ func runDecode(inputData []byte, reg *Registry, outputFile string, cmtsSecret st
 	delete(result.Config, "CmtsMic")
 
 	// Strip internal ordering metadata before JSON output.
-	StripTLVOrder(result.Config)
+	opendci.StripTLVOrder(result.Config)
 
 	// Format as JSONC.
-	jsoncData, err := FormatJSONC(result.Config, comments, validValues, resolver)
+	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error encoding JSONC: %v\n", err)
 		os.Exit(1)

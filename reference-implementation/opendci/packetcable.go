@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"bytes"
@@ -49,7 +49,7 @@ func buildHashVarbind(oid string) (tlv11 []byte, hashValueOffset int, err error)
 	return tlv11, hashValueOffset, nil
 }
 
-// insertPacketCableHash computes a circular SHA-1 hash for a PacketCable MTA
+// InsertPacketCableHash computes a circular SHA-1 hash for a PacketCable MTA
 // config file and inserts it as a TLV 11 SNMP varbind before the end-of-data
 // marker.
 //
@@ -58,7 +58,7 @@ func buildHashVarbind(oid string) (tlv11 []byte, hashValueOffset int, err error)
 //  2. Insert the varbind before the end-of-data marker (0xFF 0x00).
 //  3. Compute SHA-1 over the entire assembled file (with zeroed placeholder).
 //  4. Replace the 20-byte placeholder with the computed SHA-1 hash.
-func insertPacketCableHash(encoded []byte, variant string) ([]byte, error) {
+func InsertPacketCableHash(encoded []byte, variant string) ([]byte, error) {
 	oid, ok := packetCableHashOIDs[variant]
 	if !ok {
 		return nil, fmt.Errorf("unknown PacketCable hash variant: %q (use na, eu, or ietf)", variant)

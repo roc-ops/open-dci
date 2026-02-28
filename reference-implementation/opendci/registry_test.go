@@ -1,4 +1,4 @@
-package main
+package opendci
 
 import (
 	"os"
@@ -13,7 +13,7 @@ func schemaPath(t *testing.T) string {
 	if !ok {
 		t.Fatal("unable to get caller info")
 	}
-	return filepath.Join(filepath.Dir(filename), "..", "schemas", "docsis-config.jtd.json")
+	return filepath.Join(filepath.Dir(filename), "..", "..", "schemas", "docsis-config.jtd.json")
 }
 
 func vendorExampleDir(t *testing.T) string {
@@ -22,7 +22,7 @@ func vendorExampleDir(t *testing.T) string {
 	if !ok {
 		t.Fatal("unable to get caller info")
 	}
-	return filepath.Join(filepath.Dir(filename), "..", "docs", "examples")
+	return filepath.Join(filepath.Dir(filename), "..", "..", "docs", "examples")
 }
 
 func TestLoadRegistrySuccess(t *testing.T) {
