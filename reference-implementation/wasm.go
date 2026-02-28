@@ -12,6 +12,10 @@ import (
 	"github.com/roc-ops/open-dci/reference-implementation/opendci"
 )
 
+// loadedMIBFiles tracks all MIB file contents loaded via opendciLoadMIBs.
+// This allows serialization of the current MIB state for later restoration.
+var loadedMIBFiles map[string][]byte
+
 // registry holds the loaded TLV registry for use across WASM function calls.
 var registry *opendci.Registry
 
@@ -277,6 +281,12 @@ func opendciLoadMIBs(_ js.Value, args []js.Value) interface{} {
 		}
 		resolver = r
 
+		// Track loaded MIB files for serialization.
+		loadedMIBFiles = make(map[string][]byte, len(mibFiles))
+		for k, v := range mibFiles {
+			loadedMIBFiles[k] = v
+		}
+
 		obj := js.Global().Get("Object").New()
 		obj.Set("ok", true)
 		obj.Set("loaded", keysLen)
@@ -287,6 +297,14 @@ func opendciLoadMIBs(_ js.Value, args []js.Value) interface{} {
 	loaded, err := resolver.LoadAdditionalMIBs(mibFiles)
 	if err != nil {
 		return jsError("loading additional MIBs: " + err.Error())
+	}
+
+	// Accumulate loaded MIB files for serialization.
+	if loadedMIBFiles == nil {
+		loadedMIBFiles = make(map[string][]byte)
+	}
+	for k, v := range mibFiles {
+		loadedMIBFiles[k] = v
 	}
 
 	obj := js.Global().Get("Object").New()
@@ -385,6 +403,70 @@ func opendciExtractCVC(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciSerializeMIBState serializes the current MIB resolver state to a binary blob.
+// The blob captures all loaded MIB file contents so the state can be restored later
+// without re-fetching or re-loading individual MIB files.
+// JS signature: opendciSerializeMIBState() -> {result: Uint8Array} | {error: string}
+func opendciSerializeMIBState(_ js.Value, args []js.Value) interface{} {
+	if resolver == nil {
+		return jsError("no MIBs loaded: call opendciLoadMIBs first")
+	}
+
+	if len(loadedMIBFiles) == 0 {
+		return jsError("no MIB file contents tracked: load MIBs via opendciLoadMIBs first")
+	}
+
+	data, err := mibresolver.SerializeMIBState(loadedMIBFiles)
+	if err != nil {
+		return jsError("serializing MIB state: " + err.Error())
+	}
+
+	// Copy the serialized bytes into a JS Uint8Array.
+	jsArray := js.Global().Get("Uint8Array").New(len(data))
+	js.CopyBytesToJS(jsArray, data)
+
+	obj := js.Global().Get("Object").New()
+	obj.Set("result", jsArray)
+	return obj
+}
+
+// opendciRestoreMIBState restores MIB resolver state from a previously serialized blob.
+// This completely replaces the current resolver state. After restore, opendciLoadMIBs
+// can still be called to add more MIBs (augment mode).
+// JS signature: opendciRestoreMIBState(blob: Uint8Array) -> {ok: true} | {error: string}
+func opendciRestoreMIBState(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciRestoreMIBState requires 1 argument: Uint8Array")
+	}
+
+	// Copy binary data from JS Uint8Array to Go slice.
+	jsArray := args[0]
+	length := jsArray.Get("length").Int()
+	data := make([]byte, length)
+	js.CopyBytesToGo(data, jsArray)
+
+	// Close existing resolver if any.
+	if resolver != nil {
+		resolver.Close()
+		resolver = nil
+		loadedMIBFiles = nil
+	}
+
+	r, mibFiles, err := mibresolver.RestoreMIBState(data)
+	if err != nil {
+		return jsError("restoring MIB state: " + err.Error())
+	}
+	resolver = r
+
+	// Restore the tracked MIB files so subsequent serialization and
+	// augment loads work correctly.
+	loadedMIBFiles = mibFiles
+
+	obj := js.Global().Get("Object").New()
+	obj.Set("ok", true)
+	return obj
+}
+
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
 	js.Global().Set("opendciLoadVendorSchema", js.FuncOf(opendciLoadVendorSchema))
@@ -396,6 +478,8 @@ func main() {
 	js.Global().Set("opendciResolveName", js.FuncOf(opendciResolveName))
 	js.Global().Set("opendciResolveOID", js.FuncOf(opendciResolveOID))
 	js.Global().Set("opendciExtractCVC", js.FuncOf(opendciExtractCVC))
+	js.Global().Set("opendciSerializeMIBState", js.FuncOf(opendciSerializeMIBState))
+	js.Global().Set("opendciRestoreMIBState", js.FuncOf(opendciRestoreMIBState))
 
 	// Block forever to keep the Go runtime alive for JS callbacks.
 	select {}
