@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-02-28
+
+### Added
+
+#### PacketCable MTA Config Support
+
+- MTA JTD schema (`schemas/mta-config.jtd.json`) covering PacketCable 1.5 TLV catalog (TLVs 11, 38, 64, 254)
+- MTA decode/encode mode with TLV 254 start/end delimiters and format auto-detection
+- TLV 216 (eMTA) recursive decode/encode -- embedded MTA configs in CM files are automatically expanded to structured JSON instead of opaque hexstrings
+- Generalized SNMP varbind handling for both CM TLV 11 and MTA TLV 64 (2-byte length)
+
+#### CLI
+
+- `--format` flag to explicitly select `cm` or `mta` mode (default: auto-detect from content)
+- `--mta-schema` flag to specify MTA schema path (default: sibling of CM schema)
+- Auto-detection of MTA binary format (first byte `0xFE`)
+- Automatic loading of MTA registry as nested registry for TLV 216 recursive decode
+
+#### WebAssembly Module
+
+- `opendciLoadMtaSchema` function to load MTA registry alongside CM registry (13 exported functions total)
+- Auto-detection of MTA format in `opendciDecode` (selects MTA registry when first byte is `0xFE`)
+- Optional `format` argument in `opendciEncode` for explicit MTA encoding
+- Cross-wiring of nested registries regardless of CM/MTA schema load order
+
 ## [0.1.0] - 2026-02-28
 
 Initial public release of OpenDCI -- a JSON-based data interchange format for DOCSIS cable modem configuration files.
@@ -56,4 +81,5 @@ Initial public release of OpenDCI -- a JSON-based data interchange format for DO
 
 - JTD-to-JSON-Schema converter (`tools/jtd2jsonschema`)
 
+[0.1.1]: https://github.com/roc-ops/open-dci/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/roc-ops/open-dci/releases/tag/v0.1.0
