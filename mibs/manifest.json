@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-02-25T16:21:19Z",
+  "generated_at": "2026-03-01T09:45:00Z",
   "sources": {
     "cablelabs": {
-      "count": 246,
+      "count": 253,
       "source": "https://mibs.cablelabs.com/MIBs/"
     },
     "iana": {
@@ -12,6 +12,10 @@
     "ietf": {
       "count": 285,
       "source": "https://www.rfc-editor.org/rfc/"
+    },
+    "cablelabs_packetcable": {
+      "count": 7,
+      "source": "Extracted from PacketCable specification PDFs (PKT-SP-MIB-* documents)"
     }
   },
   "mibs": [
@@ -3843,6 +3847,55 @@
       "source": "cablelabs",
       "path": "cablelabs/wireless/CLAB-WIFI-MIB@2017-04-13.mib",
       "latest": false
+    },
+    {
+      "name": "PKTC-MTA-MIB",
+      "revision": "2005-01-28",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-MTA-MIB@2005-01-28.mib",
+      "latest": false
+    },
+    {
+      "name": "PKTC-MTA-MIB",
+      "revision": "2007-11-29",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-MTA-MIB@2007-11-29.mib",
+      "latest": true
+    },
+    {
+      "name": "PKTC-SIG-MIB",
+      "revision": "2005-01-28",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-SIG-MIB@2005-01-28.mib",
+      "latest": false
+    },
+    {
+      "name": "PKTC-SIG-MIB",
+      "revision": "2007-11-29",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-SIG-MIB@2007-11-29.mib",
+      "latest": true
+    },
+    {
+      "name": "PKTC-EN-MTA-MIB",
+      "revision": "2005-01-28",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-EN-MTA-MIB@2005-01-28.mib",
+      "latest": true
+    },
+    {
+      "name": "PKTC-EN-SIG-MIB",
+      "revision": "2012-10-30",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-EN-SIG-MIB@2012-10-30.mib",
+      "latest": true
+    },
+    {
+      "name": "PKTC-EVENT-MIB",
+      "revision": "2005-08-12",
+      "source": "cablelabs",
+      "path": "cablelabs/PacketCable/PKTC-EVENT-MIB@2005-08-12.mib",
+      "latest": true
     }
   ]
 }
