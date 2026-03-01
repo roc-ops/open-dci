@@ -32,7 +32,7 @@ func TestFormatJSONC_NoComments(t *testing.T) {
 	}
 
 	// Header comment should be present.
-	if !strings.Contains(out, "// OpenDCI JSONC") {
+	if !strings.Contains(out, "// OpenDCI v"+Version) {
 		t.Errorf("expected header comment in output, got:\n%s", out)
 	}
 }

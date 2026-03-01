@@ -15,11 +15,12 @@ import (
 //	"NetworkAccess": 1,
 var propertyLineRe = regexp.MustCompile(`^(\s*)"([^"]+)":\s*(\d+)(,?)$`)
 
-// jsoncHeader is the comment block prepended to all JSONC output, identifying
-// the format and linking to the project.
-const jsoncHeader = `// OpenDCI JSONC — DOCSIS Configuration Interchange Format
-// https://github.com/roc-ops/open-dci
-`
+// jsoncHeader returns the comment block prepended to all JSONC output,
+// identifying the format, version, and linking to the project.
+func jsoncHeader() string {
+	return "// OpenDCI v" + Version + " JSONC — DOCSIS Configuration Interchange Format\n" +
+		"// https://github.com/roc-ops/open-dci\n"
+}
 
 // FormatJSONC marshals config as pretty-printed JSON, then appends the given
 // comment lines (each prefixed with "// ") just before the closing "}".
@@ -39,7 +40,7 @@ func FormatJSONC(config map[string]interface{}, comments []string, validValues m
 	s = addSnmpComments(s, resolver)
 
 	// Prepend the header comment block.
-	s = jsoncHeader + s
+	s = jsoncHeader() + s
 
 	if len(comments) == 0 {
 		return s, nil
