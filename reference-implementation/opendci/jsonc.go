@@ -17,7 +17,11 @@ var propertyLineRe = regexp.MustCompile(`^(\s*)"([^"]+)":\s*(\d+)(,?)$`)
 
 // jsoncHeader returns the comment block prepended to all JSONC output,
 // identifying the format, version, and linking to the project.
-func jsoncHeader() string {
+func jsoncHeader(format string) string {
+	if format == FormatMTA {
+		return "// OpenDCI v" + Version + " JSONC — PacketCable MTA Configuration\n" +
+			"// https://github.com/roc-ops/open-dci\n"
+	}
 	return "// OpenDCI v" + Version + " JSONC — DOCSIS Configuration Interchange Format\n" +
 		"// https://github.com/roc-ops/open-dci\n"
 }
@@ -29,7 +33,9 @@ func jsoncHeader() string {
 // inline "// label" comment appended to the line.
 // When resolver is non-nil, SNMP OID lines get "// MIB::name" comments and
 // integer value lines within varbinds get "// enumLabel" comments.
-func FormatJSONC(config map[string]interface{}, comments []string, validValues map[string]map[string]string, resolver *mibresolver.Resolver) (string, error) {
+// The optional format parameter controls the header line (pass FormatMTA for
+// MTA configs, or "" / FormatCM for CM configs).
+func FormatJSONC(config map[string]interface{}, comments []string, validValues map[string]map[string]string, resolver *mibresolver.Resolver, format ...string) (string, error) {
 	jsonData, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("encoding JSON: %w", err)
@@ -40,7 +46,11 @@ func FormatJSONC(config map[string]interface{}, comments []string, validValues m
 	s = addSnmpComments(s, resolver)
 
 	// Prepend the header comment block.
-	s = jsoncHeader() + s
+	f := FormatCM
+	if len(format) > 0 && format[0] != "" {
+		f = format[0]
+	}
+	s = jsoncHeader(f) + s
 
 	if len(comments) == 0 {
 		return s, nil

@@ -2,6 +2,7 @@
   "metadata": {
     "title": "OpenDCI PacketCable MTA Configuration File",
     "version": "1.0.0",
+    "format": "mta",
     "packetcable": "1.5",
     "spec": "PKT-SP-PROV1.5 Section 9.1"
   },

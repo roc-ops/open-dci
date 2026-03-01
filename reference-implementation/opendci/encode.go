@@ -5,14 +5,21 @@ import (
 	"fmt"
 )
 
-// Encode converts a decoded DOCSIS config (as produced by Decode) back into the
+// Encode converts a decoded config (as produced by Decode) back into the
 // binary TLV format. It uses TLVOrder / _tlvOrder metadata to preserve the
 // original TLV ordering. MIC TLVs (6, 7) are omitted by default.
 //
-// The result does NOT include an end-of-data marker (TLV 255); the caller
-// should append 0xFF 0x00 if needed.
+// The registry's Format field determines end-of-data handling:
+//   - CM mode (default): appends TLV 255 end-of-data marker (0xFF 0x00)
+//   - MTA mode: prepends TLV 254 start delimiter and appends TLV 254 end delimiter
 func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 	var out []byte
+	isMTA := reg.Format == FormatMTA
+
+	// MTA mode: prepend TLV 254 start delimiter.
+	if isMTA {
+		out = append(out, 0xFE, 0x01, 0x01)
+	}
 
 	order := result.TLVOrder
 	if len(order) == 0 {
@@ -105,7 +112,13 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 	}
 
 	// Append end-of-data marker.
-	out = append(out, 0xFF, 0x00)
+	if isMTA {
+		// MTA mode: TLV 254 end delimiter.
+		out = append(out, 0xFE, 0x01, 0xFF)
+	} else {
+		// CM mode: TLV 255 end-of-data.
+		out = append(out, 0xFF, 0x00)
+	}
 
 	return out, nil
 }
@@ -137,11 +150,11 @@ func encodeSingleTLV(def *TLVDef, val interface{}, reg *Registry) ([]byte, error
 		return makeTLVn(def.TypeNum, payload, ls), nil
 	}
 
-	// Special case: TLV 11 (SNMP MIB Object)
-	if def.TypeNum == 11 {
+	// Special case: SNMP MIB Object varbind (TLV 11 or any SnmpMibEntry ref)
+	if def.TypeNum == 11 || def.RefName == "SnmpMibEntry" {
 		m, ok := val.(map[string]interface{})
 		if !ok {
-			return nil, fmt.Errorf("TLV 11: expected map, got %T", val)
+			return nil, fmt.Errorf("SNMP varbind TLV %d: expected map, got %T", def.TypeNum, val)
 		}
 		varbind, err := EncodeSnmpVarbind(m)
 		if err != nil {

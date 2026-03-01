@@ -259,7 +259,7 @@ func runDecode(inputData []byte, reg *opendci.Registry, outputFile string, cmtsS
 	opendci.StripTLVOrder(result.Config)
 
 	// Format as JSONC.
-	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver)
+	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver, reg.Format)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error encoding JSONC: %v\n", err)
 		os.Exit(1)

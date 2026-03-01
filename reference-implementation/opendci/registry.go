@@ -27,6 +27,7 @@ type Registry struct {
 	TopLevel      map[int]*TLVDef
 	NameLookup    map[string]*TLVDef            // Reverse lookup: name → definition
 	VendorSchemas map[string]map[int]*TLVDef    // OUI → sub-TLV type → definition
+	Format        string                         // Config format: "cm" (default) or "mta"
 }
 
 // jtdSchema represents the top-level JTD schema structure.
@@ -83,6 +84,14 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 	reg := &Registry{
 		TopLevel:   make(map[int]*TLVDef),
 		NameLookup: make(map[string]*TLVDef),
+		Format:     FormatCM,
+	}
+
+	// Check for format in schema metadata.
+	if schema.Metadata != nil {
+		if f, ok := schema.Metadata["format"].(string); ok {
+			reg.Format = f
+		}
 	}
 
 	// Process top-level optionalProperties.

@@ -508,6 +508,78 @@ func TestLoadVendorSchemas(t *testing.T) {
 	}
 }
 
+func mtaSchemaPath(t *testing.T) string {
+	t.Helper()
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		t.Fatal("unable to get caller info")
+	}
+	return filepath.Join(filepath.Dir(filename), "..", "..", "schemas", "mta-config.jtd.json")
+}
+
+func TestLoadMTARegistry(t *testing.T) {
+	reg, err := LoadRegistry(mtaSchemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if reg.Format != FormatMTA {
+		t.Errorf("expected format %q, got %q", FormatMTA, reg.Format)
+	}
+
+	// TLV 254 = MtaConfigDelimiter
+	def254, ok := reg.TopLevel[254]
+	if !ok {
+		t.Fatal("TLV 254 (MtaConfigDelimiter) not found")
+	}
+	if def254.Name != "MtaConfigDelimiter" {
+		t.Errorf("expected name 'MtaConfigDelimiter', got %q", def254.Name)
+	}
+
+	// TLV 11 = SnmpMibObject
+	def11, ok := reg.TopLevel[11]
+	if !ok {
+		t.Fatal("TLV 11 (SnmpMibObject) not found")
+	}
+	if !def11.Repeatable {
+		t.Error("TLV 11 should be repeatable")
+	}
+
+	// TLV 64 = SnmpMibObjectLarge with 2-byte length
+	def64, ok := reg.TopLevel[64]
+	if !ok {
+		t.Fatal("TLV 64 (SnmpMibObjectLarge) not found")
+	}
+	if def64.LengthSize != 2 {
+		t.Errorf("expected LengthSize=2 for TLV 64, got %d", def64.LengthSize)
+	}
+	if def64.RefName != "SnmpMibEntry" {
+		t.Errorf("expected RefName 'SnmpMibEntry', got %q", def64.RefName)
+	}
+
+	// TLV 38 = Snmpv3NotificationReceiver (compound)
+	def38, ok := reg.TopLevel[38]
+	if !ok {
+		t.Fatal("TLV 38 (Snmpv3NotificationReceiver) not found")
+	}
+	if def38.DataType != DataTypeCompound {
+		t.Errorf("expected compound, got %q", def38.DataType)
+	}
+
+	t.Logf("MTA registry: %d top-level TLVs, format=%s", len(reg.TopLevel), reg.Format)
+}
+
+func TestLoadCMRegistryFormat(t *testing.T) {
+	reg, err := LoadRegistry(schemaPath(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if reg.Format != FormatCM {
+		t.Errorf("expected format %q, got %q", FormatCM, reg.Format)
+	}
+}
+
 func TestLoadVendorSchemasNonexistentDir(t *testing.T) {
 	reg, err := LoadRegistry(schemaPath(t))
 	if err != nil {

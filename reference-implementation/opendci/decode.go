@@ -19,7 +19,10 @@ type DecodeResult struct {
 	TLVOrder []string // Insertion order of top-level TLV property names
 }
 
-// Decode reads the binary DOCSIS config and returns the decoded JSON structure.
+// Decode reads a binary config file and returns the decoded JSON structure.
+// The registry's Format field determines end-of-data handling:
+//   - CM mode (default): TLV 255 marks end-of-data
+//   - MTA mode: TLV 254 value 255 marks end-of-data; TLV 254 value 1 (start delimiter) is skipped
 func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 	result := &DecodeResult{
 		Config:  make(map[string]interface{}),
@@ -28,6 +31,7 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 
 	var unknowns []interface{}
 	offset := 0
+	isMTA := reg.Format == FormatMTA
 
 	for offset < len(data) {
 		if offset+1 >= len(data) {
@@ -42,8 +46,8 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			continue
 		}
 
-		// TLV 255 = end-of-data
-		if tlvType == 255 {
+		// CM mode: TLV 255 = end-of-data
+		if tlvType == 255 && !isMTA {
 			break
 		}
 
@@ -74,14 +78,27 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 
 		value := data[valueStart:valueEnd]
 
-		// Extract MIC values for later verification.
-		if tlvType == 6 {
-			result.CmMic = make([]byte, len(value))
-			copy(result.CmMic, value)
+		// MTA mode: TLV 254 delimiters are structural markers, not data.
+		if isMTA && tlvType == 254 {
+			if len(value) == 1 && value[0] == 0xFF {
+				// End delimiter — stop reading.
+				break
+			}
+			// Start delimiter (value 1) or other structural marker — skip.
+			offset = valueEnd
+			continue
 		}
-		if tlvType == 7 {
-			result.CmtsMic = make([]byte, len(value))
-			copy(result.CmtsMic, value)
+
+		// Extract MIC values for later verification (CM mode only).
+		if !isMTA {
+			if tlvType == 6 {
+				result.CmMic = make([]byte, len(value))
+				copy(result.CmMic, value)
+			}
+			if tlvType == 7 {
+				result.CmtsMic = make([]byte, len(value))
+				copy(result.CmtsMic, value)
+			}
 		}
 		if !ok {
 			// Unknown TLV
@@ -140,11 +157,12 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 			continue
 		}
 
-		// Special case: TLV 11 (SNMP MIB Object) - BER-encoded varbind
-		if tlvType == 11 {
+		// Special case: SNMP MIB Object varbind - TLV 11 or any SnmpMibEntry ref
+		// (handles both CM TLV 11 and MTA TLV 64 SnmpMibObjectLarge)
+		if tlvType == 11 || def.RefName == "SnmpMibEntry" {
 			err := decodeTLV11(result.Config, def, value)
 			if err != nil {
-				return nil, fmt.Errorf("decoding TLV 11 at offset %d: %w", offset, err)
+				return nil, fmt.Errorf("decoding SNMP varbind TLV %d at offset %d: %w", tlvType, offset, err)
 			}
 			offset = valueEnd
 			continue

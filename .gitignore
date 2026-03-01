@@ -10,7 +10,6 @@ docs/external/
 # Compiled binaries
 reference-implementation/opendci-decode
 reference-implementation/reference-implementation
-reference-implementation/opendci
 
 # Test binaries
 reference-implementation/*.test

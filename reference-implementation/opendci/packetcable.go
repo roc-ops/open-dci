@@ -70,17 +70,31 @@ func InsertPacketCableHash(encoded []byte, variant string) ([]byte, error) {
 		return nil, err
 	}
 
-	// Verify end-of-data marker.
-	if len(encoded) < 2 || encoded[len(encoded)-2] != 0xFF || encoded[len(encoded)-1] != 0x00 {
-		return nil, fmt.Errorf("encoded data does not end with end-of-data marker")
+	// Determine end-of-data marker format.
+	var body []byte
+	var endMarker []byte
+	if len(encoded) >= 3 &&
+		encoded[len(encoded)-3] == 0xFE &&
+		encoded[len(encoded)-2] == 0x01 &&
+		encoded[len(encoded)-1] == 0xFF {
+		// MTA mode: TLV 254 end delimiter (FE 01 FF).
+		body = encoded[:len(encoded)-3]
+		endMarker = []byte{0xFE, 0x01, 0xFF}
+	} else if len(encoded) >= 2 &&
+		encoded[len(encoded)-2] == 0xFF &&
+		encoded[len(encoded)-1] == 0x00 {
+		// CM mode: TLV 255 end-of-data (FF 00).
+		body = encoded[:len(encoded)-2]
+		endMarker = []byte{0xFF, 0x00}
+	} else {
+		return nil, fmt.Errorf("encoded data does not end with a recognized end-of-data marker")
 	}
-	body := encoded[:len(encoded)-2]
 
 	// Insert varbind before end-of-data marker.
 	var withHash []byte
 	withHash = append(withHash, body...)
 	withHash = append(withHash, varbind...)
-	withHash = append(withHash, 0xFF, 0x00)
+	withHash = append(withHash, endMarker...)
 
 	// Compute SHA-1 of the entire file with zeroed hash placeholder.
 	h := sha1.Sum(withHash)

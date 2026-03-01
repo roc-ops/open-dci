@@ -151,7 +151,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 
 	// Format as JSONC with MIB resolver if available.
 	validValues := registry.ValidValuesMap()
-	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver)
+	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver, registry.Format)
 	if err != nil {
 		return jsError("formatting output: " + err.Error())
 	}
