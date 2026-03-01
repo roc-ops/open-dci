@@ -1,0 +1,186 @@
+{
+  "$defs": {
+    "SnmpMibEntry": {
+      "additionalProperties": false,
+      "description": "A single SNMP MIB object encoded as an OID, ASN.1 type, and value. Corresponds to TLV 11 (SNMP MIB Object) which carries a BER-encoded varbind in the binary config file.",
+      "properties": {
+        "oid": {
+          "description": "SNMP object identifier in dotted-decimal notation",
+          "type": "string",
+          "x-docsis-dataType": "oid",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1"
+        },
+        "type": {
+          "description": "ASN.1 type of the SNMP value",
+          "enum": [
+            "Integer",
+            "String",
+            "IPAddress",
+            "Counter32",
+            "Gauge32",
+            "TimeTicks",
+            "OID",
+            "HexString",
+            "Counter64",
+            "Unsigned32"
+          ],
+          "type": "string",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1"
+        },
+        "value": {
+          "description": "The SNMP value as a string representation appropriate for the given type",
+          "type": "string",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1"
+        }
+      },
+      "required": [
+        "oid",
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1"
+    },
+    "Snmpv3NotificationReceiverEntry": {
+      "additionalProperties": false,
+      "description": "SNMPv3 Notification Receiver encoding. Configures an SNMP notification target for the MTA.",
+      "properties": {
+        "FilteringParameters": {
+          "description": "SNMP notification filtering parameters (OID subtree for filtering)",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvType": "38.6"
+        },
+        "IPv4Address": {
+          "description": "IPv4 address of the SNMP notification receiver",
+          "type": "string",
+          "x-docsis-dataType": "ipAddress",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 4,
+          "x-docsis-tlvType": "38.1"
+        },
+        "IPv6Address": {
+          "description": "IPv6 address of the SNMP notification receiver",
+          "type": "string",
+          "x-docsis-dataType": "ipv6Address",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 16,
+          "x-docsis-tlvType": "38.8"
+        },
+        "Retries": {
+          "description": "Number of retries for SNMP inform retransmission",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "38.5"
+        },
+        "SecurityName": {
+          "description": "SNMPv3 security name for the notification receiver",
+          "type": "string",
+          "x-docsis-dataType": "string",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvType": "38.7"
+        },
+        "Timeout": {
+          "description": "Timeout in milliseconds for SNMP inform retransmission",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "38.4"
+        },
+        "TrapType": {
+          "description": "SNMP notification type (1 = inform, 2 = trap)",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "38.3",
+          "x-docsis-validValues": {
+            "1": "inform",
+            "2": "trap"
+          }
+        },
+        "UDPPortNumber": {
+          "description": "UDP port number of the SNMP notification receiver",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer",
+          "x-docsis-dataType": "uint16",
+          "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+          "x-docsis-tlvLength": 2,
+          "x-docsis-tlvType": "38.2"
+        }
+      },
+      "type": "object",
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+      "x-docsis-tlvType": 38
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "PKT-SP-PROV1.5 Section 9.1",
+  "properties": {
+    "MtaConfigDelimiter": {
+      "description": "MTA Configuration File Delimiter. Value 1 marks the start of the telephony configuration, value 255 marks the end.",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer",
+      "x-docsis-dataType": "uint8",
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+      "x-docsis-tlvLength": 1,
+      "x-docsis-tlvType": 254,
+      "x-docsis-validValues": {
+        "1": "Telephony Configuration File Start",
+        "255": "Telephony Configuration File End"
+      }
+    },
+    "SnmpMibObject": {
+      "description": "SNMP MIB objects to set on the MTA during provisioning. Each entry is a BER-encoded varbind in the binary config file.",
+      "items": {
+        "$ref": "#/$defs/SnmpMibEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+      "x-docsis-tlvType": 11
+    },
+    "SnmpMibObjectLarge": {
+      "description": "SNMP MIB objects to set on the MTA during provisioning, with a 2-byte length field to support larger varbinds. Each entry is a BER-encoded varbind in the binary config file.",
+      "items": {
+        "$ref": "#/$defs/SnmpMibEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+      "x-docsis-tlvLengthSize": 2,
+      "x-docsis-tlvType": 64
+    },
+    "Snmpv3NotificationReceiver": {
+      "description": "SNMPv3 Notification Receiver encoding. Configures SNMP notification targets for the MTA.",
+      "items": {
+        "$ref": "#/$defs/Snmpv3NotificationReceiverEntry"
+      },
+      "type": "array",
+      "x-docsis-dataType": "compound",
+      "x-docsis-repeatable": true,
+      "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+      "x-docsis-tlvType": 38
+    }
+  },
+  "title": "OpenDCI PacketCable MTA Configuration File",
+  "type": "object",
+  "x-docsis-packetcable": "1.5",
+  "x-docsis-spec": "PKT-SP-PROV1.5 Section 9.1",
+  "x-docsis-version": "1.0.0"
+}

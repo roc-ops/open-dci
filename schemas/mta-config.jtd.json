@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "title": "OpenDCI PacketCable MTA Configuration File",
+    "version": "1.0.0",
+    "packetcable": "1.5",
+    "spec": "PKT-SP-PROV1.5 Section 9.1"
+  },
+  "definitions": {
+    "SnmpMibEntry": {
+      "metadata": {
+        "description": "A single SNMP MIB object encoded as an OID, ASN.1 type, and value. Corresponds to TLV 11 (SNMP MIB Object) which carries a BER-encoded varbind in the binary config file.",
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "properties": {
+        "oid": {
+          "metadata": {
+            "description": "SNMP object identifier in dotted-decimal notation",
+            "dataType": "oid",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        },
+        "type": {
+          "metadata": {
+            "description": "ASN.1 type of the SNMP value",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "enum": [
+            "Integer",
+            "String",
+            "IPAddress",
+            "Counter32",
+            "Gauge32",
+            "TimeTicks",
+            "OID",
+            "HexString",
+            "Counter64",
+            "Unsigned32"
+          ]
+        },
+        "value": {
+          "metadata": {
+            "description": "The SNMP value as a string representation appropriate for the given type",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        }
+      }
+    },
+    "Snmpv3NotificationReceiverEntry": {
+      "metadata": {
+        "description": "SNMPv3 Notification Receiver encoding. Configures an SNMP notification target for the MTA.",
+        "tlvType": 38,
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "optionalProperties": {
+        "IPv4Address": {
+          "metadata": {
+            "description": "IPv4 address of the SNMP notification receiver",
+            "tlvType": "38.1",
+            "tlvLength": 4,
+            "dataType": "ipAddress",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        },
+        "UDPPortNumber": {
+          "metadata": {
+            "description": "UDP port number of the SNMP notification receiver",
+            "tlvType": "38.2",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "uint16"
+        },
+        "TrapType": {
+          "metadata": {
+            "description": "SNMP notification type (1 = inform, 2 = trap)",
+            "tlvType": "38.3",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "validValues": {
+              "1": "inform",
+              "2": "trap"
+            },
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "uint16"
+        },
+        "Timeout": {
+          "metadata": {
+            "description": "Timeout in milliseconds for SNMP inform retransmission",
+            "tlvType": "38.4",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "uint16"
+        },
+        "Retries": {
+          "metadata": {
+            "description": "Number of retries for SNMP inform retransmission",
+            "tlvType": "38.5",
+            "tlvLength": 2,
+            "dataType": "uint16",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "uint16"
+        },
+        "FilteringParameters": {
+          "metadata": {
+            "description": "SNMP notification filtering parameters (OID subtree for filtering)",
+            "tlvType": "38.6",
+            "dataType": "string",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        },
+        "SecurityName": {
+          "metadata": {
+            "description": "SNMPv3 security name for the notification receiver",
+            "tlvType": "38.7",
+            "dataType": "string",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        },
+        "IPv6Address": {
+          "metadata": {
+            "description": "IPv6 address of the SNMP notification receiver",
+            "tlvType": "38.8",
+            "tlvLength": 16,
+            "dataType": "ipv6Address",
+            "spec": "PKT-SP-PROV1.5 Section 9.1"
+          },
+          "type": "string"
+        }
+      }
+    }
+  },
+  "optionalProperties": {
+    "MtaConfigDelimiter": {
+      "metadata": {
+        "description": "MTA Configuration File Delimiter. Value 1 marks the start of the telephony configuration, value 255 marks the end.",
+        "tlvType": 254,
+        "tlvLength": 1,
+        "dataType": "uint8",
+        "validValues": {
+          "1": "Telephony Configuration File Start",
+          "255": "Telephony Configuration File End"
+        },
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "type": "uint8"
+    },
+    "SnmpMibObject": {
+      "metadata": {
+        "description": "SNMP MIB objects to set on the MTA during provisioning. Each entry is a BER-encoded varbind in the binary config file.",
+        "tlvType": 11,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "elements": {
+        "ref": "SnmpMibEntry"
+      }
+    },
+    "SnmpMibObjectLarge": {
+      "metadata": {
+        "description": "SNMP MIB objects to set on the MTA during provisioning, with a 2-byte length field to support larger varbinds. Each entry is a BER-encoded varbind in the binary config file.",
+        "tlvType": 64,
+        "dataType": "compound",
+        "tlvLengthSize": 2,
+        "repeatable": true,
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "elements": {
+        "ref": "SnmpMibEntry"
+      }
+    },
+    "Snmpv3NotificationReceiver": {
+      "metadata": {
+        "description": "SNMPv3 Notification Receiver encoding. Configures SNMP notification targets for the MTA.",
+        "tlvType": 38,
+        "dataType": "compound",
+        "repeatable": true,
+        "spec": "PKT-SP-PROV1.5 Section 9.1"
+      },
+      "elements": {
+        "ref": "Snmpv3NotificationReceiverEntry"
+      }
+    }
+  }
+}
