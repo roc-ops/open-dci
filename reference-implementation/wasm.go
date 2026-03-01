@@ -16,8 +16,11 @@ import (
 // This allows serialization of the current MIB state for later restoration.
 var loadedMIBFiles map[string][]byte
 
-// registry holds the loaded TLV registry for use across WASM function calls.
+// registry holds the loaded CM TLV registry for use across WASM function calls.
 var registry *opendci.Registry
+
+// mtaRegistry holds the loaded MTA TLV registry for MTA config support.
+var mtaRegistry *opendci.Registry
 
 // resolver holds the MIB resolver for OID annotation in decode output.
 var resolver *mibresolver.Resolver
@@ -43,6 +46,14 @@ func opendciLoadSchema(_ js.Value, args []js.Value) interface{} {
 	}
 
 	registry = reg
+
+	// Wire up MTA registry as nested if already loaded.
+	if mtaRegistry != nil {
+		if registry.NestedRegistries == nil {
+			registry.NestedRegistries = make(map[string]*opendci.Registry)
+		}
+		registry.NestedRegistries[opendci.FormatMTA] = mtaRegistry
+	}
 
 	obj := js.Global().Get("Object").New()
 	obj.Set("ok", true)
@@ -71,6 +82,36 @@ func opendciLoadVendorSchema(_ js.Value, args []js.Value) interface{} {
 	return obj
 }
 
+// opendciLoadMtaSchema loads a PacketCable MTA TLV registry from a JSON schema string.
+// When loaded, binary decode/encode will auto-detect MTA format (first byte 0xFE)
+// and CM configs containing TLV 216 will recursively decode embedded MTA payloads.
+// JS signature: opendciLoadMtaSchema(schemaJSON: string) -> {ok: true} | {error: string}
+func opendciLoadMtaSchema(_ js.Value, args []js.Value) interface{} {
+	if len(args) < 1 {
+		return jsError("opendciLoadMtaSchema requires 1 argument: schemaJSON string")
+	}
+
+	schemaJSON := args[0].String()
+	reg, err := opendci.LoadRegistryFromBytes([]byte(schemaJSON))
+	if err != nil {
+		return jsError("loading MTA schema: " + err.Error())
+	}
+
+	mtaRegistry = reg
+
+	// Wire up as nested registry on the CM registry for TLV 216 recursive decode.
+	if registry != nil {
+		if registry.NestedRegistries == nil {
+			registry.NestedRegistries = make(map[string]*opendci.Registry)
+		}
+		registry.NestedRegistries[opendci.FormatMTA] = mtaRegistry
+	}
+
+	obj := js.Global().Get("Object").New()
+	obj.Set("ok", true)
+	return obj
+}
+
 // opendciDecode decodes a binary DOCSIS config (Uint8Array) to a JSON string.
 // JS signature: opendciDecode(binaryData: Uint8Array) -> {result: string} | {error: string}
 func opendciDecode(_ js.Value, args []js.Value) interface{} {
@@ -88,8 +129,14 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 	data := make([]byte, length)
 	js.CopyBytesToGo(data, jsArray)
 
+	// Auto-detect format and select appropriate registry.
+	activeReg := registry
+	if mtaRegistry != nil && opendci.DetectFormat(data) == opendci.FormatMTA {
+		activeReg = mtaRegistry
+	}
+
 	// Decode the binary config.
-	result, err := opendci.Decode(data, registry)
+	result, err := opendci.Decode(data, activeReg)
 	if err != nil {
 		return jsError("decoding: " + err.Error())
 	}
@@ -150,8 +197,8 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 	delete(result.Config, "CmtsMic")
 
 	// Format as JSONC with MIB resolver if available.
-	validValues := registry.ValidValuesMap()
-	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver, registry.Format)
+	validValues := activeReg.ValidValuesMap()
+	jsoncData, err := opendci.FormatJSONC(result.Config, comments, validValues, resolver, activeReg.Format)
 	if err != nil {
 		return jsError("formatting output: " + err.Error())
 	}
@@ -162,7 +209,7 @@ func opendciDecode(_ js.Value, args []js.Value) interface{} {
 }
 
 // opendciEncode encodes a JSON/JSONC string to binary DOCSIS config (Uint8Array).
-// JS signature: opendciEncode(jsoncString: string, secret?: string, pad?: boolean, packetCableHash?: string) -> {result: Uint8Array} | {error: string}
+// JS signature: opendciEncode(jsoncString: string, secret?: string, pad?: boolean, packetCableHash?: string, format?: string) -> {result: Uint8Array} | {error: string}
 func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	if len(args) < 1 {
 		return jsError("opendciEncode requires 1 argument: JSON/JSONC string")
@@ -172,8 +219,20 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 		return jsError("no schema loaded: call opendciLoadSchema first")
 	}
 
+	jsoncInput := args[0].String()
+
+	// Determine format: explicit 5th arg, or auto-detect from JSONC header.
+	activeReg := registry
+	if len(args) >= 5 && args[4].Type() == js.TypeString && args[4].String() == opendci.FormatMTA {
+		if mtaRegistry != nil {
+			activeReg = mtaRegistry
+		}
+	} else if mtaRegistry != nil && strings.Contains(jsoncInput, "PacketCable MTA") {
+		activeReg = mtaRegistry
+	}
+
 	// Strip JSONC comments to produce valid JSON.
-	jsonStr := opendci.StripJSONCComments(args[0].String())
+	jsonStr := opendci.StripJSONCComments(jsoncInput)
 
 	// Parse JSON into config map.
 	var config map[string]interface{}
@@ -187,7 +246,7 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 	}
 
 	// Encode to binary.
-	encoded, err := opendci.Encode(result, registry)
+	encoded, err := opendci.Encode(result, activeReg)
 	if err != nil {
 		return jsError("encoding: " + err.Error())
 	}
@@ -470,6 +529,7 @@ func opendciRestoreMIBState(_ js.Value, args []js.Value) interface{} {
 func main() {
 	js.Global().Set("opendciLoadSchema", js.FuncOf(opendciLoadSchema))
 	js.Global().Set("opendciLoadVendorSchema", js.FuncOf(opendciLoadVendorSchema))
+	js.Global().Set("opendciLoadMtaSchema", js.FuncOf(opendciLoadMtaSchema))
 	js.Global().Set("opendciDecode", js.FuncOf(opendciDecode))
 	js.Global().Set("opendciEncode", js.FuncOf(opendciEncode))
 	js.Global().Set("opendciInitMIBs", js.FuncOf(opendciInitMIBs))

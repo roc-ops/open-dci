@@ -17,15 +17,17 @@ import (
 
 func main() {
 	var (
-		inputFile      string
-		outputFile     string
-		cmtsSecret     string
-		schemaPath     string
-		mibsDir        string
-		withMibs       string
-		noMibs         bool
-		encode         bool
-		padAlign       bool
+		inputFile       string
+		outputFile      string
+		cmtsSecret      string
+		schemaPath      string
+		mtaSchemaPath   string
+		formatFlag      string
+		mibsDir         string
+		withMibs        string
+		noMibs          bool
+		encode          bool
+		padAlign        bool
 		packetCableHash string
 	)
 
@@ -35,6 +37,8 @@ func main() {
 	flag.StringVar(&outputFile, "output", "", "Output file (default: stdout)")
 	flag.StringVar(&cmtsSecret, "cmts-secret", "", "CMTS shared secret for MIC verification/computation")
 	flag.StringVar(&schemaPath, "schema", "", "Path to JTD schema file (default: ../schemas/docsis-config.jtd.json)")
+	flag.StringVar(&mtaSchemaPath, "mta-schema", "", "Path to MTA JTD schema file (default: sibling of --schema)")
+	flag.StringVar(&formatFlag, "format", "", "Config format: cm or mta (default: auto-detect from content)")
 	flag.StringVar(&mibsDir, "mibs-dir", "", "Path to mibs/ root directory (default: ../mibs/)")
 	flag.StringVar(&withMibs, "with-mibs", "", "Comma-separated version-specific MIBs (e.g. DOCS-IF3-MIB@2024-07-05)")
 	flag.BoolVar(&noMibs, "no-mibs", false, "Disable MIB resolution")
@@ -55,6 +59,11 @@ func main() {
 		}
 	}
 
+	// Resolve MTA schema path: default to sibling of CM schema.
+	if mtaSchemaPath == "" {
+		mtaSchemaPath = filepath.Join(filepath.Dir(schemaPath), "mta-config.jtd.json")
+	}
+
 	// Read input.
 	var inputData []byte
 	var err error
@@ -73,16 +82,48 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Load registry from schema.
-	reg, err := opendci.LoadRegistry(schemaPath)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error loading schema: %v\n", err)
-		os.Exit(1)
+	// Determine format: explicit flag, or auto-detect from content.
+	format := formatFlag
+	if format == "" && !encode {
+		format = opendci.DetectFormat(inputData)
+	} else if format == "" {
+		// Encode mode without explicit format: detect from JSONC header.
+		header := string(inputData)
+		if strings.Contains(header, "PacketCable MTA") {
+			format = opendci.FormatMTA
+		} else {
+			format = opendci.FormatCM
+		}
 	}
 
-	// Load vendor-specific schemas (optional, non-fatal).
-	vendorDir := filepath.Join(filepath.Dir(schemaPath), "vendors")
-	reg.LoadVendorSchemas(vendorDir)
+	// Load the appropriate primary registry based on format.
+	var reg *opendci.Registry
+	if format == opendci.FormatMTA {
+		reg, err = opendci.LoadRegistry(mtaSchemaPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error loading MTA schema: %v\n", err)
+			os.Exit(1)
+		}
+	} else {
+		reg, err = opendci.LoadRegistry(schemaPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error loading schema: %v\n", err)
+			os.Exit(1)
+		}
+
+		// Load vendor-specific schemas (optional, non-fatal).
+		vendorDir := filepath.Join(filepath.Dir(schemaPath), "vendors")
+		reg.LoadVendorSchemas(vendorDir)
+
+		// Load MTA registry as nested for TLV 216 recursive decode.
+		mtaReg, mtaErr := opendci.LoadRegistry(mtaSchemaPath)
+		if mtaErr == nil {
+			if reg.NestedRegistries == nil {
+				reg.NestedRegistries = make(map[string]*opendci.Registry)
+			}
+			reg.NestedRegistries[opendci.FormatMTA] = mtaReg
+		}
+	}
 
 	if encode {
 		runEncode(inputData, reg, outputFile, cmtsSecret, padAlign, packetCableHash)
