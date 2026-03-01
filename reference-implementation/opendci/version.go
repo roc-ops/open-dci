@@ -1,4 +1,4 @@
 package opendci
 
 // Version is the semantic version of the opendci package.
-const Version = "0.1.1"
+const Version = "0.1.2"
