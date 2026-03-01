@@ -240,6 +240,13 @@ func opendciEncode(_ js.Value, args []js.Value) interface{} {
 		return jsError("parsing JSON: " + err.Error())
 	}
 
+	// Auto-detect MTA format from MtaConfigDelimiter in config.
+	if activeReg == registry && mtaRegistry != nil {
+		if _, ok := config["MtaConfigDelimiter"]; ok {
+			activeReg = mtaRegistry
+		}
+	}
+
 	// Build a DecodeResult for the encoder.
 	result := &opendci.DecodeResult{
 		Config: config,

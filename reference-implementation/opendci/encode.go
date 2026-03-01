@@ -14,7 +14,13 @@ import (
 //   - MTA mode: prepends TLV 254 start delimiter and appends TLV 254 end delimiter
 func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 	var out []byte
+	// Detect MTA format from registry OR from MtaConfigDelimiter in config.
 	isMTA := reg.Format == FormatMTA
+	if !isMTA {
+		if _, ok := result.Config["MtaConfigDelimiter"]; ok {
+			isMTA = true
+		}
+	}
 
 	// MTA mode: prepend TLV 254 start delimiter.
 	if isMTA {
@@ -34,7 +40,9 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 
 	for _, name := range order {
 		// Skip MIC TLVs — they are not round-trippable without recomputation.
-		if name == "CmMic" || name == "CmtsMic" {
+		// Skip MtaConfigDelimiter — it is structural; the encoder emits
+		// TLV 254 start/end delimiters automatically when MTA is detected.
+		if name == "CmMic" || name == "CmtsMic" || name == "MtaConfigDelimiter" {
 			continue
 		}
 

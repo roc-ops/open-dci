@@ -78,13 +78,17 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 
 		value := data[valueStart:valueEnd]
 
-		// MTA mode: TLV 254 delimiters are structural markers, not data.
+		// MTA mode: TLV 254 delimiters bracket the config content.
+		// Preserve the start delimiter in the config so the encoder can
+		// auto-detect MTA format from the decoded JSON alone.
 		if isMTA && tlvType == 254 {
 			if len(value) == 1 && value[0] == 0xFF {
 				// End delimiter — stop reading.
 				break
 			}
-			// Start delimiter (value 1) or other structural marker — skip.
+			// Start delimiter (value 1): preserve in config for format detection.
+			result.Config["MtaConfigDelimiter"] = float64(value[0])
+			result.TLVOrder = append(result.TLVOrder, "MtaConfigDelimiter")
 			offset = valueEnd
 			continue
 		}

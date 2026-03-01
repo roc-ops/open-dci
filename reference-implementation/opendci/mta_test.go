@@ -190,7 +190,7 @@ func TestMTADecodeCompound(t *testing.T) {
 	}
 }
 
-func TestMTADecodeSkipsDelimiters(t *testing.T) {
+func TestMTADecodePreservesDelimiter(t *testing.T) {
 	reg := makeMTATestRegistry()
 
 	data := buildMTAConfig(
@@ -202,9 +202,13 @@ func TestMTADecodeSkipsDelimiters(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// MtaConfigDelimiter should NOT appear in decoded config.
-	if _, ok := result.Config["MtaConfigDelimiter"]; ok {
-		t.Error("MtaConfigDelimiter should not appear in decoded config")
+	// MtaConfigDelimiter start (value 1) should be preserved in decoded config.
+	delim, ok := result.Config["MtaConfigDelimiter"]
+	if !ok {
+		t.Fatal("MtaConfigDelimiter should appear in decoded config")
+	}
+	if delim != float64(1) {
+		t.Errorf("MtaConfigDelimiter should be 1, got %v", delim)
 	}
 
 	// MIC fields should be nil in MTA mode.
@@ -425,8 +429,12 @@ func TestMTAEmptyConfig(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if len(result.Config) != 0 {
-		t.Errorf("expected empty config, got %d entries", len(result.Config))
+	// Only the MtaConfigDelimiter should be present (no actual TLV data).
+	if len(result.Config) != 1 {
+		t.Errorf("expected 1 entry (MtaConfigDelimiter only), got %d entries", len(result.Config))
+	}
+	if _, ok := result.Config["MtaConfigDelimiter"]; !ok {
+		t.Error("expected MtaConfigDelimiter in decoded config")
 	}
 }
 
