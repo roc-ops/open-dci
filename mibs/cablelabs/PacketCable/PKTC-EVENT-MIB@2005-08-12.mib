@@ -57,9 +57,6 @@ pktcEventMib MODULE-IDENTITY
    ---
 pktcDevEvControl OBJECT-TYPE
     SYNTAX       BITS {
-
-Management Event MIB Specification                  PKT-SP-EVEMIB1.5-C01-191120
-
                 resetEventLogTable(0),
                 resetEventDescrTable(1)
                 }    MAX-ACCESS read-write
@@ -185,8 +182,6 @@ pktcDevEvThrottleAdminStatus OBJECT-TYPE
      DEFVAL { unconstrained }
      ::= { pktcDevEventThrottle 1 }
 
-Management Event MIB Specification                   PKT-SP-EVEMIB1.5-C01-191120
-
 pktcDevEvThrottleThreshold OBJECT-TYPE
     SYNTAX      Unsigned32
     MAX-ACCESS read-write
@@ -307,9 +302,6 @@ pktcDevEventDescrEnterprise OBJECT-TYPE
     ::= { pktcDevEventDescrEntry 2 }
 
 pktcDevEventDescrFacility   OBJECT-TYPE
-
-Management Event MIB Specification                  PKT-SP-EVEMIB1.5-C01-191120
-
     SYNTAX      INTEGER {
                 kernel(0),
                 user(1),
@@ -436,8 +428,6 @@ pktcDevEventLogTable OBJECT-TYPE
             MIB table 'pktcDevEventDescrTable'."
     ::= { pktcDevEventLog 1 }
 
-Management Event MIB Specification                   PKT-SP-EVEMIB1.5-C01-191120
-
 pktcDevEventLogEntry OBJECT-TYPE
     SYNTAX      PktcDevEventLogEntry
     MAX-ACCESS not-accessible
@@ -560,9 +550,6 @@ pktcDevEvLogType OBJECT-TYPE
     DESCRIPTION
             "This MIB Object contains the kind of actions taken by
              the PacketCable device when the event under consideration
-
-Management Event MIB Specification                  PKT-SP-EVEMIB1.5-C01-191120
-
              occurred.
 
              A bit with a value of 1 indicates the corresponding
@@ -688,9 +675,6 @@ pktcEventGroup OBJECT-GROUP
             pktcDevEvThrottleThreshold,
             pktcDevEvThrottleInterval,
             pktcDevEvTransmissionStatus,
-
-Management Event MIB Specification                  PKT-SP-EVEMIB1.5-C01-191120
-
             pktcDevEventDescrEnterprise,
             pktcDevEventDescrFacility,
             pktcDevEventDescrLevel,

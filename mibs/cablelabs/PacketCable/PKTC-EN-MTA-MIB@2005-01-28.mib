@@ -6,7 +6,7 @@ IMPORTS
       pktcEnhancements                                   FROM CLAB-DEF-MIB;
 
 pktcEnMtaMib MODULE-IDENTITY
-    LAST-UPDATED    "200501280000Z – January 28, 2005"
+    LAST-UPDATED    "200501280000Z"
     ORGANIZATION    "Cable Television Laboratories, Inc"
 
       CONTACT-INFO

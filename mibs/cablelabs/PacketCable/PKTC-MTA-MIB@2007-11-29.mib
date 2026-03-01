@@ -1626,7 +1626,7 @@ pktcMtaDevResetKrbTickets OBJECT-TYPE
                to the MTA endpoints."
      REFERENCE
              "PacketCable Security Specification"
-      DEFVAL { {   } }}
+      DEFVAL { }
 ::= { pktcMtaDevSecurity 19 }
 
  --
