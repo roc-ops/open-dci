@@ -1,3 +1,6 @@
+# OS files
+.DS_Store
+
 # Do-work task queue (local only)
 do-work/
 
@@ -6,4 +9,15 @@ docs/external/
 
 # Compiled binaries
 reference-implementation/opendci-decode
+reference-implementation/reference-implementation
+reference-implementation/opendci
 
+# Test binaries
+reference-implementation/*.test
+reference-implementation/mibresolver.test
+
+# WASM build output
+reference-implementation/dci.wasm
+
+# Tools build output
+jtd2jsonschema

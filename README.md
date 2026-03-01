@@ -2,6 +2,8 @@
 
 **Open DOCSIS Configuration Interchange** -- A JSON-based data interchange format for DOCSIS cable modem configuration files.
 
+**Current version: 0.1.0** | [Changelog](CHANGELOG.md)
+
 ## What is this?
 
 DOCSIS cable modems are configured using binary files built from Type-Length-Value (TLV) encodings defined across multiple CableLabs specifications. These binary files are opaque, vendor-tool-dependent, and difficult to version, diff, or automate.
