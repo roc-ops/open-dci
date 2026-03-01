@@ -56,10 +56,33 @@ func Encode(result *DecodeResult, reg *Registry) ([]byte, error) {
 			if ls == 2 {
 				maxChunk = 65535
 			}
-			valueBytes, err := EncodeValue(val, def.DataType)
-			if err != nil {
-				return nil, fmt.Errorf("encoding chunked %s: %w", name, err)
+
+			var valueBytes []byte
+
+			// Nested format: if the value is a structured map, encode it using
+			// the nested registry (e.g. Emta → encode as MTA config binary).
+			if def.NestedFormat != "" && reg.NestedRegistries != nil {
+				if nestedReg, ok := reg.NestedRegistries[def.NestedFormat]; ok {
+					if m, isMap := val.(map[string]interface{}); isMap {
+						nestedResult := &DecodeResult{Config: m}
+						var encErr error
+						valueBytes, encErr = Encode(nestedResult, nestedReg)
+						if encErr != nil {
+							return nil, fmt.Errorf("encoding nested %s: %w", name, encErr)
+						}
+					}
+				}
 			}
+
+			// Fall back to encoding as a simple value (hexstring).
+			if valueBytes == nil {
+				var err error
+				valueBytes, err = EncodeValue(val, def.DataType)
+				if err != nil {
+					return nil, fmt.Errorf("encoding chunked %s: %w", name, err)
+				}
+			}
+
 			for len(valueBytes) > 0 {
 				chunkSize := len(valueBytes)
 				if chunkSize > maxChunk {

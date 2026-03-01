@@ -11,23 +11,25 @@ import (
 
 // TLVDef describes a single TLV type from the schema.
 type TLVDef struct {
-	TypeNum     int               // Wire type number (last segment of dotted notation)
-	Name        string            // JSON property name
-	DataType    DataType          // Wire data type
-	Repeatable  bool              // Whether this TLV can appear multiple times
-	Chunked     bool              // Whether this TLV uses 254-byte chunked encoding (e.g. CVC certificates)
-	LengthSize  int               // Number of bytes for the length field: 1 (default) or 2 (big-endian)
-	SubTLVs     map[int]*TLVDef   // For compound types: sub-TLV definitions keyed by type number
-	RefName     string            // Name of the referenced definition (for compound types)
-	ValidValues map[string]string // Human-readable labels for enum-like integer values
+	TypeNum      int               // Wire type number (last segment of dotted notation)
+	Name         string            // JSON property name
+	DataType     DataType          // Wire data type
+	Repeatable   bool              // Whether this TLV can appear multiple times
+	Chunked      bool              // Whether this TLV uses 254-byte chunked encoding (e.g. CVC certificates)
+	LengthSize   int               // Number of bytes for the length field: 1 (default) or 2 (big-endian)
+	SubTLVs      map[int]*TLVDef   // For compound types: sub-TLV definitions keyed by type number
+	RefName      string            // Name of the referenced definition (for compound types)
+	ValidValues  map[string]string // Human-readable labels for enum-like integer values
+	NestedFormat string            // If set, payload is recursively decoded using this format's registry (e.g. "mta")
 }
 
 // Registry holds the complete TLV definition hierarchy.
 type Registry struct {
-	TopLevel      map[int]*TLVDef
-	NameLookup    map[string]*TLVDef            // Reverse lookup: name → definition
-	VendorSchemas map[string]map[int]*TLVDef    // OUI → sub-TLV type → definition
-	Format        string                         // Config format: "cm" (default) or "mta"
+	TopLevel          map[int]*TLVDef
+	NameLookup        map[string]*TLVDef            // Reverse lookup: name → definition
+	VendorSchemas     map[string]map[int]*TLVDef    // OUI → sub-TLV type → definition
+	Format            string                         // Config format: "cm" (default) or "mta"
+	NestedRegistries  map[string]*Registry           // Format name → registry for recursive decode (e.g. "mta" → MTA registry)
 }
 
 // jtdSchema represents the top-level JTD schema structure.
@@ -122,12 +124,13 @@ func LoadRegistryFromBytes(data []byte) (*Registry, error) {
 		lengthSize := getIntMeta(meta, "tlvLengthSize", 1)
 
 		def := &TLVDef{
-			TypeNum:    typeNum,
-			Name:       name,
-			DataType:   dt,
-			Repeatable: repeatable,
-			Chunked:    chunked,
-			LengthSize: lengthSize,
+			TypeNum:      typeNum,
+			Name:         name,
+			DataType:     dt,
+			Repeatable:   repeatable,
+			Chunked:      chunked,
+			LengthSize:   lengthSize,
+			NestedFormat: getStringMeta(meta, "nestedFormat"),
 		}
 		def.ValidValues = getValidValuesMeta(meta)
 

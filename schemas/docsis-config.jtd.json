@@ -6893,6 +6893,7 @@
         "tlvType": 216,
         "dataType": "hexstring",
         "chunked": true,
+        "nestedFormat": "mta",
         "spec": "PKT-SP-PROV1.5-C01 9.1"
       },
       "type": "string"

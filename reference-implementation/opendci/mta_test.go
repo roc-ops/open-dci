@@ -550,6 +550,250 @@ func TestCMJSONCHeader(t *testing.T) {
 	}
 }
 
+// makeCMRegistryWithEmta builds a CM registry that includes TLV 216 (Emta)
+// with nestedFormat pointing to an MTA registry.
+func makeCMRegistryWithEmta() (*Registry, *Registry) {
+	mtaReg := makeMTATestRegistry()
+
+	cmReg := makeTestRegistry()
+	cmReg.TopLevel[216] = &TLVDef{
+		TypeNum:      216,
+		Name:         "Emta",
+		DataType:     DataTypeHexString,
+		Chunked:      true,
+		NestedFormat: "mta",
+	}
+	cmReg.NameLookup["Emta"] = cmReg.TopLevel[216]
+	cmReg.NestedRegistries = map[string]*Registry{
+		"mta": mtaReg,
+	}
+
+	return cmReg, mtaReg
+}
+
+func TestTLV216RecursiveDecode(t *testing.T) {
+	cmReg, _ := makeCMRegistryWithEmta()
+
+	// Build an MTA config binary (with delimiters).
+	varbind := buildVarbind([]byte{0x2B, 0x06, 0x01, 0x02, 0x01}, tagInteger, []byte{0x2A})
+	mtaBinary := buildMTAConfig(buildTLV(11, varbind))
+
+	// Embed it as TLV 216 in a CM config.
+	data := buildConfig(
+		buildTLV(3, []byte{1}),      // NetworkAccess = 1
+		buildTLV(216, mtaBinary),     // Emta (chunked, but small enough for one chunk)
+	)
+
+	result, err := Decode(data, cmReg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// NetworkAccess should be decoded normally.
+	if result.Config["NetworkAccess"] != 1 {
+		t.Errorf("expected NetworkAccess=1, got %v", result.Config["NetworkAccess"])
+	}
+
+	// Emta should be a structured map, not a hexstring.
+	emta, ok := result.Config["Emta"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("expected Emta as map, got %T: %v", result.Config["Emta"], result.Config["Emta"])
+	}
+
+	// Should contain SnmpMibObject array.
+	snmpArr, ok := emta["SnmpMibObject"].([]interface{})
+	if !ok {
+		t.Fatalf("expected SnmpMibObject array in Emta, got %T", emta["SnmpMibObject"])
+	}
+	if len(snmpArr) != 1 {
+		t.Fatalf("expected 1 SNMP entry in Emta, got %d", len(snmpArr))
+	}
+
+	entry := snmpArr[0].(map[string]interface{})
+	if entry["oid"] != "1.3.6.1.2.1" {
+		t.Errorf("expected oid '1.3.6.1.2.1', got %v", entry["oid"])
+	}
+	if entry["value"] != "42" {
+		t.Errorf("expected value '42', got %v", entry["value"])
+	}
+}
+
+func TestTLV216RecursiveEncode(t *testing.T) {
+	cmReg, _ := makeCMRegistryWithEmta()
+
+	// Structured Emta content.
+	result := &DecodeResult{
+		Config: map[string]interface{}{
+			"NetworkAccess": 1,
+			"Emta": map[string]interface{}{
+				"SnmpMibObject": []interface{}{
+					map[string]interface{}{
+						"oid":   "1.3.6.1.2.1",
+						"type":  "Integer",
+						"value": "42",
+					},
+				},
+			},
+		},
+		TLVOrder: []string{"NetworkAccess", "Emta"},
+	}
+
+	encoded, err := Encode(result, cmReg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Verify the output contains TLV 216.
+	found216 := false
+	offset := 0
+	for offset < len(encoded) {
+		if encoded[offset] == 0xFF {
+			break
+		}
+		if encoded[offset] == 0 {
+			offset++
+			continue
+		}
+		tlvType := int(encoded[offset])
+		tlvLen := int(encoded[offset+1])
+		if tlvType == 216 {
+			found216 = true
+			// The value should start with MTA start delimiter (FE 01 01).
+			value := encoded[offset+2 : offset+2+tlvLen]
+			if len(value) < 3 || value[0] != 0xFE || value[1] != 0x01 || value[2] != 0x01 {
+				t.Errorf("TLV 216 value should start with MTA delimiter, got: %X", value[:min(3, len(value))])
+			}
+		}
+		offset += 2 + tlvLen
+	}
+	if !found216 {
+		t.Error("expected TLV 216 in encoded output")
+	}
+}
+
+func TestTLV216RoundTrip(t *testing.T) {
+	cmReg, _ := makeCMRegistryWithEmta()
+
+	// Build original binary with embedded MTA config.
+	varbind := buildVarbind([]byte{0x2B, 0x06, 0x01, 0x02, 0x01}, tagInteger, []byte{0x2A})
+	mtaBinary := buildMTAConfig(buildTLV(11, varbind))
+
+	original := buildConfig(
+		buildTLV(3, []byte{1}),
+		buildTLV(216, mtaBinary),
+	)
+
+	// Decode.
+	result, err := Decode(original, cmReg)
+	if err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+
+	// Verify structured decode.
+	if _, ok := result.Config["Emta"].(map[string]interface{}); !ok {
+		t.Fatalf("expected structured Emta, got %T", result.Config["Emta"])
+	}
+
+	// Re-encode.
+	encoded, err := Encode(result, cmReg)
+	if err != nil {
+		t.Fatalf("encode: %v", err)
+	}
+
+	if !bytes.Equal(encoded, original) {
+		t.Errorf("TLV 216 round-trip mismatch:\n  got:  %X\n  want: %X", encoded, original)
+	}
+}
+
+func TestTLV216FallbackWithoutMTARegistry(t *testing.T) {
+	// CM registry WITHOUT nested MTA registry — should fall back to hexstring.
+	cmReg := makeTestRegistry()
+	cmReg.TopLevel[216] = &TLVDef{
+		TypeNum:      216,
+		Name:         "Emta",
+		DataType:     DataTypeHexString,
+		Chunked:      true,
+		NestedFormat: "mta",
+	}
+	cmReg.NameLookup["Emta"] = cmReg.TopLevel[216]
+	// No NestedRegistries set.
+
+	varbind := buildVarbind([]byte{0x2B, 0x06, 0x01}, tagInteger, []byte{0x01})
+	mtaBinary := buildMTAConfig(buildTLV(11, varbind))
+
+	data := buildConfig(
+		buildTLV(3, []byte{1}),
+		buildTLV(216, mtaBinary),
+	)
+
+	result, err := Decode(data, cmReg)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Without MTA registry, Emta should be a hexstring.
+	emta, ok := result.Config["Emta"].(string)
+	if !ok {
+		t.Fatalf("expected Emta as string (hexstring fallback), got %T", result.Config["Emta"])
+	}
+	if emta == "" {
+		t.Error("expected non-empty hexstring for Emta")
+	}
+}
+
+func TestTLV216ChunkedRoundTrip(t *testing.T) {
+	cmReg, _ := makeCMRegistryWithEmta()
+
+	// Build a large MTA config that will need chunking (>254 bytes).
+	var varbinds [][]byte
+	for i := 0; i < 20; i++ {
+		oid := []byte{0x2B, 0x06, 0x01, 0x02, 0x01, byte(i + 1)}
+		varbinds = append(varbinds, buildTLV(11, buildVarbind(oid, tagInteger, []byte{byte(i)})))
+	}
+	mtaBinary := buildMTAConfig(varbinds...)
+
+	// Build CM config with chunked TLV 216.
+	// Manually chunk the MTA binary into ≤254-byte pieces.
+	var cmData []byte
+	cmData = append(cmData, buildTLV(3, []byte{1})...)
+	remaining := mtaBinary
+	for len(remaining) > 0 {
+		chunkSize := len(remaining)
+		if chunkSize > 254 {
+			chunkSize = 254
+		}
+		cmData = append(cmData, buildTLV(216, remaining[:chunkSize])...)
+		remaining = remaining[chunkSize:]
+	}
+	cmData = append(cmData, 0xFF, 0x00)
+
+	// Decode.
+	result, err := Decode(cmData, cmReg)
+	if err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+
+	// Verify structured decode.
+	emta, ok := result.Config["Emta"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("expected structured Emta, got %T", result.Config["Emta"])
+	}
+	snmpArr := emta["SnmpMibObject"].([]interface{})
+	if len(snmpArr) != 20 {
+		t.Errorf("expected 20 SNMP entries in Emta, got %d", len(snmpArr))
+	}
+
+	// Re-encode.
+	encoded, err := Encode(result, cmReg)
+	if err != nil {
+		t.Fatalf("encode: %v", err)
+	}
+
+	if !bytes.Equal(encoded, cmData) {
+		t.Errorf("chunked TLV 216 round-trip mismatch: got len=%d, want len=%d", len(encoded), len(cmData))
+	}
+}
+
 func TestPacketCableHashMTAEndMarker(t *testing.T) {
 	// Build a minimal MTA encoded output with MTA end delimiter.
 	varbind := buildVarbind([]byte{0x2B, 0x06, 0x01}, tagInteger, []byte{0x01})

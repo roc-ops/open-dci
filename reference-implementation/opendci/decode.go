@@ -138,6 +138,21 @@ func Decode(data []byte, reg *Registry) (*DecodeResult, error) {
 				assembled = append(assembled, data[scanOffset+1+lengthSize:nextEnd]...)
 				scanOffset = nextEnd
 			}
+
+			// Nested format: recursively decode using the appropriate registry
+			// (e.g. TLV 216 Emta → decode as MTA config).
+			if def.NestedFormat != "" && reg.NestedRegistries != nil {
+				if nestedReg, ok := reg.NestedRegistries[def.NestedFormat]; ok {
+					nestedResult, nestedErr := Decode(assembled, nestedReg)
+					if nestedErr == nil {
+						result.Config[def.Name] = nestedResult.Config
+						offset = scanOffset
+						continue
+					}
+					// Fall through to opaque hexstring on decode failure.
+				}
+			}
+
 			decoded, err := DecodeValue(assembled, def.DataType)
 			if err != nil {
 				return nil, fmt.Errorf("decoding chunked TLV %d at offset %d: %w", tlvType, offset, err)
