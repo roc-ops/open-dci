@@ -2,7 +2,7 @@
 
 **Open DOCSIS Configuration Interchange** -- A JSON-based data interchange format for DOCSIS cable modem configuration files.
 
-**Current version: 0.1.0** | [Changelog](CHANGELOG.md)
+**Current version: 0.1.2** | [Changelog](CHANGELOG.md)
 
 ## What is this?
 
